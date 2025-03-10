@@ -1,4 +1,13 @@
 {
-  "WELCOME": "Bienvenido a somPoble",
-  "BUTTON_CLICK": "Haz clic aquí"
+  "login_title": "LOGIN",
+  "sompoble": "SomPoble",
+  "email_label": "Correo",
+  "email_placeholder": "tu@correo.com",
+  "email_required": "Por favor, introduce un correo válido.",
+  "password_label": "Contraseña",
+  "password_required": "Por favor, introduce la contraseña.",
+  "submit_button": "Entrar",
+  "forgot_password": "Has olvidado la contraseña.",
+  "register_text": "¿No tienes cuenta?",
+  "register_link": "Crea una."
 }

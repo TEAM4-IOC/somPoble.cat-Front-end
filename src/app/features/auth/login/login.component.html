@@ -1,0 +1,64 @@
+<div class="component-wrapper">
+  <div class="login-container">
+    <h1>{{ 'login_title' | translate }}</h1>
+    <h2>{{ 'sompoble' | translate }}</h2>
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+      <div class="input-group">
+        <label for="email" class="form-label">{{ 'email_label' | translate }}</label>
+        <div class="input-control">
+          <input
+            type="email"
+            id="email"
+            [(ngModel)]="email"
+            name="email"
+            placeholder="{{ 'email_placeholder' | translate }}"
+            required
+            email
+            #emailModel="ngModel"
+          />
+        </div>
+        <div class="error" *ngIf="emailModel.invalid && (emailModel.touched || emailModel.dirty)">
+          {{ 'email_required' | translate }}
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="password" class="form-label">{{ 'password_label' | translate }}</label>
+        <div class="input-control">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="**********"
+            required
+            #passwordModel="ngModel"
+          />
+          <button
+            type="button"
+            class="toggle-password-btn"
+            (click)="togglePasswordVisibility()"
+          >
+            @if (showPassword) {
+              <i class="fa fa-eye eye-icon"></i>
+            } @else {
+              <i class="fa fa-eye-slash eye-icon"></i>
+            }
+          </button>
+        </div>
+        <div class="error" *ngIf="passwordModel.invalid && (passwordModel.touched || passwordModel.dirty)">
+          {{ 'password_required' | translate }}
+        </div>
+      </div>
+      <button type="submit" class="login-btn" [disabled]="loginForm.invalid">
+        {{ 'submit_button' | translate }}
+      </button>
+      <div class="error" *ngIf="loginError">
+        {{ loginError }}
+      </div>
+      <a href="#" class="forgot-password">{{ 'forgot_password' | translate }}</a>
+      <p class="register">
+        {{ 'register_text' | translate }} <a href="#">{{ 'register_link' | translate }}</a>
+      </p>
+    </form>
+  </div>
+</div>

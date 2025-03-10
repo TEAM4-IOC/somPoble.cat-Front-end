@@ -1,4 +1,13 @@
 {
-  "WELCOME": "Benvingut a somPoble",
-  "BUTTON_CLICK": "Fes clic aquí"
+  "login_title": "LOGIN",
+  "sompoble": "SomPoble",
+  "email_label": "Correu",
+  "email_placeholder": "el teu@correu.com",
+  "email_required": "Si us plau, introdueix un correu vàlid.",
+  "password_label": "Contrasenya",
+  "password_required": "Si us plau, introdueix la contrasenya.",
+  "submit_button": "Entrar",
+  "forgot_password": "Has oblidat la contrasenya.",
+  "register_text": "No tens compte?",
+  "register_link": "Crea'n un."
 }
