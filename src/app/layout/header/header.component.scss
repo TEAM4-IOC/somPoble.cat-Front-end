@@ -1,19 +1,17 @@
+/* Logo */
 .logo img {
-    margin: 0;
-    width: 200px;
+    max-width: 200px;
     height: auto;
 }
 
+/* Ajuste para los iconos dentro de los botones */
 button img {
     width: 20px;
     height: auto;
-    margin-right:5px;
+    margin-right: 5px;
 }
 
-.m-0 {
-    margin: 0;
-}
-
+/* Menú */
 .header-menu {
     text-align: center;
 }
@@ -21,6 +19,7 @@ button img {
 .header-menu ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .header-menu ul li {
@@ -39,43 +38,22 @@ button img {
     z-index: 1;
 }
 
-/* Menú desplegable header */
-
+/* Menú desplegable */
 .header-menu ul li ul {
     position: absolute;
     width: 300px;
-    top: 103%;
+    top: 115%;
     left: 0;
     transition: .5s;
     transform: scaleY(0);
     transform-origin: top center;
     visibility: hidden;
     opacity: 0;
-    border-radius: 15px 15px;
-    z-index: 1;
-    background: rgba(0, 0, 0, 0.337);
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.8);
 }
 
-.header-menu ul li ul::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    border-radius: 20px 0px;
-    height: 0%;
-    width: 100%;
-    z-index: -1;
-    opacity: .4;
-    transition: 5s;
-}
-
-.header-menu ul li ul:hover::before {
-    height: 100%;
-    width: 100%;
-    opacity: .4;
-}
-
-.header-menu ul li:hover>ul {
+.header-menu ul li:hover > ul {
     transform: scaleY(1);
     visibility: visible;
     opacity: 1;
@@ -87,8 +65,6 @@ button img {
 
 .header-menu ul li ul li a {
     display: block;
-    padding: 20px 0px;
-    position: relative;
-    z-index: 1;
+    padding: 15px;
     text-shadow: 1px 1px 4px #000;
 }
