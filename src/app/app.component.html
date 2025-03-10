@@ -1,9 +1,7 @@
-<header class="p-3 bg-light d-flex justify-content-end">
-  <button class="btn btn-primary me-2" (click)="changeLanguage('es')">🇪🇸 Español</button>
-  <button class="btn btn-warning" (click)="changeLanguage('cat')">🏴 Català</button>
-</header>
+<app-header></app-header>
 
-<div class="container mt-5">
-  <h1>{{ 'WELCOME' | translate }}</h1>
-  <button class="btn btn-success">{{ 'BUTTON_CLICK' | translate }}</button>
-</div>
+  
+  <div class="container mt-5">
+    <h1>{{ 'WELCOME' | translate }}</h1>
+    <button class="btn btn-success">{{ 'BUTTON_CLICK' | translate }}</button>
+  </div>
