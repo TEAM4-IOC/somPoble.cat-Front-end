@@ -14,6 +14,8 @@
   },
   "register": {
     "register_title": "REGISTRE",
+    "register_title_client": "Registre Client",
+    "register_title_business": "Registre Empresari",
     "dni_label": "DNI",
     "dni_placeholder": "DNI",
     "dni_required": "Si us plau, introdueix el teu DNI.",

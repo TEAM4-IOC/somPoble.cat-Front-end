@@ -12,7 +12,13 @@
         </select>
       </div>
     } @else {
-      <h2>{{ 'register.register_title' | translate }}</h2>
+      @if (registerRole === 1) {
+        <h2>{{ 'register.register_title_client' | translate }}</h2>
+      } @else if (registerRole === 2) {
+        <h2>{{ 'register.register_title_business' | translate }}</h2>
+      } @else {
+        <h2>{{ 'register.register_title' | translate }}</h2>
+      }
       <form (ngSubmit)="onRegister()" #registerForm="ngForm">
         <div class="input-group">
           <label for="dni" class="form-label">{{ 'register.dni_label' | translate }}</label>
