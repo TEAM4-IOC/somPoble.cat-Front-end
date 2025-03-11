@@ -1,49 +1,49 @@
 <header class="col-12 p-3 d-flex justify-content-between align-items-center">
-  
+
     <!-- Logo -->
     <div class="logo">
-      <img src="images/logo.png">
+        <p>LOGO SOM POBLE</p>
     </div>
-    
+
     <!-- Menú de navegación -->
     <div class="m-0">
-      <div class="header-menu">
-        <ul class="m-0 bg-dark p-2 rounded">
-          <li><a href="#">Menú 1</a>
-            <ul>
-              <li><a href="#">Opción menú 1</a></li>
-              <li><a href="#">Opción menú 1</a></li>
-              <li><a href="#">Opción menú 1</a></li>
+        <div class="header-menu">
+            <ul class="m-0 bg-dark p-2 rounded">
+                <li><a href="#">Menú 1</a>
+                    <ul>
+                        <li><a href="#">Opción menú 1</a></li>
+                        <li><a href="#">Opción menú 1</a></li>
+                        <li><a href="#">Opción menú 1</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Menú 2</a>
+                    <ul>
+                        <li><a href="#">Opción menú 2</a></li>
+                        <li><a href="#">Opción menú 2</a></li>
+                        <li><a href="#">Opción menú 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Menú 3</a>
+                    <ul>
+                        <li><a href="#">Opción menú 3</a></li>
+                        <li><a href="#">Opción menú 3</a></li>
+                        <li><a href="#">Opción menú 3</a></li>
+                    </ul>
+                </li>
             </ul>
-          </li>
-          <li><a href="#">Menú 2</a>
-            <ul>
-              <li><a href="#">Opción menú 2</a></li>
-              <li><a href="#">Opción menú 2</a></li>
-              <li><a href="#">Opción menú 2</a></li>
-            </ul>
-          </li>
-          <li><a href="#">Menú 3</a>
-            <ul>
-              <li><a href="#">Opción menú 3</a></li>
-              <li><a href="#">Opción menú 3</a></li>
-              <li><a href="#">Opción menú 3</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+        </div>
     </div>
-  
-    <!-- Botones de idioma (manteniendo alineación original) -->
-    
-    <div class="lang-btn d-flex align-items-center">
-      <button class="btn btn-primary me-2" (click)="changeLanguage('es')">
-        <i class="fa-solid fa-globe"></i> Español
-      </button>
-      <button class="btn btn-warning" (click)="changeLanguage('cat')">
-        <i class="fa-solid fa-globe"></i> Català
-      </button>
+
+    <div class="d-flex align-items-center ">
+        <i class="fa-solid fa-arrow-right-to-bracket login-icon fs-1" title="Login"></i>
+        <i class="fa-solid fa-globe lang-icon fs-4"></i>
+        <select class="form-select" (change)="changeLanguage($event)">
+            <option value="" disabled hidden>{{ language }}</option>
+            <optgroup label="Idiomas">
+                <option value="cat" >CAT</option>
+                <option value="es" >ES</option>
+            </optgroup>
+        </select>
+
     </div>
-  
-  </header>
-  
+</header>
