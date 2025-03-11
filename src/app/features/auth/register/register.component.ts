@@ -13,6 +13,9 @@ import { TranslateModule } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterComponent {
+  registerRole: number | null = null;
+  showForm: boolean = false;
+
   dni: string = '';
   nombre: string = '';
   apellidos: string = '';
@@ -23,25 +26,41 @@ export class RegisterComponent {
   showPassword: boolean = false;
   registerError: string = '';
 
+  selectRole(role: number): void {
+    this.registerRole = role;
+    console.log('Selected role ID:', this.registerRole);
+    this.showForm = true;
+  }
+
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
 
   onRegister(): void {
     if (this.password !== this.repeatPassword) {
-      this.registerError = "Las contraseñas no coinciden.";
+      this.registerError = 'Las contraseñas no coinciden.';
       return;
     }
-    if (this.dni && this.nombre && this.apellidos && this.email && this.telefono && this.password && this.repeatPassword) {
+    if (
+      this.dni &&
+      this.nombre &&
+      this.apellidos &&
+      this.email &&
+      this.telefono &&
+      this.password &&
+      this.repeatPassword
+    ) {
       this.registerError = '';
-      console.log({
+      const registrationData = {
+        roleId: this.registerRole,
         dni: this.dni,
         nombre: this.nombre,
         apellidos: this.apellidos,
         email: this.email,
         telefono: this.telefono,
         password: this.password
-      });
+      };
+      console.log('Registration Data:', registrationData);
       alert('Registro exitoso');
     } else {
       this.registerError = 'Faltan datos';
