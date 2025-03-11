@@ -57,7 +57,8 @@
       </div>
       <a href="#" class="forgot-password">{{ 'forgot_password' | translate }}</a>
       <p class="register">
-        {{ 'register_text' | translate }} <a href="#">{{ 'register_link' | translate }}</a>
+        {{ 'register_text' | translate }}
+        <a [routerLink]="['/register']">{{ 'register_link' | translate }}</a>
       </p>
     </form>
   </div>
