@@ -40,8 +40,8 @@
     "register_button": "Registrar",
     "already_have_account": "Ja tens compte?",
     "login_link": "Inicia sessió",
-    "select_role_title": "Selecciona el rol",
-    "select_role_placeholder": "Selecciona un rol",
+    "select_role_title": "Escull rol",
+    "select_role_placeholder": "Escull rol",
     "client_option": "Client",
     "business_option": "Empresari"
   }
