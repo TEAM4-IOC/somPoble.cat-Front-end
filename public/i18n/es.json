@@ -9,5 +9,28 @@
   "submit_button": "Entrar",
   "forgot_password": "Has olvidado la contraseña.",
   "register_text": "¿No tienes cuenta?",
-  "register_link": "Crea una."
+  "register_link": "Crea una.",
+  "register": {
+    "register_title": "REGISTRO",
+    "dni_label": "DNI",
+    "dni_placeholder": "12345678A",
+    "dni_required": "Por favor, introduce tu DNI.",
+    "nombre_label": "Nombre",
+    "nombre_placeholder": "Juan",
+    "nombre_required": "Por favor, introduce tu nombre.",
+    "apellidos_label": "Apellidos",
+    "apellidos_placeholder": "Pérez",
+    "apellidos_required": "Por favor, introduce tus apellidos.",
+    "telefono_label": "Teléfono",
+    "telefono_placeholder": "123456789",
+    "telefono_required": "Por favor, introduce tu teléfono.",
+    "password_label": "Contraseña",
+    "password_required": "Por favor, introduce la contraseña.",
+    "repeat_password_label": "Repite contraseña",
+    "repeat_password_required": "Por favor, repite la contraseña.",
+    "repeat_password_mismatch": "Las contraseñas no coinciden.",
+    "register_button": "Registrar",
+    "already_have_account": "¿Ya tienes cuenta?",
+    "login_link": "Inicia sesión"
+  }
 }

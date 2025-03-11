@@ -9,5 +9,28 @@
   "submit_button": "Entrar",
   "forgot_password": "Has oblidat la contrasenya.",
   "register_text": "No tens compte?",
-  "register_link": "Crea'n un."
+  "register_link": "Crea'n un.",
+  "register": {
+    "register_title": "REGISTRE",
+    "dni_label": "DNI",
+    "dni_placeholder": "12345678A",
+    "dni_required": "Si us plau, introdueix el teu DNI.",
+    "nombre_label": "Nom",
+    "nombre_placeholder": "Juan",
+    "nombre_required": "Si us plau, introdueix el teu nom.",
+    "apellidos_label": "Cognoms",
+    "apellidos_placeholder": "Pérez",
+    "apellidos_required": "Si us plau, introdueix els teus cognoms.",
+    "telefono_label": "Telèfon",
+    "telefono_placeholder": "123456789",
+    "telefono_required": "Si us plau, introdueix el teu telèfon.",
+    "password_label": "Contrasenya",
+    "password_required": "Si us plau, introdueix la contrasenya.",
+    "repeat_password_label": "Repeteix contrasenya",
+    "repeat_password_required": "Si us plau, repeteix la contrasenya.",
+    "repeat_password_mismatch": "Les contrasenyes no coincideixen.",
+    "register_button": "Registrar",
+    "already_have_account": "Ja tens compte?",
+    "login_link": "Inicia sessió"
+  }
 }
