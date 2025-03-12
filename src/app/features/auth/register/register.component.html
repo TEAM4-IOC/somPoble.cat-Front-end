@@ -24,15 +24,15 @@
           <label for="dni" class="form-label">{{ 'register.dni_label' | translate }}</label>
           <div class="input-control">
             <input
-              type="text"
-              id="dni"
-              [(ngModel)]="dni"
-              name="dni"
-              placeholder="{{ 'register.dni_placeholder' | translate }}"
-              required
-              pattern="^\\d{8}[A-Za-z]$"
-              #dniModel="ngModel"
-            />
+            type="text"
+            id="dni"
+            [(ngModel)]="dni"
+            name="dni"
+            placeholder="{{ 'register.dni_placeholder' | translate }}"
+            required
+            pattern="[0-9]{8}[A-Za-z]"
+            #dniModel="ngModel"
+          />
           </div>
           @if (dniModel.invalid && (dniModel.touched || dniModel.dirty)) {
             <div class="error">
@@ -108,15 +108,15 @@
           <label for="telefono" class="form-label">{{ 'register.telefono_label' | translate }}</label>
           <div class="input-control">
             <input
-              type="text"
-              id="telefono"
-              [(ngModel)]="telefono"
-              name="telefono"
-              placeholder="{{ 'register.telefono_placeholder' | translate }}"
-              required
-              pattern="^\\d{9}$"
-              #telefonoModel="ngModel"
-            />
+            type="text"
+            id="telefono"
+            [(ngModel)]="telefono"
+            name="telefono"
+            placeholder="{{ 'register.telefono_placeholder' | translate }}"
+            required
+            pattern="[0-9]{9}"
+            #telefonoModel="ngModel"
+          />
           </div>
           @if (telefonoModel.invalid && (telefonoModel.touched || telefonoModel.dirty)) {
             <div class="error">
