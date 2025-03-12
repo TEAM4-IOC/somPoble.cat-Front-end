@@ -13,8 +13,6 @@ import { TranslateModule } from '@ngx-translate/core';
 export class HeaderComponent {
   language: string | null = localStorage.getItem('language'); isMenuOpen = false;
 
-
-
   constructor(private i18nService: I18nService) {
   }
 
@@ -24,8 +22,5 @@ export class HeaderComponent {
       this.language = selectElement.value;
       this.i18nService.changeLanguage(this.language);
     }
-
-
-    ;
   }
 }
