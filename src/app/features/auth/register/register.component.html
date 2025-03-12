@@ -1,0 +1,199 @@
+<div class="component-wrapper">
+  <div class="auth-container">
+    <h1>SomPoble</h1>
+
+    @if (!showForm) {
+      <h2>{{ 'register.select_role_title' | translate }}</h2>
+      <div class="role-selection">
+        <select #roleSelect (change)="selectRole(+roleSelect.value)">
+          <option value="" disabled selected>{{ 'register.select_role_placeholder' | translate }}</option>
+          <option value="1">{{ 'register.client_option' | translate }}</option>
+          <option value="2">{{ 'register.business_option' | translate }}</option>
+        </select>
+      </div>
+    } @else {
+      @if (registerRole === 1) {
+        <h2>{{ 'register.register_title_client' | translate }}</h2>
+      } @else if (registerRole === 2) {
+        <h2>{{ 'register.register_title_business' | translate }}</h2>
+      } @else {
+        <h2>{{ 'register.register_title' | translate }}</h2>
+      }
+      <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+        <div class="input-group">
+          <label for="dni" class="form-label">{{ 'register.dni_label' | translate }}</label>
+          <div class="input-control">
+            <input
+              type="text"
+              id="dni"
+              [(ngModel)]="dni"
+              name="dni"
+              placeholder="{{ 'register.dni_placeholder' | translate }}"
+              required
+              pattern="^\\d{8}[A-Za-z]$"
+              #dniModel="ngModel"
+            />
+          </div>
+          @if (dniModel.invalid && (dniModel.touched || dniModel.dirty)) {
+            <div class="error">
+              {{ 'register.dni_required' | translate }}
+            </div>
+          }
+        </div>
+
+        <div class="input-group">
+          <label for="nombre" class="form-label">{{ 'register.nombre_label' | translate }}</label>
+          <div class="input-control">
+            <input
+              type="text"
+              id="nombre"
+              [(ngModel)]="nombre"
+              name="nombre"
+              placeholder="{{ 'register.nombre_placeholder' | translate }}"
+              required
+              minlength="2"
+              #nombreModel="ngModel"
+            />
+          </div>
+          @if (nombreModel.invalid && (nombreModel.touched || nombreModel.dirty)) {
+            <div class="error">
+              {{ 'register.nombre_required' | translate }}
+            </div>
+          }
+        </div>
+
+        <div class="input-group">
+          <label for="apellidos" class="form-label">{{ 'register.apellidos_label' | translate }}</label>
+          <div class="input-control">
+            <input
+              type="text"
+              id="apellidos"
+              [(ngModel)]="apellidos"
+              name="apellidos"
+              placeholder="{{ 'register.apellidos_placeholder' | translate }}"
+              required
+              minlength="2"
+              #apellidosModel="ngModel"
+            />
+          </div>
+          @if (apellidosModel.invalid && (apellidosModel.touched || apellidosModel.dirty)) {
+            <div class="error">
+              {{ 'register.apellidos_required' | translate }}
+            </div>
+          }
+        </div>
+
+        <div class="input-group">
+          <label for="email" class="form-label">{{ 'register.email_label' | translate }}</label>
+          <div class="input-control">
+            <input
+              type="email"
+              id="email"
+              [(ngModel)]="email"
+              name="email"
+              placeholder="{{ 'register.email_placeholder' | translate }}"
+              required
+              email
+              #emailModel="ngModel"
+            />
+          </div>
+          @if (emailModel.invalid && (emailModel.touched || emailModel.dirty)) {
+            <div class="error">
+              {{ 'register.email_required' | translate }}
+            </div>
+          }
+        </div>
+
+        <div class="input-group">
+          <label for="telefono" class="form-label">{{ 'register.telefono_label' | translate }}</label>
+          <div class="input-control">
+            <input
+              type="text"
+              id="telefono"
+              [(ngModel)]="telefono"
+              name="telefono"
+              placeholder="{{ 'register.telefono_placeholder' | translate }}"
+              required
+              pattern="^\\d{9}$"
+              #telefonoModel="ngModel"
+            />
+          </div>
+          @if (telefonoModel.invalid && (telefonoModel.touched || telefonoModel.dirty)) {
+            <div class="error">
+              {{ 'register.telefono_required' | translate }}
+            </div>
+          }
+        </div>
+
+        <div class="input-group">
+          <label for="password" class="form-label">{{ 'register.password_label' | translate }}</label>
+          <div class="input-control">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              id="password"
+              [(ngModel)]="password"
+              name="password"
+              placeholder="{{ 'register.password_label' | translate }}"
+              required
+              minlength="6"
+              #passwordModel="ngModel"
+            />
+            <button type="button" class="toggle-password-btn" (click)="togglePasswordVisibility()">
+              @if (showPassword) {
+                <i class="fa fa-eye eye-icon"></i>
+              } @else {
+                <i class="fa fa-eye-slash eye-icon"></i>
+              }
+            </button>
+          </div>
+          @if (passwordModel.invalid && (passwordModel.touched || passwordModel.dirty)) {
+            <div class="error">
+              {{ 'register.password_required' | translate }}
+            </div>
+          }
+        </div>
+
+        <div class="input-group">
+          <label for="repeatPassword" class="form-label">{{ 'register.repeat_password_label' | translate }}</label>
+          <div class="input-control">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              id="repeatPassword"
+              [(ngModel)]="repeatPassword"
+              name="repeatPassword"
+              placeholder="{{ 'register.password_label' | translate }}"
+              required
+              minlength="6"
+              #repeatPasswordModel="ngModel"
+            />
+          </div>
+          @if (repeatPasswordModel.invalid && (repeatPasswordModel.touched || repeatPasswordModel.dirty)) {
+            <div class="error">
+              {{ 'register.repeat_password_required' | translate }}
+            </div>
+          }
+          @if (repeatPasswordModel.value && repeatPasswordModel.value !== password && (repeatPasswordModel.touched || repeatPasswordModel.dirty)) {
+            <div class="error">
+              {{ 'register.repeat_password_mismatch' | translate }}
+            </div>
+          }
+        </div>
+
+        <button type="submit" class="auth-btn" [disabled]="registerForm.invalid">
+          {{ 'register.register_button' | translate }}
+        </button>
+
+        @if (registerError) {
+          <div class="error">
+            {{ registerError }}
+          </div>
+        }
+
+        <p class="register">
+          {{ 'register.already_have_account' | translate }}
+          <a [routerLink]="['/login']">{{ 'register.login_link' | translate }}</a>
+        </p>
+      </form>
+    }
+  </div>
+</div>

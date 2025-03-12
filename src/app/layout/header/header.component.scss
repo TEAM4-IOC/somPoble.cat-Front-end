@@ -1,3 +1,8 @@
+header {
+    background: #67b8e8;
+    border-bottom: 2px solid #83c0df;
+}
+
 /* Logo */
 .logo img {
     max-width: 200px;
@@ -67,4 +72,16 @@ button img {
     display: block;
     padding: 15px;
     text-shadow: 1px 1px 4px #000;
+}
+
+.lang-icon {
+    margin-right: 10px;
+}
+
+.login-icon {
+    margin-right: 60px; 
+}
+
+.login-icon:hover {
+    cursor: pointer;
 }

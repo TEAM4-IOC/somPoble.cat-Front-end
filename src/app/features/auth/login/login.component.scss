@@ -1,0 +1,143 @@
+@import '../../../../colors.scss';
+
+.component-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background: $bg-gradient;
+  font-family: 'Roboto', sans-serif;
+}
+
+.login-container {
+  background: $container-bg;
+  padding: 2.5rem;
+  border-radius: 0.625rem;
+  text-align: center;
+  width: 22rem;
+  backdrop-filter: blur(0.625rem);
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: 0.125rem;
+  color: $white;
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 0.9375rem;
+}
+
+.form-label {
+  margin-bottom: 0.3rem;
+  color: $label-color;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.input-control {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  background: $input-bg;
+  border-radius: 0.3125rem;
+  padding: 0.625rem;
+}
+
+input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: $white;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  outline: none;
+}
+
+input::placeholder {
+  color: $placeholder-color;
+}
+
+.input-control input:focus {
+  box-shadow: 0 0 0.25rem $white;
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 0.625rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding-bottom: 0.438rem;
+  font-size: 2rem;
+}
+
+.eye-icon {
+  font-size: 1.25rem;
+}
+
+.fa-eye {
+  color: $fa-eye-color;
+}
+
+.fa-eye-slash {
+  color: $fa-eye-slash-color;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 0.625rem;
+  background: transparent;
+  border: 0.0625rem solid $btn-border;
+  color: $white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3125rem;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background: $btn-hover-bg;
+}
+
+.forgot-password {
+  display: block;
+  margin: 0.625rem 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+  text-decoration: none;
+}
+
+.register {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.register a {
+  color: $white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.error {
+  color: $error-color;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  text-align: left;
+  width: 100%;
+}
