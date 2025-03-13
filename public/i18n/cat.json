@@ -56,5 +56,28 @@
     "p5": "Són aquelles cookies que són enviades a l'ordinador o dispositiu de l'Usuari i gestionades exclusivament per somPoble per al millor funcionament del Lloc Web. La informació que es recull s'empra per millorar la qualitat del Lloc Web i el seu Contingut i la seva experiència com a Usuari. Aquestes cookies permeten reconèixer l'Usuari com a visitant recurrent del Lloc Web i adaptar el contingut per oferir continguts que s'ajustin a les seves preferències.",
     "subtitle_2": "Deshabilitar, rebutjar i eliminar cookies",
     "p6": "L'Usuari pot deshabilitar, rebutjar i eliminar les cookies —totalment o parcialment— instal·lades al dispositiu mitjançant la configuració del vostre navegador (entre els quals es troben, per exemple, Chrome, Firefox, Safari, Explorer). En aquest sentit, els procediments per rebutjar i eliminar les galetes poden diferir d'un navegador d'Internet a un altre. En conseqüència, l'Usuari ha d'acudir a les instruccions facilitades pel navegador d'Internet mateix que utilitzi. En cas que rebutgi l'ús de cookies —totalment o parcialment— podrà continuar usant el Lloc Web, si bé podrà tenir limitada la utilització d'algunes de les prestacions del mateix."
+  },
+  "privacy": {
+    "main_title": "POLÍTICA DE PRIVACITAT DEL LLOC WEB",
+    "main_subtitle": "*** URL SOM POBLE ******",
+    "section1": "I. POLÍTICA DE PRIVACITAT I PROTECCIÓ DE DADES",
+    "p1": "Respectant allò establert a la legislació vigent, SomPoble (d'ara endavant, també Lloc Web) es compromet a adoptar les mesures tècniques i organitzatives necessàries, segons el nivell de seguretat adequat al risc de les dades recollides.",
+    "subtitle1": "Lleis que incorpora aquesta política de privadesa",
+    "p2": "Aquesta política de privadesa està adaptada a la normativa espanyola i europea vigent en matèria de protecció de dades personals a internet. En concret, aquesta respecta les normes següents:",
+    "li1": "El Reglament (UE) 2016/679 del Parlament Europeu i del Consell, de 27 d'abril del 2016, relatiu a la protecció de les persones físiques pel que fa al tractament de dades personals ia la lliure circulació d'aquestes dades (RGPD).",
+    "li2": "La Llei Orgànica 3/2018, del 5 de desembre, de Protecció de Dades Personals i garantia dels drets digitals (LOPD-GDD).",
+    "li3": "El Reial decret 1720/2007, de 21 de desembre, pel qual saprova el Reglament de desplegament de la Llei Orgànica 15/1999, de 13 de desembre, de Protecció de Dades de Caràcter Personal (RDLOPD).",
+    "li4": "La Llei 34/2002, de 11 de juliol, de Serveis de la Societat de la Informació i de Comerç Electrònic (LSSI-CE).",
+    "subtitle2": "Identitat del responsable del tractament de les dades personals",
+    "p3": "El responsable del tractament de les dades personals recollides a SomPoble és: Equip 4 M12 IOC, amb NIF: 4343434 (en endavant, Responsable del tractament) Les seves dades de contacte són les següents:",
+    "p4": "Email de contacte: team4ioc@gmail.com",
+    "subtitle3": "Registre de Dades de Caràcter Personal",
+    "p5": "En compliment del que estableix el RGPD i la LOPD-GDD, us informem que les dades personals demanades pel SomPoble, mitjançant els formularis estesos a les vostres pàgines quedaran incorporats i seran tractats al nostre fitxer per tal de poder facilitar, agilitzar i complir els compromisos establerts entre SomPoble i l'Usuari o el manteniment de la relació una sol·licitud o consulta del mateix. Així mateix, de conformitat amb el que preveu el RGPD i la LOPD-GDD, llevat que sigui aplicable l'excepció prevista a l'article 30.5 del RGPD, es manté un registre d'activitats de tractament que especifica, segons les seves finalitats, les activitats de tractament dutes a terme i les altres circumstàncies establertes a l'RGPD.",
+    "subtitle4": "Principis aplicables al tractament de les dades personals",
+    "p6": "El tractament de les dades personals de l'Usuari se sotmetrà als següents principis recollits a l'article 5 del RGPD ia l'article 4 i següents de la Llei Orgànica 3/2018, de 5 de desembre, de Protecció de Dades Personals i garantia dels drets digitals:",
+    "li5": "Principi de licitud, lleialtat i transparència: es requerirà en tot moment el consentiment de l'Usuari prèvia informació completament transparent de les finalitats per a les quals es recullen les dades personals.",
+    "li6": "Principi de limitació de la finalitat: les dades personals seran recollides amb fins determinats, explícits i legítims.",
+    "li7": "Principi de minimització de dades: les dades personals recollides seran únicament les estrictament necessàries en relació amb les finalitats per a les quals són tractades.",
+    "li8": "Principi d'exactitud: les dades personals han de ser exactes i estar sempre actualitzades."
   }
 }
