@@ -45,6 +45,14 @@
     "client_option": "Cliente",
     "business_option": "Empresario"
   },
+  "footer": {
+    "legal-notice": "Aviso Legal",
+    "cookies": "Política de Cookies",
+    "privacy": "Política de Privacidad",
+    "mail": "team4ioc@gmail.com",
+    "contact": "Contacto:",
+    "copyright": "Equipo 4 M12 IOC © 2025"
+  },
   "cookies": {
     "main_title": "POLÍTICA DE COOKIES",
     "main_subtitle": "********URL SOMPOBLE******",

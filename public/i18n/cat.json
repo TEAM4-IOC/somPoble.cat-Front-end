@@ -45,6 +45,14 @@
     "client_option": "Client",
     "business_option": "Empresari"
   },
+  "footer": {
+    "legal-notice": "Avís Legal",
+    "cookies": "Política de Cookies",
+    "privacy": "Política de Privadesa",
+    "mail": "team4ioc@gmail.com",
+    "contact": "Contacte:",
+    "copyright": "Equip 4 M12 IOC © 2025"
+  },
   "cookies": {
     "main_title": "POLÍTICA DE COOKIES",
     "main_subtitle": "********URL SOMPOBLE******",
@@ -106,8 +114,8 @@
     "p21": "No obstant això, pel fet que SomPoble no pot garantir la inexpugnabilitat d'internet ni l'absència total de hackers o altres que accedeixin de manera fraudulent a les dades personals, el Responsable del tractament es compromet a comunicar a l'Usuari sense dilació indeguda quan ocorri una violació de la seguretat de les dades personals que sigui probable que sigui probable. Seguint el que estableix l'article 4 del RGPD, s'entén per violació de la seguretat de les dades personals tota violació de la seguretat que ocasioni la destrucció, pèrdua o alteració accidental o il·lícita de dades personals transmeses, conservades o tractades d'una altra manera, o la comunicació o l'accés no autoritzats a aquestes dades.",
     "p22": "Les dades personals seran tractades com a confidencials pel Responsable del tractament, qui es compromet a informar de i garantir per mitjà d'una obligació legal o contractual que aquesta confidencialitat sigui respectada pels seus empleats, associats, i tota persona a qui li faci accessible la informació.",
     "subtitle12": "Drets derivats del tractament de les dades personals",
-    "p23": "L'Usuari té sobre SomPoble i podrà, per tant, exercir davant del Responsable del tractament els següents drets reconeguts en el RGPD i la Llei Orgànica 3/2018, de 5 de desembre, de Protecció de Dades Personals i garantia dels drets digitals:",
-    "li12": "Dret d'accés: És el dret de l'Usuari a obtenir confirmació de si SomPoble està tractant o no les seves dades personals i, en cas afirmatiu, obtenir informació sobre les seves dades concretes de caràcter personal i del tractament que SomPoble hagi realitzat o realitzi, així com, entre una altra, de la informació disponible sobre l'origen d'aquestes dades i els destinataris de les dades.",
+    "p23": "L'Usuari té sobre SomPoble i podrà, per tant, exercir davant del Responsable del tractament els següents drets reconeguts en el RGPD i la Llei Orgànica 3/2018, de 5 de desembre, de Protecció de Dades Personals i garantia dels drets digitals:",
+    "li12": "Dret d'accés: És el dret de l'Usuari a obtenir confirmació de si SomPoble està tractant o no les seves dades personals i, en cas afirmatiu, obtenir informació sobre les seves dades concretes de caràcter personal i del tractament que SomPoble hagi realitzat o realitzi, així com, entre una altra, de la informació disponible sobre l'origen d'aquestes dades i els destinataris de les dades.",
     "li13": "Dret de rectificació: És el dret de l'Usuari que es modifiquin les seves dades personals que resultin ser inexactes o, tenint en compte els fins del tractament, incomplets.",
     "li14": "Dret de supressió ('el dret a l'oblit'): És el dret de l'Usuari, sempre que la legislació vigent no estableixi el contrari, a obtenir la supressió de les seves dades personals quan aquestes ja no siguin necessàries per als fins per als quals van ser recollits o tractats; l'Usuari hagi retirat el consentiment al tractament i aquest no compti amb una altra base legal; l'Usuari s'oposi al tractament i no hi hagi cap altre motiu legítim per continuar amb aquest; les dades personals hagin estat tractades il·lícitament; les dades personals s'han de suprimir en compliment d'una obligació legal; o les dades personals hagin estat obtingudes producte duna oferta directa de serveis de la societat de la informació a un menor de 14 anys. A més de suprimir les dades, el Responsable del tractament, tenint en compte la tecnologia disponible i el cost de la seva aplicació, haurà d'adoptar mesures raonables per informar els responsables que estiguin tractant les dades personals de la sol·licitud de l'interessat de supressió de qualsevol enllaç a aquestes dades personals.",
     "li15": "Dret a la limitació del tractament: És el dret de l'Usuari a limitar el tractament de les vostres dades personals. L'Usuari té dret a obtenir la limitació del tractament quan impugni l'exactitud de les dades personals; el tractament sigui il·lícit; el Responsable del tractament ja no necessiti les dades personals, però l'Usuari ho necessiti per fer reclamacions; i quan l'usuari s'hagi oposat al tractament.",
@@ -121,7 +129,7 @@
     "li22": "Data i signatura del sol·licitant.",
     "li23": "Tot document que acrediti la petició que formula.",
     "p25": "Aquesta sol·licitud i qualsevol altre document adjunt podrà enviar-se a la següent adreça i/o correu electrònic:",
-    "p26": "Correu electrònic: team4ioc@gmail.com",
+    "p26": "Correu electrònic: team4ioc@gmail.com",
     "subtitle13": "Enllaços a llocs web de tercers",
     "p27": "El Lloc Web pot incloure hipervincles o enllaços que permeten accedir a pàgines web de tercers diferents de SomPoble, i que per tant no són operats per SomPoble. Els titulars d'aquests llocs web disposaran de les seves pròpies polítiques de protecció de dades, i ells mateixos seran, en cada cas, responsables dels seus propis fitxers i de les pròpies pràctiques de privadesa.",
     "subtitle14": "Reclamacions davant de l'autoritat de control",
