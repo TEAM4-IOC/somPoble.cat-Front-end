@@ -3,6 +3,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { RegisterRequest } from '../../../core/models/register.interface';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -25,6 +27,8 @@ export class RegisterComponent {
   repeatPassword: string = '';
   showPassword: boolean = false;
   registerError: string = '';
+
+  constructor(private authService: AuthService) {}
 
   selectRole(role: number): void {
     this.registerRole = role;
@@ -50,18 +54,39 @@ export class RegisterComponent {
       this.password &&
       this.repeatPassword
     ) {
+      if (this.registerRole === null) {
+        this.registerError = 'Debes seleccionar un rol.';
+        return;
+      }
       this.registerError = '';
-      const registrationData = {
-        roleId: this.registerRole,
+      const now = new Date().toISOString();
+
+      const registrationData: RegisterRequest = {
         dni: this.dni,
         nombre: this.nombre,
         apellidos: this.apellidos,
         email: this.email,
         telefono: this.telefono,
-        password: this.password
+        contraseña: this.password,
       };
-      console.log('Registration Data:', registrationData);
-      alert('Registro exitoso');
+
+      const jsonData = JSON.stringify(registrationData, null, 2);
+      console.log('JSON a enviar:', jsonData);
+
+      if (window.confirm(`¿Deseas enviar el siguiente JSON?\n\n${jsonData}`)) {
+        this.authService.register(registrationData, this.registerRole).subscribe({
+          next: (response) => {
+            console.log('Registro exitoso', response);
+            alert('Registro exitoso');
+          },
+          error: (err) => {
+            console.error('Error en el registro', err);
+            this.registerError = 'Error en el registro';
+          }
+        });
+      } else {
+        console.log('Envio cancelado por el usuario.');
+      }
     } else {
       this.registerError = 'Faltan datos';
     }
