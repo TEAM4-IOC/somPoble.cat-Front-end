@@ -1,0 +1,19 @@
+@import '../../../colors.scss';
+
+#legalnotice-main {
+    text-align: justify;
+    padding: 100px;
+    background: linear-gradient(to bottom, #67b8e880, #905f9980);
+}
+
+h1 {
+    margin-bottom: 50px;
+}
+
+#legalnotice-main h2, .text-section {
+    margin-bottom: 50px;
+}
+
+h3 {
+    margin-bottom: 30px;
+}
