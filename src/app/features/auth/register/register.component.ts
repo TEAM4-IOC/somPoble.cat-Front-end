@@ -59,7 +59,6 @@ export class RegisterComponent {
         return;
       }
       this.registerError = '';
-      const now = new Date().toISOString();
 
       const registrationData: RegisterRequest = {
         dni: this.dni,
@@ -70,23 +69,16 @@ export class RegisterComponent {
         contraseña: this.password,
       };
 
-      const jsonData = JSON.stringify(registrationData, null, 2);
-      console.log('JSON a enviar:', jsonData);
-
-      if (window.confirm(`¿Deseas enviar el siguiente JSON?\n\n${jsonData}`)) {
-        this.authService.register(registrationData, this.registerRole).subscribe({
-          next: (response) => {
-            console.log('Registro exitoso', response);
-            alert('Registro exitoso');
-          },
-          error: (err) => {
-            console.error('Error en el registro', err);
-            this.registerError = 'Error en el registro';
-          }
-        });
-      } else {
-        console.log('Envio cancelado por el usuario.');
-      }
+      this.authService.register(registrationData, this.registerRole).subscribe({
+        next: (response) => {
+          console.log('Registro exitoso', response);
+          alert('Registro exitoso');
+        },
+        error: (err) => {
+          console.error('Error en el registro', err);
+          this.registerError = 'Error en el registro';
+        }
+      });
     } else {
       this.registerError = 'Faltan datos';
     }

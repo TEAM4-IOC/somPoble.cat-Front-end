@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthResponse } from '../models/auth.interface';
 import { LoginRequest } from '../models/login.interface';
@@ -10,12 +10,13 @@ import { RegisterRequest } from '../models/register.interface';
 })
 export class AuthService {
 
-  private readonly authUrl: string = 'http://localhost:3000/api';
+  private readonly authUrl: string = 'https://sompoblecatsb-production.up.railway.app/api';
 
   constructor(private http: HttpClient) {}
 
   login(payload: LoginRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.authUrl}/login`, payload);
+    const params = new HttpParams({ fromObject: payload as any });
+    return this.http.get<AuthResponse>(`${this.authUrl}/login`, { params });
   }
 
   register(payload: RegisterRequest, role: number): Observable<AuthResponse> {
