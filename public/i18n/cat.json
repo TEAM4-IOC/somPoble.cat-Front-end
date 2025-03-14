@@ -45,6 +45,10 @@
     "client_option": "Client",
     "business_option": "Empresari"
   },
+  "notfound-page": {
+    "msg": "Ups! Sembla que aquest enllaç no funciona",
+    "btn": "Tornar a l'inici"
+  },
   "footer": {
     "legal-notice": "Avís Legal",
     "cookies": "Política de Cookies",
