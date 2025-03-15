@@ -7,6 +7,6 @@ export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
   const loadingService = inject(LoadingService);
   loadingService.loading();
   return next(req).pipe(
-    delay(0),
+    delay(100),
     finalize(() => loadingService.idle()));
 };
