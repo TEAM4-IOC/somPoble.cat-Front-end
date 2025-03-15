@@ -4,18 +4,17 @@ import { NgxSpinnerService } from 'ngx-spinner';
 @Injectable({
   providedIn: 'root'
 })
-export class BusyService {
-  busyRequestCount = 0;
+export class LoadingService {
+  loadingRequestCount = 0;
 
   constructor(private spinnerService:NgxSpinnerService) { }
 
-  busy(){
-    console.log('loading...')
-    this.busyRequestCount++;
+  loading(){
+    this.loadingRequestCount++;
     this.spinnerService;
     this.spinnerService.show(undefined,
       {
-        type:'ball-scale-ripple',
+        type:'pacman',
         bdColor:'rgba(0, 0, 0, 0.8)',
         color:'#fff',
         size:'default'
@@ -23,9 +22,9 @@ export class BusyService {
   }
 
   idle(){
-    this.busyRequestCount--;
-    if(this.busyRequestCount <=0){
-      this.busyRequestCount = 0;
+    this.loadingRequestCount--;
+    if(this.loadingRequestCount <=0){
+      this.loadingRequestCount = 0;
       this.spinnerService.hide();
     }
   }
