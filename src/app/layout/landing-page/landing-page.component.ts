@@ -9,5 +9,15 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandingPageComponent {
+  activeSection: 'individual' | 'business' | null = null;
 
+  showIndividualSection() {
+    this.activeSection = 'individual';
+  }
+
+  showBussinessSection() {
+    this.activeSection = 'business';
+  }
 }
+
+

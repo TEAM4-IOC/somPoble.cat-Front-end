@@ -1,1 +1,25 @@
-<p>landing-page works!</p>
+<div class="d-flex text-center type-user col-12">
+    <div class="w-50 d-flex flex-column justify-content-center border p-3 border-dark" 
+        id="individual-btn" 
+        (mouseenter)="showIndividualSection()">
+        <p>PARTICULAR - ¡Haz hover!</p>
+    </div>
+    <div class="w-50 d-flex flex-column justify-content-center border p-3 border-dark" 
+        id="bussiness-btn" 
+        (mouseenter)="showBussinessSection()">
+        <p>EMPRESA - ¡Haz hover!</p>
+    </div>
+</div>
+
+<!-- Mostrar solo el div activo -->
+<div id="content-section">
+    <div class="col-12 bg-success text-white p-3" 
+    [class.d-none]="activeSection !== 'individual'">
+    Has hecho hover en Particular
+</div>
+
+<div class="col-12 bg-danger text-white p-3" 
+    [class.d-none]="activeSection !== 'business'">
+    Has hecho hover en Empresa
+</div>
+</div>
