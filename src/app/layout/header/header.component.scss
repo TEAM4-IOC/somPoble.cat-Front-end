@@ -74,6 +74,8 @@ button img {
     text-shadow: 1px 1px 4px #000;
 }
 
+/* Estils botó idiomes */
+
 .lang-icon {
     margin-right: 10px;
 }
@@ -85,3 +87,39 @@ button img {
 .login-icon:hover {
     cursor: pointer;
 }
+
+.lang-btn {
+    border: 3px solid white;
+    transition: background-color 0.2s ease-in-out;
+}
+.lang-btn:hover {
+    background-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+.lang-btn.active {
+    background-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+.lang {margin: 0}
+
+.lang-btn-container {
+    position: relative;
+}
+
+.lang-selector {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: block;
+    z-index: 1000;
+    width: 100%
+}
+
+.lang-selector div {
+    transition: background-color 0.2s ease-in-out; 
+}
+
+.lang-selector div:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+ /* Fi estils botó idiomes */
