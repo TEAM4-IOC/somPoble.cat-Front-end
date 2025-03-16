@@ -1,6 +1,6 @@
 header {
-    background: #67b8e8;
-    border-bottom: 2px solid #83c0df;
+    background: linear-gradient(to bottom, #a3d4f2, #67b8e8);
+    border-bottom: 2px solid #a3d4f2;
 }
 
 /* Menú */
@@ -45,7 +45,7 @@ header {
     background: rgba(0, 0, 0, 0.8);
 }
 
-.header-menu ul li:hover > ul {
+.header-menu ul li:hover>ul {
     transform: scaleY(1);
     visibility: visible;
     opacity: 1;
@@ -61,24 +61,35 @@ header {
     text-shadow: 1px 1px 4px #000;
 }
 
-/* Estils botó idiomes */
+/* Estil de logo */
 
-.lang-icon {
-    margin-right: 10px;
+.logo img {
+    height: 60px;
+    width: 200px;
 }
 
+/* Estil icona login */
 .login-icon {
-    margin-right: 60px; 
+    margin-right: 60px;
+    color: #4141fa;
+    transition: background-color 0.2s ease-in-out;
 }
 
 .login-icon:hover {
     cursor: pointer;
+    color: #da4f8e;
+}
+
+/* Estils botó idiomes */
+.lang-icon {
+    margin-right: 10px;
 }
 
 .lang-btn {
     border: 3px solid white;
     transition: background-color 0.2s ease-in-out;
 }
+
 .lang-btn:hover {
     background-color: rgba(255, 255, 255, 0.25) !important;
     cursor: pointer;
@@ -88,7 +99,9 @@ header {
     background-color: rgba(255, 255, 255, 0.25) !important;
 }
 
-.lang {margin: 0}
+.lang {
+    margin: 0
+}
 
 .lang-btn-container {
     position: relative;
@@ -104,11 +117,12 @@ header {
 }
 
 .lang-selector div {
-    transition: background-color 0.2s ease-in-out; 
+    transition: background-color 0.2s ease-in-out;
 }
 
 .lang-selector div:hover {
     background-color: rgba(255, 255, 255, 0.25);
     cursor: pointer;
 }
- /* Fi estils botó idiomes */
+
+/* Fi estils botó idiomes */

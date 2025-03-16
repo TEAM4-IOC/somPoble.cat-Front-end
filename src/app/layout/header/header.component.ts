@@ -13,7 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements AfterViewInit {
-  language: string | null = localStorage.getItem('language');
+  language: string = localStorage.getItem('language') || 'es'; 
   isMenuOpen = false;
 
   constructor(private i18nService: I18nService, private cdr: ChangeDetectorRef) {}

@@ -8,3 +8,21 @@
   .policy-links {
     margin-bottom: 20px;
   }
+
+  /* Tablets i phablets */
+@media only screen and (min-width: 576px) and (max-width: 767px){
+  //es visualitza correctament, no hi han canvis
+}
+
+/* Telèfons */
+@media only screen and (max-width: 575px) { 
+  .policy-links a {
+    display: block;
+    text-align: center;
+    margin: 5px 0;
+  }
+
+  .policy-links .separator {
+    display: none;
+  }
+}

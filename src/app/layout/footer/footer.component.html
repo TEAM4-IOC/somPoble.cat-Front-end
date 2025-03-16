@@ -1,8 +1,10 @@
 <footer class="bg-dark text-white py-3">
     <div class="container text-center">
         <div class="policy-links">
-            <a routerLink="/legal-notice" class="text-white text-decoration-none mx-2">{{ 'footer.legal-notice' | translate}}</a> |
-            <a routerLink="/cookies" class="text-white text-decoration-none mx-2">{{ 'footer.cookies' | translate}}</a> |
+            <a routerLink="/legal-notice" class="text-white text-decoration-none mx-2">{{ 'footer.legal-notice' | translate}}</a>
+            <span class="separator">|</span>
+            <a routerLink="/cookies" class="text-white text-decoration-none mx-2">{{ 'footer.cookies' | translate}}</a>
+            <span class="separator">|</span>
             <a routerLink="/privacy" class="text-white text-decoration-none mx-2">{{ 'footer.privacy' | translate}}</a>
         </div>
         <p>{{ 'footer.contact' | translate}} <a href="mailto:team4ioc@gmail.com" class="text-white text-decoration-none">{{ 'footer.mail' | translate}}</a></p>
