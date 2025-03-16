@@ -3,19 +3,6 @@ header {
     border-bottom: 2px solid #83c0df;
 }
 
-/* Logo */
-.logo img {
-    max-width: 200px;
-    height: auto;
-}
-
-/* Ajuste para los iconos dentro de los botones */
-button img {
-    width: 20px;
-    height: auto;
-    margin-right: 5px;
-}
-
 /* Menú */
 .header-menu {
     text-align: center;
@@ -94,6 +81,7 @@ button img {
 }
 .lang-btn:hover {
     background-color: rgba(255, 255, 255, 0.25) !important;
+    cursor: pointer;
 }
 
 .lang-btn.active {
@@ -121,5 +109,6 @@ button img {
 
 .lang-selector div:hover {
     background-color: rgba(255, 255, 255, 0.25);
+    cursor: pointer;
 }
  /* Fi estils botó idiomes */
