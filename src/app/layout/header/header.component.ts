@@ -23,6 +23,8 @@ export class HeaderComponent implements AfterViewInit {
     const langSelector = document.querySelector(".lang-selector") as HTMLElement;
     const langEs = document.getElementById("lang-es");
     const langCat = document.getElementById("lang-cat");
+    const menuButton = document.querySelector(".hamburger") as HTMLElement;
+    const menu = document.getElementById("menu") as HTMLElement;
 
     if (langBtn && langSelector) {
       langBtn.addEventListener("click", (event) => {
@@ -58,6 +60,13 @@ export class HeaderComponent implements AfterViewInit {
         this.cdr.detectChanges(); 
         langSelector.classList.add("d-none");
         langBtn.classList.remove("active"); 
+      });
+    }
+
+    if (menuButton && menu) {
+      menuButton.addEventListener("click", () => {
+        this.isMenuOpen = !this.isMenuOpen;
+        menu.style.display = this.isMenuOpen ? "block" : "none";
       });
     }
   }

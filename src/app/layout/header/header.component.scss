@@ -1,64 +1,9 @@
 header {
     background: linear-gradient(to bottom, #a3d4f2, #67b8e8);
     border-bottom: 2px solid #a3d4f2;
-}
-
-/* Menú */
-.header-menu {
-    text-align: center;
-}
-
-.header-menu ul {
-    list-style: none;
-    padding: 0;
     margin: 0;
-}
-
-.header-menu ul li {
-    display: inline-block;
-    position: relative;
-}
-
-.header-menu ul li a {
-    display: inline-block;
-    color: white;
-    padding: 10px 29px;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 22px;
-    position: relative;
-    z-index: 1;
-}
-
-/* Menú desplegable */
-.header-menu ul li ul {
-    position: absolute;
-    width: 300px;
-    top: 115%;
-    left: 0;
-    transition: .5s;
-    transform: scaleY(0);
-    transform-origin: top center;
-    visibility: hidden;
-    opacity: 0;
-    border-radius: 15px;
-    background: rgba(0, 0, 0, 0.8);
-}
-
-.header-menu ul li:hover>ul {
-    transform: scaleY(1);
-    visibility: visible;
-    opacity: 1;
-}
-
-.header-menu ul li ul li {
-    display: block;
-}
-
-.header-menu ul li ul li a {
-    display: block;
-    padding: 15px;
-    text-shadow: 1px 1px 4px #000;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* Estil de logo */
@@ -88,6 +33,7 @@ header {
 .lang-btn {
     border: 3px solid white;
     transition: background-color 0.2s ease-in-out;
+    width: 133px;
 }
 
 .lang-btn:hover {
@@ -125,4 +71,40 @@ header {
     cursor: pointer;
 }
 
-/* Fi estils botó idiomes */
+/* Estils menú hamburguesa */
+.menu {
+    display: none;
+    list-style: none;
+    border: 1px solid black;
+    padding: 10px;
+    position: absolute;
+    top: 72px;  /* Ajusta la posición más abajo */
+    left: 15px; /* Mueve el menú más a la derecha */
+    background: white;
+}
+
+.menu li {
+    border-bottom: 1px solid black;
+    padding: 5px;
+}
+
+.menu li:last-child {
+    border-bottom: none;
+}
+
+.hamburger {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.bar {
+    width: 100%;
+    height: 3px;
+    border: 1px solid black;
+}
