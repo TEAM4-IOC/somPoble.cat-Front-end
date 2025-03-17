@@ -6,14 +6,16 @@ import { CookiesComponent } from './policy/cookies/cookies.component';
 import { PrivacyComponent } from './policy/privacy/privacy.component';
 import { NotfoundpageComponent } from './features/notfoundpage/notfoundpage.component';
 import { LandingPageComponent } from './layout/landing-page/landing-page.component';
+import { EmpresaFormComponent } from './features/empresa-form/empresa-form.component';
 
 export const routes: Routes = [
   { path: 'landing', component: LandingPageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'legal-notice', component: LegalNoticeComponent },
+  { path: 'empresa-form', component: EmpresaFormComponent },
+  { path: 'legal-neotice', component: LegalNoticeComponent },
   { path: 'cookies', component: CookiesComponent },
   { path: 'privacy', component: PrivacyComponent },
   { path: 'not-found', component: NotfoundpageComponent },
-  { path: '**', redirectTo: 'login' },
+  { path: '**', redirectTo: 'login' }
 ];

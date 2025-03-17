@@ -1,0 +1,122 @@
+<div class="component-wrapper">
+  <div class="auth-container">
+    <h1>Gestió d'Empresa</h1>
+
+    @if (!showForm) {
+      <h2>Selecciona el teu rol</h2>
+      <div class="role-selection">
+        <select #roleSelect (change)="selectRole(+roleSelect.value)">
+          <option value="" disabled selected>Escull una opció</option>
+          <option value="1">Empresari</option>
+          <option value="2">Autònom</option>
+        </select>
+      </div>
+    } @else {
+      @if (selectedRole === 1) {
+        <h2>Formulari Empresari</h2>
+      } @else if (selectedRole === 2) {
+        <h2>Formulari Autònom</h2>
+      } @else {
+        <h2>Formulari</h2>
+      }
+      <form (ngSubmit)="onSubmit()" #empresaForm="ngForm">
+        <div class="input-group">
+          <label for="identificadorFiscal" class="form-label">
+            {{ selectedRole === 1 ? 'CIF' : 'DNI de l\'autònom' }}
+          </label>
+          <div class="input-control">
+            <input
+              type="text"
+              id="identificadorFiscal"
+              name="identificadorFiscal"
+              [(ngModel)]="identificadorFiscal"
+              [placeholder]="selectedRole === 1 ? 'Introdueix el CIF' : 'Introdueix el DNI'"
+              required
+            />
+          </div>
+        </div>
+
+        @if (selectedRole === 1) {
+          <div class="input-group">
+            <label for="nombre" class="form-label">Nom</label>
+            <div class="input-control">
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                [(ngModel)]="nombre"
+                placeholder="Introdueix el nom"
+                required
+              />
+            </div>
+          </div>
+        } @else if (selectedRole === 2) {
+          <div class="input-group">
+            <label for="actividad" class="form-label">Activitat</label>
+            <div class="input-control">
+              <input
+                type="text"
+                id="actividad"
+                name="actividad"
+                [(ngModel)]="actividad"
+                placeholder="Introdueix l'activitat"
+                required
+              />
+            </div>
+          </div>
+        }
+
+        <div class="input-group">
+          <label for="direccion" class="form-label">Adreça</label>
+          <div class="input-control">
+            <input
+              type="text"
+              id="direccion"
+              name="direccion"
+              [(ngModel)]="direccion"
+              placeholder="Introdueix l'adreça"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="email" class="form-label">Correu electrònic</label>
+          <div class="input-control">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              [(ngModel)]="email"
+              placeholder="Introdueix el correu"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="telefono" class="form-label">Telèfon</label>
+          <div class="input-control">
+            <input
+              type="text"
+              id="telefono"
+              name="telefono"
+              [(ngModel)]="telefono"
+              placeholder="Introdueix el telèfon"
+              required
+            />
+          </div>
+        </div>
+
+        <input
+          type="hidden"
+          id="associatedDni"
+          name="associatedDni"
+          [(ngModel)]="associatedDni"
+        />
+
+        <button type="submit" class="auth-btn" [disabled]="empresaForm.invalid">Enviar</button>
+      </form>
+    }
+  </div>
+</div>
