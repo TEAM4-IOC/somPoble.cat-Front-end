@@ -1,9 +1,7 @@
-export interface Autonomo {
-  dniAutonomo: string;
+import { BaseEmpresa } from "./base-empresa.interface";
+
+export interface Autonomo extends BaseEmpresa {
   actividad: string;
-  direccion: string;
-  email: string;
-  telefono: string;
 }
 
 export interface AutonomoData {

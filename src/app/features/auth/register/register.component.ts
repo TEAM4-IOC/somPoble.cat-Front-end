@@ -66,7 +66,7 @@ export class RegisterComponent {
         apellidos: this.apellidos,
         email: this.email,
         telefono: this.telefono,
-        contraseña: this.password,
+        pass: this.password,
       };
 
       this.authService.register(registrationData, this.registerRole).subscribe({

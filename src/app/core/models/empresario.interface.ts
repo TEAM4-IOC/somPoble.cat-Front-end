@@ -1,11 +1,8 @@
-export interface Empresario {
-  cif: string;
-  nombre: string;
-  direccion: string;
-  email: string;
-  telefono: string;
-}
+import { BaseEmpresa } from "./base-empresa.interface";
 
+export interface Empresario extends BaseEmpresa {
+  nombre: string;
+}
 export interface EmpresarioData {
   empresa: Empresario;
   dni: string;
