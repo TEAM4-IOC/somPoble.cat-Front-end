@@ -2,7 +2,7 @@
   <div class="auth-container">
     <h1>SomPoble</h1>
 
-    @if (!showForm) {
+    @if (!showForm && !showData) {
       <h2>{{ 'empresa.select_role_title' | translate }}</h2>
       <div class="role-selection">
         <select #roleSelect (change)="selectRole(+roleSelect.value)">
@@ -11,7 +11,7 @@
           <option value="2">{{ 'empresa.option_autonom' | translate }}</option>
         </select>
       </div>
-    } @else {
+    } @else if (showForm && !showData) {
       @if (selectedRole === 1) {
         <h2>{{ 'empresa.register_title_empresari' | translate }}</h2>
       } @else if (selectedRole === 2) {
@@ -42,7 +42,6 @@
             </div>
           }
         </div>
-
         @if (selectedRole === 1) {
           <div class="input-group">
             <label for="nombre" class="form-label">{{ 'empresa.nombre_label' | translate }}</label>
@@ -86,7 +85,6 @@
             }
           </div>
         }
-
         <div class="input-group">
           <label for="direccion" class="form-label">{{ 'empresa.direccion_label' | translate }}</label>
           <div class="input-control">
@@ -107,7 +105,6 @@
             </div>
           }
         </div>
-
         <div class="input-group">
           <label for="email" class="form-label">{{ 'empresa.email_label' | translate }}</label>
           <div class="input-control">
@@ -128,7 +125,6 @@
             </div>
           }
         </div>
-
         <div class="input-group">
           <label for="telefono" class="form-label">{{ 'empresa.telefono_label' | translate }}</label>
           <div class="input-control">
@@ -149,19 +145,157 @@
             </div>
           }
         </div>
-
         <input type="hidden" [(ngModel)]="associatedDni" name="associatedDni" />
-
         <button type="submit" class="auth-btn" [disabled]="empresaForm.invalid">
           {{ 'empresa.submit_button' | translate }}
         </button>
-
         @if (formError) {
           <div class="error">
             {{ formError }}
           </div>
         }
       </form>
+    } @else if (showData) {
+      <h2>{{ selectedRole === 1 ? ('empresa.data_title_empresari' | translate) : ('empresa.data_title_autonom' | translate) }}</h2>
+      <div class="read-only-data">
+        <div class="data-field">
+          <label>{{ selectedRole === 1 ? ('empresa.identificadorFiscal_label_empresari' | translate) : ('empresa.identificadorFiscal_label_autonom' | translate) }}</label>
+          <ng-container *ngIf="!editingField('identificadorFiscal'); else editIdentificador">
+            <span>{{ empresaData.identificadorFiscal }}</span>
+            <button class="icon-btn" (click)="startEditing('identificadorFiscal')">
+              <i class="fas fa-edit"></i>
+            </button>
+          </ng-container>
+          <ng-template #editIdentificador>
+            <input
+              type="text"
+              [(ngModel)]="tempValue"
+              pattern="[0-9]{8,9}[A-Za-z]?"
+            />
+            <button class="icon-btn" (click)="confirmEditing('identificadorFiscal')">
+              <i class="fas fa-check"></i>
+            </button>
+            <button class="icon-btn" (click)="cancelEditing()">
+              <i class="fas fa-times"></i>
+            </button>
+          </ng-template>
+        </div>
+        @if (selectedRole === 1) {
+          <div class="data-field">
+            <label>{{ 'empresa.nombre_label' | translate }}</label>
+            <ng-container *ngIf="!editingField('nombre'); else editNombre">
+              <span>{{ empresaData.nombre }}</span>
+              <button class="icon-btn" (click)="startEditing('nombre')">
+                <i class="fas fa-edit"></i>
+              </button>
+            </ng-container>
+            <ng-template #editNombre>
+              <input
+                type="text"
+                [(ngModel)]="tempValue"
+                minlength="2"
+              />
+              <button class="icon-btn" (click)="confirmEditing('nombre')">
+                <i class="fas fa-check"></i>
+              </button>
+              <button class="icon-btn" (click)="cancelEditing()">
+                <i class="fas fa-times"></i>
+              </button>
+            </ng-template>
+          </div>
+        } @else {
+          <div class="data-field">
+            <label>{{ 'empresa.actividad_label' | translate }}</label>
+            <ng-container *ngIf="!editingField('actividad'); else editActividad">
+              <span>{{ empresaData.actividad }}</span>
+              <button class="icon-btn" (click)="startEditing('actividad')">
+                <i class="fas fa-edit"></i>
+              </button>
+            </ng-container>
+            <ng-template #editActividad>
+              <input
+                type="text"
+                [(ngModel)]="tempValue"
+                minlength="2"
+              />
+              <button class="icon-btn" (click)="confirmEditing('actividad')">
+                <i class="fas fa-check"></i>
+              </button>
+              <button class="icon-btn" (click)="cancelEditing()">
+                <i class="fas fa-times"></i>
+              </button>
+            </ng-template>
+          </div>
+        }
+        <div class="data-field">
+          <label>{{ 'empresa.direccion_label' | translate }}</label>
+          <ng-container *ngIf="!editingField('direccion'); else editDireccion">
+            <span>{{ empresaData.direccion }}</span>
+            <button class="icon-btn" (click)="startEditing('direccion')">
+              <i class="fas fa-edit"></i>
+            </button>
+          </ng-container>
+          <ng-template #editDireccion>
+            <input
+              type="text"
+              [(ngModel)]="tempValue"
+              minlength="2"
+            />
+            <button class="icon-btn" (click)="confirmEditing('direccion')">
+              <i class="fas fa-check"></i>
+            </button>
+            <button class="icon-btn" (click)="cancelEditing()">
+              <i class="fas fa-times"></i>
+            </button>
+          </ng-template>
+        </div>
+        <div class="data-field">
+          <label>{{ 'empresa.email_label' | translate }}</label>
+          <ng-container *ngIf="!editingField('email'); else editEmail">
+            <span>{{ empresaData.email }}</span>
+            <button class="icon-btn" (click)="startEditing('email')">
+              <i class="fas fa-edit"></i>
+            </button>
+          </ng-container>
+          <ng-template #editEmail>
+            <input
+              type="email"
+              [(ngModel)]="tempValue"
+            />
+            <button class="icon-btn" (click)="confirmEditing('email')">
+              <i class="fas fa-check"></i>
+            </button>
+            <button class="icon-btn" (click)="cancelEditing()">
+              <i class="fas fa-times"></i>
+            </button>
+          </ng-template>
+        </div>
+        <div class="data-field">
+          <label>{{ 'empresa.telefono_label' | translate }}</label>
+          <ng-container *ngIf="!editingField('telefono'); else editTelefono">
+            <span>{{ empresaData.telefono }}</span>
+            <button class="icon-btn" (click)="startEditing('telefono')">
+              <i class="fas fa-edit"></i>
+            </button>
+          </ng-container>
+          <ng-template #editTelefono>
+            <input
+              type="text"
+              [(ngModel)]="tempValue"
+              pattern="[0-9]{9}"
+            />
+            <button class="icon-btn" (click)="confirmEditing('telefono')">
+              <i class="fas fa-check"></i>
+            </button>
+            <button class="icon-btn" (click)="cancelEditing()">
+              <i class="fas fa-times"></i>
+            </button>
+          </ng-template>
+        </div>
+        <button class="delete-btn" (click)="deleteAll()">
+          <i class="fas fa-trash"></i> {{ 'empresa.delete_button' | translate }}
+        </button>
+      </div>
     }
   </div>
 </div>

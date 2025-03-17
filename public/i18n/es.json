@@ -73,7 +73,8 @@
     "telefono_label": "Teléfono",
     "telefono_placeholder": "Introduce el teléfono",
     "telefono_error": "El teléfono es obligatorio (9 dígitos).",
-    "submit_button": "Enviar"
+    "submit_button": "Enviar",
+    "delete_button":"Eliminar empresa"
   },
   "notfound-page": {
     "msg": "Ups! Parece que este enlace no funciona",

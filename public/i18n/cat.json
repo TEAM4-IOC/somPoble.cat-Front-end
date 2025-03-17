@@ -72,7 +72,8 @@
     "telefono_label": "Telèfon",
     "telefono_placeholder": "Introdueix el telèfon",
     "telefono_error": "El telèfon és obligatori (9 dígits).",
-    "submit_button": "Enviar"
+    "submit_button": "Enviar",
+    "delete_button":"Eliminar empresa"
   },
   "notfound-page": {
     "msg": "Ups! Sembla que aquest enllaç no funciona",
