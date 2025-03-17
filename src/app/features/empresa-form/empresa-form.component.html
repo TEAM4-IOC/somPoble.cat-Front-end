@@ -3,26 +3,26 @@
     <h1>SomPoble</h1>
 
     @if (!showForm) {
-      <h2>Selecciona el teu rol</h2>
+      <h2>{{ 'empresa.select_role_title' | translate }}</h2>
       <div class="role-selection">
         <select #roleSelect (change)="selectRole(+roleSelect.value)">
-          <option value="" disabled selected>Escull una opció</option>
-          <option value="1">Empresari</option>
-          <option value="2">Autònom</option>
+          <option value="" disabled selected>{{ 'empresa.select_role_placeholder' | translate }}</option>
+          <option value="1">{{ 'empresa.option_empresari' | translate }}</option>
+          <option value="2">{{ 'empresa.option_autonom' | translate }}</option>
         </select>
       </div>
     } @else {
       @if (selectedRole === 1) {
-        <h2>Formulari Empresari</h2>
+        <h2>{{ 'empresa.register_title_empresari' | translate }}</h2>
       } @else if (selectedRole === 2) {
-        <h2>Formulari Autònom</h2>
+        <h2>{{ 'empresa.register_title_autonom' | translate }}</h2>
       } @else {
-        <h2>Formulari</h2>
+        <h2>{{ 'empresa.register_title' | translate }}</h2>
       }
       <form (ngSubmit)="onSubmit()" #empresaForm="ngForm">
         <div class="input-group">
           <label for="identificadorFiscal" class="form-label">
-            {{ selectedRole === 1 ? 'CIF' : 'DNI de l\'autònom' }}
+            {{ selectedRole === 1 ? ('empresa.identificadorFiscal_label_empresari' | translate) : ('empresa.identificadorFiscal_label_autonom' | translate) }}
           </label>
           <div class="input-control">
             <input
@@ -30,7 +30,7 @@
               id="identificadorFiscal"
               [(ngModel)]="identificadorFiscal"
               name="identificadorFiscal"
-              [placeholder]="selectedRole === 1 ? 'Introdueix el CIF' : 'Introdueix el DNI'"
+              [placeholder]="selectedRole === 1 ? ('empresa.identificadorFiscal_placeholder_empresari' | translate) : ('empresa.identificadorFiscal_placeholder_autonom' | translate)"
               required
               pattern="[0-9]{8,9}[A-Za-z]?"
               #identificadorFiscalModel="ngModel"
@@ -38,21 +38,21 @@
           </div>
           @if (identificadorFiscalModel.invalid && (identificadorFiscalModel.touched || identificadorFiscalModel.dirty)) {
             <div class="error">
-              El camp és obligatori i ha de seguir el format correcte.
+              {{ 'empresa.identificadorFiscal_error' | translate }}
             </div>
           }
         </div>
 
         @if (selectedRole === 1) {
           <div class="input-group">
-            <label for="nombre" class="form-label">Nom</label>
+            <label for="nombre" class="form-label">{{ 'empresa.nombre_label' | translate }}</label>
             <div class="input-control">
               <input
                 type="text"
                 id="nombre"
                 [(ngModel)]="nombre"
                 name="nombre"
-                placeholder="Introdueix el nom"
+                placeholder="{{ 'empresa.nombre_placeholder' | translate }}"
                 required
                 minlength="2"
                 #nombreModel="ngModel"
@@ -60,20 +60,20 @@
             </div>
             @if (nombreModel.invalid && (nombreModel.touched || nombreModel.dirty)) {
               <div class="error">
-                El nom és obligatori (mínim 2 caràcters).
+                {{ 'empresa.nombre_error' | translate }}
               </div>
             }
           </div>
         } @else if (selectedRole === 2) {
           <div class="input-group">
-            <label for="actividad" class="form-label">Activitat</label>
+            <label for="actividad" class="form-label">{{ 'empresa.actividad_label' | translate }}</label>
             <div class="input-control">
               <input
                 type="text"
                 id="actividad"
                 [(ngModel)]="actividad"
                 name="actividad"
-                placeholder="Introdueix l'activitat"
+                placeholder="{{ 'empresa.actividad_placeholder' | translate }}"
                 required
                 minlength="2"
                 #actividadModel="ngModel"
@@ -81,21 +81,21 @@
             </div>
             @if (actividadModel.invalid && (actividadModel.touched || actividadModel.dirty)) {
               <div class="error">
-                L'activitat és obligatòria (mínim 2 caràcters).
+                {{ 'empresa.actividad_error' | translate }}
               </div>
             }
           </div>
         }
 
         <div class="input-group">
-          <label for="direccion" class="form-label">Adreça</label>
+          <label for="direccion" class="form-label">{{ 'empresa.direccion_label' | translate }}</label>
           <div class="input-control">
             <input
               type="text"
               id="direccion"
               [(ngModel)]="direccion"
               name="direccion"
-              placeholder="Introdueix l'adreça"
+              placeholder="{{ 'empresa.direccion_placeholder' | translate }}"
               required
               minlength="2"
               #direccionModel="ngModel"
@@ -103,20 +103,20 @@
           </div>
           @if (direccionModel.invalid && (direccionModel.touched || direccionModel.dirty)) {
             <div class="error">
-              L'adreça és obligatòria (mínim 2 caràcters).
+              {{ 'empresa.direccion_error' | translate }}
             </div>
           }
         </div>
 
         <div class="input-group">
-          <label for="email" class="form-label">Correu electrònic</label>
+          <label for="email" class="form-label">{{ 'empresa.email_label' | translate }}</label>
           <div class="input-control">
             <input
               type="email"
               id="email"
               [(ngModel)]="email"
               name="email"
-              placeholder="Introdueix el correu"
+              placeholder="{{ 'empresa.email_placeholder' | translate }}"
               required
               email
               #emailModel="ngModel"
@@ -124,20 +124,20 @@
           </div>
           @if (emailModel.invalid && (emailModel.touched || emailModel.dirty)) {
             <div class="error">
-              El correu és obligatori i ha de ser vàlid.
+              {{ 'empresa.email_error' | translate }}
             </div>
           }
         </div>
 
         <div class="input-group">
-          <label for="telefono" class="form-label">Telèfon</label>
+          <label for="telefono" class="form-label">{{ 'empresa.telefono_label' | translate }}</label>
           <div class="input-control">
             <input
               type="text"
               id="telefono"
               [(ngModel)]="telefono"
               name="telefono"
-              placeholder="Introdueix el telèfon"
+              placeholder="{{ 'empresa.telefono_placeholder' | translate }}"
               required
               pattern="[0-9]{9}"
               #telefonoModel="ngModel"
@@ -145,19 +145,15 @@
           </div>
           @if (telefonoModel.invalid && (telefonoModel.touched || telefonoModel.dirty)) {
             <div class="error">
-              El telèfon és obligatori (9 dígits).
+              {{ 'empresa.telefono_error' | translate }}
             </div>
           }
         </div>
 
-        <input
-          type="hidden"
-          [(ngModel)]="associatedDni"
-          name="associatedDni"
-        />
+        <input type="hidden" [(ngModel)]="associatedDni" name="associatedDni" />
 
         <button type="submit" class="auth-btn" [disabled]="empresaForm.invalid">
-          Enviar
+          {{ 'empresa.submit_button' | translate }}
         </button>
 
         @if (formError) {
