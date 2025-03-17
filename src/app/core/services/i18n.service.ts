@@ -6,7 +6,7 @@ import { BehaviorSubject, firstValueFrom } from 'rxjs';
   providedIn: 'root'
 })
 export class I18nService {
-  private translationsLoaded$ = new BehaviorSubject<boolean>(false); // ✅ Estado reactivo para el spinner
+  private translationsLoaded$ = new BehaviorSubject<boolean>(false);
 
   constructor(private translate: TranslateService) {
     this.initTranslate();
@@ -17,8 +17,8 @@ export class I18nService {
     this.translate.setDefaultLang('es');
 
     try {
-      await firstValueFrom(this.translate.use(lang)); // ✅ Espera la carga del idioma
-      this.translationsLoaded$.next(true); // ✅ Marca como "cargado"
+      await firstValueFrom(this.translate.use(lang));
+      this.translationsLoaded$.next(true);
     } catch (error) {
       console.error('Error cargando las traducciones:', error);
     }
