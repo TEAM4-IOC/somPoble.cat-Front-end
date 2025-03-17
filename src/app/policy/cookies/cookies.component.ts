@@ -19,6 +19,6 @@ export class CookiesComponent implements OnInit {
 
     setTimeout(() => {
       this.loadingService.idle();
-    },100);
+    },0);
   }
 }

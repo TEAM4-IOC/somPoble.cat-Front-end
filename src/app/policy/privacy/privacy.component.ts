@@ -21,6 +21,6 @@ export class PrivacyComponent implements OnInit {
 
     setTimeout(() => {
       this.loadingService.idle();
-    },100);
+    },0);
   }
 }

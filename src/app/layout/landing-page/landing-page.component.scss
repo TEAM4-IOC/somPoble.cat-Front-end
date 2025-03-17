@@ -1,10 +1,65 @@
-*{
-    margin: 0;
-}
-.type-user div {
-    height: 200px;
+@import '../../../colors.scss';
+
+.landing-container {
+    background: $bg-gradient;
 }
 
-#content-section div {
-    height: 300px;
+.card-1,
+.card-2 {
+    background: $container-bg;
+    backdrop-filter: blur(0.625rem);
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 0.625rem;
+}
+
+.shop-img, .img-container {
+    max-width: 200px;
+}
+
+.services-section {
+    margin-left: 20px;
+    backdrop-filter: brightness(1.5);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.separator {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.contact {
+    
+  color: $white;
+  font-size: 0.875rem;
+  line-height: 0.3;
+  outline: none;
+  padding-top: 30px;
+}
+
+
+.register-btn {
+    width: 200px;
+    padding: 0.625rem;
+    background: transparent;
+    border: 0.0625rem solid $btn-border;
+    color: $white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0.3125rem;
+    transition: all 0.3s ease;
+}
+
+.register-btn:hover {
+    background: $btn-hover-bg;
+  }
+
+.register-container{
+    padding-bottom: 30px;
 }
