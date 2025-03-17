@@ -1,6 +1,6 @@
 <div class="component-wrapper">
   <div class="auth-container">
-    <h1>Gestió d'Empresa</h1>
+    <h1>SomPoble</h1>
 
     @if (!showForm) {
       <h2>Selecciona el teu rol</h2>
@@ -28,12 +28,19 @@
             <input
               type="text"
               id="identificadorFiscal"
-              name="identificadorFiscal"
               [(ngModel)]="identificadorFiscal"
+              name="identificadorFiscal"
               [placeholder]="selectedRole === 1 ? 'Introdueix el CIF' : 'Introdueix el DNI'"
               required
+              pattern="[0-9]{8,9}[A-Za-z]?"
+              #identificadorFiscalModel="ngModel"
             />
           </div>
+          @if (identificadorFiscalModel.invalid && (identificadorFiscalModel.touched || identificadorFiscalModel.dirty)) {
+            <div class="error">
+              El camp és obligatori i ha de seguir el format correcte.
+            </div>
+          }
         </div>
 
         @if (selectedRole === 1) {
@@ -43,12 +50,19 @@
               <input
                 type="text"
                 id="nombre"
-                name="nombre"
                 [(ngModel)]="nombre"
+                name="nombre"
                 placeholder="Introdueix el nom"
                 required
+                minlength="2"
+                #nombreModel="ngModel"
               />
             </div>
+            @if (nombreModel.invalid && (nombreModel.touched || nombreModel.dirty)) {
+              <div class="error">
+                El nom és obligatori (mínim 2 caràcters).
+              </div>
+            }
           </div>
         } @else if (selectedRole === 2) {
           <div class="input-group">
@@ -57,12 +71,19 @@
               <input
                 type="text"
                 id="actividad"
-                name="actividad"
                 [(ngModel)]="actividad"
+                name="actividad"
                 placeholder="Introdueix l'activitat"
                 required
+                minlength="2"
+                #actividadModel="ngModel"
               />
             </div>
+            @if (actividadModel.invalid && (actividadModel.touched || actividadModel.dirty)) {
+              <div class="error">
+                L'activitat és obligatòria (mínim 2 caràcters).
+              </div>
+            }
           </div>
         }
 
@@ -72,12 +93,19 @@
             <input
               type="text"
               id="direccion"
-              name="direccion"
               [(ngModel)]="direccion"
+              name="direccion"
               placeholder="Introdueix l'adreça"
               required
+              minlength="2"
+              #direccionModel="ngModel"
             />
           </div>
+          @if (direccionModel.invalid && (direccionModel.touched || direccionModel.dirty)) {
+            <div class="error">
+              L'adreça és obligatòria (mínim 2 caràcters).
+            </div>
+          }
         </div>
 
         <div class="input-group">
@@ -86,12 +114,19 @@
             <input
               type="email"
               id="email"
-              name="email"
               [(ngModel)]="email"
+              name="email"
               placeholder="Introdueix el correu"
               required
+              email
+              #emailModel="ngModel"
             />
           </div>
+          @if (emailModel.invalid && (emailModel.touched || emailModel.dirty)) {
+            <div class="error">
+              El correu és obligatori i ha de ser vàlid.
+            </div>
+          }
         </div>
 
         <div class="input-group">
@@ -100,22 +135,36 @@
             <input
               type="text"
               id="telefono"
-              name="telefono"
               [(ngModel)]="telefono"
+              name="telefono"
               placeholder="Introdueix el telèfon"
               required
+              pattern="[0-9]{9}"
+              #telefonoModel="ngModel"
             />
           </div>
+          @if (telefonoModel.invalid && (telefonoModel.touched || telefonoModel.dirty)) {
+            <div class="error">
+              El telèfon és obligatori (9 dígits).
+            </div>
+          }
         </div>
 
         <input
           type="hidden"
-          id="associatedDni"
-          name="associatedDni"
           [(ngModel)]="associatedDni"
+          name="associatedDni"
         />
 
-        <button type="submit" class="auth-btn" [disabled]="empresaForm.invalid">Enviar</button>
+        <button type="submit" class="auth-btn" [disabled]="empresaForm.invalid">
+          Enviar
+        </button>
+
+        @if (formError) {
+          <div class="error">
+            {{ formError }}
+          </div>
+        }
       </form>
     }
   </div>

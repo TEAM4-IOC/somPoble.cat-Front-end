@@ -11,15 +11,16 @@ import { FormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmpresaFormComponent {
-  showForm: boolean = false;
+  showForm = false;
   selectedRole: number | null = null;
-  identificadorFiscal: string = '';
-  direccion: string = '';
-  email: string = '';
-  telefono: string = '';
-  associatedDni: string = '';
-  nombre: string = '';
-  actividad: string = '';
+  identificadorFiscal = '';
+  direccion = '';
+  email = '';
+  telefono = '';
+  associatedDni = '';
+  nombre = '';
+  actividad = '';
+  formError = '';
 
   selectRole(role: number): void {
     this.selectedRole = role;
@@ -54,6 +55,8 @@ export class EmpresaFormComponent {
         dniAsociado: this.associatedDni
       };
       console.log('Autònom Data:', autonomoData);
+    } else {
+      this.formError = 'No s’ha seleccionat cap rol.';
     }
   }
 }
