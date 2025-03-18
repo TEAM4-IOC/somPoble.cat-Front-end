@@ -1,8 +1,11 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { AuthService } from '../../../core/services/auth.service';
+import { LoginRequest } from '../../../core/models/login.interface';
+import { AuthResponse } from '../../../core/models/auth.interface';
 
 @Component({
   selector: 'app-login',
@@ -18,17 +21,22 @@ export class LoginComponent {
   showPassword: boolean = false;
   loginError: string = '';
 
+  constructor(private authService: AuthService, private router: Router) {}
+
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
 
   onLogin(): void {
-
-    if (this.email === 'test@test.com' && this.password === '123456') {
-      this.loginError = '';
-      alert('Inicio de sesión exitoso');
-    } else {
-      this.loginError = 'El correo o la contraseña no coinciden.';
-    }
+    const payload: LoginRequest = { email: this.email, pass: this.password };
+    this.authService.login(payload).subscribe({
+      next: (response: AuthResponse) => {
+        localStorage.setItem('session', JSON.stringify(response));
+        this.router.navigate(['/empresa-form']);
+      },
+      error: (err) => {
+        this.loginError = 'El correo o la contraseña no coinciden.';
+      }
+    });
   }
 }

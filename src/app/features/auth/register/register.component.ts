@@ -72,7 +72,7 @@ export class RegisterComponent {
       this.authService.register(registrationData, this.registerRole).subscribe({
         next: (response) => {
           console.log('Registro exitoso', response);
-          alert('Registro exitoso');
+
         },
         error: (err) => {
           console.error('Error en el registro', err);
