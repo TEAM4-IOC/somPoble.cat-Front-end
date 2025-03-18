@@ -42,7 +42,6 @@
   padding-top: 30px;
 }
 
-
 .register-btn {
     width: 200px;
     padding: 0.625rem;
@@ -63,3 +62,13 @@
 .register-container{
     padding-bottom: 30px;
 }
+
+/* Tablets i phablets */
+@media only screen and (min-width: 576px) and (max-width: 767px){
+    //es visualitza correctament, no es contemplen canvis
+  }
+  
+  /* Telèfons */
+  @media only screen and (max-width: 575px) { 
+    //es visualitza correctament, no es contemplen canvis
+  }

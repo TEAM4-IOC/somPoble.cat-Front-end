@@ -71,40 +71,14 @@ header {
     cursor: pointer;
 }
 
-/* Estils menú hamburguesa */
-.menu {
-    display: none;
-    list-style: none;
-    border: 1px solid black;
-    padding: 10px;
-    position: absolute;
-    top: 72px;  /* Ajusta la posición más abajo */
-    left: 15px; /* Mueve el menú más a la derecha */
-    background: white;
+/* Tablets i phablets */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    //es visualitza correctament, no es contemplen canvis
 }
 
-.menu li {
-    border-bottom: 1px solid black;
-    padding: 5px;
-}
-
-.menu li:last-child {
-    border-bottom: none;
-}
-
-.hamburger {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-    border: 1px solid black;
-    padding: 5px;
-}
-
-.bar {
-    width: 100%;
-    height: 3px;
-    border: 1px solid black;
+/* Telèfons */
+@media only screen and (max-width: 575px) {
+    .login-icon {
+        margin-right: 5px;
+    }
 }
