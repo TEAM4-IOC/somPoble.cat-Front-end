@@ -1,17 +1,14 @@
-<ngx-spinner type = "pacman" size = "large"></ngx-spinner>
+<ngx-spinner type="pacman" size="large"></ngx-spinner>
 
 <div class="landing-container text-white">
     <div class="col-12 d-flex">
-
-
         <div class="w-50 card-1">
-            <h3 class="text-center mb-3">{{ empresa?.nombre}}</h3>
+            <h3 class="text-center mb-3">{{ empresa1?.nombre }}</h3>
             <span class="separator"></span>
             <div class="d-flex">
                 <div class="img-container">
                     <img src="../images/tienda1.png" class="shop-img rounded-4">
                 </div>
-
                 <div class="w-100 services-section">
                     <h5>Servicio</h5>
                     <ul>
@@ -20,23 +17,38 @@
                         <li>Servicio 3</li>
                     </ul>
                 </div>
-
             </div>
             <div class="contact">
-                <p><strong>Dirección:</strong> {{ empresa?.direccion }}</p>
-                <p><strong>Teléfono:</strong> {{ empresa?.telefono }}</p>
-                <p><strong>Email:</strong> {{ empresa?.email }}</p>
+                <p><strong>Dirección:</strong> {{ empresa1?.direccion }}</p>
+                <p><strong>Teléfono:</strong> {{ empresa1?.telefono }}</p>
+                <p><strong>Email:</strong> {{ empresa1?.email }}</p>
             </div>
         </div>
 
-
-
-        <div class="w-50 card-2"> Tarjeta empresa 2
-
+        <div class="w-50 card-2">
+            <h3 class="text-center mb-3">{{ empresa2?.nombre }}</h3>
+            <span class="separator"></span>
+            <div class="d-flex">
+                <div class="img-container">
+                    <img src="../images/tienda1.png" class="shop-img rounded-4">
+                </div>
+                <div class="w-100 services-section">
+                    <h5>Servicio</h5>
+                    <ul>
+                        <li>Servicio A</li>
+                        <li>Servicio B</li>
+                        <li>Servicio C</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="contact">
+                <p><strong>Dirección:</strong> {{ empresa2?.direccion }}</p>
+                <p><strong>Teléfono:</strong> {{ empresa2?.telefono }}</p>
+                <p><strong>Email:</strong> {{ empresa2?.email }}</p>
+            </div>
         </div>
-
-
     </div>
+
     <div class="d-flex col-12 justify-content-center register-container">
         <button type="submit" class="register-btn">Regístrate!</button>
     </div>

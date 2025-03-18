@@ -13,7 +13,8 @@ import { RouterModule } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandingPageComponent implements OnInit {
-  empresa: any = {};
+  empresa1: any = {};
+  empresa2: any = {};
 
   constructor(private cdr: ChangeDetectorRef, public loadingService: LoadingService) {}
 
@@ -28,7 +29,8 @@ export class LandingPageComponent implements OnInit {
       .then(response => response.json())
       .then(data => {
         if (data.length > 0) {
-          this.empresa = data[0];
+          this.empresa1 = data[0];
+          this.empresa2 = data.length > 1 ? data[1] : {};
           this.cdr.detectChanges();
         }
       })
