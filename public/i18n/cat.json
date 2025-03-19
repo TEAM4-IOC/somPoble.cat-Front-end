@@ -75,6 +75,13 @@
     "submit_button": "Enviar",
     "delete_button":"Eliminar empresa"
   },
+  "landing": {
+    "services": "Serveis",
+    "adress": "Adreça",
+    "phone": "Telèfon",
+    "mail": "E-mail",
+    "register": "Registra't"
+  },
   "notfound-page": {
     "msg": "Ups! Sembla que aquest enllaç no funciona",
     "btn": "Tornar a l'inici"

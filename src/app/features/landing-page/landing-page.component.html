@@ -1,0 +1,57 @@
+<ngx-spinner type="pacman" size="large"></ngx-spinner>
+
+<div class="landing-container text-white">
+    <div class="col-12 d-flex">
+        <div class="w-50 card-1">
+            <h3 class="text-center mb-3">{{ empresa1?.nombre }}</h3>
+            <span class="separator"></span>
+            <div class="d-flex">
+                <div class="img-container">
+                    <img src="../images/tienda1.png" class="shop-img rounded-4">
+                </div>
+                <div class="w-100 services-section">
+                    <h5>{{ 'landing.services' | translate}}</h5>
+                    <ul>
+                        <li>Servicio 1</li>
+                        <li>Servicio 2</li>
+                        <li>Servicio 3</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="contact">
+                <p><strong>{{ 'landing.adress' | translate}}:</strong> {{ empresa1?.direccion }}</p>
+                <p><strong>{{ 'landing.phone' | translate}}:</strong> {{ empresa1?.telefono }}</p>
+                <p><strong>{{ 'landing.mail' | translate}}:</strong> {{ empresa1?.email }}</p>
+            </div>
+        </div>
+
+        <div class="w-50 card-2">
+            <h3 class="text-center mb-3">{{ empresa2?.nombre }}</h3>
+            <span class="separator"></span>
+            <div class="d-flex">
+                <div class="img-container">
+                    <img src="../images/tienda1.png" class="shop-img rounded-4">
+                </div>
+                <div class="w-100 services-section">
+                    <h5>{{ 'landing.services' | translate}}</h5>
+                    <ul>
+                        <li>Servicio A</li>
+                        <li>Servicio B</li>
+                        <li>Servicio C</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="contact">
+                <p><strong>{{ 'landing.adress' | translate}}:</strong> {{ empresa2?.direccion }}</p>
+                <p><strong>{{ 'landing.phone' | translate}}:</strong> {{ empresa2?.telefono }}</p>
+                <p><strong>{{ 'landing.mail' | translate}}:</strong> {{ empresa2?.email }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex col-12 justify-content-center register-container">
+        <button type="submit" class="register-btn" [routerLink]="'/register'">
+            {{ 'landing.register' | translate }}
+          </button>
+    </div>
+</div>

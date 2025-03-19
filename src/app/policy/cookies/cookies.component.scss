@@ -13,3 +13,17 @@ h1 {
 h2, .text-section {
     margin-bottom: 50px;
 }
+
+/* Tablets i phablets */
+@media only screen and (min-width: 576px) and (max-width: 767px){
+    #cookies-main {
+        padding:50px;
+    }
+  }
+
+  /* Telèfons */
+@media only screen and (max-width: 575px) { 
+    #cookies-main {
+        padding:25px;
+    }
+}

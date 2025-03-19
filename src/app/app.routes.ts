@@ -5,7 +5,7 @@ import { LegalNoticeComponent } from './policy/legal-notice/legal-notice.compone
 import { CookiesComponent } from './policy/cookies/cookies.component';
 import { PrivacyComponent } from './policy/privacy/privacy.component';
 import { NotfoundpageComponent } from './features/notfoundpage/notfoundpage.component';
-import { LandingPageComponent } from './layout/landing-page/landing-page.component';
+import { LandingPageComponent } from './features/landing-page/landing-page.component';
 import { EmpresaFormComponent } from './features/empresa-form/empresa-form.component';
 
 export const routes: Routes = [
