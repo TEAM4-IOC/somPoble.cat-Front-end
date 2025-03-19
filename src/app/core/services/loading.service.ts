@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class LoadingService {
   loadingRequestCount = 0;
   private isLoadingSubject = new BehaviorSubject<boolean>(false);
-  isLoading$ = this.isLoadingSubject.asObservable(); // Observable accesible en el HTML
+  isLoading$ = this.isLoadingSubject.asObservable();
 
   constructor(private spinnerService:NgxSpinnerService) { }
 
