@@ -5,8 +5,17 @@
         <img class="rounded-4" src="../images/SomPoble.png" alt="Logo">
     </div>
     <div class="d-flex align-items-center col-6 justify-content-end">
-        <a routerLink="/login" title="Login">
+        <!-- Si está logueado y es tipoUsuario 1, mostrar "Particular" -->
+        <span *ngIf="isLoggedIn && tipoUsuario === 1" class="particular-label">Particular</span>
+
+        <!-- Si NO hay sesión, muestra el icono de login -->
+        <a *ngIf="!isLoggedIn" routerLink="/login" title="Login">
             <i class="fa-solid fa-right-to-bracket login-icon fs-1"></i>
+        </a>
+
+        <!-- Si hay sesión, muestra el icono de logout -->
+        <a *ngIf="isLoggedIn" (click)="logout()" title="Logout">
+            <i class="fa-regular fa-circle-xmark fs-1"></i>
         </a>
         <div class="d-flex flex-column lang-btn-container">
             <div class="d-flex lang-btn align-items-center py-2 px-4 rounded-5">

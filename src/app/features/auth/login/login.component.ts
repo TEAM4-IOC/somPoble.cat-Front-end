@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { LoginRequest } from '../../../core/models/login.interface';
 import { AuthResponse } from '../../../core/models/auth.interface';
+import { SessionService } from '../../../core/services/session.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent {
   showPassword: boolean = false;
   loginError: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private sessionService: SessionService) {}
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
@@ -32,9 +33,10 @@ export class LoginComponent {
     this.authService.login(payload).subscribe({
       next: (response: AuthResponse) => {
         localStorage.setItem('session', JSON.stringify(response));
+        this.sessionService.updateSession();
         this.router.navigate(['/empresa-form']);
       },
-      error: (err) => {
+      error: () => {
         this.loginError = 'El correo o la contraseña no coinciden.';
       }
     });
