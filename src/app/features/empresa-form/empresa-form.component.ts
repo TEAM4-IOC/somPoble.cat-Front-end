@@ -1,8 +1,13 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { EnterpriseStateService } from '../../core/services/enterprise-state.service';
+import { EmpresaData } from '../../core/models/EmpresaData.interface';
+import { CreateEmpresaPayload } from '../../core/models/create-empresa-payload.interface';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-empresa-form',
@@ -12,68 +17,83 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./empresa-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EmpresaFormComponent {
-  showForm = false;
-  showData = false;
+export class EmpresaFormComponent implements OnInit {
+
+  enterprise$!: Observable<EmpresaData[]>;
+
   selectedRole: number | null = null;
   formError = '';
-  editingKey: string | null = null;
-  tempValue = '';
   identificadorFiscal = '';
   direccion = '';
   email = '';
   telefono = '';
-  associatedDni = '';
   nombre = '';
   actividad = '';
-  empresaData: any = null;
+
+  editingKey: string | null = null;
+  tempValue = '';
+  userIdent = '';
+
+  constructor(private enterpriseState: EnterpriseStateService) {}
+
+  ngOnInit(): void {
+
+    const sessionStr = localStorage.getItem('session');
+    if (sessionStr) {
+      try {
+        const session = JSON.parse(sessionStr);
+        this.userIdent = session.usuario?.dni || '';
+
+      } catch (err) {
+        console.error('[EmpresaFormComponent] Error parseando session:', err);
+      }
+    }
+
+    if (this.userIdent) {
+      this.enterpriseState.loadEnterpriseByIdentificador(this.userIdent);
+    }
+
+    this.enterprise$ = this.enterpriseState.enterprise$;
+  }
 
   selectRole(role: number): void {
     this.selectedRole = role;
-    this.showForm = true;
-    this.showData = false;
-    this.resetFields();
+    this.resetFormFields();
   }
 
   onSubmit(): void {
     if (!this.selectedRole) {
-      this.formError = 'No s’ha seleccionat cap rol.';
+      this.formError = 'No se ha seleccionado un rol.';
       return;
     }
     this.formError = '';
+
+    const payload: CreateEmpresaPayload = {
+      empresa: {
+        identificadorFiscal: this.identificadorFiscal,
+        direccion: this.direccion,
+        email: this.email,
+        telefono: this.telefono
+      },
+      dni: this.userIdent
+    };
+
     if (this.selectedRole === 1) {
-      const empresarioData = {
-        identificadorFiscal: this.identificadorFiscal,
-        nombre: this.nombre,
-        direccion: this.direccion,
-        email: this.email,
-        telefono: this.telefono,
-        dniAsociado: this.associatedDni
-      };
-      this.empresaData = empresarioData;
-    } else if (this.selectedRole === 2) {
-      const autonomoData = {
-        identificadorFiscal: this.identificadorFiscal,
-        actividad: this.actividad,
-        direccion: this.direccion,
-        email: this.email,
-        telefono: this.telefono,
-        dniAsociado: this.associatedDni
-      };
-      this.empresaData = autonomoData;
+      payload.empresa.nombre = this.nombre;
+    } else {
+      payload.empresa.actividad = this.actividad;
     }
-    this.showForm = false;
-    this.showData = true;
+
+    this.enterpriseState.createEnterprise(payload, this.userIdent);
   }
 
-  startEditing(field: string): void {
+  startEditing(field: string, currentValue: string): void {
     this.editingKey = field;
-    this.tempValue = this.empresaData[field];
+    this.tempValue = currentValue;
   }
 
-  confirmEditing(field: string): void {
-    const partialPayload = { [field]: this.tempValue };
-    this.empresaData = { ...this.empresaData, ...partialPayload };
+  confirmEditing(field: string, identificadorFiscal: string): void {
+    this.enterpriseState.updateEnterpriseField(identificadorFiscal, { [field]: this.tempValue });
     this.editingKey = null;
     this.tempValue = '';
   }
@@ -83,24 +103,19 @@ export class EmpresaFormComponent {
     this.tempValue = '';
   }
 
-  deleteAll(): void {
-    this.empresaData = null;
-    this.selectedRole = null;
-    this.showData = false;
-    this.showForm = false;
-    this.resetFields();
+  deleteEnterprise(identificadorFiscal: string): void {
+    this.enterpriseState.deleteEnterprise(identificadorFiscal);
   }
 
   editingField(field: string): boolean {
     return this.editingKey === field;
   }
 
-  private resetFields(): void {
+  private resetFormFields(): void {
     this.identificadorFiscal = '';
     this.direccion = '';
     this.email = '';
     this.telefono = '';
-    this.associatedDni = '';
     this.nombre = '';
     this.actividad = '';
     this.formError = '';

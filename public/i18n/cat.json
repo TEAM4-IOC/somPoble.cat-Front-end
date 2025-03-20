@@ -44,8 +44,14 @@
     "select_role_placeholder": "Escull rol",
     "client_option": "Client",
     "business_option": "Empresari"
-  },"empresa": {
-    "select_role_title": "Selecciona el teu rol",
+  },
+  "edit_profile": {
+    "edit_title": "Edita el Perfil",
+    "update_success": "Perfil actualitzat correctament.",
+    "update_error": "Error en actualitzar el perfil."
+  },
+  "empresa": {
+    "select_role_title": "Escull el teu rol",
     "select_role_placeholder": "Escull una opció",
     "option_empresari": "Empresari",
     "option_autonom": "Autònom",
@@ -73,7 +79,7 @@
     "telefono_placeholder": "Introdueix el telèfon",
     "telefono_error": "El telèfon és obligatori (9 dígits).",
     "submit_button": "Enviar",
-    "delete_button":"Eliminar empresa"
+    "delete_button": "Eliminar empresa"
   },
   "landing": {
     "services": "Serveis",

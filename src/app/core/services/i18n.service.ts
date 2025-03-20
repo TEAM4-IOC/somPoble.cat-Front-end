@@ -36,6 +36,6 @@ export class I18nService {
   }
 
   getTranslationsLoaded$() {
-    return this.translationsLoaded$.asObservable(); // ✅ Expone el estado del spinner como un Observable
+    return this.translationsLoaded$.asObservable();
   }
 }
