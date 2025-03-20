@@ -45,7 +45,7 @@
     "client_option": "Client",
     "business_option": "Empresari"
   },"empresa": {
-    "select_role_title": "Selecciona el teu rol",
+    "select_role_title": "Escull el teu rol",
     "select_role_placeholder": "Escull una opció",
     "option_empresari": "Empresari",
     "option_autonom": "Autònom",
