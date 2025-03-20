@@ -45,6 +45,11 @@
     "client_option": "Cliente",
     "business_option": "Empresario"
   },
+  "edit_profile": {
+    "edit_title": "Editar Perfil",
+    "update_success": "Perfil actualizado correctamente.",
+    "update_error": "Error al actualizar el perfil."
+  },
   "empresa": {
     "select_role_title": "Selecciona tu rol",
     "select_role_placeholder": "Elige una opción",
