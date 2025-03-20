@@ -1,6 +1,6 @@
-@import '../../../colors.scss';
+@import '../../../../colors.scss';
 
-#cookies-main {
+#legalnotice-main {
     text-align: justify;
     padding: 100px;
     background: linear-gradient(to bottom, #67b8e880, #905f9980);
@@ -10,20 +10,24 @@ h1 {
     margin-bottom: 50px;
 }
 
-h2, .text-section {
+#legalnotice-main h2, .text-section {
     margin-bottom: 50px;
+}
+
+h3 {
+    margin-bottom: 30px;
 }
 
 /* Tablets i phablets */
 @media only screen and (min-width: 576px) and (max-width: 767px){
-    #cookies-main {
+    #legalnotice-main {
         padding:50px;
     }
   }
 
   /* Telèfons */
 @media only screen and (max-width: 575px) { 
-    #cookies-main {
+    #legalnotice-main {
         padding:25px;
     }
 }
