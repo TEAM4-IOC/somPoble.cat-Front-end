@@ -13,6 +13,10 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
+  getEmpresas(): Observable<EmpresaData[]> {
+    return this.http.get<EmpresaData[]>(this.empresaUrl);
+  }
+
   getEmpresaByIdentificador(identificador: string): Observable<EmpresaData> {
     return this.http.get<EmpresaData>(`${this.empresaUrl}/${identificador}`);
   }
