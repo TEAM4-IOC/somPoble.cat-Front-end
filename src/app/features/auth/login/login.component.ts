@@ -22,7 +22,7 @@ export class LoginComponent {
   showPassword: boolean = false;
   loginError: string = '';
 
-  constructor(private authService: AuthService, private router: Router, private sessionService: SessionService) {}
+  constructor(private authService: AuthService, private router: Router, private sessionService: SessionService) { }
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
@@ -34,7 +34,14 @@ export class LoginComponent {
       next: (response: AuthResponse) => {
         localStorage.setItem('session', JSON.stringify(response));
         this.sessionService.updateSession();
-        this.router.navigate(['/empresa-form']);
+        const sessionData = JSON.parse(localStorage.getItem('session') || '{}');
+        const tipoUsuario = sessionData?.tipoUsuario ?? null;
+
+        if (tipoUsuario === 1) {
+          this.router.navigate(['/edit']);
+        } else {
+          this.router.navigate(['/empresa-form']);
+        }
       },
       error: () => {
         this.loginError = 'El correo o la contraseña no coinciden.';
