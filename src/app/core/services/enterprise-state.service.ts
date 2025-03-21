@@ -66,18 +66,15 @@ export class EnterpriseStateService {
     this.apiService.createEmpresa(payload).subscribe({
       next: (created) => {
         console.log('[EnterpriseStateService] POST success => updating state...');
-        if (created && !isEmptyEnterprise(created)) {
-          this.saveAndEmit([created]);
-        } else {
-          console.warn('[EnterpriseStateService] POST devolvió datos nulos o inválidos, recargando...');
-          this.loadEnterpriseFromEmpresariosByUserDni(userDni);
-        }
+        this.loadEnterpriseFromEmpresariosByUserDni(userDni);
       },
       error: (err) => {
         console.error('[EnterpriseStateService] POST error:', err);
+        this.loadEnterpriseFromEmpresariosByUserDni(userDni);
       }
     });
   }
+
 
   updateEnterpriseField(partial: Partial<EmpresaData>): void {
     const current = this.getEnterprisesValue();
