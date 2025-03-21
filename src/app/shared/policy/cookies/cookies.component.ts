@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingService } from '../../core/services/loading.service';
+import { LoadingService } from '../../../core/services/loading.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
