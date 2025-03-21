@@ -42,6 +42,6 @@ export class ApiService {
   }
 
   getEmpresas(): Observable<EmpresaData[]> {
-    return this.http.get<EmpresaData[]>(`${this.empresaUrl}`);
+    return this.http.get<EmpresaData[]>(`${environment.authUrl}/empresas`);
   }
 }

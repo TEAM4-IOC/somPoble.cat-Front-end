@@ -5,19 +5,19 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 import { EmpresaData } from '../../core/models/EmpresaData.interface';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [NgxSpinnerModule, TranslateModule, RouterModule],
+  imports: [NgxSpinnerModule, TranslateModule, RouterModule, CommonModule],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandingPageComponent implements OnInit {
-  empresa1: EmpresaData | null = null;
-  empresa2: EmpresaData | null = null;
+  empresas: EmpresaData[] = [];
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -32,12 +32,9 @@ export class LandingPageComponent implements OnInit {
 
   private fetchData(): void {
     this.apiService.getEmpresas().subscribe({
-      next: (data: EmpresaData[]) => {  // ✅ Se tipificó correctamente 'data'
-        if (data.length > 0) {
-          this.empresa1 = data[0];
-          this.empresa2 = data.length > 1 ? data[1] : null;
-          this.cdr.detectChanges();
-        }
+      next: (data: any[]) => {
+        this.empresas = data.map(item => item.empresa).slice(0, 6);
+        this.cdr.detectChanges();
       },
       error: (error: HttpErrorResponse) => {
         console.error('Error al obtener los datos:', error.message);
