@@ -40,4 +40,8 @@ export class ApiService {
   getEmpresarios(): Observable<any[]> {
     return this.http.get<any[]>(`${environment.authUrl}/empresarios`);
   }
+
+  getEmpresas(): Observable<EmpresaData[]> {
+    return this.http.get<EmpresaData[]>(`${this.empresaUrl}`);
+  }
 }
