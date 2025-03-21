@@ -14,15 +14,21 @@ header {
 }
 
 /* Estil icona login */
-.login-icon {
-    margin-right: 60px;
+.login-icon, .logout-icon {
     color: #4141fa;
     transition: background-color 0.2s ease-in-out;
 }
 
-.login-icon:hover {
+.login-icon:hover, .logout-icon:hover {
     cursor: pointer;
     color: #da4f8e;
+}
+
+.user-label {
+    padding-right: 20px;
+    color:white;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 /* Estils botó idiomes */
@@ -78,7 +84,5 @@ header {
 
 /* Telèfons */
 @media only screen and (max-width: 575px) {
-    .login-icon {
-        margin-right: 5px;
-    }
+
 }
