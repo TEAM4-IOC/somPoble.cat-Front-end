@@ -7,7 +7,6 @@ import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { loadingInterceptor } from './core/interceptors/loading.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { authInterceptorFn } from '../app/core/interceptors/auth.interceptor'; // ✅ Ahora sí está bien
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './i18n/', '.json');
@@ -16,7 +15,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(withInterceptors([loadingInterceptor, authInterceptorFn])), // ✅ Ya es una función válida
+    provideHttpClient(withInterceptors([loadingInterceptor])), 
     importProvidersFrom([BrowserAnimationsModule]),
     importProvidersFrom(
       TranslateModule.forRoot({
