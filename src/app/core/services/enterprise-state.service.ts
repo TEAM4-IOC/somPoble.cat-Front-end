@@ -24,6 +24,9 @@ export class EnterpriseStateService {
   private enterpriseSubject: BehaviorSubject<EmpresaData[]>;
   public enterprise$: Observable<EmpresaData[]>;
 
+  private deletionSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public deletion$: Observable<boolean> = this.deletionSubject.asObservable();
+
   constructor(private apiService: ApiService) {
     this.enterpriseSubject = new BehaviorSubject<EmpresaData[]>([]);
     this.enterprise$ = this.enterpriseSubject.asObservable();
@@ -75,7 +78,6 @@ export class EnterpriseStateService {
     });
   }
 
-
   updateEnterpriseField(partial: Partial<EmpresaData>): void {
     const current = this.getEnterprisesValue();
     if (current.length > 0) {
@@ -108,6 +110,7 @@ export class EnterpriseStateService {
         next: () => {
           console.log('[EnterpriseStateService] DELETE success => array empty');
           this.saveAndEmit([]);
+          this.deletionSubject.next(true);
         },
         error: (err) => {
           console.error('[EnterpriseStateService] DELETE error:', err);

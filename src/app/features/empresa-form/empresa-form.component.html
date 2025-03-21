@@ -162,23 +162,7 @@
                   : ('empresa.identificadorFiscal_label_autonom' | translate)
               }}
             </label>
-            @if (!editingField('identificadorFiscal')) {
-              <span>{{ emp[0].identificadorFiscal }}</span>
-              <button class="icon-btn" (click)="startEditing('identificadorFiscal', emp[0].identificadorFiscal)">
-                <i class="fas fa-edit"></i>
-              </button>
-            } @else {
-              <input type="text" [(ngModel)]="tempValue" required pattern="[0-9]{8,9}[A-Za-z]?" #identificadorFiscalEdit="ngModel" />
-              <button class="icon-btn" (click)="confirmEditing('identificadorFiscal')">
-                <i class="fas fa-check"></i>
-              </button>
-              <button class="icon-btn" (click)="cancelEditing()">
-                <i class="fas fa-times"></i>
-              </button>
-              @if (identificadorFiscalEdit.invalid && (identificadorFiscalEdit.touched || identificadorFiscalEdit.dirty)) {
-                <div class="error">{{ 'empresa.identificadorFiscal_error' | translate }}</div>
-              }
-            }
+            <span>{{ emp[0].identificadorFiscal }}</span>
           </div>
           @if (emp[0].tipo === 1) {
             <div class="data-field">

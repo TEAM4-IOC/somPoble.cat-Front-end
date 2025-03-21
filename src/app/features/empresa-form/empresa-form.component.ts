@@ -51,7 +51,14 @@ export class EmpresaFormComponent implements OnInit {
     }
 
     this.enterprise$ = this.enterpriseState.enterprise$;
+    this.enterprise$.subscribe((empresas) => {
+      if (empresas.length === 0) {
+        this.selectedRole = null;
+        this.resetFormFields();
+      }
+    });
   }
+
 
   selectRole(role: number): void {
     this.selectedRole = role;
