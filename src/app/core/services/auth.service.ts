@@ -11,7 +11,6 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-
   private readonly authUrl: string = environment.authUrl;
 
   constructor(private http: HttpClient) {}

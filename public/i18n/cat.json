@@ -79,7 +79,9 @@
     "telefono_placeholder": "Introdueix el telèfon",
     "telefono_error": "El telèfon és obligatori (9 dígits).",
     "submit_button": "Enviar",
-    "delete_button": "Eliminar empresa"
+    "delete_button": "Eliminar empresa",
+    "cif_error": "El camp és obligatori i ha de seguir el format correcte.",
+    "dni_error" : "El camp és obligatori i ha de seguir el format correcte."
   },
   "landing": {
     "services": "Serveis",

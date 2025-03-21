@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { EnterpriseStateService } from '../../core/services/enterprise-state.service';
 import { EmpresaData } from '../../core/models/EmpresaData.interface';
 import { CreateEmpresaPayload } from '../../core/models/create-empresa-payload.interface';
@@ -37,20 +36,18 @@ export class EmpresaFormComponent implements OnInit {
   constructor(private enterpriseState: EnterpriseStateService) {}
 
   ngOnInit(): void {
-
     const sessionStr = localStorage.getItem('session');
     if (sessionStr) {
       try {
         const session = JSON.parse(sessionStr);
         this.userIdent = session.usuario?.dni || '';
-
       } catch (err) {
         console.error('[EmpresaFormComponent] Error parseando session:', err);
       }
     }
 
     if (this.userIdent) {
-      this.enterpriseState.loadEnterpriseByIdentificador(this.userIdent);
+      this.enterpriseState.loadEnterpriseFromEmpresariosByUserDni(this.userIdent);
     }
 
     this.enterprise$ = this.enterpriseState.enterprise$;
@@ -92,8 +89,8 @@ export class EmpresaFormComponent implements OnInit {
     this.tempValue = currentValue;
   }
 
-  confirmEditing(field: string, identificadorFiscal: string): void {
-    this.enterpriseState.updateEnterpriseField(identificadorFiscal, { [field]: this.tempValue });
+  confirmEditing(field: string): void {
+    this.enterpriseState.updateEnterpriseField({ [field]: this.tempValue });
     this.editingKey = null;
     this.tempValue = '';
   }
@@ -103,8 +100,8 @@ export class EmpresaFormComponent implements OnInit {
     this.tempValue = '';
   }
 
-  deleteEnterprise(identificadorFiscal: string): void {
-    this.enterpriseState.deleteEnterprise(identificadorFiscal);
+  deleteEnterprise(): void {
+    this.enterpriseState.deleteEnterprise();
   }
 
   editingField(field: string): boolean {
