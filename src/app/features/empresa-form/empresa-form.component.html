@@ -1,9 +1,9 @@
 <div class="component-wrapper">
   <div class="auth-container">
     <h1>SomPoble</h1>
-    <ng-container *ngIf="enterprise$ | async as emp; else cargando">
-      <ng-container *ngIf="emp.length === 0; else edicionEmpresa">
-        <ng-container *ngIf="!selectedRole">
+    @if (enterprise$ | async; as emp) {
+      @if (emp.length === 0) {
+        @if (!selectedRole) {
           <h2>{{ 'empresa.select_role_title' | translate }}</h2>
           <div class="role-selection">
             <select #roleSelect (change)="selectRole(+roleSelect.value)">
@@ -12,12 +12,13 @@
               <option value="2">{{ 'empresa.option_autonom' | translate }}</option>
             </select>
           </div>
-        </ng-container>
-
-        <ng-container *ngIf="selectedRole">
-          <h2 *ngIf="selectedRole === 1">{{ 'empresa.register_title_empresari' | translate }}</h2>
-          <h2 *ngIf="selectedRole === 2">{{ 'empresa.register_title_autonom' | translate }}</h2>
-
+        }
+        @if (selectedRole) {
+          @if (selectedRole === 1) {
+            <h2>{{ 'empresa.register_title_empresari' | translate }}</h2>
+          } @else if (selectedRole === 2) {
+            <h2>{{ 'empresa.register_title_autonom' | translate }}</h2>
+          }
           <form (ngSubmit)="onSubmit()" #empresaForm="ngForm">
             <div class="input-group">
               <label for="identificadorFiscal" class="form-label">
@@ -36,16 +37,17 @@
                     ? ('empresa.identificadorFiscal_placeholder_empresari' | translate)
                     : ('empresa.identificadorFiscal_placeholder_autonom' | translate)"
                   required
-                  pattern="[0-9]{8,9}[A-Za-z]?"
+                  [pattern]="selectedRole === 1 ? '^[A-HJNP-SUVW]{1}[0-9]{7}[0-9A-J]$' : '^[0-9]{8}[A-Za-z]$'"
                   #identificadorFiscalModel="ngModel"
                 />
               </div>
-              <div class="error" *ngIf="identificadorFiscalModel.invalid && (identificadorFiscalModel.touched || identificadorFiscalModel.dirty)">
-                {{ 'empresa.identificadorFiscal_error' | translate }}
-              </div>
+              @if (identificadorFiscalModel.invalid && (identificadorFiscalModel.touched || identificadorFiscalModel.dirty)) {
+                <div class="error">
+                  {{ selectedRole === 1 ? ('empresa.cif_error' | translate) : ('empresa.dni_error' | translate) }}
+                </div>
+              }
             </div>
-
-            <ng-container *ngIf="selectedRole === 1; else autonomoBlock">
+            @if (selectedRole === 1) {
               <div class="input-group">
                 <label for="nombre" class="form-label">{{ 'empresa.nombre_label' | translate }}</label>
                 <div class="input-control">
@@ -60,12 +62,11 @@
                     #nombreModel="ngModel"
                   />
                 </div>
-                <div class="error" *ngIf="nombreModel.invalid && (nombreModel.touched || nombreModel.dirty)">
-                  {{ 'empresa.nombre_error' | translate }}
-                </div>
+                @if (nombreModel.invalid && (nombreModel.touched || nombreModel.dirty)) {
+                  <div class="error">{{ 'empresa.nombre_error' | translate }}</div>
+                }
               </div>
-            </ng-container>
-            <ng-template #autonomoBlock>
+            } @else {
               <div class="input-group">
                 <label for="actividad" class="form-label">{{ 'empresa.actividad_label' | translate }}</label>
                 <div class="input-control">
@@ -80,12 +81,11 @@
                     #actividadModel="ngModel"
                   />
                 </div>
-                <div class="error" *ngIf="actividadModel.invalid && (actividadModel.touched || actividadModel.dirty)">
-                  {{ 'empresa.actividad_error' | translate }}
-                </div>
+                @if (actividadModel.invalid && (actividadModel.touched || actividadModel.dirty)) {
+                  <div class="error">{{ 'empresa.actividad_error' | translate }}</div>
+                }
               </div>
-            </ng-template>
-
+            }
             <div class="input-group">
               <label for="direccion" class="form-label">{{ 'empresa.direccion_label' | translate }}</label>
               <div class="input-control">
@@ -100,11 +100,10 @@
                   #direccionModel="ngModel"
                 />
               </div>
-              <div class="error" *ngIf="direccionModel.invalid && (direccionModel.touched || direccionModel.dirty)">
-                {{ 'empresa.direccion_error' | translate }}
-              </div>
+              @if (direccionModel.invalid && (direccionModel.touched || direccionModel.dirty)) {
+                <div class="error">{{ 'empresa.direccion_error' | translate }}</div>
+              }
             </div>
-
             <div class="input-group">
               <label for="email" class="form-label">{{ 'empresa.email_label' | translate }}</label>
               <div class="input-control">
@@ -119,11 +118,10 @@
                   #emailModel="ngModel"
                 />
               </div>
-              <div class="error" *ngIf="emailModel.invalid && (emailModel.touched || emailModel.dirty)">
-                {{ 'empresa.email_error' | translate }}
-              </div>
+              @if (emailModel.invalid && (emailModel.touched || emailModel.dirty)) {
+                <div class="error">{{ 'empresa.email_error' | translate }}</div>
+              }
             </div>
-
             <div class="input-group">
               <label for="telefono" class="form-label">{{ 'empresa.telefono_label' | translate }}</label>
               <div class="input-control">
@@ -138,159 +136,144 @@
                   #telefonoModel="ngModel"
                 />
               </div>
-              <div class="error" *ngIf="telefonoModel.invalid && (telefonoModel.touched || telefonoModel.dirty)">
-                {{ 'empresa.telefono_error' | translate }}
-              </div>
+              @if (telefonoModel.invalid && (telefonoModel.touched || telefonoModel.dirty)) {
+                <div class="error">{{ 'empresa.telefono_error' | translate }}</div>
+              }
             </div>
-
             <button type="submit" class="auth-btn" [disabled]="empresaForm.invalid">
               {{ 'empresa.submit_button' | translate }}
             </button>
-
-            <div class="error" *ngIf="formError">{{ formError }}</div>
+            @if (formError) {
+              <div class="error">{{ formError }}</div>
+            }
           </form>
-        </ng-container>
-      </ng-container>
-
-      <ng-template #edicionEmpresa>
-        <h2>
-          {{ emp[0].tipo === 1
-            ? ('empresa.register_title_empresari' | translate)
-            : ('empresa.register_title_autonom' | translate)
-          }}
-        </h2>
+        }
+      } @else {
+        @if (emp[0].tipo === 1) {
+          <h2>{{ 'empresa.register_title_empresari' | translate }}</h2>
+        } @else {
+          <h2>{{ 'empresa.register_title_autonom' | translate }}</h2>
+        }
         <div class="read-only-data">
           <div class="data-field">
             <label>
               {{ emp[0].tipo === 1
-                ? ('empresa.identificadorFiscal_label_empresari' | translate)
-                : ('empresa.identificadorFiscal_label_autonom' | translate)
+                  ? ('empresa.identificadorFiscal_label_empresari' | translate)
+                  : ('empresa.identificadorFiscal_label_autonom' | translate)
               }}
             </label>
-            <ng-container *ngIf="!editingField('identificadorFiscal'); else editIdent">
-              <span>{{ emp[0].identificadorFiscal }}</span>
-              <button class="icon-btn" (click)="startEditing('identificadorFiscal', emp[0].identificadorFiscal)">
-                <i class="fas fa-edit"></i>
-              </button>
-            </ng-container>
-            <ng-template #editIdent>
-              <input type="text" [(ngModel)]="tempValue" pattern="[0-9]{8,9}[A-Za-z]?" />
-              <button class="icon-btn" (click)="confirmEditing('identificadorFiscal', emp[0].identificadorFiscal)">
-                <i class="fas fa-check"></i>
-              </button>
-              <button class="icon-btn" (click)="cancelEditing()">
-                <i class="fas fa-times"></i>
-              </button>
-            </ng-template>
+            <span>{{ emp[0].identificadorFiscal }}</span>
           </div>
-
-          <ng-container *ngIf="emp[0].tipo === 1; else autonomoBlock2">
+          @if (emp[0].tipo === 1) {
             <div class="data-field">
               <label>{{ 'empresa.nombre_label' | translate }}</label>
-              <ng-container *ngIf="!editingField('nombre'); else editNombre">
+              @if (!editingField('nombre')) {
                 <span>{{ emp[0].nombre }}</span>
                 <button class="icon-btn" (click)="startEditing('nombre', emp[0].nombre || '')">
                   <i class="fas fa-edit"></i>
                 </button>
-              </ng-container>
-              <ng-template #editNombre>
-                <input type="text" [(ngModel)]="tempValue" />
-                <button class="icon-btn" (click)="confirmEditing('nombre', emp[0].identificadorFiscal)">
+              } @else {
+                <input type="text" [(ngModel)]="tempValue" required minlength="2" #nombreEdit="ngModel" />
+                <button class="icon-btn" (click)="confirmEditing('nombre')">
                   <i class="fas fa-check"></i>
                 </button>
                 <button class="icon-btn" (click)="cancelEditing()">
                   <i class="fas fa-times"></i>
                 </button>
-              </ng-template>
+                @if (nombreEdit.invalid && (nombreEdit.touched || nombreEdit.dirty)) {
+                  <div class="error">{{ 'empresa.nombre_error' | translate }}</div>
+                }
+              }
             </div>
-          </ng-container>
-          <ng-template #autonomoBlock2>
+          } @else {
             <div class="data-field">
               <label>{{ 'empresa.actividad_label' | translate }}</label>
-              <ng-container *ngIf="!editingField('actividad'); else editActividad">
+              @if (!editingField('actividad')) {
                 <span>{{ emp[0].actividad }}</span>
                 <button class="icon-btn" (click)="startEditing('actividad', emp[0].actividad || '')">
                   <i class="fas fa-edit"></i>
                 </button>
-              </ng-container>
-              <ng-template #editActividad>
-                <input type="text" [(ngModel)]="tempValue" />
-                <button class="icon-btn" (click)="confirmEditing('actividad', emp[0].identificadorFiscal)">
+              } @else {
+                <input type="text" [(ngModel)]="tempValue" required minlength="2" #actividadEdit="ngModel" />
+                <button class="icon-btn" (click)="confirmEditing('actividad')">
                   <i class="fas fa-check"></i>
                 </button>
                 <button class="icon-btn" (click)="cancelEditing()">
                   <i class="fas fa-times"></i>
                 </button>
-              </ng-template>
+                @if (actividadEdit.invalid && (actividadEdit.touched || actividadEdit.dirty)) {
+                  <div class="error">{{ 'empresa.actividad_error' | translate }}</div>
+                }
+              }
             </div>
-          </ng-template>
-
+          }
           <div class="data-field">
             <label>{{ 'empresa.direccion_label' | translate }}</label>
-            <ng-container *ngIf="!editingField('direccion'); else editDireccion">
+            @if (!editingField('direccion')) {
               <span>{{ emp[0].direccion }}</span>
               <button class="icon-btn" (click)="startEditing('direccion', emp[0].direccion)">
                 <i class="fas fa-edit"></i>
               </button>
-            </ng-container>
-            <ng-template #editDireccion>
-              <input type="text" [(ngModel)]="tempValue" />
-              <button class="icon-btn" (click)="confirmEditing('direccion', emp[0].identificadorFiscal)">
+            } @else {
+              <input type="text" [(ngModel)]="tempValue" required minlength="2" #direccionEdit="ngModel" />
+              <button class="icon-btn" (click)="confirmEditing('direccion')">
                 <i class="fas fa-check"></i>
               </button>
               <button class="icon-btn" (click)="cancelEditing()">
                 <i class="fas fa-times"></i>
               </button>
-            </ng-template>
+              @if (direccionEdit.invalid && (direccionEdit.touched || direccionEdit.dirty)) {
+                <div class="error">{{ 'empresa.direccion_error' | translate }}</div>
+              }
+            }
           </div>
-
           <div class="data-field">
             <label>{{ 'empresa.email_label' | translate }}</label>
-            <ng-container *ngIf="!editingField('email'); else editEmail">
+            @if (!editingField('email')) {
               <span>{{ emp[0].email }}</span>
               <button class="icon-btn" (click)="startEditing('email', emp[0].email)">
                 <i class="fas fa-edit"></i>
               </button>
-            </ng-container>
-            <ng-template #editEmail>
-              <input type="email" [(ngModel)]="tempValue" />
-              <button class="icon-btn" (click)="confirmEditing('email', emp[0].identificadorFiscal)">
+            } @else {
+              <input type="email" [(ngModel)]="tempValue" required email #emailEdit="ngModel" />
+              <button class="icon-btn" (click)="confirmEditing('email')">
                 <i class="fas fa-check"></i>
               </button>
               <button class="icon-btn" (click)="cancelEditing()">
                 <i class="fas fa-times"></i>
               </button>
-            </ng-template>
+              @if (emailEdit.invalid && (emailEdit.touched || emailEdit.dirty)) {
+                <div class="error">{{ 'empresa.email_error' | translate }}</div>
+              }
+            }
           </div>
-
           <div class="data-field">
             <label>{{ 'empresa.telefono_label' | translate }}</label>
-            <ng-container *ngIf="!editingField('telefono'); else editTelefono">
+            @if (!editingField('telefono')) {
               <span>{{ emp[0].telefono }}</span>
               <button class="icon-btn" (click)="startEditing('telefono', emp[0].telefono)">
                 <i class="fas fa-edit"></i>
               </button>
-            </ng-container>
-            <ng-template #editTelefono>
-              <input type="text" [(ngModel)]="tempValue" pattern="[0-9]{9}" />
-              <button class="icon-btn" (click)="confirmEditing('telefono', emp[0].identificadorFiscal)">
+            } @else {
+              <input type="text" [(ngModel)]="tempValue" required pattern="[0-9]{9}" #telefonoEdit="ngModel" />
+              <button class="icon-btn" (click)="confirmEditing('telefono')">
                 <i class="fas fa-check"></i>
               </button>
               <button class="icon-btn" (click)="cancelEditing()">
                 <i class="fas fa-times"></i>
               </button>
-            </ng-template>
+              @if (telefonoEdit.invalid && (telefonoEdit.touched || telefonoEdit.dirty)) {
+                <div class="error">{{ 'empresa.telefono_error' | translate }}</div>
+              }
+            }
           </div>
-
-          <button class="delete-btn" (click)="deleteEnterprise(emp[0].identificadorFiscal)">
+          <button class="delete-btn" (click)="deleteEnterprise()">
             <i class="fas fa-trash"></i> {{ 'empresa.delete_button' | translate }}
           </button>
         </div>
-      </ng-template>
-    </ng-container>
-
-    <ng-template #cargando>
+      }
+    } @else {
       <p>Cargando empresa...</p>
-    </ng-template>
+    }
   </div>
 </div>

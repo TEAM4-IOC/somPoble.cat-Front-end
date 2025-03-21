@@ -3,13 +3,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiService } from './api.service';
 import { EmpresaData } from '../models/EmpresaData.interface';
 import { CreateEmpresaPayload } from '../models/create-empresa-payload.interface';
-import { LocalStorageService } from './local-storage.service';
 
 function isEmptyEnterprise(empresa: EmpresaData): boolean {
-  if (!empresa.identificadorFiscal || empresa.identificadorFiscal.trim() === '') {
+  if (!empresa || !empresa.identificadorFiscal || empresa.identificadorFiscal.trim() === '') {
     return true;
   }
-
   if (empresa.tipo === 1 && (!empresa.nombre || empresa.nombre.trim() === '')) {
     return true;
   }
@@ -23,102 +21,112 @@ function isEmptyEnterprise(empresa: EmpresaData): boolean {
   providedIn: 'root'
 })
 export class EnterpriseStateService {
-
-  private readonly ENTERPRISE_KEY = 'enterpriseData';
-
   private enterpriseSubject: BehaviorSubject<EmpresaData[]>;
-
   public enterprise$: Observable<EmpresaData[]>;
 
-  constructor(
-    private apiService: ApiService,
-    private ls: LocalStorageService
-  ) {
+  private deletionSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public deletion$: Observable<boolean> = this.deletionSubject.asObservable();
 
-    const stored = this.ls.getItem<EmpresaData[]>(this.ENTERPRISE_KEY) || [];
-    this.enterpriseSubject = new BehaviorSubject<EmpresaData[]>(stored);
+  constructor(private apiService: ApiService) {
+    this.enterpriseSubject = new BehaviorSubject<EmpresaData[]>([]);
     this.enterprise$ = this.enterpriseSubject.asObservable();
   }
 
-
   private saveAndEmit(enterprises: EmpresaData[]): void {
-    this.ls.setItem(this.ENTERPRISE_KEY, enterprises);
     this.enterpriseSubject.next(enterprises);
   }
-
 
   public getEnterprisesValue(): EmpresaData[] {
     return this.enterpriseSubject.getValue();
   }
 
-
-  loadEnterpriseByIdentificador(identificador: string): void {
-    console.log('[EnterpriseStateService] loadEnterpriseByIdentificador =>', identificador);
-    this.apiService.getEmpresaByIdentificador(identificador).subscribe({
-      next: (empresa: EmpresaData) => {
-        console.log('[EnterpriseStateService] GET success => empresa:', empresa);
-        if (isEmptyEnterprise(empresa)) {
-          this.saveAndEmit([]);
-        } else {
-          this.saveAndEmit([empresa]);
+  loadEnterpriseFromEmpresariosByUserDni(userDni: string): void {
+    console.log('[EnterpriseStateService] loadEnterpriseFromEmpresariosByUserDni =>', userDni);
+    this.apiService.getEmpresarios().subscribe({
+      next: (empresarios: any[]) => {
+        console.log('[EnterpriseStateService] GET empresarios success:', empresarios);
+        const empresario = empresarios.find(e => e.dni === userDni);
+        if (empresario && empresario.empresas && empresario.empresas.length > 0) {
+          const validEmpresa = empresario.empresas.find((e: EmpresaData) => e.identificadorFiscal && e.identificadorFiscal.trim() !== '');
+          if (validEmpresa) {
+            this.saveAndEmit([validEmpresa]);
+            console.log('[EnterpriseStateService] Empresa encontrada:', validEmpresa);
+            return;
+          }
         }
+        console.warn('[EnterpriseStateService] No se encontró empresa válida para el DNI:', userDni);
+        this.saveAndEmit([]);
       },
       error: (err: any) => {
-        console.error('[EnterpriseStateService] GET error => array vacío:', err);
+        console.error('[EnterpriseStateService] GET empresarios error:', err);
         this.saveAndEmit([]);
       }
     });
   }
 
-  createEnterprise(payload: CreateEmpresaPayload, identificador: string): void {
+  createEnterprise(payload: CreateEmpresaPayload, userDni: string): void {
     console.log('[EnterpriseStateService] createEnterprise => payload:', payload);
     this.apiService.createEmpresa(payload).subscribe({
       next: (created) => {
-        console.log('[EnterpriseStateService] POST success => recargando empresa...');
-        this.loadEnterpriseByIdentificador(identificador);
+        console.log('[EnterpriseStateService] POST success => updating state...');
+        this.loadEnterpriseFromEmpresariosByUserDni(userDni);
       },
       error: (err) => {
         console.error('[EnterpriseStateService] POST error:', err);
+        this.loadEnterpriseFromEmpresariosByUserDni(userDni);
       }
     });
   }
 
-  updateEnterpriseField(identificadorFiscal: string, partial: Partial<EmpresaData>): void {
-    console.log('[EnterpriseStateService] updateEnterpriseField => partial:', partial);
-    this.apiService.updateEmpresa(identificadorFiscal, partial).subscribe({
-      next: (updated: EmpresaData) => {
-        console.log('[EnterpriseStateService] PUT success => updated:', updated);
-        if (isEmptyEnterprise(updated)) {
-          this.saveAndEmit([]);
-        } else {
-          this.saveAndEmit([updated]);
+  updateEnterpriseField(partial: Partial<EmpresaData>): void {
+    const current = this.getEnterprisesValue();
+    if (current.length > 0) {
+      const fiscalId = current[0].identificadorFiscal;
+      console.log('[EnterpriseStateService] updateEnterpriseField using fiscalId =>', fiscalId, 'partial:', partial);
+      this.apiService.updateEmpresa(fiscalId, partial).subscribe({
+        next: (updated: EmpresaData) => {
+          console.log('[EnterpriseStateService] PUT success => updated:', updated);
+          if (isEmptyEnterprise(updated)) {
+            this.saveAndEmit([]);
+          } else {
+            this.saveAndEmit([updated]);
+          }
+        },
+        error: (err) => {
+          console.error('[EnterpriseStateService] PUT error:', err);
         }
-      },
-      error: (err) => {
-        console.error('[EnterpriseStateService] PUT error:', err);
-      }
-    });
+      });
+    } else {
+      console.warn('[EnterpriseStateService] No enterprise available to update');
+    }
   }
 
-  deleteEnterprise(identificadorFiscal: string): void {
-    console.log('[EnterpriseStateService] deleteEnterprise =>', identificadorFiscal);
-    this.apiService.deleteEmpresa(identificadorFiscal).subscribe({
-      next: () => {
-        console.log('[EnterpriseStateService] DELETE success => array vacío');
-        this.saveAndEmit([]);
-      },
-      error: (err) => {
-        console.error('[EnterpriseStateService] DELETE error:', err);
-      }
-    });
+  deleteEnterprise(): void {
+    const current = this.getEnterprisesValue();
+    if (current.length > 0) {
+      const fiscalId = current[0].identificadorFiscal;
+      console.log('[EnterpriseStateService] deleteEnterprise using fiscalId =>', fiscalId);
+      this.apiService.deleteEmpresa(fiscalId).subscribe({
+        next: () => {
+          console.log('[EnterpriseStateService] DELETE success => array empty');
+          this.saveAndEmit([]);
+          this.deletionSubject.next(true);
+        },
+        error: (err) => {
+          console.error('[EnterpriseStateService] DELETE error:', err);
+        }
+      });
+    } else {
+      console.warn('[EnterpriseStateService] No enterprise available to delete');
+    }
   }
 
   setEnterprisesFromLogin(empresas: EmpresaData[]): void {
     if (!empresas || empresas.length === 0) {
       this.saveAndEmit([]);
     } else {
-      const validas = empresas.filter(e => !isEmptyEnterprise(e));
-      this.saveAndEmit(validas);
+      const valid = empresas.filter(e => !isEmptyEnterprise(e));
+      this.saveAndEmit(valid);
     }
   }
 }
