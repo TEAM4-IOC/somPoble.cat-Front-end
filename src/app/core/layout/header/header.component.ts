@@ -3,8 +3,8 @@ import { I18nService } from '../../../core/services/i18n.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { SessionService } from '../../../core/services/session.service';
 import { EnterpriseStateService } from '../../../core/services/enterprise-state.service'; // IMPORTANTE
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -19,24 +19,24 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   isMenuOpen = false;
   isLoggedIn = false;
   tipoUsuario: number | null = null;
-  tipoEmpresa: number | null = null;  // <-- Agregamos el tipo de empresa
+  tipoEmpresa: number | null = null;
 
   constructor(
     private i18nService: I18nService,
-    private sessionService: SessionService,
-    private enterpriseStateService: EnterpriseStateService, // <-- Inyectamos el servicio de empresa
+    private authService: AuthService,
+    private enterpriseStateService: EnterpriseStateService,
     private cdr: ChangeDetectorRef,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.sessionService.session$.subscribe((loggedIn) => {
+    this.authService.session$.subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
       this.checkSession();
       this.cdr.markForCheck();
     });
 
-    // SUSCRIPCIÓN PARA OBTENER EL TIPO DE EMPRESA
+
     this.enterpriseStateService.enterprise$.subscribe((empresas) => {
       if (empresas.length > 0) {
         this.tipoEmpresa = empresas[0].tipo || null;
@@ -51,14 +51,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     const sessionData = localStorage.getItem('session');
     if (sessionData) {
       const session = JSON.parse(sessionData);
-      this.tipoUsuario = session.tipoUsuario || null; 
+      this.tipoUsuario = session.tipoUsuario || null;
     } else {
       this.tipoUsuario = null;
     }
   }
 
   logout(): void {
-    this.sessionService.logout();
+    this.authService.logout();
     this.cdr.markForCheck();
     this.router.navigate(['/login']);
   }

@@ -6,7 +6,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { LoginRequest } from '../../../core/models/login.interface';
 import { AuthResponse } from '../../../core/models/auth.interface';
-import { SessionService } from '../../../core/services/session.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +21,7 @@ export class LoginComponent {
   showPassword: boolean = false;
   loginError: string = '';
 
-  constructor(private authService: AuthService, private router: Router, private sessionService: SessionService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
@@ -32,11 +31,8 @@ export class LoginComponent {
     const payload: LoginRequest = { email: this.email, pass: this.password };
     this.authService.login(payload).subscribe({
       next: (response: AuthResponse) => {
-        localStorage.setItem('session', JSON.stringify(response));
-        this.sessionService.updateSession();
         const sessionData = JSON.parse(localStorage.getItem('session') || '{}');
         const tipoUsuario = sessionData?.tipoUsuario ?? null;
-
         if (tipoUsuario === 1) {
           this.router.navigate(['/edit']);
         } else {
