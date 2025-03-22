@@ -8,13 +8,15 @@ import { NotfoundpageComponent } from './shared/notfoundpage/notfoundpage.compon
 import { LandingPageComponent } from './features/landing-page/landing-page.component';
 import { EmpresaFormComponent } from './features/empresa-form/empresa-form.component';
 import { EditComponent } from './features/edit/edit.component';
+import { authGuard } from './core/guards/auth.guard';
+
 
 export const routes: Routes = [
-  { path: 'landing', component: LandingPageComponent },
+  { path: 'landing', component: LandingPageComponent, canActivate: [authGuard] },
+  { path: 'edit', component: EditComponent, canActivate: [authGuard] },
+  { path: 'empresa-form', component: EmpresaFormComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'empresa-form', component: EmpresaFormComponent },
-  { path: 'edit', component: EditComponent },
   { path: 'legal-notice', component: LegalNoticeComponent },
   { path: 'cookies', component: CookiesComponent },
   { path: 'privacy', component: PrivacyComponent },
