@@ -1,25 +1,71 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './features/auth/login/login.component';
-import { RegisterComponent } from './features/auth/register/register.component';
-import { LegalNoticeComponent } from './shared/policy/legal-notice/legal-notice.component';
-import { CookiesComponent } from '../app/shared/policy/cookies/cookies.component';
-import { PrivacyComponent } from './shared/policy/privacy/privacy.component';
-import { NotfoundpageComponent } from './shared/notfoundpage/notfoundpage.component';
-import { LandingPageComponent } from './features/landing-page/landing-page.component';
-import { EmpresaFormComponent } from './features/empresa-form/empresa-form.component';
-import { EditComponent } from './features/edit/edit.component';
 import { authGuard } from './core/guards/auth.guard';
 
 
 export const routes: Routes = [
-  { path: 'landing', component: LandingPageComponent, canActivate: [authGuard] },
-  { path: 'edit', component: EditComponent, canActivate: [authGuard] },
-  { path: 'empresa-form', component: EmpresaFormComponent, canActivate: [authGuard] },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'legal-notice', component: LegalNoticeComponent },
-  { path: 'cookies', component: CookiesComponent },
-  { path: 'privacy', component: PrivacyComponent },
-  { path: 'not-found', component: NotfoundpageComponent },
-  { path: '**', redirectTo: 'login' }
+  {
+    path: 'landing',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/landing-page/landing-page.component').then(
+        (m) => m.LandingPageComponent
+      ),
+  },
+  {
+    path: 'edit',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/edit/edit.component').then((m) => m.EditComponent),
+  },
+  {
+    path: 'empresa-form',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/empresa-form/empresa-form.component').then(
+        (m) => m.EmpresaFormComponent
+      ),
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./features/auth/login/login.component').then(
+        (m) => m.LoginComponent
+      ),
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./features/auth/register/register.component').then(
+        (m) => m.RegisterComponent
+      ),
+  },
+  {
+    path: 'legal-notice',
+    loadComponent: () =>
+      import('./shared/policy/legal-notice/legal-notice.component').then(
+        (m) => m.LegalNoticeComponent
+      ),
+  },
+  {
+    path: 'cookies',
+    loadComponent: () =>
+      import('../app/shared/policy/cookies/cookies.component').then(
+        (m) => m.CookiesComponent
+      ),
+  },
+  {
+    path: 'privacy',
+    loadComponent: () =>
+      import('./shared/policy/privacy/privacy.component').then(
+        (m) => m.PrivacyComponent
+      ),
+  },
+  {
+    path: 'not-found',
+    loadComponent: () =>
+      import('./shared/notfoundpage/notfoundpage.component').then(
+        (m) => m.NotfoundpageComponent
+      ),
+  },
+  { path: '**', redirectTo: 'login' },
 ];
