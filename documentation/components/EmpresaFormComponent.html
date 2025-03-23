@@ -1,0 +1,1912 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>som-poble documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">som-poble documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  EmpresaFormComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/empresa-form/empresa-form.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-empresa-form</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>FormsModule</code>
+                            <code>TranslateModule</code>
+                            <code>RouterModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./empresa-form.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./empresa-form.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#actividad" >actividad</a>
+                            </li>
+                            <li>
+                                <a href="#direccion" >direccion</a>
+                            </li>
+                            <li>
+                                <a href="#editingKey" >editingKey</a>
+                            </li>
+                            <li>
+                                <a href="#email" >email</a>
+                            </li>
+                            <li>
+                                <a href="#enterprise$" >enterprise$</a>
+                            </li>
+                            <li>
+                                <a href="#formError" >formError</a>
+                            </li>
+                            <li>
+                                <a href="#identificadorFiscal" >identificadorFiscal</a>
+                            </li>
+                            <li>
+                                <a href="#nombre" >nombre</a>
+                            </li>
+                            <li>
+                                <a href="#selectedRole" >selectedRole</a>
+                            </li>
+                            <li>
+                                <a href="#telefono" >telefono</a>
+                            </li>
+                            <li>
+                                <a href="#tempValue" >tempValue</a>
+                            </li>
+                            <li>
+                                <a href="#userIdent" >userIdent</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cancelEditing" >cancelEditing</a>
+                            </li>
+                            <li>
+                                <a href="#confirmEditing" >confirmEditing</a>
+                            </li>
+                            <li>
+                                <a href="#deleteEnterprise" >deleteEnterprise</a>
+                            </li>
+                            <li>
+                                <a href="#editingField" >editingField</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#resetFormFields" >resetFormFields</a>
+                            </li>
+                            <li>
+                                <a href="#selectRole" >selectRole</a>
+                            </li>
+                            <li>
+                                <a href="#startEditing" >startEditing</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(enterpriseState: <a href="../injectables/EnterpriseStateService.html" target="_self">EnterpriseStateService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>enterpriseState</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/EnterpriseStateService.html" target="_self" >EnterpriseStateService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelEditing"></a>
+                    <span class="name">
+                        <span ><b>cancelEditing</b></span>
+                        <a href="#cancelEditing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelEditing()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:105</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmEditing"></a>
+                    <span class="name">
+                        <span ><b>confirmEditing</b></span>
+                        <a href="#confirmEditing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>confirmEditing(field: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>field</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteEnterprise"></a>
+                    <span class="name">
+                        <span ><b>deleteEnterprise</b></span>
+                        <a href="#deleteEnterprise"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteEnterprise()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="110"
+                                    class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:110</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editingField"></a>
+                    <span class="name">
+                        <span ><b>editingField</b></span>
+                        <a href="#editingField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>editingField(field: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="114"
+                                    class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:114</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>field</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="68"
+                                    class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetFormFields"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>resetFormFields</b></span>
+                        <a href="#resetFormFields"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resetFormFields()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="118"
+                                    class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:118</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectRole"></a>
+                    <span class="name">
+                        <span ><b>selectRole</b></span>
+                        <a href="#selectRole"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectRole(role: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>role</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="startEditing"></a>
+                    <span class="name">
+                        <span ><b>startEditing</b></span>
+                        <a href="#startEditing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>startEditing(field: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, currentValue: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="94"
+                                    class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>field</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>currentValue</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="actividad"></a>
+                    <span class="name">
+                        <span ><b>actividad</b></span>
+                        <a href="#actividad"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="direccion"></a>
+                    <span class="name">
+                        <span ><b>direccion</b></span>
+                        <a href="#direccion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editingKey"></a>
+                    <span class="name">
+                        <span ><b>editingKey</b></span>
+                        <a href="#editingKey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="email"></a>
+                    <span class="name">
+                        <span ><b>email</b></span>
+                        <a href="#email"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="enterprise$"></a>
+                    <span class="name">
+                        <span ><b>enterprise$</b></span>
+                        <a href="#enterprise$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/EmpresaData.html" target="_self" >Observable&lt;EmpresaData[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:21</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formError"></a>
+                    <span class="name">
+                        <span ><b>formError</b></span>
+                        <a href="#formError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="identificadorFiscal"></a>
+                    <span class="name">
+                        <span ><b>identificadorFiscal</b></span>
+                        <a href="#identificadorFiscal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nombre"></a>
+                    <span class="name">
+                        <span ><b>nombre</b></span>
+                        <a href="#nombre"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedRole"></a>
+                    <span class="name">
+                        <span ><b>selectedRole</b></span>
+                        <a href="#selectedRole"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="telefono"></a>
+                    <span class="name">
+                        <span ><b>telefono</b></span>
+                        <a href="#telefono"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tempValue"></a>
+                    <span class="name">
+                        <span ><b>tempValue</b></span>
+                        <a href="#tempValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userIdent"></a>
+                    <span class="name">
+                        <span ><b>userIdent</b></span>
+                        <a href="#userIdent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/features/empresa-form/empresa-form.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { EnterpriseStateService } from &#x27;../../core/services/enterprise-state.service&#x27;;
+import { EmpresaData } from &#x27;../../core/models/EmpresaData.interface&#x27;;
+import { CreateEmpresaPayload } from &#x27;../../core/models/create-empresa-payload.interface&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { RouterModule } from &#x27;@angular/router&#x27;;
+import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
+
+@Component({
+  selector: &#x27;app-empresa-form&#x27;,
+  standalone: true,
+  imports: [CommonModule, FormsModule, TranslateModule, RouterModule],
+  templateUrl: &#x27;./empresa-form.component.html&#x27;,
+  styleUrls: [&#x27;./empresa-form.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class EmpresaFormComponent implements OnInit {
+
+  enterprise$!: Observable&lt;EmpresaData[]&gt;;
+
+  selectedRole: number | null &#x3D; null;
+  formError &#x3D; &#x27;&#x27;;
+  identificadorFiscal &#x3D; &#x27;&#x27;;
+  direccion &#x3D; &#x27;&#x27;;
+  email &#x3D; &#x27;&#x27;;
+  telefono &#x3D; &#x27;&#x27;;
+  nombre &#x3D; &#x27;&#x27;;
+  actividad &#x3D; &#x27;&#x27;;
+
+  editingKey: string | null &#x3D; null;
+  tempValue &#x3D; &#x27;&#x27;;
+  userIdent &#x3D; &#x27;&#x27;;
+
+  constructor(private enterpriseState: EnterpriseStateService) {}
+
+  ngOnInit(): void {
+    const sessionStr &#x3D; localStorage.getItem(&#x27;session&#x27;);
+    if (sessionStr) {
+      try {
+        const session &#x3D; JSON.parse(sessionStr);
+        this.userIdent &#x3D; session.usuario?.dni || &#x27;&#x27;;
+      } catch (err) {
+        console.error(&#x27;[EmpresaFormComponent] Error parseando session:&#x27;, err);
+      }
+    }
+
+    if (this.userIdent) {
+      this.enterpriseState.loadEnterpriseFromEmpresariosByUserDni(this.userIdent);
+    }
+
+    this.enterprise$ &#x3D; this.enterpriseState.enterprise$;
+    this.enterprise$.subscribe((empresas) &#x3D;&gt; {
+      if (empresas.length &#x3D;&#x3D;&#x3D; 0) {
+        this.selectedRole &#x3D; null;
+        this.resetFormFields();
+      }
+    });
+  }
+
+
+  selectRole(role: number): void {
+    this.selectedRole &#x3D; role;
+    this.resetFormFields();
+  }
+
+  onSubmit(): void {
+    if (!this.selectedRole) {
+      this.formError &#x3D; &#x27;No se ha seleccionado un rol.&#x27;;
+      return;
+    }
+    this.formError &#x3D; &#x27;&#x27;;
+
+    const payload: CreateEmpresaPayload &#x3D; {
+      empresa: {
+        identificadorFiscal: this.identificadorFiscal,
+        direccion: this.direccion,
+        email: this.email,
+        telefono: this.telefono
+      },
+      dni: this.userIdent
+    };
+
+    if (this.selectedRole &#x3D;&#x3D;&#x3D; 1) {
+      payload.empresa.nombre &#x3D; this.nombre;
+    } else {
+      payload.empresa.actividad &#x3D; this.actividad;
+    }
+
+    this.enterpriseState.createEnterprise(payload, this.userIdent);
+  }
+
+  startEditing(field: string, currentValue: string): void {
+    this.editingKey &#x3D; field;
+    this.tempValue &#x3D; currentValue;
+  }
+
+  confirmEditing(field: string): void {
+    this.enterpriseState.updateEnterpriseField({ [field]: this.tempValue });
+    this.editingKey &#x3D; null;
+    this.tempValue &#x3D; &#x27;&#x27;;
+  }
+
+  cancelEditing(): void {
+    this.editingKey &#x3D; null;
+    this.tempValue &#x3D; &#x27;&#x27;;
+  }
+
+  deleteEnterprise(): void {
+    this.enterpriseState.deleteEnterprise();
+  }
+
+  editingField(field: string): boolean {
+    return this.editingKey &#x3D;&#x3D;&#x3D; field;
+  }
+
+  private resetFormFields(): void {
+    this.identificadorFiscal &#x3D; &#x27;&#x27;;
+    this.direccion &#x3D; &#x27;&#x27;;
+    this.email &#x3D; &#x27;&#x27;;
+    this.telefono &#x3D; &#x27;&#x27;;
+    this.nombre &#x3D; &#x27;&#x27;;
+    this.actividad &#x3D; &#x27;&#x27;;
+    this.formError &#x3D; &#x27;&#x27;;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;component-wrapper&quot;&gt;
+  &lt;div class&#x3D;&quot;auth-container&quot;&gt;
+    &lt;h1&gt;SomPoble&lt;/h1&gt;
+    @if (enterprise$ | async; as emp) {
+      @if (emp.length &#x3D;&#x3D;&#x3D; 0) {
+        @if (!selectedRole) {
+          &lt;h2&gt;{{ &#x27;empresa.select_role_title&#x27; | translate }}&lt;/h2&gt;
+          &lt;div class&#x3D;&quot;role-selection&quot;&gt;
+            &lt;select #roleSelect (change)&#x3D;&quot;selectRole(+roleSelect.value)&quot;&gt;
+              &lt;option value&#x3D;&quot;&quot; disabled selected&gt;{{ &#x27;empresa.select_role_placeholder&#x27; | translate }}&lt;/option&gt;
+              &lt;option value&#x3D;&quot;1&quot;&gt;{{ &#x27;empresa.option_empresari&#x27; | translate }}&lt;/option&gt;
+              &lt;option value&#x3D;&quot;2&quot;&gt;{{ &#x27;empresa.option_autonom&#x27; | translate }}&lt;/option&gt;
+            &lt;/select&gt;
+          &lt;/div&gt;
+        }
+        @if (selectedRole) {
+          @if (selectedRole &#x3D;&#x3D;&#x3D; 1) {
+            &lt;h2&gt;{{ &#x27;empresa.register_title_empresari&#x27; | translate }}&lt;/h2&gt;
+          } @else if (selectedRole &#x3D;&#x3D;&#x3D; 2) {
+            &lt;h2&gt;{{ &#x27;empresa.register_title_autonom&#x27; | translate }}&lt;/h2&gt;
+          }
+          &lt;form (ngSubmit)&#x3D;&quot;onSubmit()&quot; #empresaForm&#x3D;&quot;ngForm&quot;&gt;
+            &lt;div class&#x3D;&quot;input-group&quot;&gt;
+              &lt;label for&#x3D;&quot;identificadorFiscal&quot; class&#x3D;&quot;form-label&quot;&gt;
+                {{ selectedRole &#x3D;&#x3D;&#x3D; 1
+                    ? (&#x27;empresa.identificadorFiscal_label_empresari&#x27; | translate)
+                    : (&#x27;empresa.identificadorFiscal_label_autonom&#x27; | translate)
+                }}
+              &lt;/label&gt;
+              &lt;div class&#x3D;&quot;input-control&quot;&gt;
+                &lt;input
+                  type&#x3D;&quot;text&quot;
+                  id&#x3D;&quot;identificadorFiscal&quot;
+                  [(ngModel)]&#x3D;&quot;identificadorFiscal&quot;
+                  name&#x3D;&quot;identificadorFiscal&quot;
+                  [placeholder]&#x3D;&quot;selectedRole &#x3D;&#x3D;&#x3D; 1
+                    ? (&#x27;empresa.identificadorFiscal_placeholder_empresari&#x27; | translate)
+                    : (&#x27;empresa.identificadorFiscal_placeholder_autonom&#x27; | translate)&quot;
+                  required
+                  [pattern]&#x3D;&quot;selectedRole &#x3D;&#x3D;&#x3D; 1 ? &#x27;^[A-HJNP-SUVW]{1}[0-9]{7}[0-9A-J]$&#x27; : &#x27;^[0-9]{8}[A-Za-z]$&#x27;&quot;
+                  #identificadorFiscalModel&#x3D;&quot;ngModel&quot;
+                /&gt;
+              &lt;/div&gt;
+              @if (identificadorFiscalModel.invalid &amp;&amp; (identificadorFiscalModel.touched || identificadorFiscalModel.dirty)) {
+                &lt;div class&#x3D;&quot;error&quot;&gt;
+                  {{ selectedRole &#x3D;&#x3D;&#x3D; 1 ? (&#x27;empresa.cif_error&#x27; | translate) : (&#x27;empresa.dni_error&#x27; | translate) }}
+                &lt;/div&gt;
+              }
+            &lt;/div&gt;
+            @if (selectedRole &#x3D;&#x3D;&#x3D; 1) {
+              &lt;div class&#x3D;&quot;input-group&quot;&gt;
+                &lt;label for&#x3D;&quot;nombre&quot; class&#x3D;&quot;form-label&quot;&gt;{{ &#x27;empresa.nombre_label&#x27; | translate }}&lt;/label&gt;
+                &lt;div class&#x3D;&quot;input-control&quot;&gt;
+                  &lt;input
+                    type&#x3D;&quot;text&quot;
+                    id&#x3D;&quot;nombre&quot;
+                    [(ngModel)]&#x3D;&quot;nombre&quot;
+                    name&#x3D;&quot;nombre&quot;
+                    placeholder&#x3D;&quot;{{ &#x27;empresa.nombre_placeholder&#x27; | translate }}&quot;
+                    required
+                    minlength&#x3D;&quot;2&quot;
+                    #nombreModel&#x3D;&quot;ngModel&quot;
+                  /&gt;
+                &lt;/div&gt;
+                @if (nombreModel.invalid &amp;&amp; (nombreModel.touched || nombreModel.dirty)) {
+                  &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;empresa.nombre_error&#x27; | translate }}&lt;/div&gt;
+                }
+              &lt;/div&gt;
+            } @else {
+              &lt;div class&#x3D;&quot;input-group&quot;&gt;
+                &lt;label for&#x3D;&quot;actividad&quot; class&#x3D;&quot;form-label&quot;&gt;{{ &#x27;empresa.actividad_label&#x27; | translate }}&lt;/label&gt;
+                &lt;div class&#x3D;&quot;input-control&quot;&gt;
+                  &lt;input
+                    type&#x3D;&quot;text&quot;
+                    id&#x3D;&quot;actividad&quot;
+                    [(ngModel)]&#x3D;&quot;actividad&quot;
+                    name&#x3D;&quot;actividad&quot;
+                    placeholder&#x3D;&quot;{{ &#x27;empresa.actividad_placeholder&#x27; | translate }}&quot;
+                    required
+                    minlength&#x3D;&quot;2&quot;
+                    #actividadModel&#x3D;&quot;ngModel&quot;
+                  /&gt;
+                &lt;/div&gt;
+                @if (actividadModel.invalid &amp;&amp; (actividadModel.touched || actividadModel.dirty)) {
+                  &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;empresa.actividad_error&#x27; | translate }}&lt;/div&gt;
+                }
+              &lt;/div&gt;
+            }
+            &lt;div class&#x3D;&quot;input-group&quot;&gt;
+              &lt;label for&#x3D;&quot;direccion&quot; class&#x3D;&quot;form-label&quot;&gt;{{ &#x27;empresa.direccion_label&#x27; | translate }}&lt;/label&gt;
+              &lt;div class&#x3D;&quot;input-control&quot;&gt;
+                &lt;input
+                  type&#x3D;&quot;text&quot;
+                  id&#x3D;&quot;direccion&quot;
+                  [(ngModel)]&#x3D;&quot;direccion&quot;
+                  name&#x3D;&quot;direccion&quot;
+                  placeholder&#x3D;&quot;{{ &#x27;empresa.direccion_placeholder&#x27; | translate }}&quot;
+                  required
+                  minlength&#x3D;&quot;2&quot;
+                  #direccionModel&#x3D;&quot;ngModel&quot;
+                /&gt;
+              &lt;/div&gt;
+              @if (direccionModel.invalid &amp;&amp; (direccionModel.touched || direccionModel.dirty)) {
+                &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;empresa.direccion_error&#x27; | translate }}&lt;/div&gt;
+              }
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;input-group&quot;&gt;
+              &lt;label for&#x3D;&quot;email&quot; class&#x3D;&quot;form-label&quot;&gt;{{ &#x27;empresa.email_label&#x27; | translate }}&lt;/label&gt;
+              &lt;div class&#x3D;&quot;input-control&quot;&gt;
+                &lt;input
+                  type&#x3D;&quot;email&quot;
+                  id&#x3D;&quot;email&quot;
+                  [(ngModel)]&#x3D;&quot;email&quot;
+                  name&#x3D;&quot;email&quot;
+                  placeholder&#x3D;&quot;{{ &#x27;empresa.email_placeholder&#x27; | translate }}&quot;
+                  required
+                  email
+                  #emailModel&#x3D;&quot;ngModel&quot;
+                /&gt;
+              &lt;/div&gt;
+              @if (emailModel.invalid &amp;&amp; (emailModel.touched || emailModel.dirty)) {
+                &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;empresa.email_error&#x27; | translate }}&lt;/div&gt;
+              }
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;input-group&quot;&gt;
+              &lt;label for&#x3D;&quot;telefono&quot; class&#x3D;&quot;form-label&quot;&gt;{{ &#x27;empresa.telefono_label&#x27; | translate }}&lt;/label&gt;
+              &lt;div class&#x3D;&quot;input-control&quot;&gt;
+                &lt;input
+                  type&#x3D;&quot;text&quot;
+                  id&#x3D;&quot;telefono&quot;
+                  [(ngModel)]&#x3D;&quot;telefono&quot;
+                  name&#x3D;&quot;telefono&quot;
+                  placeholder&#x3D;&quot;{{ &#x27;empresa.telefono_placeholder&#x27; | translate }}&quot;
+                  required
+                  pattern&#x3D;&quot;[0-9]{9}&quot;
+                  #telefonoModel&#x3D;&quot;ngModel&quot;
+                /&gt;
+              &lt;/div&gt;
+              @if (telefonoModel.invalid &amp;&amp; (telefonoModel.touched || telefonoModel.dirty)) {
+                &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;empresa.telefono_error&#x27; | translate }}&lt;/div&gt;
+              }
+            &lt;/div&gt;
+            &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;auth-btn&quot; [disabled]&#x3D;&quot;empresaForm.invalid&quot;&gt;
+              {{ &#x27;empresa.submit_button&#x27; | translate }}
+            &lt;/button&gt;
+            @if (formError) {
+              &lt;div class&#x3D;&quot;error&quot;&gt;{{ formError }}&lt;/div&gt;
+            }
+          &lt;/form&gt;
+        }
+      } @else {
+        @if (emp[0].tipo &#x3D;&#x3D;&#x3D; 1) {
+          &lt;h2&gt;{{ &#x27;empresa.register_title_empresari&#x27; | translate }}&lt;/h2&gt;
+        } @else {
+          &lt;h2&gt;{{ &#x27;empresa.register_title_autonom&#x27; | translate }}&lt;/h2&gt;
+        }
+        &lt;div class&#x3D;&quot;read-only-data&quot;&gt;
+          &lt;div class&#x3D;&quot;data-field&quot;&gt;
+            &lt;label&gt;
+              {{ emp[0].tipo &#x3D;&#x3D;&#x3D; 1
+                  ? (&#x27;empresa.identificadorFiscal_label_empresari&#x27; | translate)
+                  : (&#x27;empresa.identificadorFiscal_label_autonom&#x27; | translate)
+              }}
+            &lt;/label&gt;
+            &lt;span&gt;{{ emp[0].identificadorFiscal }}&lt;/span&gt;
+          &lt;/div&gt;
+          @if (emp[0].tipo &#x3D;&#x3D;&#x3D; 1) {
+            &lt;div class&#x3D;&quot;data-field&quot;&gt;
+              &lt;label&gt;{{ &#x27;empresa.nombre_label&#x27; | translate }}&lt;/label&gt;
+              @if (!editingField(&#x27;nombre&#x27;)) {
+                &lt;span&gt;{{ emp[0].nombre }}&lt;/span&gt;
+                &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;startEditing(&#x27;nombre&#x27;, emp[0].nombre || &#x27;&#x27;)&quot;&gt;
+                  &lt;i class&#x3D;&quot;fas fa-edit&quot;&gt;&lt;/i&gt;
+                &lt;/button&gt;
+              } @else {
+                &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;tempValue&quot; required minlength&#x3D;&quot;2&quot; #nombreEdit&#x3D;&quot;ngModel&quot; /&gt;
+                &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;confirmEditing(&#x27;nombre&#x27;)&quot;&gt;
+                  &lt;i class&#x3D;&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+                &lt;/button&gt;
+                &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;cancelEditing()&quot;&gt;
+                  &lt;i class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/i&gt;
+                &lt;/button&gt;
+                @if (nombreEdit.invalid &amp;&amp; (nombreEdit.touched || nombreEdit.dirty)) {
+                  &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;empresa.nombre_error&#x27; | translate }}&lt;/div&gt;
+                }
+              }
+            &lt;/div&gt;
+          } @else {
+            &lt;div class&#x3D;&quot;data-field&quot;&gt;
+              &lt;label&gt;{{ &#x27;empresa.actividad_label&#x27; | translate }}&lt;/label&gt;
+              @if (!editingField(&#x27;actividad&#x27;)) {
+                &lt;span&gt;{{ emp[0].actividad }}&lt;/span&gt;
+                &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;startEditing(&#x27;actividad&#x27;, emp[0].actividad || &#x27;&#x27;)&quot;&gt;
+                  &lt;i class&#x3D;&quot;fas fa-edit&quot;&gt;&lt;/i&gt;
+                &lt;/button&gt;
+              } @else {
+                &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;tempValue&quot; required minlength&#x3D;&quot;2&quot; #actividadEdit&#x3D;&quot;ngModel&quot; /&gt;
+                &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;confirmEditing(&#x27;actividad&#x27;)&quot;&gt;
+                  &lt;i class&#x3D;&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+                &lt;/button&gt;
+                &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;cancelEditing()&quot;&gt;
+                  &lt;i class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/i&gt;
+                &lt;/button&gt;
+                @if (actividadEdit.invalid &amp;&amp; (actividadEdit.touched || actividadEdit.dirty)) {
+                  &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;empresa.actividad_error&#x27; | translate }}&lt;/div&gt;
+                }
+              }
+            &lt;/div&gt;
+          }
+          &lt;div class&#x3D;&quot;data-field&quot;&gt;
+            &lt;label&gt;{{ &#x27;empresa.direccion_label&#x27; | translate }}&lt;/label&gt;
+            @if (!editingField(&#x27;direccion&#x27;)) {
+              &lt;span&gt;{{ emp[0].direccion }}&lt;/span&gt;
+              &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;startEditing(&#x27;direccion&#x27;, emp[0].direccion)&quot;&gt;
+                &lt;i class&#x3D;&quot;fas fa-edit&quot;&gt;&lt;/i&gt;
+              &lt;/button&gt;
+            } @else {
+              &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;tempValue&quot; required minlength&#x3D;&quot;2&quot; #direccionEdit&#x3D;&quot;ngModel&quot; /&gt;
+              &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;confirmEditing(&#x27;direccion&#x27;)&quot;&gt;
+                &lt;i class&#x3D;&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+              &lt;/button&gt;
+              &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;cancelEditing()&quot;&gt;
+                &lt;i class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/i&gt;
+              &lt;/button&gt;
+              @if (direccionEdit.invalid &amp;&amp; (direccionEdit.touched || direccionEdit.dirty)) {
+                &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;empresa.direccion_error&#x27; | translate }}&lt;/div&gt;
+              }
+            }
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;data-field&quot;&gt;
+            &lt;label&gt;{{ &#x27;empresa.email_label&#x27; | translate }}&lt;/label&gt;
+            @if (!editingField(&#x27;email&#x27;)) {
+              &lt;span&gt;{{ emp[0].email }}&lt;/span&gt;
+              &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;startEditing(&#x27;email&#x27;, emp[0].email)&quot;&gt;
+                &lt;i class&#x3D;&quot;fas fa-edit&quot;&gt;&lt;/i&gt;
+              &lt;/button&gt;
+            } @else {
+              &lt;input type&#x3D;&quot;email&quot; [(ngModel)]&#x3D;&quot;tempValue&quot; required email #emailEdit&#x3D;&quot;ngModel&quot; /&gt;
+              &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;confirmEditing(&#x27;email&#x27;)&quot;&gt;
+                &lt;i class&#x3D;&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+              &lt;/button&gt;
+              &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;cancelEditing()&quot;&gt;
+                &lt;i class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/i&gt;
+              &lt;/button&gt;
+              @if (emailEdit.invalid &amp;&amp; (emailEdit.touched || emailEdit.dirty)) {
+                &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;empresa.email_error&#x27; | translate }}&lt;/div&gt;
+              }
+            }
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;data-field&quot;&gt;
+            &lt;label&gt;{{ &#x27;empresa.telefono_label&#x27; | translate }}&lt;/label&gt;
+            @if (!editingField(&#x27;telefono&#x27;)) {
+              &lt;span&gt;{{ emp[0].telefono }}&lt;/span&gt;
+              &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;startEditing(&#x27;telefono&#x27;, emp[0].telefono)&quot;&gt;
+                &lt;i class&#x3D;&quot;fas fa-edit&quot;&gt;&lt;/i&gt;
+              &lt;/button&gt;
+            } @else {
+              &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;tempValue&quot; required pattern&#x3D;&quot;[0-9]{9}&quot; #telefonoEdit&#x3D;&quot;ngModel&quot; /&gt;
+              &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;confirmEditing(&#x27;telefono&#x27;)&quot;&gt;
+                &lt;i class&#x3D;&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+              &lt;/button&gt;
+              &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;cancelEditing()&quot;&gt;
+                &lt;i class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/i&gt;
+              &lt;/button&gt;
+              @if (telefonoEdit.invalid &amp;&amp; (telefonoEdit.touched || telefonoEdit.dirty)) {
+                &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;empresa.telefono_error&#x27; | translate }}&lt;/div&gt;
+              }
+            }
+          &lt;/div&gt;
+          &lt;button class&#x3D;&quot;delete-btn&quot; (click)&#x3D;&quot;deleteEnterprise()&quot;&gt;
+            &lt;i class&#x3D;&quot;fas fa-trash&quot;&gt;&lt;/i&gt; {{ &#x27;empresa.delete_button&#x27; | translate }}
+          &lt;/button&gt;
+        &lt;/div&gt;
+      }
+    } @else {
+      &lt;p&gt;Cargando empresa...&lt;/p&gt;
+    }
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./empresa-form.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;../../../colors.scss&#x27;;
+
+.component-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background: $bg-gradient;
+  font-family: &#x27;Roboto&#x27;, sans-serif;
+}
+
+.auth-container {
+  background: $container-bg;
+  padding: 2.5rem;
+  border-radius: 0.625rem;
+  text-align: center;
+  width: 22rem;
+  backdrop-filter: blur(0.625rem);
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: 0.125rem;
+  color: $white;
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 0.9375rem;
+}
+
+.form-label {
+  margin-bottom: 0.3rem;
+  color: $label-color;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.input-control {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  background: $input-bg;
+  border-radius: 0.3125rem;
+  padding: 0.625rem;
+}
+
+input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: $white;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  outline: none;
+}
+
+input::placeholder {
+  color: $placeholder-color;
+}
+
+.input-control input:focus {
+  box-shadow: 0 0 0.25rem $white;
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 0.625rem;
+  background: transparent;
+  border: 0.0625rem solid $btn-border;
+  color: $white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3125rem;
+  transition: all 0.3s ease;
+}
+
+.auth-btn:hover {
+  background: $btn-hover-bg;
+}
+
+.role-selection select {
+  width: 100%;
+  padding: 0.625rem;
+  border: 0.0625rem solid $btn-border;
+  border-radius: 0.3125rem;
+  background: $input-bg;
+  color: #000;
+  font-size: 1rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.error {
+  color: $error-color;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  text-align: left;
+  width: 100%;
+}
+
+.read-only-data {
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.data-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  background: $input-bg;
+  padding: 0.625rem;
+  border-radius: 0.3125rem;
+}
+
+.data-field label {
+  color: $white;
+  font-weight: 400;
+  font-size: 0.875rem;
+  margin-right: 1rem;
+}
+
+.data-field span {
+  flex: 1;
+  color: $white;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: $white;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+.delete-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.625rem;
+  background: transparent;
+  border: 0.0625rem solid $btn-border;
+  color: $white;
+  font-size: 0.875rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3125rem;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  background: $btn-hover-bg;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="component-wrapper">  <div class="auth-container">    <h1>SomPoble</h1>    @if (enterprise$ | async; as emp) {      @if (emp.length === 0) {        @if (!selectedRole) {          <h2>{{ \'empresa.select_role_title\' | translate }}</h2>          <div class="role-selection">            <select #roleSelect (change)="selectRole(+roleSelect.value)">              <option value="" disabled selected>{{ \'empresa.select_role_placeholder\' | translate }}</option>              <option value="1">{{ \'empresa.option_empresari\' | translate }}</option>              <option value="2">{{ \'empresa.option_autonom\' | translate }}</option>            </select>          </div>        }        @if (selectedRole) {          @if (selectedRole === 1) {            <h2>{{ \'empresa.register_title_empresari\' | translate }}</h2>          } @else if (selectedRole === 2) {            <h2>{{ \'empresa.register_title_autonom\' | translate }}</h2>          }          <form (ngSubmit)="onSubmit()" #empresaForm="ngForm">            <div class="input-group">              <label for="identificadorFiscal" class="form-label">                {{ selectedRole === 1                    ? (\'empresa.identificadorFiscal_label_empresari\' | translate)                    : (\'empresa.identificadorFiscal_label_autonom\' | translate)                }}              </label>              <div class="input-control">                <input                  type="text"                  id="identificadorFiscal"                  [(ngModel)]="identificadorFiscal"                  name="identificadorFiscal"                  [placeholder]="selectedRole === 1                    ? (\'empresa.identificadorFiscal_placeholder_empresari\' | translate)                    : (\'empresa.identificadorFiscal_placeholder_autonom\' | translate)"                  required                  [pattern]="selectedRole === 1 ? \'^[A-HJNP-SUVW]{1}[0-9]{7}[0-9A-J]$\' : \'^[0-9]{8}[A-Za-z]$\'"                  #identificadorFiscalModel="ngModel"                />              </div>              @if (identificadorFiscalModel.invalid && (identificadorFiscalModel.touched || identificadorFiscalModel.dirty)) {                <div class="error">                  {{ selectedRole === 1 ? (\'empresa.cif_error\' | translate) : (\'empresa.dni_error\' | translate) }}                </div>              }            </div>            @if (selectedRole === 1) {              <div class="input-group">                <label for="nombre" class="form-label">{{ \'empresa.nombre_label\' | translate }}</label>                <div class="input-control">                  <input                    type="text"                    id="nombre"                    [(ngModel)]="nombre"                    name="nombre"                    placeholder="{{ \'empresa.nombre_placeholder\' | translate }}"                    required                    minlength="2"                    #nombreModel="ngModel"                  />                </div>                @if (nombreModel.invalid && (nombreModel.touched || nombreModel.dirty)) {                  <div class="error">{{ \'empresa.nombre_error\' | translate }}</div>                }              </div>            } @else {              <div class="input-group">                <label for="actividad" class="form-label">{{ \'empresa.actividad_label\' | translate }}</label>                <div class="input-control">                  <input                    type="text"                    id="actividad"                    [(ngModel)]="actividad"                    name="actividad"                    placeholder="{{ \'empresa.actividad_placeholder\' | translate }}"                    required                    minlength="2"                    #actividadModel="ngModel"                  />                </div>                @if (actividadModel.invalid && (actividadModel.touched || actividadModel.dirty)) {                  <div class="error">{{ \'empresa.actividad_error\' | translate }}</div>                }              </div>            }            <div class="input-group">              <label for="direccion" class="form-label">{{ \'empresa.direccion_label\' | translate }}</label>              <div class="input-control">                <input                  type="text"                  id="direccion"                  [(ngModel)]="direccion"                  name="direccion"                  placeholder="{{ \'empresa.direccion_placeholder\' | translate }}"                  required                  minlength="2"                  #direccionModel="ngModel"                />              </div>              @if (direccionModel.invalid && (direccionModel.touched || direccionModel.dirty)) {                <div class="error">{{ \'empresa.direccion_error\' | translate }}</div>              }            </div>            <div class="input-group">              <label for="email" class="form-label">{{ \'empresa.email_label\' | translate }}</label>              <div class="input-control">                <input                  type="email"                  id="email"                  [(ngModel)]="email"                  name="email"                  placeholder="{{ \'empresa.email_placeholder\' | translate }}"                  required                  email                  #emailModel="ngModel"                />              </div>              @if (emailModel.invalid && (emailModel.touched || emailModel.dirty)) {                <div class="error">{{ \'empresa.email_error\' | translate }}</div>              }            </div>            <div class="input-group">              <label for="telefono" class="form-label">{{ \'empresa.telefono_label\' | translate }}</label>              <div class="input-control">                <input                  type="text"                  id="telefono"                  [(ngModel)]="telefono"                  name="telefono"                  placeholder="{{ \'empresa.telefono_placeholder\' | translate }}"                  required                  pattern="[0-9]{9}"                  #telefonoModel="ngModel"                />              </div>              @if (telefonoModel.invalid && (telefonoModel.touched || telefonoModel.dirty)) {                <div class="error">{{ \'empresa.telefono_error\' | translate }}</div>              }            </div>            <button type="submit" class="auth-btn" [disabled]="empresaForm.invalid">              {{ \'empresa.submit_button\' | translate }}            </button>            @if (formError) {              <div class="error">{{ formError }}</div>            }          </form>        }      } @else {        @if (emp[0].tipo === 1) {          <h2>{{ \'empresa.register_title_empresari\' | translate }}</h2>        } @else {          <h2>{{ \'empresa.register_title_autonom\' | translate }}</h2>        }        <div class="read-only-data">          <div class="data-field">            <label>              {{ emp[0].tipo === 1                  ? (\'empresa.identificadorFiscal_label_empresari\' | translate)                  : (\'empresa.identificadorFiscal_label_autonom\' | translate)              }}            </label>            <span>{{ emp[0].identificadorFiscal }}</span>          </div>          @if (emp[0].tipo === 1) {            <div class="data-field">              <label>{{ \'empresa.nombre_label\' | translate }}</label>              @if (!editingField(\'nombre\')) {                <span>{{ emp[0].nombre }}</span>                <button class="icon-btn" (click)="startEditing(\'nombre\', emp[0].nombre || \'\')">                  <i class="fas fa-edit"></i>                </button>              } @else {                <input type="text" [(ngModel)]="tempValue" required minlength="2" #nombreEdit="ngModel" />                <button class="icon-btn" (click)="confirmEditing(\'nombre\')">                  <i class="fas fa-check"></i>                </button>                <button class="icon-btn" (click)="cancelEditing()">                  <i class="fas fa-times"></i>                </button>                @if (nombreEdit.invalid && (nombreEdit.touched || nombreEdit.dirty)) {                  <div class="error">{{ \'empresa.nombre_error\' | translate }}</div>                }              }            </div>          } @else {            <div class="data-field">              <label>{{ \'empresa.actividad_label\' | translate }}</label>              @if (!editingField(\'actividad\')) {                <span>{{ emp[0].actividad }}</span>                <button class="icon-btn" (click)="startEditing(\'actividad\', emp[0].actividad || \'\')">                  <i class="fas fa-edit"></i>                </button>              } @else {                <input type="text" [(ngModel)]="tempValue" required minlength="2" #actividadEdit="ngModel" />                <button class="icon-btn" (click)="confirmEditing(\'actividad\')">                  <i class="fas fa-check"></i>                </button>                <button class="icon-btn" (click)="cancelEditing()">                  <i class="fas fa-times"></i>                </button>                @if (actividadEdit.invalid && (actividadEdit.touched || actividadEdit.dirty)) {                  <div class="error">{{ \'empresa.actividad_error\' | translate }}</div>                }              }            </div>          }          <div class="data-field">            <label>{{ \'empresa.direccion_label\' | translate }}</label>            @if (!editingField(\'direccion\')) {              <span>{{ emp[0].direccion }}</span>              <button class="icon-btn" (click)="startEditing(\'direccion\', emp[0].direccion)">                <i class="fas fa-edit"></i>              </button>            } @else {              <input type="text" [(ngModel)]="tempValue" required minlength="2" #direccionEdit="ngModel" />              <button class="icon-btn" (click)="confirmEditing(\'direccion\')">                <i class="fas fa-check"></i>              </button>              <button class="icon-btn" (click)="cancelEditing()">                <i class="fas fa-times"></i>              </button>              @if (direccionEdit.invalid && (direccionEdit.touched || direccionEdit.dirty)) {                <div class="error">{{ \'empresa.direccion_error\' | translate }}</div>              }            }          </div>          <div class="data-field">            <label>{{ \'empresa.email_label\' | translate }}</label>            @if (!editingField(\'email\')) {              <span>{{ emp[0].email }}</span>              <button class="icon-btn" (click)="startEditing(\'email\', emp[0].email)">                <i class="fas fa-edit"></i>              </button>            } @else {              <input type="email" [(ngModel)]="tempValue" required email #emailEdit="ngModel" />              <button class="icon-btn" (click)="confirmEditing(\'email\')">                <i class="fas fa-check"></i>              </button>              <button class="icon-btn" (click)="cancelEditing()">                <i class="fas fa-times"></i>              </button>              @if (emailEdit.invalid && (emailEdit.touched || emailEdit.dirty)) {                <div class="error">{{ \'empresa.email_error\' | translate }}</div>              }            }          </div>          <div class="data-field">            <label>{{ \'empresa.telefono_label\' | translate }}</label>            @if (!editingField(\'telefono\')) {              <span>{{ emp[0].telefono }}</span>              <button class="icon-btn" (click)="startEditing(\'telefono\', emp[0].telefono)">                <i class="fas fa-edit"></i>              </button>            } @else {              <input type="text" [(ngModel)]="tempValue" required pattern="[0-9]{9}" #telefonoEdit="ngModel" />              <button class="icon-btn" (click)="confirmEditing(\'telefono\')">                <i class="fas fa-check"></i>              </button>              <button class="icon-btn" (click)="cancelEditing()">                <i class="fas fa-times"></i>              </button>              @if (telefonoEdit.invalid && (telefonoEdit.touched || telefonoEdit.dirty)) {                <div class="error">{{ \'empresa.telefono_error\' | translate }}</div>              }            }          </div>          <button class="delete-btn" (click)="deleteEnterprise()">            <i class="fas fa-trash"></i> {{ \'empresa.delete_button\' | translate }}          </button>        </div>      }    } @else {      <p>Cargando empresa...</p>    }  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CookiesComponent', 'selector': 'app-cookies'},{'name': 'EditComponent', 'selector': 'app-edit'},{'name': 'EmpresaFormComponent', 'selector': 'app-empresa-form'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'LandingPageComponent', 'selector': 'app-landing-page'},{'name': 'LegalNoticeComponent', 'selector': 'app-legal-notice'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NotfoundpageComponent', 'selector': 'app-notfoundpage'},{'name': 'PrivacyComponent', 'selector': 'app-privacy'},{'name': 'RegisterComponent', 'selector': 'app-register'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'EmpresaFormComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'EmpresaFormComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

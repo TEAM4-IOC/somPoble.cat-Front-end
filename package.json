@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "doc": "compodoc -p tsconfig.json",
+    "doc:serve": "compodoc -s"
   },
   "private": true,
   "dependencies": {

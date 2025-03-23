@@ -1,0 +1,1249 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>som-poble documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">som-poble documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  EditComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/edit/edit.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-edit</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>FormsModule</code>
+                            <code>TranslateModule</code>
+                            <code>RouterModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./edit.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./edit.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#editingFieldName" >editingFieldName</a>
+                            </li>
+                            <li>
+                                <a href="#errorMessage" >errorMessage</a>
+                            </li>
+                            <li>
+                                <a href="#profile" >profile</a>
+                            </li>
+                            <li>
+                                <a href="#role" >role</a>
+                            </li>
+                            <li>
+                                <a href="#successMessage" >successMessage</a>
+                            </li>
+                            <li>
+                                <a href="#tempValue" >tempValue</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cancelEditing" >cancelEditing</a>
+                            </li>
+                            <li>
+                                <a href="#confirmEditing" >confirmEditing</a>
+                            </li>
+                            <li>
+                                <a href="#editingField" >editingField</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#startEditing" >startEditing</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, translate: TranslateService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/features/edit/edit.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>translate</td>
+                                                  
+                                                        <td>
+                                                                    <code>TranslateService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelEditing"></a>
+                    <span class="name">
+                        <span ><b>cancelEditing</b></span>
+                        <a href="#cancelEditing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelEditing()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/features/edit/edit.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmEditing"></a>
+                    <span class="name">
+                        <span ><b>confirmEditing</b></span>
+                        <a href="#confirmEditing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>confirmEditing(field: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="67"
+                                    class="link-to-prism">src/app/features/edit/edit.component.ts:67</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>field</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editingField"></a>
+                    <span class="name">
+                        <span ><b>editingField</b></span>
+                        <a href="#editingField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>editingField(field: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/app/features/edit/edit.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>field</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/app/features/edit/edit.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="startEditing"></a>
+                    <span class="name">
+                        <span ><b>startEditing</b></span>
+                        <a href="#startEditing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>startEditing(field: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, currentValue: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/features/edit/edit.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>field</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>currentValue</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editingFieldName"></a>
+                    <span class="name">
+                        <span ><b>editingFieldName</b></span>
+                        <a href="#editingFieldName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/features/edit/edit.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorMessage"></a>
+                    <span class="name">
+                        <span ><b>errorMessage</b></span>
+                        <a href="#errorMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/features/edit/edit.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="profile"></a>
+                    <span class="name">
+                        <span ><b>profile</b></span>
+                        <a href="#profile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/UpdateProfileRequest.html" target="_self" >UpdateProfileRequest</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    dni: &#x27;&#x27;,
+    nombre: &#x27;&#x27;,
+    apellidos: &#x27;&#x27;,
+    email: &#x27;&#x27;,
+    telefono: &#x27;&#x27;
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/features/edit/edit.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="role"></a>
+                    <span class="name">
+                        <span ><b>role</b></span>
+                        <a href="#role"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/features/edit/edit.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="successMessage"></a>
+                    <span class="name">
+                        <span ><b>successMessage</b></span>
+                        <a href="#successMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/features/edit/edit.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tempValue"></a>
+                    <span class="name">
+                        <span ><b>tempValue</b></span>
+                        <a href="#tempValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/features/edit/edit.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { UpdateProfileRequest } from &#x27;../../core/models/update-profile.interface&#x27;;
+import { AuthService } from &#x27;../../core/services/auth.service&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { RouterModule } from &#x27;@angular/router&#x27;;
+import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
+
+@Component({
+  selector: &#x27;app-edit&#x27;,
+  standalone: true,
+  imports: [CommonModule, FormsModule, TranslateModule, RouterModule],
+  templateUrl: &#x27;./edit.component.html&#x27;,
+  styleUrls: [&#x27;./edit.component.scss&#x27;]
+})
+export class EditComponent implements OnInit {
+  profile: UpdateProfileRequest &#x3D; {
+    dni: &#x27;&#x27;,
+    nombre: &#x27;&#x27;,
+    apellidos: &#x27;&#x27;,
+    email: &#x27;&#x27;,
+    telefono: &#x27;&#x27;
+  };
+  role: number &#x3D; 1;
+  editingFieldName: string | null &#x3D; null;
+  tempValue: string &#x3D; &#x27;&#x27;;
+  errorMessage: string &#x3D; &#x27;&#x27;;
+  successMessage: string &#x3D; &#x27;&#x27;;
+
+  constructor(private authService: AuthService, private translate: TranslateService) {}
+
+  ngOnInit(): void {
+    const sessionStr &#x3D; localStorage.getItem(&#x27;session&#x27;);
+    if (sessionStr) {
+      try {
+        const session &#x3D; JSON.parse(sessionStr);
+        const user &#x3D; session.usuario;
+        if (user) {
+          this.role &#x3D; session.tipoUsuario || 1;
+          this.profile &#x3D; {
+            dni: user.dni,
+            nombre: user.nombre,
+            apellidos: user.apellidos,
+            email: user.email,
+            telefono: user.telefono
+          };
+        }
+      } catch (error) {
+        console.error(&#x27;Error al parsear la sesión:&#x27;, error);
+      }
+    }
+  }
+
+  startEditing(field: string, currentValue: string): void {
+    if (field &#x3D;&#x3D;&#x3D; &#x27;dni&#x27;) return;
+    this.editingFieldName &#x3D; field;
+    this.tempValue &#x3D; currentValue;
+    this.errorMessage &#x3D; &#x27;&#x27;;
+    this.successMessage &#x3D; &#x27;&#x27;;
+  }
+
+  cancelEditing(): void {
+    this.editingFieldName &#x3D; null;
+    this.tempValue &#x3D; &#x27;&#x27;;
+  }
+
+  confirmEditing(field: string): void {
+    const payload: UpdateProfileRequest &#x3D; {
+      dni: this.profile.dni,
+      nombre: field &#x3D;&#x3D;&#x3D; &#x27;nombre&#x27; ? this.tempValue : this.profile.nombre,
+      apellidos: field &#x3D;&#x3D;&#x3D; &#x27;apellidos&#x27; ? this.tempValue : this.profile.apellidos,
+      email: field &#x3D;&#x3D;&#x3D; &#x27;email&#x27; ? this.tempValue : this.profile.email,
+      telefono: field &#x3D;&#x3D;&#x3D; &#x27;telefono&#x27; ? this.tempValue : this.profile.telefono
+    };
+    this.authService.updateProfile(payload, this.role).subscribe({
+      next: () &#x3D;&gt; {
+        if (field &#x3D;&#x3D;&#x3D; &#x27;nombre&#x27;) {
+          this.profile.nombre &#x3D; this.tempValue;
+        } else if (field &#x3D;&#x3D;&#x3D; &#x27;apellidos&#x27;) {
+          this.profile.apellidos &#x3D; this.tempValue;
+        } else if (field &#x3D;&#x3D;&#x3D; &#x27;email&#x27;) {
+          this.profile.email &#x3D; this.tempValue;
+        } else if (field &#x3D;&#x3D;&#x3D; &#x27;telefono&#x27;) {
+          this.profile.telefono &#x3D; this.tempValue;
+        }
+        this.successMessage &#x3D; this.translate.instant(&#x27;edit_profile.update_success&#x27;);
+        this.errorMessage &#x3D; &#x27;&#x27;;
+        this.editingFieldName &#x3D; null;
+        this.tempValue &#x3D; &#x27;&#x27;;
+      },
+      error: (err) &#x3D;&gt; {
+        console.error(&#x27;Error al actualizar el perfil:&#x27;, err);
+        this.errorMessage &#x3D; this.translate.instant(&#x27;edit_profile.update_error&#x27;);
+        this.successMessage &#x3D; &#x27;&#x27;;
+      }
+    });
+  }
+
+  editingField(field: string): boolean {
+    return this.editingFieldName &#x3D;&#x3D;&#x3D; field;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;component-wrapper&quot;&gt;
+  &lt;div class&#x3D;&quot;auth-container&quot;&gt;
+    &lt;h1&gt;SomPoble&lt;/h1&gt;
+    &lt;h2&gt;{{ &#x27;edit_profile.edit_title&#x27; | translate }}&lt;/h2&gt;
+    &lt;div class&#x3D;&quot;read-only-data&quot;&gt;
+      &lt;div class&#x3D;&quot;data-field&quot;&gt;
+        &lt;label&gt;{{ &#x27;register.dni_label&#x27; | translate }}:&lt;/label&gt;
+        &lt;span&gt;{{ profile.dni }}&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;data-field&quot;&gt;
+        &lt;label&gt;{{ &#x27;register.nombre_label&#x27; | translate }}:&lt;/label&gt;
+        @if (!editingField(&#x27;nombre&#x27;)) {
+          &lt;span&gt;{{ profile.nombre }}&lt;/span&gt;
+          &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;startEditing(&#x27;nombre&#x27;, profile.nombre)&quot;&gt;
+            &lt;i class&#x3D;&quot;fas fa-edit&quot;&gt;&lt;/i&gt;
+          &lt;/button&gt;
+        } @else {
+          &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;tempValue&quot; name&#x3D;&quot;nombre&quot; required minlength&#x3D;&quot;2&quot; placeholder&#x3D;&quot;{{ &#x27;register.nombre_placeholder&#x27; | translate }}&quot; #nombreModel&#x3D;&quot;ngModel&quot; /&gt;
+          @if (nombreModel.invalid &amp;&amp; (nombreModel.touched || nombreModel.dirty)) {
+            &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;register.nombre_required&#x27; | translate }}&lt;/div&gt;
+          }
+          &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;confirmEditing(&#x27;nombre&#x27;)&quot;&gt;
+            &lt;i class&#x3D;&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+          &lt;/button&gt;
+          &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;cancelEditing()&quot;&gt;
+            &lt;i class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/i&gt;
+          &lt;/button&gt;
+        }
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;data-field&quot;&gt;
+        &lt;label&gt;{{ &#x27;register.apellidos_label&#x27; | translate }}:&lt;/label&gt;
+        @if (!editingField(&#x27;apellidos&#x27;)) {
+          &lt;span&gt;{{ profile.apellidos }}&lt;/span&gt;
+          &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;startEditing(&#x27;apellidos&#x27;, profile.apellidos)&quot;&gt;
+            &lt;i class&#x3D;&quot;fas fa-edit&quot;&gt;&lt;/i&gt;
+          &lt;/button&gt;
+        } @else {
+          &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;tempValue&quot; name&#x3D;&quot;apellidos&quot; required minlength&#x3D;&quot;2&quot; placeholder&#x3D;&quot;{{ &#x27;register.apellidos_placeholder&#x27; | translate }}&quot; #apellidosModel&#x3D;&quot;ngModel&quot; /&gt;
+          @if (apellidosModel.invalid &amp;&amp; (apellidosModel.touched || apellidosModel.dirty)) {
+            &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;register.apellidos_required&#x27; | translate }}&lt;/div&gt;
+          }
+          &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;confirmEditing(&#x27;apellidos&#x27;)&quot;&gt;
+            &lt;i class&#x3D;&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+          &lt;/button&gt;
+          &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;cancelEditing()&quot;&gt;
+            &lt;i class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/i&gt;
+          &lt;/button&gt;
+        }
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;data-field&quot;&gt;
+        &lt;label&gt;{{ &#x27;register.email_label&#x27; | translate }}:&lt;/label&gt;
+        @if (!editingField(&#x27;email&#x27;)) {
+          &lt;span&gt;{{ profile.email }}&lt;/span&gt;
+          &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;startEditing(&#x27;email&#x27;, profile.email)&quot;&gt;
+            &lt;i class&#x3D;&quot;fas fa-edit&quot;&gt;&lt;/i&gt;
+          &lt;/button&gt;
+        } @else {
+          &lt;input type&#x3D;&quot;email&quot; [(ngModel)]&#x3D;&quot;tempValue&quot; name&#x3D;&quot;email&quot; required placeholder&#x3D;&quot;{{ &#x27;register.email_placeholder&#x27; | translate }}&quot; #emailModel&#x3D;&quot;ngModel&quot; /&gt;
+          @if (emailModel.invalid &amp;&amp; (emailModel.touched || emailModel.dirty)) {
+            &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;register.email_required&#x27; | translate }}&lt;/div&gt;
+          }
+          &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;confirmEditing(&#x27;email&#x27;)&quot;&gt;
+            &lt;i class&#x3D;&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+          &lt;/button&gt;
+          &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;cancelEditing()&quot;&gt;
+            &lt;i class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/i&gt;
+          &lt;/button&gt;
+        }
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;data-field&quot;&gt;
+        &lt;label&gt;{{ &#x27;register.telefono_label&#x27; | translate }}:&lt;/label&gt;
+        @if (!editingField(&#x27;telefono&#x27;)) {
+          &lt;span&gt;{{ profile.telefono }}&lt;/span&gt;
+          &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;startEditing(&#x27;telefono&#x27;, profile.telefono)&quot;&gt;
+            &lt;i class&#x3D;&quot;fas fa-edit&quot;&gt;&lt;/i&gt;
+          &lt;/button&gt;
+        } @else {
+          &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;tempValue&quot; name&#x3D;&quot;telefono&quot; required pattern&#x3D;&quot;[0-9]{9}&quot; placeholder&#x3D;&quot;{{ &#x27;register.telefono_placeholder&#x27; | translate }}&quot; #telefonoModel&#x3D;&quot;ngModel&quot; /&gt;
+          @if (telefonoModel.invalid &amp;&amp; (telefonoModel.touched || telefonoModel.dirty)) {
+            &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;register.telefono_required&#x27; | translate }}&lt;/div&gt;
+          }
+          &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;confirmEditing(&#x27;telefono&#x27;)&quot;&gt;
+            &lt;i class&#x3D;&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+          &lt;/button&gt;
+          &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;cancelEditing()&quot;&gt;
+            &lt;i class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/i&gt;
+          &lt;/button&gt;
+        }
+      &lt;/div&gt;
+    &lt;/div&gt;
+    @if (errorMessage) {
+      &lt;div class&#x3D;&quot;error&quot;&gt;{{ errorMessage }}&lt;/div&gt;
+    }
+    @if (successMessage) {
+      &lt;div class&#x3D;&quot;success&quot;&gt;{{ successMessage }}&lt;/div&gt;
+    }
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./edit.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;../../../colors.scss&#x27;;
+
+.component-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background: $bg-gradient;
+  font-family: &#x27;Roboto&#x27;, sans-serif;
+}
+
+.auth-container {
+  background: $container-bg;
+  padding: 2.5rem;
+  border-radius: 0.625rem;
+  text-align: center;
+  width: 22rem;
+  backdrop-filter: blur(0.625rem);
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
+}
+
+h1, h2 {
+  color: $white;
+  margin-bottom: 1rem;
+}
+
+.read-only-data {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.data-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  background: $input-bg;
+  padding: 0.625rem;
+  border-radius: 0.3125rem;
+}
+
+.data-field label {
+  color: $white;
+  font-weight: 400;
+  font-size: 0.875rem;
+  margin-right: 1rem;
+}
+
+.data-field span {
+  flex: 1;
+  color: $white;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: $white;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: $white;
+  font-size: 0.875rem;
+  outline: none;
+}
+
+input::placeholder {
+  color: $placeholder-color;
+}
+
+.error {
+  color: $error-color;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  text-align: center;
+  width: 100%;
+}
+
+.success {
+  color: green;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  text-align: center;
+  width: 100%;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="component-wrapper">  <div class="auth-container">    <h1>SomPoble</h1>    <h2>{{ \'edit_profile.edit_title\' | translate }}</h2>    <div class="read-only-data">      <div class="data-field">        <label>{{ \'register.dni_label\' | translate }}:</label>        <span>{{ profile.dni }}</span>      </div>      <div class="data-field">        <label>{{ \'register.nombre_label\' | translate }}:</label>        @if (!editingField(\'nombre\')) {          <span>{{ profile.nombre }}</span>          <button class="icon-btn" (click)="startEditing(\'nombre\', profile.nombre)">            <i class="fas fa-edit"></i>          </button>        } @else {          <input type="text" [(ngModel)]="tempValue" name="nombre" required minlength="2" placeholder="{{ \'register.nombre_placeholder\' | translate }}" #nombreModel="ngModel" />          @if (nombreModel.invalid && (nombreModel.touched || nombreModel.dirty)) {            <div class="error">{{ \'register.nombre_required\' | translate }}</div>          }          <button class="icon-btn" (click)="confirmEditing(\'nombre\')">            <i class="fas fa-check"></i>          </button>          <button class="icon-btn" (click)="cancelEditing()">            <i class="fas fa-times"></i>          </button>        }      </div>      <div class="data-field">        <label>{{ \'register.apellidos_label\' | translate }}:</label>        @if (!editingField(\'apellidos\')) {          <span>{{ profile.apellidos }}</span>          <button class="icon-btn" (click)="startEditing(\'apellidos\', profile.apellidos)">            <i class="fas fa-edit"></i>          </button>        } @else {          <input type="text" [(ngModel)]="tempValue" name="apellidos" required minlength="2" placeholder="{{ \'register.apellidos_placeholder\' | translate }}" #apellidosModel="ngModel" />          @if (apellidosModel.invalid && (apellidosModel.touched || apellidosModel.dirty)) {            <div class="error">{{ \'register.apellidos_required\' | translate }}</div>          }          <button class="icon-btn" (click)="confirmEditing(\'apellidos\')">            <i class="fas fa-check"></i>          </button>          <button class="icon-btn" (click)="cancelEditing()">            <i class="fas fa-times"></i>          </button>        }      </div>      <div class="data-field">        <label>{{ \'register.email_label\' | translate }}:</label>        @if (!editingField(\'email\')) {          <span>{{ profile.email }}</span>          <button class="icon-btn" (click)="startEditing(\'email\', profile.email)">            <i class="fas fa-edit"></i>          </button>        } @else {          <input type="email" [(ngModel)]="tempValue" name="email" required placeholder="{{ \'register.email_placeholder\' | translate }}" #emailModel="ngModel" />          @if (emailModel.invalid && (emailModel.touched || emailModel.dirty)) {            <div class="error">{{ \'register.email_required\' | translate }}</div>          }          <button class="icon-btn" (click)="confirmEditing(\'email\')">            <i class="fas fa-check"></i>          </button>          <button class="icon-btn" (click)="cancelEditing()">            <i class="fas fa-times"></i>          </button>        }      </div>      <div class="data-field">        <label>{{ \'register.telefono_label\' | translate }}:</label>        @if (!editingField(\'telefono\')) {          <span>{{ profile.telefono }}</span>          <button class="icon-btn" (click)="startEditing(\'telefono\', profile.telefono)">            <i class="fas fa-edit"></i>          </button>        } @else {          <input type="text" [(ngModel)]="tempValue" name="telefono" required pattern="[0-9]{9}" placeholder="{{ \'register.telefono_placeholder\' | translate }}" #telefonoModel="ngModel" />          @if (telefonoModel.invalid && (telefonoModel.touched || telefonoModel.dirty)) {            <div class="error">{{ \'register.telefono_required\' | translate }}</div>          }          <button class="icon-btn" (click)="confirmEditing(\'telefono\')">            <i class="fas fa-check"></i>          </button>          <button class="icon-btn" (click)="cancelEditing()">            <i class="fas fa-times"></i>          </button>        }      </div>    </div>    @if (errorMessage) {      <div class="error">{{ errorMessage }}</div>    }    @if (successMessage) {      <div class="success">{{ successMessage }}</div>    }  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CookiesComponent', 'selector': 'app-cookies'},{'name': 'EditComponent', 'selector': 'app-edit'},{'name': 'EmpresaFormComponent', 'selector': 'app-empresa-form'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'LandingPageComponent', 'selector': 'app-landing-page'},{'name': 'LegalNoticeComponent', 'selector': 'app-legal-notice'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NotfoundpageComponent', 'selector': 'app-notfoundpage'},{'name': 'PrivacyComponent', 'selector': 'app-privacy'},{'name': 'RegisterComponent', 'selector': 'app-register'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'EditComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'EditComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
