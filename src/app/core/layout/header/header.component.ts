@@ -36,7 +36,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this.cdr.markForCheck();
     });
 
-
     this.enterpriseStateService.enterprise$.subscribe((empresas) => {
       if (empresas.length > 0) {
         this.tipoEmpresa = empresas[0].tipo || null;
@@ -61,6 +60,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.authService.logout();
     this.cdr.markForCheck();
     this.router.navigate(['/landing']);
+  }
+
+  toggleMenu(event: Event): void {
+    event.stopPropagation(); // Evita que el clic se propague y cierre el menú inmediatamente
+    this.isMenuOpen = !this.isMenuOpen;
+    this.cdr.detectChanges();
   }
 
   ngAfterViewInit() {
@@ -101,5 +106,21 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         this.cdr.markForCheck();
       });
     }
+
+    document.addEventListener("click", (event) => {
+      const menu = document.querySelector(".menu-container") as HTMLElement;
+      const menuButton = document.querySelector(".hamburguer-menu") as HTMLElement;
+
+      if (
+        this.isMenuOpen &&
+        menu &&
+        menuButton &&
+        !menu.contains(event.target as Node) &&
+        !menuButton.contains(event.target as Node)
+      ) {
+        this.isMenuOpen = false;
+        this.cdr.detectChanges();
+      }
+    });
   }
 }

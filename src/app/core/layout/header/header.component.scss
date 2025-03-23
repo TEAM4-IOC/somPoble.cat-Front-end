@@ -14,19 +14,22 @@ header {
 }
 
 /* Estil icona login */
-.login-icon, .logout-icon {
+.login-icon,
+.logout-icon {
     color: #4141fa;
     transition: background-color 0.2s ease-in-out;
+    margin-right: 20px;
 }
 
-.login-icon:hover, .logout-icon:hover {
+.login-icon:hover,
+.logout-icon:hover {
     cursor: pointer;
     color: #da4f8e;
 }
 
 .user-label {
     padding-right: 20px;
-    color:white;
+    color: white;
     font-size: 20px;
     font-weight: 500;
 }
@@ -77,12 +80,118 @@ header {
     cursor: pointer;
 }
 
+/* Estils menú principal Desktop */
+.main-menu p {
+    margin: 0;
+}
+
+/*Estils menú hamburguesa */
+.hamburguer-menu {
+    border: 3px solid white;
+    height: 50px;
+    width: 50px;
+    border-radius: 15px;
+}
+
+.hamburguer-menu:hover {
+    background-color: rgba(255, 255, 255, 0.25) !important;
+    cursor: pointer;
+}
+
+.menu-wrapper {
+    position: relative;
+    display: none;
+}
+
+.hamburguer-menu {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.menu-container {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: max-content;
+    min-width: 150px;
+    background: #212529;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.menu-container ul {
+    margin: 0;
+    padding: 10px;
+    list-style: none;
+}
+
 /* Tablets i phablets */
 @media only screen and (min-width: 576px) and (max-width: 767px) {
-    //es visualitza correctament, no es contemplen canvis
+    /*  Sin cambios por ahora */
 }
 
 /* Telèfons */
 @media only screen and (max-width: 575px) {
+    
+    .main-menu {
+        display: none !important;
+    }
 
+    .header-container {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        position: relative;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: auto;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+    }
+
+    .lang-btn-container {
+        position: absolute;
+        right: 10px;
+        top: 17px;
+    }
+
+    .right-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 65px;
+        padding: 0 10px;
+    }
+
+    .user-label {
+        display: inline-block;
+        margin-right: 10px;
+        padding: 0;
+    }
+
+    .login-icon,
+    .logout-icon {
+        display: inline-block;
+        margin-right: 20px;
+    }
+
+    .menu-wrapper {
+        display: flex !important;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .hamburguer-menu {
+        position: relative;
+        left: 10px;
+    }
 }
