@@ -1,9 +1,9 @@
 <ngx-spinner type="pacman" size="large"></ngx-spinner>
 
 <div class="landing-container text-white">
-    <div class="col-12 d-flex justify-content-center flex-wrap">
+    <div class="col-12 d-flex justify-content-center flex-wrap card-container">
         <div *ngFor="let empresa of empresas; let i = index" class="w-50" [ngClass]="{'card-1': i % 2 === 0, 'card-2': i % 2 !== 0}">
-            <h3 class="text-center mb-3">{{ empresa?.nombre || 'Empresa sin nombre' }}</h3>
+            <h3 class="text-center mb-3">{{ empresa?.nombre || empresa?.actividad || 'Empresa sin nombre' }}</h3>
             <span class="separator"></span>
             <div class="d-flex">
                 <div class="img-container">

@@ -2,6 +2,8 @@
 
 .landing-container {
     background: $bg-gradient;
+    min-height: 100vh;
+    width: 100%;
 }
 
 .card-1,
@@ -66,18 +68,106 @@
 
 /* Tablets i phablets */
 @media only screen and (max-width: 1100px) {
-    .col-12.d-flex {
+    .ng-star-inserted {
+        margin: 0;
+        margin-top: 20px;
+    }
+    .landing-container {
+        min-height: auto; 
+        overflow: hidden;
+        display: flex;
         flex-direction: column;
         align-items: center;
     }
 
     .card-1,
     .card-2 {
-        width: 100% !important; /* Opcional para que ocupen todo el ancho */
+        width: 100% !important;
     }
+
+    .card-container {
+        width: 100%;
+        max-width: 95vw;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .register-container {
+        margin: 20px;
+    }
+
 }
   
   /* Telèfons */
-  @media only screen and (max-width: 575px) { 
-    //es visualitza correctament, no es contemplen canvis
-  }
+  @media only screen and (max-width: 575px) {
+    
+    [class^="card-"] {
+        max-width: 90% !important;
+        width: 100% !important; 
+        box-sizing: border-box;
+        padding: 15px; 
+        margin-top: 20px;
+    }
+
+    .landing-container {
+        min-height: auto; 
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .col-12.d-flex {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 0 5%;
+    }
+
+    .d-flex {
+        flex-direction: column !important; 
+        align-items: center;
+        width: 100%;
+    }
+
+    .img-container {
+        width: 100%;
+        max-width: 250px; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+    
+    .shop-img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .w-100.services-section {
+        width: 100% !important; 
+        margin-top: 10px;
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .card-container {
+        width: 100%;
+        max-width: 95vw;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .ng-star-inserted {
+        margin: 0;
+        margin-top: 20px;
+    }
+
+    .register-container {
+        margin: 20px;
+    }
+
+}
