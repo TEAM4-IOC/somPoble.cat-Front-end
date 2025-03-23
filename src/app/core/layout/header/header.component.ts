@@ -60,7 +60,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   logout(): void {
     this.authService.logout();
     this.cdr.markForCheck();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/landing']);
   }
 
   ngAfterViewInit() {

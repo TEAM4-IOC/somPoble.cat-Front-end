@@ -5,7 +5,6 @@ import { authGuard } from './core/guards/auth.guard';
 export const routes: Routes = [
   {
     path: 'landing',
-    canActivate: [authGuard],
     loadComponent: () =>
       import('./features/landing-page/landing-page.component').then(
         (m) => m.LandingPageComponent
@@ -67,5 +66,5 @@ export const routes: Routes = [
         (m) => m.NotfoundpageComponent
       ),
   },
-  { path: '**', redirectTo: 'login' },
+  { path: '**', redirectTo: 'landing' },
 ];

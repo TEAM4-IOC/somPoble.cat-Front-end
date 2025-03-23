@@ -8,6 +8,6 @@ export const authGuard = () => {
   if (authService.isLoggedIn()) {
     return true;
   } else {
-    return router.navigate(['/login']);
+    return router.navigate(['/landing']);
   }
 };
