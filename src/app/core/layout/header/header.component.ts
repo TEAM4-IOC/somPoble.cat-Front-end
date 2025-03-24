@@ -94,6 +94,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         this.language = "es";
         localStorage.setItem('language', this.language);
         this.i18nService.changeLanguage(this.language);
+        langSelector.classList.add("d-none");
+    langBtn.classList.remove("active");
         this.cdr.markForCheck();
       });
     }
@@ -103,6 +105,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         this.language = "cat";
         localStorage.setItem('language', this.language);
         this.i18nService.changeLanguage(this.language);
+        langSelector.classList.add("d-none");
+    langBtn.classList.remove("active");
         this.cdr.markForCheck();
       });
     }
