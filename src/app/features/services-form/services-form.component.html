@@ -1,1 +1,31 @@
-<p>services-form works!</p>
+<div class="serveis-form-container">
+    <div class="add-service-container">
+        <h1>SomPoble</h1>
+        <h2>Formulario servicios</h2>
+        <form>
+            <div class="input-group">
+                <label for="nombreServicio" class="form-label">Nombre del servicio:</label>
+                <div class="input-control">
+                    <input
+                    type="text"
+                    id="nombreServicio"
+                    name="nombreServicio"
+                    placeholder='Escribe el nombre'
+                    required
+                    [pattern]="'^(.*[A-Za-z].*){2,}$'">
+                    <!-- IF validador-->
+                </div>
+                <label for="descripcionServicio" class="form-label">Descrición del servicio:</label>
+                <div class="input-control">
+                    <textarea
+                    id="descripcionServicio"
+                    name="descripcionServicio"
+                    placeholder='Escribe una breve descripción'
+                    required
+                    rows="5"></textarea>
+                    <!-- IF validador-->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

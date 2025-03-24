@@ -1,0 +1,106 @@
+@import '../../../colors.scss';
+
+.serveis-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background: $bg-gradient;
+    font-family: 'Roboto', sans-serif;
+    color: #FFFFFF;
+}
+
+.add-service-container {
+    background: $container-bg;
+    padding: 2.5rem;
+    border-radius: 0.625rem;
+    text-align: center;
+    width: 22rem;
+    backdrop-filter: blur(0.625rem);
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
+}
+
+h1,
+h2 {
+    margin: 0;
+    font-weight: 300;
+    letter-spacing: 0.125rem;
+    color: $white;
+}
+
+h2 {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 0.9375rem;
+  }
+
+  .form-label {
+    margin-bottom: 0.3rem;
+    margin-top:0.5rem;
+    color: $label-color;
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+
+  .input-control {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    background: $input-bg;
+    border-radius: 0.3125rem;
+    padding: 0.625rem;
+  }
+
+  textarea {
+    width: 100%;
+    height: auto;
+    min-height: 40px;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0;
+    resize: none;
+    outline: none;
+    font-size: 0.875rem;
+    line-height: 1.2;
+}
+
+textarea::placeholder {
+    color: #ffffff92;
+}
+
+  input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: $white;
+    font-size: 0.875rem;
+    line-height: 1.2;
+    outline: none;
+  }
+
+  input::placeholder {
+    color: $placeholder-color;
+  }
+  
+  .input-control input:focus {
+    box-shadow: 0 0 0.25rem $white;
+  }
+
+  .error {
+    color: $error-color;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    text-align: left;
+    width: 100%;
+  }
