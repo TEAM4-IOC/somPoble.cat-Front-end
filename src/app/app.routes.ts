@@ -25,6 +25,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'services-form',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/services-form/services-form.component').then(
+        (m) => m.ServicesFormComponent
+      ),
+  },
+  {
     path: 'login',
     loadComponent: () =>
       import('./features/auth/login/login.component').then(
