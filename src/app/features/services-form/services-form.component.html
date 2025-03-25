@@ -1,7 +1,7 @@
 <div class="serveis-form-container">
     <div class="add-service-container">
-        <h1>SomPoble</h1>
-        <h2>Formulario servicios</h2>
+        <h1>Nombre Empresa</h1>
+        <h2>Formulario alta nuevo servicio</h2>
         <form>
             <div class="input-group">
                 <label for="nombreServicio" class="form-label">Nombre del servicio:</label>
@@ -23,6 +23,48 @@
                     placeholder='Escribe una breve descripción'
                     required
                     rows="5"></textarea>
+                    <!-- IF validador-->
+                </div>
+                <label for="duracionServicio" class="form-label">Duración del servicio:</label>
+                <div class="input-control">
+                    <input
+                    type="text"
+                    id="duracionServicio"
+                    name="duracionServicio"
+                    placeholder='minutos'
+                    required
+                    [pattern]="'^\d+$'">
+                    <!-- IF validador-->
+                </div>
+                <label for="precioServicio" class="form-label">Precio del servicio:</label>
+                <div class="input-control">
+                    <input
+                    type="text"
+                    id="precioServicio"
+                    name="precioServicio"
+                    placeholder='€'
+                    required
+                    [pattern]="'^-?\d+(\.\d+)?$'">
+                    <!-- IF validador-->
+                </div>
+                <label for="horario" class="form-label">Horario de disponibilidad:</label>
+                <div class="input-control">
+                    <input
+                    type="text"
+                    id="horario"
+                    name="horario"
+                    placeholder='Horario de disponibilidad'
+                    required>
+                    <!-- IF validador-->
+                </div>
+                <label for="limiteReserva" class="form-label">Cantidad máxima de reservas:</label>
+                <div class="input-control">
+                    <input
+                    type="text"
+                    id="limiteReserva"
+                    name="limiteReserva"
+                    placeholder='Número límite de reservas'
+                    required>
                     <!-- IF validador-->
                 </div>
             </div>
