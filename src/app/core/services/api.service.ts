@@ -5,12 +5,15 @@ import { switchMap, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { EmpresaData } from '../models/EmpresaData.interface';
 import { CreateEmpresaPayload } from '../models/create-empresa-payload.interface';
+import { ServicioData } from '../models/ServicioData.interface'
+import { CreateServicePayload } from '../models/create-service-payload.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   private empresaUrl = `${environment.authUrl}/empresas`;
+  private servicioUrl = `${environment.authUrl}/servicios`;
 
   constructor(private http: HttpClient) {}
 
@@ -43,5 +46,33 @@ export class ApiService {
 
   getEmpresas(): Observable<EmpresaData[]> {
     return this.http.get<EmpresaData[]>(`${environment.authUrl}/empresas`);
+  }
+
+  //Implementación servicios - A revisar cuando backend lo tenga listo
+  getServicioByIdentificador(servicioId: number): Observable<ServicioData> {
+    return this.http
+      .get<{ servicio: ServicioData; id: number }>(`${this.servicioUrl}/${servicioId}`)
+      .pipe(map(response => response.servicio));
+  }
+
+  createServicio(payload: CreateServicePayload): Observable<ServicioData> {
+    return this.http
+      .post<{ servicio: ServicioData, empresa:string }>(this.servicioUrl, payload)
+      .pipe(map(response => response.servicio));
+  }
+
+  updateServicio(servicioId: number, partial: Partial<EmpresaData>): Observable<ServicioData> {
+    return this.http.put(`${this.servicioUrl}/${servicioId}`, partial, { responseType: 'text' })
+      .pipe(
+        switchMap(() => this.getServicioByIdentificador(servicioId))
+      );
+  }
+
+  deleteServicio(servicioId: number): Observable<any> {
+    return this.http.delete(`${this.servicioUrl}/${servicioId}`, { responseType: 'text' });
+  }
+
+  getServicios(): Observable<ServicioData[]> {
+    return this.http.get<ServicioData[]>(`${environment.authUrl}/servicios`);
   }
 }
