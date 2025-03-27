@@ -18,6 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class ServicesFormComponent implements OnInit {
   
+
   servicio$!: Observable<ServicioData[]>;
   
   formError = '';
@@ -70,8 +71,8 @@ export class ServicesFormComponent implements OnInit {
       },
       empresa: this.idEmpresa
     };
-
-    this.servicioState.createService(payload, this.idEmpresa);
+    console.log(payload); // Verificación envío datos FORM
+    //this.servicioState.createService(payload, this.idEmpresa);     --> A descomentar
   }
 
   startEditing(field: string, currentValue: string): void {

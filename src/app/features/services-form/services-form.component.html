@@ -2,7 +2,7 @@
     <div class="add-service-container">
         <h1>Nombre Empresa</h1>
         <h2>Formulario alta nuevo servicio</h2>
-        <form>
+        <form (ngSubmit)="onSubmit()" #serviceForm="ngForm">
             <div class="input-group">
                 <label for="nombreServicio" class="form-label">Nombre del servicio:</label>
                 <div class="input-control">
@@ -41,7 +41,6 @@
                     name="duracionServicio" 
                     placeholder='minutos' 
                     required
-                    [pattern]="'^\d+$'"
                     #duracionModel="ngModel">
                     @if (duracionModel.invalid && (duracionModel.touched || duracionModel.dirty)) {
                     <div class="error">Error duración</div>
@@ -71,7 +70,7 @@
                         name="horario" 
                         placeholder='Horario de disponibilidad' 
                         required
-                        [pattern]="'^(?=.*[A-Za-z0-9].*){2,}$'"
+                        [pattern]="'^.+$'"
                         #horarioModel="ngModel">
                         @if (horarioModel.invalid && (horarioModel.touched || horarioModel.dirty)) {
                             <div class="error">Error en horario</div>
@@ -93,6 +92,9 @@
                         }
                 </div>
             </div>
+            <button type="submit" class="auth-btn" [disabled]="serviceForm.invalid">
+                Envía
+              </button>
         </form>
     </div>
 </div>

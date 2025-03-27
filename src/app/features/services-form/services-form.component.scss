@@ -105,3 +105,76 @@ textarea::placeholder {
     text-align: left;
     width: 100%;
   }
+  .read-only-data {
+    text-align: left;
+    margin-top: 1rem;
+  }
+  
+  .data-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    background: $input-bg;
+    padding: 0.625rem;
+    border-radius: 0.3125rem;
+  }
+  
+  .data-field label {
+    color: $white;
+    font-weight: 400;
+    font-size: 0.875rem;
+    margin-right: 1rem;
+  }
+  
+  .data-field span {
+    flex: 1;
+    color: $white;
+  }
+  
+  .icon-btn {
+    background: transparent;
+    border: none;
+    color: $white;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+  }
+  
+  .delete-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.625rem;
+    background: transparent;
+    border: 0.0625rem solid $btn-border;
+    color: $white;
+    font-size: 0.875rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0.3125rem;
+    transition: all 0.3s ease;
+  }
+  
+  .delete-btn:hover {
+    background: $btn-hover-bg;
+  }
+
+  .auth-btn {
+    width: 100%;
+    padding: 0.625rem;
+    background: transparent;
+    border: 0.0625rem solid $btn-border;
+    color: $white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0.3125rem;
+    transition: all 0.3s ease;
+  }
+  
+  .auth-btn:hover {
+    background: $btn-hover-bg;
+  }
+  

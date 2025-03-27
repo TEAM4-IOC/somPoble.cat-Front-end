@@ -32,6 +32,7 @@ export class LoginComponent {
     this.authService.login(payload).subscribe({
       next: (response: AuthResponse) => {
         const sessionData = JSON.parse(localStorage.getItem('session') || '{}');
+        console.log(sessionData);
         const tipoUsuario = sessionData?.tipoUsuario ?? null;
         if (tipoUsuario === 1) {
           this.router.navigate(['/edit']);
