@@ -83,6 +83,20 @@
     "cif_error": "El camp és obligatori i ha de seguir el format correcte.",
     "dni_error" : "El camp és obligatori i ha de seguir el format correcte."
   },
+  "showServices": {
+    "title": "Serveis",
+    "loading": "Carregant serveis...",
+    "noServices": "No hi ha serveis disponibles.",
+    "duration": "Durada",
+    "minutes": "minuts",
+    "price": "Preu",
+    "maxReservations": "Màxim de reserves",
+    "schedule": "Horari",
+    "companyId": "ID de l'empresa",
+    "createdAt": "Data de creació",
+    "modifiedAt": "Data de modificació",
+    "reservations": "Reserves"
+  },
   "landing": {
     "services": "Serveis",
     "adress": "Adreça",

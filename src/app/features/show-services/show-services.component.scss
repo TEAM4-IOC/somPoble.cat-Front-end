@@ -1,0 +1,57 @@
+@import '../../../colors.scss';
+
+.show-services-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background: $bg-gradient;
+  min-height: 100vh;
+  color: $white;
+  font-family: 'Roboto', sans-serif;
+
+  h1 {
+    margin: 0;
+    font-weight: 300;
+    letter-spacing: 0.125rem;
+    color: $white;
+    margin-bottom: 2rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  .service-card {
+    background: $container-bg;
+    padding: 1.5rem;
+    border-radius: 0.625rem;
+    backdrop-filter: blur(0.625rem);
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
+
+    h2 {
+      margin: 0;
+      font-weight: 300;
+      letter-spacing: 0.125rem;
+    }
+
+    p {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin: 0.3rem 0;
+        font-size: 0.875rem;
+      }
+    }
+  }
+}

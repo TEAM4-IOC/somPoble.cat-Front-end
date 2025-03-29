@@ -72,7 +72,12 @@ export class ApiService {
     return this.http.delete(`${this.servicioUrl}/${servicioId}`, { responseType: 'text' });
   }
 
+  // getServicios(): Observable<ServicioData[]> {
+  //   return this.http.get<ServicioData[]>(`${environment.authUrl}/servicios`);
+  // }
+
   getServicios(): Observable<ServicioData[]> {
-    return this.http.get<ServicioData[]>(`${environment.authUrl}/servicios`);
+    return this.http.get<ServicioData[]>('/assets/mock-servicios.json');
   }
+
 }

@@ -1,0 +1,28 @@
+[
+  {
+    "idServicio": 1,
+    "idEmpresa": 101,
+    "nombre": "Peluquería",
+    "descripcion": " En nuestra peluquería creemos que tu cabello es parte fundamental de tu identidad.  Te ofrecemos un servicio personalizado con los mejores estilistas, especializados en cortes modernos,     coloraciones vibrantes, tratamientos hidratantes y peinados para cualquier ocasión.",
+    "duracion": "60",
+    "precio": "50",
+    "limiteReservas": 10,
+    "horario": "9:00-17:00",
+    "fechaAlta": "2023-03-01T00:00:00Z",
+    "fechaModificacion": "2023-03-02T00:00:00Z",
+    "reservasts": []
+  },
+  {
+    "idServicio": 2,
+    "idEmpresa": 102,
+    "nombre": "Taller mecanico",
+    "descripcion": "Nuestro taller mecánico ofrece un servicio integral y especializado para tu vehículo. Contamos con profesionales altamente cualificados que garantizan calidad, rapidez y confianza en reparaciones, mantenimiento preventivo, revisiones completas, cambio de neumáticos y diagnósticos precisos.",
+    "duracion": "90",
+    "precio": "80",
+    "limiteReservas": 15,
+    "horario": "10:00-18:00",
+    "fechaAlta": "2023-03-03T00:00:00Z",
+    "fechaModificacion": "2023-03-04T00:00:00Z",
+    "reservasts": []
+  }
+]

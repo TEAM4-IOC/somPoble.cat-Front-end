@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 
-
 export const routes: Routes = [
   {
     path: 'landing',
@@ -31,6 +30,12 @@ export const routes: Routes = [
       import('./features/services-form/services-form.component').then(
         (m) => m.ServicesFormComponent
       ),
+  },
+  {
+    path: 'show-services',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/show-services/show-services.component').then((m) => m.ShowServicesComponent),
   },
   {
     path: 'login',

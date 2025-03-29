@@ -83,6 +83,20 @@
     "cif_error": "El campo es obligatorio y debe tener el formato correcto.",
     "dni_error" : "El campo es obligatorio y debe tener el formato correcto."
   },
+  "showServices": {
+    "title": "Servicios",
+    "loading": "Cargando servicios...",
+    "noServices": "No hay servicios disponibles.",
+    "duration": "Duración",
+    "minutes": "minutos",
+    "price": "Precio",
+    "maxReservations": "Máximo de reservas",
+    "schedule": "Horario",
+    "companyId": "ID de la empresa",
+    "createdAt": "Fecha de creación",
+    "modifiedAt": "Fecha de modificación",
+    "reservations": "Reservas"
+  },
   "landing": {
     "services": "Servicios",
     "adress": "Dirección",
