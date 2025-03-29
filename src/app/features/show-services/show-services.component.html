@@ -1,54 +1,54 @@
 <div class="show-services-container">
   <h1>{{ 'showServices.title' | translate }}</h1>
 
-  <ng-container *ngIf="services$ | async as services; else loading">
-    <div *ngIf="services.length > 0; else noServices" class="services-grid">
-      <div class="service-card" *ngFor="let service of services">
-        <h2>SERVICIO 1</h2>
-        <p>{{ service.descripcion }}</p>
-        <ul>
-          <li>
-            <strong>{{ 'showServices.duration' | translate }}:</strong>
-            {{ service.duracion }} {{ 'showServices.minutes' | translate }}
-          </li>
-          <li>
-            <strong>{{ 'showServices.price' | translate }}:</strong>
-            €{{ service.precio }}
-          </li>
-          <li>
-            <strong>{{ 'showServices.maxReservations' | translate }}:</strong>
-            {{ service.limiteReservas }}
-          </li>
-          <li>
-            <strong>{{ 'showServices.schedule' | translate }}:</strong>
-            {{ service.horario }}
-          </li>
-          <li>
-            <strong>{{ 'showServices.companyId' | translate }}:</strong>
-            {{ service.idEmpresa }}
-          </li>
-          <li>
-            <strong>{{ 'showServices.createdAt' | translate }}:</strong>
-            {{ service.fechaAlta }}
-          </li>
-          <li>
-            <strong>{{ 'showServices.modifiedAt' | translate }}:</strong>
-            {{ service.fechaModificacion }}
-          </li>
-          <li>
-            <strong>{{ 'showServices.reservations' | translate }}:</strong>
-            {{ service.reservasts.length }}
-          </li>
-        </ul>
+  @if (services$ | async; as services) {
+    @if (services.length > 0) {
+      <div class="services-grid">
+        @for (service of services; track service.nombre) {
+          <div class="service-card">
+            <h2>{{ service.nombre }}</h2>
+            <p>{{ service.descripcion }}</p>
+            <ul>
+              <li>
+                <strong>{{ 'showServices.duration' | translate }}:</strong>
+                {{ service.duracion }} {{ 'showServices.minutes' | translate }}
+              </li>
+              <li>
+                <strong>{{ 'showServices.price' | translate }}:</strong>
+                €{{ service.precio }}
+              </li>
+              <li>
+                <strong>{{ 'showServices.maxReservations' | translate }}:</strong>
+                {{ service.limiteReservas }}
+              </li>
+              <li>
+                <strong>{{ 'showServices.schedule' | translate }}:</strong>
+                {{ service.horario }}
+              </li>
+              <li>
+                <strong>{{ 'showServices.companyId' | translate }}:</strong>
+                {{ service.idEmpresa }}
+              </li>
+              <li>
+                <strong>{{ 'showServices.createdAt' | translate }}:</strong>
+                {{ service.fechaAlta }}
+              </li>
+              <li>
+                <strong>{{ 'showServices.modifiedAt' | translate }}:</strong>
+                {{ service.fechaModificacion }}
+              </li>
+              <li>
+                <strong>{{ 'showServices.reservations' | translate }}:</strong>
+                {{ service.reservasts.length }}
+              </li>
+            </ul>
+          </div>
+        }
       </div>
-    </div>
-  </ng-container>
-
-  <ng-template #loading>
+    } @else {
+      <p>{{ 'showServices.noServices' | translate }}</p>
+    }
+  } @else {
     <p>{{ 'showServices.loading' | translate }}</p>
-  </ng-template>
-
-  <ng-template #noServices>
-    <p>{{ 'showServices.noServices' | translate }}</p>
-  </ng-template>
+  }
 </div>
