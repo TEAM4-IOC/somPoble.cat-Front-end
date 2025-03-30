@@ -14,10 +14,12 @@
                         required 
                         [pattern]="'^(.*[A-Za-z].*){2,}$'"
                         #nombreModel="ngModel">
+                </div>
                     @if (nombreModel.invalid && (nombreModel.touched || nombreModel.dirty)) {
                     <div class="error">Error en nombre</div>
                     }
-                </div>
+            </div>
+            <div class="input-group">        
                 <label for="descripcionServicio" class="form-label">Descrición del servicio:</label>
                 <div class="input-control">
                     <textarea 
@@ -28,10 +30,12 @@
                         required rows="5"
                         [pattern]="'^(.*[A-Za-z].*){2,}$'"
                         #descripcionModel="ngModel"></textarea>
+                </div>
                     @if (descripcionModel.invalid && (descripcionModel.touched || descripcionModel.dirty)) {
                     <div class="error">Error descripción</div>
                     }
-                </div>
+            </div>    
+            <div class="input-group">
                 <label for="duracionServicio" class="form-label">Duración del servicio:</label>
                 <div class="input-control">
                     <input 
@@ -42,10 +46,12 @@
                     placeholder='minutos' 
                     required
                     #duracionModel="ngModel">
+                </div>
                     @if (duracionModel.invalid && (duracionModel.touched || duracionModel.dirty)) {
                     <div class="error">Error duración</div>
                     }
-                </div>
+            </div>    
+            <div class="input-group">
                 <label for="precioServicio" class="form-label">Precio del servicio:</label>
                 <div class="input-control">
                     <input 
@@ -57,10 +63,12 @@
                         placeholder='€' 
                         required
                         #precioModel="ngModel">
+                    </div>
                         @if (precioModel.invalid && (precioModel.touched || precioModel.dirty)) {
                         <div class="error">Error en precio</div>
                         }
                 </div>
+            <div class="input-group">
                 <label for="horario" class="form-label">Horario de disponibilidad:</label>
                 <div class="input-control">
                     <input 
@@ -72,10 +80,12 @@
                         required
                         [pattern]="'^.+$'"
                         #horarioModel="ngModel">
+                    </div>
                         @if (horarioModel.invalid && (horarioModel.touched || horarioModel.dirty)) {
                             <div class="error">Error en horario</div>
                         }
-                </div>
+            </div>
+            <div class="input-group">
                 <label for="limiteReserva" class="form-label">Cantidad máxima de reservas:</label>
                 <div class="input-control">
                     <input 
@@ -87,10 +97,11 @@
                         required
                         [pattern]="'^[0-9]+$'"
                         #limiteReservasModel="ngModel">
+                    </div>
                         @if (limiteReservasModel.invalid && (limiteReservasModel.touched || limiteReservasModel.dirty)) {
                             <div class="error">Error en horario</div>
                         }
-                </div>
+                
             </div>
             <button type="submit" class="auth-btn" [disabled]="serviceForm.invalid">
                 Envía

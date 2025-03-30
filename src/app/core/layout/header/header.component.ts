@@ -50,6 +50,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     const sessionData = localStorage.getItem('session');
     if (sessionData) {
       const session = JSON.parse(sessionData);
+      console.log(session);
       this.tipoUsuario = session.tipoUsuario || null;
     } else {
       this.tipoUsuario = null;

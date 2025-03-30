@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
+import { empresaGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -25,7 +26,7 @@ export const routes: Routes = [
   },
   {
     path: 'services-form',
-    canActivate: [authGuard],
+    canActivate: [empresaGuard],
     loadComponent: () =>
       import('./features/services-form/services-form.component').then(
         (m) => m.ServicesFormComponent

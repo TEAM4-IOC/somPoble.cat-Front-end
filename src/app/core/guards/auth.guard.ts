@@ -11,3 +11,14 @@ export const authGuard = () => {
     return router.navigate(['/landing']);
   }
 };
+
+export const empresaGuard = () => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  if (authService.isLoggedIn() && authService.isEmpresa()) {
+    return true;
+  } else {
+    return router.navigate(['/landing']);
+  }
+};
