@@ -104,6 +104,29 @@
     "mail": "E-mail",
     "register": "Registra't"
   },
+  "add-services-form": {
+    "nameForm": "Formulari d'alta de nou servei",
+    "serviceName": "Nom del nou servei",
+    "serviceName_placeholder": "Escriu el nom del servei",
+    "serviceName_error": "El nom del servei és obligatori (mínim dos caràcters)",
+    "serviceDescription": "Descripció",
+    "serviceDescription_placeholder": "Escriu una breu descripció del servei",
+    "serviceDescription_eror": "Descripció obligatòria, màxim 200 caracters.",
+    "serviceDuration": "Durada",
+    "serviceDuration_placeholder": "Durada del servei en minuts",
+    "serviceDuration_error": "La durada és obligatòria, s'ha d'informar en minuts.",
+    "servicePrice": "Preu",
+    "servicePrice_placeholder": "Preu del servei en €",
+    "servicePrice_error": "Preu obligatori, màxim dos decimals.",
+    "serviceAvailability": "Horari de disponibilitat",
+    "serviceAvailability_placeholder": "Horari de disponibilitat del servei",
+    "serviceAvailability_error": "Horari obligatori, mínim 4 caràcters.",
+    "serviceReservations": "Límit màxim de reserves",
+    "serviceReservations_placeholder": "Nombre límit de reserves",
+    "serviceReservations_error": "Límit de reserves obligatoris, només s'admeten nombres enters.",
+    "serviceSubmit": "Crear el servei",
+    "formError": "Error al formulari, tots els camps són obligatoris."
+  },
   "notfound-page": {
     "msg": "Ups! Sembla que aquest enllaç no funciona",
     "btn": "Tornar a l'inici"

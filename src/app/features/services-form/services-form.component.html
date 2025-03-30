@@ -1,111 +1,114 @@
 <div class="serveis-form-container">
     <div class="add-service-container">
-        <h1>Nombre Empresa</h1>
-        <h2>Formulario alta nuevo servicio</h2>
+        <h1>{{ empresaNombre }}</h1>
+        <h2>{{ 'add-services-form.nameForm' | translate }}</h2>
         <form (ngSubmit)="onSubmit()" #serviceForm="ngForm">
             <div class="input-group">
-                <label for="nombreServicio" class="form-label">Nombre del servicio:</label>
+                <label for="nombreServicio" class="form-label">{{ 'add-services-form.serviceName' | translate }}:</label>
                 <div class="input-control">
                     <input type="text" 
                         id="nombreServicio" 
                         [(ngModel)]="nombre" 
                         name="nombreServicio"
-                        placeholder='Escribe el nombre' 
+                        placeholder="{{ 'add-services-form.serviceName_placeholder' | translate }}"
                         required 
-                        [pattern]="'^(.*[A-Za-z].*){2,}$'"
+                        [pattern]="'^(?=(.*[A-Za-z]){2,}).*$'"
                         #nombreModel="ngModel">
                 </div>
                     @if (nombreModel.invalid && (nombreModel.touched || nombreModel.dirty)) {
-                    <div class="error">Error en nombre</div>
+                    <div class="error">{{ 'add-services-form.serviceName_error' | translate }}</div>
                     }
             </div>
             <div class="input-group">        
-                <label for="descripcionServicio" class="form-label">Descrición del servicio:</label>
+                <label for="descripcionServicio" class="form-label">{{ 'add-services-form.serviceDescription' | translate }}:</label>
                 <div class="input-control">
                     <textarea 
                         id="descripcionServicio" 
                         [(ngModel)]="descripcion" 
                         name="descripcionServicio"
-                        placeholder='Escribe una breve descripción' 
+                        placeholder="{{ 'add-services-form.serviceDescription_placeholder' | translate }}"
                         required rows="5"
-                        [pattern]="'^(.*[A-Za-z].*){2,}$'"
+                        [pattern]="'^[A-Za-z0-9]{2,200}$'"
                         #descripcionModel="ngModel"></textarea>
                 </div>
                     @if (descripcionModel.invalid && (descripcionModel.touched || descripcionModel.dirty)) {
-                    <div class="error">Error descripción</div>
+                    <div class="error">{{ 'add-services-form.serviceDescription_eror' | translate }}</div>
                     }
             </div>    
             <div class="input-group">
-                <label for="duracionServicio" class="form-label">Duración del servicio:</label>
+                <label for="duracionServicio" class="form-label">{{ 'add-services-form.serviceDuration' | translate }}:</label>
                 <div class="input-control">
                     <input 
                     type="text" 
                     id="duracionServicio"
                     [(ngModel)]="duracion"
                     name="duracionServicio" 
-                    placeholder='minutos' 
+                    placeholder="{{ 'add-services-form.serviceDuration_placeholder' | translate }}"
                     required
                     #duracionModel="ngModel">
                 </div>
                     @if (duracionModel.invalid && (duracionModel.touched || duracionModel.dirty)) {
-                    <div class="error">Error duración</div>
+                    <div class="error">{{ 'add-services-form.serviceDuration_error' | translate }}</div>
                     }
             </div>    
             <div class="input-group">
-                <label for="precioServicio" class="form-label">Precio del servicio:</label>
+                <label for="precioServicio" class="form-label">{{ 'add-services-form.servicePrice' | translate }}:</label>
                 <div class="input-control">
                     <input 
-                        type="number" 
-                        step="any"
+                        type="text" 
                         id="precioServicio"
                         [(ngModel)]="precio"
                         name="precioServicio" 
-                        placeholder='€' 
+                        placeholder="{{ 'add-services-form.servicePrice_placeholder' | translate }}"
                         required
+                        (input)="onInputChange($event)"
+                        (keydown)="validatePrecio($event)"
                         #precioModel="ngModel">
                     </div>
                         @if (precioModel.invalid && (precioModel.touched || precioModel.dirty)) {
-                        <div class="error">Error en precio</div>
+                        <div class="error">{{ 'add-services-form.servicePrice_error' | translate }}</div>
                         }
                 </div>
             <div class="input-group">
-                <label for="horario" class="form-label">Horario de disponibilidad:</label>
+                <label for="horario" class="form-label">{{ 'add-services-form.serviceAvailability' | translate }}:</label>
                 <div class="input-control">
                     <input 
                         type="text" 
                         id="horario" 
                         [(ngModel)]="horario"
                         name="horario" 
-                        placeholder='Horario de disponibilidad' 
+                        placeholder="{{ 'add-services-form.serviceAvailability_placeholder' | translate }}"
                         required
-                        [pattern]="'^.+$'"
+                        [pattern]="'^.{4,}$'"
                         #horarioModel="ngModel">
                     </div>
                         @if (horarioModel.invalid && (horarioModel.touched || horarioModel.dirty)) {
-                            <div class="error">Error en horario</div>
+                            <div class="error">{{ 'add-services-form.serviceAvailability_error' | translate }}</div>
                         }
             </div>
             <div class="input-group">
-                <label for="limiteReserva" class="form-label">Cantidad máxima de reservas:</label>
+                <label for="limiteReserva" class="form-label">{{ 'add-services-form.serviceReservations' | translate }}:</label>
                 <div class="input-control">
                     <input 
-                        type="number" 
+                        type="text" 
                         id="limite" 
                         [(ngModel)]="limiteReservas"
                         name="limiteReserva" 
-                        placeholder='Número límite de reservas'
+                        placeholder="{{ 'add-services-form.serviceReservations_placeholder' | translate }}"
                         required
                         [pattern]="'^[0-9]+$'"
                         #limiteReservasModel="ngModel">
                     </div>
                         @if (limiteReservasModel.invalid && (limiteReservasModel.touched || limiteReservasModel.dirty)) {
-                            <div class="error">Error en horario</div>
+                            <div class="error">{{ 'add-services-form.serviceReservations_error' | translate }}</div>
                         }
-                
             </div>
-            <button type="submit" class="auth-btn" [disabled]="serviceForm.invalid">
-                Envía
+            <button type="submit" class="auth-btn">
+                {{ 'add-services-form.serviceSubmit' | translate }}
               </button>
+              @if (formError) {
+                <div class="error">{{ formError | translate }}</div>
+              }
         </form>
     </div>
 </div>

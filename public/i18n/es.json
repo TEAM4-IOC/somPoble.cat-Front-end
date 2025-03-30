@@ -104,6 +104,29 @@
     "mail": "E-mail",
     "register": "Regístrate"
   },
+  "add-services-form": {
+    "nameForm": "Formulario alta de nuevo servicio",
+    "serviceName": "Nombre del nuevo servicio",
+    "serviceName_placeholder": "Escribe el nombre del servicio",
+    "serviceName_error": "El nombre del servicio es obligatorio (mínimo 2 caracteres).",
+    "serviceDescription": "Descripción",
+    "serviceDescription_placeholder": "Escribe una breve descripción del servicio",
+    "serviceDescription_eror": "Descripción obligatoria, máximo 200 caracteres.",
+    "serviceDuration": "Duración",
+    "serviceDuration_placeholder": "Duración del servicio en minutos",
+    "serviceDuration_error": "La duración es obligatoria, debe informarse en minutos.",
+    "servicePrice": "Precio",
+    "servicePrice_placeholder": "Precio del servicio en €",
+    "servicePrice_error": "Precio obligatorio, máximo dos decimales.",
+    "serviceAvailability": "Horario de disponibilidad",
+    "serviceAvailability_placeholder": "Horario de disponibilidad del servicio",
+    "serviceAvailability_error": "Horario obligatorio, mínimo 4 caracteres.",
+    "serviceReservations": "Límite máximo de reservas",
+    "serviceReservations_placeholder": "Número límite de reservas",
+    "serviceReservations_error": "Límite de reservas obligatorio, solo admite números enteros.",
+    "serviceSubmit": "Crear el servicio",
+    "formError": "Error en el formulario, todos los campos son obligatorios."
+  },
   "notfound-page": {
     "msg": "Ups! Parece que este enlace no funciona",
     "btn": "Volver a inicio"

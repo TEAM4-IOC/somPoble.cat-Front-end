@@ -18,7 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class ServicesFormComponent implements OnInit {
   
-
+  empresaNombre: string = 'Nombre Empresa';
   servicio$!: Observable<ServicioData[]>;
   
   formError = '';
@@ -41,6 +41,9 @@ export class ServicesFormComponent implements OnInit {
       try {
         const session = JSON.parse(sessionStr);
         this.idEmpresa = session.usuario?.empresas?.idEmpresa || 0;
+        const empresa = session.usuario?.empresas;
+        this.empresaNombre = empresa?.actividad ?? empresa?.nombre ?? 'Nombre Empresa';
+
       } catch (err) {
         console.error('[ServicioFormComponent] Error parseando session:', err);
       }
@@ -54,8 +57,20 @@ export class ServicesFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (!this.nombre || !this.descripcion || !this.duracion || !this.precio || this.limiteReservas === null) {
-      this.formError = 'Todos los campos son obligatorios.';
+    if (
+      !this.nombre?.trim() || 
+      !this.descripcion?.trim() || 
+      !this.duracion?.trim() || 
+      !this.horario?.trim() ||
+      this.precio === null || 
+      this.precio === undefined || 
+      this.limiteReservas === null || 
+      this.limiteReservas === undefined ||
+      this.limiteReservas <= 0 ||
+      this.precio === ''
+    ) {
+      this.formError = 'add-services-form.formError';
+      console.log(this.formError);
       return;
     }
     this.formError = '';
@@ -97,5 +112,43 @@ export class ServicesFormComponent implements OnInit {
 
   editingField(field: string): boolean {
     return this.editingKey === field;
+  }
+
+  //Validaciones campo precio
+  validatePrecio(event: KeyboardEvent): void {
+    const inputChar = event.key;
+    const currentValue = this.precio ?? '';
+
+    if (
+      !/^\d$/.test(inputChar) &&
+      inputChar !== '.' &&
+      inputChar !== ',' &&
+      inputChar !== 'Backspace' &&
+      inputChar !== 'ArrowLeft' &&
+      inputChar !== 'ArrowRight'
+    ) {
+      event.preventDefault();
+      return;
+    }
+    if (inputChar === 'Backspace') {
+      return;
+    }
+    if (inputChar === '.' && currentValue.includes('.')) {
+      event.preventDefault();
+      return;
+    }
+    if (currentValue.includes('.') && currentValue.split('.')[1].length >= 2) {
+      event.preventDefault();
+    }
+  }
+  
+  onInputChange(event: any): void {
+    let inputValue = event.target.value.replace(',', '.');
+    const [integer, decimal] = inputValue.split('.');
+  
+    if (decimal && decimal.length > 2) {
+      inputValue = `${integer}.${decimal.substring(0, 2)}`;
+    }
+    this.precio = inputValue;
   }
 }
