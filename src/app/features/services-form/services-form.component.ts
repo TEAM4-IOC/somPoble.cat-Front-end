@@ -40,7 +40,7 @@ export class ServicesFormComponent implements OnInit {
     if (sessionStr) {
       try {
         const session = JSON.parse(sessionStr);
-        this.idEmpresa = session.empresa?.idEmpresa || 0;
+        this.idEmpresa = session.usuario?.empresas?.idEmpresa || 0;
       } catch (err) {
         console.error('[ServicioFormComponent] Error parseando session:', err);
       }

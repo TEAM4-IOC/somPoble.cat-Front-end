@@ -77,4 +77,16 @@ export class AuthService {
   
     return false;
   }
+
+  getEmpresaId(): number | null {
+    const session = this.localStorageService.getItem('session');
+  
+    if (session && typeof session === 'object') {
+      const sessionData = session as { usuario?: { empresas?: { idEmpresa?: number } } };
+      
+      return sessionData.usuario?.empresas?.idEmpresa ?? null;
+    }
+    
+    return null;
+  }
 }
