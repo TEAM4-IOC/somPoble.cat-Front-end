@@ -2,6 +2,7 @@
     <div class="add-service-container">
       @if (servicio$ | async; as servicios) {
         @if (!isEditMode) {
+          <!-- MODO CREACIÓN -->
           <h1>{{ empresaNombre }}</h1>
           <h2>{{ 'add-services-form.nameForm' | translate }}</h2>
           <form (ngSubmit)="onSubmit()" #serviceForm="ngForm">
@@ -122,7 +123,7 @@
             }
           </form>
         } @else {
-          <!-- EDICIONES -->
+          <!-- MODO EDICIÓN -->
           <h1>{{ empresaNombre }}</h1>
           <h2>{{ 'add-services-form.nameForm_edit' | translate }}</h2>
           <div class="read-only-data">
@@ -130,8 +131,8 @@
             <div class="data-field">
               <label>{{ 'add-services-form.serviceName' | translate }}:</label>
               @if (!editingField('nombre')) {
-                <span>{{ servicios[0].nombre }}</span>
-                <button class="icon-btn" (click)="startEditing('nombre', servicios[0].nombre)">
+                <span>{{ nombre }}</span>
+                <button class="icon-btn" (click)="startEditing('nombre', nombre)">
                   <i class="fas fa-edit"></i>
                 </button>
               } @else {
@@ -151,8 +152,8 @@
             <div class="data-field">
               <label>{{ 'add-services-form.serviceDescription' | translate }}:</label>
               @if (!editingField('descripcion')) {
-                <span>{{ servicios[0].descripcion }}</span>
-                <button class="icon-btn" (click)="startEditing('descripcion', servicios[0].descripcion)">
+                <span>{{ descripcion }}</span>
+                <button class="icon-btn" (click)="startEditing('descripcion', descripcion)">
                   <i class="fas fa-edit"></i>
                 </button>
               } @else {
@@ -172,8 +173,8 @@
             <div class="data-field">
               <label>{{ 'add-services-form.serviceDuration' | translate }}:</label>
               @if (!editingField('duracion')) {
-                <span>{{ servicios[0].duracion }}</span>
-                <button class="icon-btn" (click)="startEditing('duracion', servicios[0].duracion)">
+                <span>{{ duracion }}</span>
+                <button class="icon-btn" (click)="startEditing('duracion', duracion)">
                   <i class="fas fa-edit"></i>
                 </button>
               } @else {
@@ -193,8 +194,8 @@
             <div class="data-field">
               <label>{{ 'add-services-form.servicePrice' | translate }}:</label>
               @if (!editingField('precio')) {
-                <span>{{ servicios[0].precio }}</span>
-                <button class="icon-btn" (click)="startEditing('precio', servicios[0].precio)">
+                <span>{{ precio }}</span>
+                <button class="icon-btn" (click)="startEditing('precio', precio)">
                   <i class="fas fa-edit"></i>
                 </button>
               } @else {
@@ -214,8 +215,8 @@
             <div class="data-field">
               <label>{{ 'add-services-form.serviceAvailability' | translate }}:</label>
               @if (!editingField('horario')) {
-                <span>{{ servicios[0].horario }}</span>
-                <button class="icon-btn" (click)="startEditing('horario', servicios[0].horario)">
+                <span>{{ horario }}</span>
+                <button class="icon-btn" (click)="startEditing('horario', horario)">
                   <i class="fas fa-edit"></i>
                 </button>
               } @else {
@@ -235,8 +236,8 @@
             <div class="data-field">
               <label>{{ 'add-services-form.serviceReservations' | translate }}:</label>
               @if (!editingField('limiteReservas')) {
-                <span>{{ servicios[0].limiteReservas }}</span>
-                <button class="icon-btn" (click)="startEditing('limiteReservas', servicios[0].limiteReservas.toString())">
+                <span>{{ limiteReservas }}</span>
+                <button class="icon-btn" (click)="startEditing('limiteReservas', limiteReservas!.toString())">
                   <i class="fas fa-edit"></i>
                 </button>
               } @else {
@@ -252,16 +253,12 @@
                 }
               }
             </div>
-            <!-- Botón de guardar cambios -->
             <button class="auth-btn" (click)="onSubmit()">
               {{ 'add-services-form.serviceSubmit_edit' | translate }}
             </button>
-
-            <!-- Botón de eliminar servicio -->
-          <button class="delete-btn" (click)="deleteServicio(servicios[0].idServicio)">
-            <i class="fas fa-trash"></i> {{ 'add-services-form.serviceDelete' | translate }}
-          </button>
-          
+            <button *ngIf="idServicio !== null" class="delete-btn" (click)="deleteServicio(idServicio!)">
+              <i class="fas fa-trash"></i> {{ 'add-services-form.serviceDelete' | translate }}
+            </button>
           </div>
         }
       } @else {

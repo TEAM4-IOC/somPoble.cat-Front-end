@@ -14,19 +14,18 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true,
   imports: [CommonModule, FormsModule, TranslateModule, RouterModule],
   templateUrl: './services-form.component.html',
-  styleUrl: './services-form.component.scss',
+  styleUrls: ['./services-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ServicesFormComponent implements OnInit {
+  idServicio: number | null = null; // ID del servei obtingut de la URL
+  editingKey: string | null = null; // Camp en edició
+  tempValue: string | null = null;  // Valor temporal per a l'edició
+  isEditMode: boolean = false; // Determina si és mode edició
 
-  editingKey: string | null = null; // Campo en edición
-  tempValue: string | null = null;  // Valor temporal
-  nombreEX: string = "Ejemplo de servicio"; // Simulación de datos
-  isEditMode: boolean = true; // Modo edición activado si hay ID en la URL
-  
   empresaNombre: string = 'Nombre Empresa';
   servicio$!: Observable<ServicioData[]>;
-  
+
   formError = '';
   nombre = '';
   descripcion = '';
@@ -34,11 +33,15 @@ export class ServicesFormComponent implements OnInit {
   precio = '';
   horario = '';
   limiteReservas: number | null = null;
-  idEmpresa! : number;
+  idEmpresa!: number;
 
-  constructor(private servicioState: ServiceStateService) {}
+  constructor(
+    private servicioState: ServiceStateService,
+    private route: ActivatedRoute // Per obtenir l'ID de la URL
+  ) {}
 
   ngOnInit(): void {
+    // Obtenim l'empresa de la sessió
     const sessionStr = localStorage.getItem('session');
     if (sessionStr) {
       try {
@@ -46,33 +49,60 @@ export class ServicesFormComponent implements OnInit {
         this.idEmpresa = session.usuario?.empresas?.idEmpresa || 0;
         const empresa = session.usuario?.empresas;
         this.empresaNombre = empresa?.actividad ?? empresa?.nombre ?? 'Nombre Empresa';
-
       } catch (err) {
         console.error('[ServicioFormComponent] Error parseando session:', err);
       }
     }
 
-    if (this.idEmpresa) {
-      this.servicioState.loadServiciosByEmpresaId(this.idEmpresa);
-    }
+    // Carreguem els serveis inicialment
+    this.servicioState.loadServicios();
 
+    // Obtenim l'ID de la URL i carreguem el servei
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.idServicio = +params['id'];
+        this.isEditMode = true; // Activem el mode edició
+        this.loadServicio(this.idServicio);
+      } else {
+        console.warn('No s\'ha especificat cap ID a la URL.');
+        this.isEditMode = false; // Mode creació
+      }
+    });
+
+    // Assignem l'observable dels serveis
     this.servicio$ = this.servicioState.service$;
-
-    
   }
 
+  // Mètode per carregar el servei
+  loadServicio(id: number): void {
+    this.servicioState.getServicioById(id).subscribe(servicio => {
+      if (servicio) {
+        console.log('Servei carregat:', servicio);
+        this.nombre = servicio.nombre;
+        this.descripcion = servicio.descripcion;
+        this.duracion = servicio.duracion;
+        this.precio = servicio.precio;
+        this.limiteReservas = servicio.limiteReservas;
+        this.horario = servicio.horario;
+      } else {
+        console.warn(`No s'ha trobat cap servei amb l'ID: ${id}`);
+      }
+    });
+  }
+
+  // Validació i enviament del formulari
   onSubmit(): void {
     if (
-      !this.nombre?.trim() || 
-      !this.descripcion?.trim() || 
-      !this.duracion?.trim() || 
-      !this.horario?.trim() ||
+      !this.nombre?.trim() || // Nom no pot estar buit
+      !this.descripcion?.trim() || // Descripció no pot estar buida
+      !this.duracion?.trim() || // Duració no pot estar buida
+      !this.horario?.trim() || // Horari no pot estar buit
       this.precio === null || 
       this.precio === undefined || 
       this.limiteReservas === null || 
       this.limiteReservas === undefined ||
-      this.limiteReservas <= 0 ||
-      this.precio === ''
+      this.limiteReservas <= 0 || // Límit de reserves ha de ser > 0
+      this.precio === '' // Preu no pot estar buit
     ) {
       this.formError = 'add-services-form.formError';
       console.log(this.formError);
@@ -91,10 +121,11 @@ export class ServicesFormComponent implements OnInit {
       },
       empresa: this.idEmpresa
     };
-    console.log(payload); // Verificación envío datos FORM
-    //this.servicioState.createService(payload, this.idEmpresa);     --> A descomentar
+    console.log(payload); // Verificació de l'enviament de dades
+    // this.servicioState.createService(payload, this.idEmpresa); // Descomentar per enviar al backend
   }
 
+  // Funcions per a l'edició
   startEditing(field: string, currentValue: string): void {
     this.editingKey = field;
     this.tempValue = currentValue;
@@ -106,12 +137,12 @@ export class ServicesFormComponent implements OnInit {
       // Convertir el valor a número abans de guardar-lo
       const numericValue = parseInt(value, 10);
       if (!isNaN(numericValue)) {
-        this.servicioState.updateServiceField({ [field]: numericValue });
+        (this as any)[field] = numericValue; // Assignació dinàmica
       } else {
         console.error('El valor de limiteReservas no és un número vàlid:', value);
       }
     } else {
-      this.servicioState.updateServiceField({ [field]: value });
+      (this as any)[field] = value; // Assignació dinàmica
     }
     this.editingKey = null;
     this.tempValue = '';
@@ -122,25 +153,27 @@ export class ServicesFormComponent implements OnInit {
     this.tempValue = '';
   }
 
-  deleteServicio(idServicio: number): void {
-    this.servicioState.deleteService(idServicio);
-  }
-
   editingField(field: string): boolean {
     return this.editingKey === field;
   }
 
-  //Validaciones campo precio
+  // Mètode per eliminar un servei
+  public deleteServicio(idServicio: number): void {
+    console.log('Eliminant servei amb ID:', idServicio);
+    this.servicioState.deleteServicio(idServicio);
+  }
+
+  // Validacions del camp preu
   validatePrecio(event: KeyboardEvent): void {
     const inputChar = event.key;
     const currentValue = this.precio ?? '';
 
     if (
-      !/^\d$/.test(inputChar) &&
-      inputChar !== '.' &&
-      inputChar !== ',' &&
-      inputChar !== 'Backspace' &&
-      inputChar !== 'ArrowLeft' &&
+      !/^\d$/.test(inputChar) && // Només números
+      inputChar !== '.' && // Permetre el punt decimal
+      inputChar !== ',' && // Permetre la coma
+      inputChar !== 'Backspace' && // Permetre esborrar
+      inputChar !== 'ArrowLeft' && // Permetre fletxes
       inputChar !== 'ArrowRight'
     ) {
       event.preventDefault();
@@ -157,11 +190,11 @@ export class ServicesFormComponent implements OnInit {
       event.preventDefault();
     }
   }
-  
+
   onInputChange(event: any): void {
     let inputValue = event.target.value.replace(',', '.');
     const [integer, decimal] = inputValue.split('.');
-  
+
     if (decimal && decimal.length > 2) {
       inputValue = `${integer}.${decimal.substring(0, 2)}`;
     }

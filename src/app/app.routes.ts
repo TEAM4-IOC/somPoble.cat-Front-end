@@ -26,7 +26,15 @@ export const routes: Routes = [
   },
   {
     path: 'services-form',
-    canActivate: [empresaGuard],
+    //canActivate: [empresaGuard],
+    loadComponent: () =>
+      import('./features/services-form/services-form.component').then(
+        (m) => m.ServicesFormComponent
+      ),
+  },
+  {
+    path: 'services-form/:id',
+    //canActivate: [empresaGuard],
     loadComponent: () =>
       import('./features/services-form/services-form.component').then(
         (m) => m.ServicesFormComponent

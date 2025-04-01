@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiService } from './api.service';
 import { ServicioData } from '../models/ServicioData.interface';
 import { CreateServicePayload } from '../models/create-service-payload.interface';
+import { map } from 'rxjs/operators';
 
 function isEmptyService(servicio: ServicioData): boolean {
   return !servicio || !servicio.nombre || servicio.nombre.trim() === '';
@@ -12,6 +13,8 @@ function isEmptyService(servicio: ServicioData): boolean {
   providedIn: 'root'
 })
 export class ServiceStateService {
+
+  private readonly mockServiciosUrl = '/assets/mock-servicios.json'; // Ruta al fitxer JSON
   private serviceSubject: BehaviorSubject<ServicioData[]>;
   public service$: Observable<ServicioData[]>;
 
@@ -89,7 +92,7 @@ export class ServiceStateService {
       }
     }
 
-  deleteService(id: number): void {
+  deleteServicio(id: number): void {
     console.log('[ServiceStateService] deleteService => id:', id);
     this.apiService.deleteServicio(id).subscribe({
       next: () => {
@@ -111,6 +114,23 @@ export class ServiceStateService {
       const valid = servicios.filter(s => !isEmptyService(s));
       this.saveAndEmit(valid);
     }
+  }
+
+  // Mètode per obtenir un servei pel seu ID
+  getServicioById(id: number): Observable<ServicioData | undefined> {
+    return this.service$.pipe(
+      map(servicios => {
+        console.log('Serveis disponibles:', servicios); // Verifica els serveis carregats
+        return servicios.find(servicio => servicio.idServicio === id);
+      })
+    );
+  }
+
+  // Mètode per carregar serveis des de l'API i actualitzar l'estat
+  loadServicios(): void {
+    this.apiService.getServicios().subscribe(servicios => {
+      this.serviceSubject.next(servicios); // Actualitza l'estat amb els serveis carregats
+    });
   }
 }
 
