@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-services-form',
@@ -17,6 +18,11 @@ import { TranslateModule } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ServicesFormComponent implements OnInit {
+
+  editingKey: string | null = null; // Campo en edición
+  tempValue: string | null = null;  // Valor temporal
+  nombreEX: string = "Ejemplo de servicio"; // Simulación de datos
+  isEditMode: boolean = true; // Modo edición activado si hay ID en la URL
   
   empresaNombre: string = 'Nombre Empresa';
   servicio$!: Observable<ServicioData[]>;
@@ -29,9 +35,6 @@ export class ServicesFormComponent implements OnInit {
   horario = '';
   limiteReservas: number | null = null;
   idEmpresa! : number;
-
-  editingKey: string | null = null;
-  tempValue = '';
 
   constructor(private servicioState: ServiceStateService) {}
 
@@ -54,6 +57,8 @@ export class ServicesFormComponent implements OnInit {
     }
 
     this.servicio$ = this.servicioState.service$;
+
+    
   }
 
   onSubmit(): void {
@@ -96,7 +101,18 @@ export class ServicesFormComponent implements OnInit {
   }
 
   confirmEditing(field: string): void {
-    this.servicioState.updateServiceField({ [field]: this.tempValue });
+    const value = this.tempValue ?? ''; // Assegura que no sigui null
+    if (field === 'limiteReservas') {
+      // Convertir el valor a número abans de guardar-lo
+      const numericValue = parseInt(value, 10);
+      if (!isNaN(numericValue)) {
+        this.servicioState.updateServiceField({ [field]: numericValue });
+      } else {
+        console.error('El valor de limiteReservas no és un número vàlid:', value);
+      }
+    } else {
+      this.servicioState.updateServiceField({ [field]: value });
+    }
     this.editingKey = null;
     this.tempValue = '';
   }

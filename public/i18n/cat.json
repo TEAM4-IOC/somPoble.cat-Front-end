@@ -125,7 +125,10 @@
     "serviceReservations_placeholder": "Nombre límit de reserves",
     "serviceReservations_error": "Límit de reserves obligatoris, només s'admeten nombres enters.",
     "serviceSubmit": "Crear el servei",
-    "formError": "Error al formulari, tots els camps són obligatoris."
+    "formError": "Error al formulari, tots els camps són obligatoris.",
+    "nameForm_edit": "Formulari de modicicació de servei",
+    "serviceSubmit_edit": "Guardar els canvis",
+    "serviceDelete": "Elimina el servei"
   },
   "notfound-page": {
     "msg": "Ups! Sembla que aquest enllaç no funciona",

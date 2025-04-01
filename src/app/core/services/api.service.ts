@@ -61,7 +61,7 @@ export class ApiService {
       .pipe(map(response => response.servicio));
   }
 
-  updateServicio(servicioId: number, partial: Partial<EmpresaData>): Observable<ServicioData> {
+  updateServicio(servicioId: number, partial: Partial<ServicioData>): Observable<ServicioData> {
     return this.http.put(`${this.servicioUrl}/${servicioId}`, partial, { responseType: 'text' })
       .pipe(
         switchMap(() => this.getServicioByIdentificador(servicioId))

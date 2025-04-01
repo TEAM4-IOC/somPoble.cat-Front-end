@@ -125,7 +125,10 @@
     "serviceReservations_placeholder": "Número límite de reservas",
     "serviceReservations_error": "Límite de reservas obligatorio, solo admite números enteros.",
     "serviceSubmit": "Crear el servicio",
-    "formError": "Error en el formulario, todos los campos son obligatorios."
+    "formError": "Error en el formulario, todos los campos son obligatorios.",
+    "nameForm_edit": "Formulario de modificación de servicio",
+    "serviceSubmit_edit": "Guardar los cambios",
+    "serviceDelete": "Elimina el servicio"
   },
   "notfound-page": {
     "msg": "Ups! Parece que este enlace no funciona",

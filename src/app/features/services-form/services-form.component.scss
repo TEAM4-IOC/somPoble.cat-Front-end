@@ -99,7 +99,7 @@ input::placeholder {
   box-shadow: 0 0 0.25rem $white;
 }
 
-.auth-btn {
+.auth-btn, .delete-btn {
   width: 100%;
   padding: 0.625rem;
   background: transparent;
@@ -114,6 +114,18 @@ input::placeholder {
 
 .auth-btn:hover {
   background: $btn-hover-bg;
+}
+.delete-btn {
+  display: flex; /* Utilitza flexbox per alinear contingut */
+  align-items: center; /* Centra verticalment l'icona i el text */
+  justify-content: center; /* Centra el contingut dins del botó */
+  color: #dc143c!important; /* Color del text */
+  border: 2px solid #dc143c!important; /* Color del contorn */
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  gap: 8px; /* Espai entre l'icona i el text */
 }
 
 .role-selection select {
