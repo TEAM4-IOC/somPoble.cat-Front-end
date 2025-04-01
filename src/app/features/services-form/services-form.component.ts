@@ -132,18 +132,14 @@ export class ServicesFormComponent implements OnInit {
   }
 
   confirmEditing(field: string): void {
-    const value = this.tempValue ?? ''; // Assegura que no sigui null
-    if (field === 'limiteReservas') {
-      // Convertir el valor a número abans de guardar-lo
-      const numericValue = parseInt(value, 10);
-      if (!isNaN(numericValue)) {
-        (this as any)[field] = numericValue; // Assignació dinàmica
-      } else {
-        console.error('El valor de limiteReservas no és un número vàlid:', value);
-      }
+    if (this.tempValue !== null && this.tempValue.trim() !== '') {
+      // Assigna el valor temporal a la propietat corresponent del component
+      (this as any)[field] = this.tempValue;
     } else {
-      (this as any)[field] = value; // Assignació dinàmica
+      console.warn(`El valor temporal per al camp '${field}' és buit o no vàlid.`);
     }
+  
+    // Reinicia els valors d'edició
     this.editingKey = null;
     this.tempValue = '';
   }

@@ -17,7 +17,7 @@
                   name="nombreServicio"
                   placeholder="{{ 'add-services-form.serviceName_placeholder' | translate }}"
                   required
-                  [pattern]="'^(?=(.*[A-Za-z]){2,}).*$'"
+                  pattern="^(?=(.*[A-Za-z]){2,}).*$"
                   #nombreModel="ngModel"
                 />
               </div>
@@ -35,7 +35,7 @@
                   placeholder="{{ 'add-services-form.serviceDescription_placeholder' | translate }}"
                   required
                   rows="5"
-                  [pattern]="'^[A-Za-z0-9]{2,200}$'"
+                  pattern="^[A-Za-zÀ-ÿ0-9 .,!?()'\n\r-]{2,200}$"
                   #descripcionModel="ngModel"
                 ></textarea>
               </div>
@@ -53,6 +53,7 @@
                   name="duracionServicio"
                   placeholder="{{ 'add-services-form.serviceDuration_placeholder' | translate }}"
                   required
+                  pattern="^[0-9]+$"
                   #duracionModel="ngModel"
                 />
               </div>
@@ -89,7 +90,7 @@
                   name="horario"
                   placeholder="{{ 'add-services-form.serviceAvailability_placeholder' | translate }}"
                   required
-                  [pattern]="'^.{4,}$'"
+                  pattern="^.{4,}$"
                   #horarioModel="ngModel"
                 />
               </div>
@@ -107,7 +108,7 @@
                   name="limiteReserva"
                   placeholder="{{ 'add-services-form.serviceReservations_placeholder' | translate }}"
                   required
-                  [pattern]="'^[0-9]+$'"
+                  pattern="^[0-9]+$"
                   #limiteReservasModel="ngModel"
                 />
               </div>
@@ -136,7 +137,13 @@
                   <i class="fas fa-edit"></i>
                 </button>
               } @else {
-                <input type="text" [(ngModel)]="tempValue" required minlength="2" #nombreEdit="ngModel" />
+                <input
+                  type="text"
+                  [(ngModel)]="tempValue"
+                  required
+                  pattern="^(?=(.*[A-Za-z]){2,}).*$"
+                  #nombreEdit="ngModel"
+                />
                 <button class="icon-btn" (click)="confirmEditing('nombre')">
                   <i class="fas fa-check"></i>
                 </button>
@@ -157,7 +164,13 @@
                   <i class="fas fa-edit"></i>
                 </button>
               } @else {
-                <textarea [(ngModel)]="tempValue" required rows="5" #descripcionEdit="ngModel"></textarea>
+                <textarea
+                  [(ngModel)]="tempValue"
+                  required
+                  rows="5"
+                  pattern="^[A-Za-z0-9 ]{2,200}$"
+                  #descripcionEdit="ngModel"
+                ></textarea>
                 <button class="icon-btn" (click)="confirmEditing('descripcion')">
                   <i class="fas fa-check"></i>
                 </button>
@@ -178,7 +191,13 @@
                   <i class="fas fa-edit"></i>
                 </button>
               } @else {
-                <input type="text" [(ngModel)]="tempValue" required #duracionEdit="ngModel" />
+                <input
+                  type="text"
+                  [(ngModel)]="tempValue"
+                  required
+                  pattern="^[0-9]+$"
+                  #duracionEdit="ngModel"
+                />
                 <button class="icon-btn" (click)="confirmEditing('duracion')">
                   <i class="fas fa-check"></i>
                 </button>
@@ -199,7 +218,14 @@
                   <i class="fas fa-edit"></i>
                 </button>
               } @else {
-                <input type="text" [(ngModel)]="tempValue" required #precioEdit="ngModel" />
+                <input
+                  type="text"
+                  [(ngModel)]="tempValue"
+                  required
+                  (input)="onInputChange($event)"
+                  (keydown)="validatePrecio($event)"
+                  #precioEdit="ngModel"
+                />
                 <button class="icon-btn" (click)="confirmEditing('precio')">
                   <i class="fas fa-check"></i>
                 </button>
@@ -220,7 +246,13 @@
                   <i class="fas fa-edit"></i>
                 </button>
               } @else {
-                <input type="text" [(ngModel)]="tempValue" required #horarioEdit="ngModel" />
+                <input
+                  type="text"
+                  [(ngModel)]="tempValue"
+                  required
+                  pattern="^.{4,}$"
+                  #horarioEdit="ngModel"
+                />
                 <button class="icon-btn" (click)="confirmEditing('horario')">
                   <i class="fas fa-check"></i>
                 </button>
@@ -241,7 +273,13 @@
                   <i class="fas fa-edit"></i>
                 </button>
               } @else {
-                <input type="text" [(ngModel)]="tempValue" required #limiteReservasEdit="ngModel" />
+                <input
+                  type="text"
+                  [(ngModel)]="tempValue"
+                  required
+                  pattern="^[0-9]+$"
+                  #limiteReservasEdit="ngModel"
+                />
                 <button class="icon-btn" (click)="confirmEditing('limiteReservas')">
                   <i class="fas fa-check"></i>
                 </button>
