@@ -88,10 +88,11 @@
                   id="horario"
                   [(ngModel)]="horario"
                   name="horario"
-                  placeholder="{{ 'add-services-form.serviceAvailability_placeholder' | translate }}"
+                  placeholder="{{ 'add-services-form.serviceAvailability_placeholder' | translate }} e: 09:00-18:00"
                   required
                   pattern="^([01]\d|2[0-3]):([0-5]\d)-([01]\d|2[0-3]):([0-5]\d)$"
                   #horarioModel="ngModel"
+                  (input)="validateHorario($event)"
                 />
               </div>
               @if (horarioModel.invalid && (horarioModel.touched || horarioModel.dirty)) {
