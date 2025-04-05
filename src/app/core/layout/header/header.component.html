@@ -14,7 +14,23 @@
     <div class="d-flex col-4 align-items-center justify-content-end right-content">
 
         <!-- Si el usuario es tipoUsuario 1, mostrar "Particular" -->
-        <span *ngIf="isLoggedIn && tipoUsuario === 1" class="user-label">Particular</span>
+        <div class="user-menu-wrapper">
+            <!-- Menú desplegable per a desktop i tablets -->
+            <span 
+              *ngIf="isLoggedIn && tipoUsuario === 1" 
+              class="user-label d-flex align-items-center" 
+              (click)="toggleUserMenu()">
+              Particular
+              <i class="fa-solid fa-caret-down ms-2 menu-icon" [class.rotate]="isUserMenuOpen"></i>
+            </span>
+            <div *ngIf="isUserMenuOpen" class="user-menu">
+              <ul class="list-unstyled bg-dark text-white p-3">
+                <li>Editar perfil</li>
+                <li>Ver todos los servicios</li>
+                <li>Mis reservas</li>
+              </ul>
+            </div>
+          </div>
 
         <!-- Si el usuario es tipoUsuario 2 y tipoEmpresa === 1, mostrar "Empresa" -->
         <span *ngIf="isLoggedIn && tipoUsuario === 2 && tipoEmpresa === 1" class="user-label">Empresa</span>
@@ -52,15 +68,26 @@
         <div class="menu-wrapper">
             <!-- Botón menú hamburguesa -->
             <div class="hamburguer-menu d-flex justify-content-center align-items-center text-white"
-                 (click)="toggleMenu($event)">
+                (click)="toggleMenu($event)">
                 <i class="fa-solid fa-bars fs-2"></i>
             </div>
-        
+
             <!-- Menú oculto, solo aparece cuando isMenuOpen es true -->
             <div *ngIf="isMenuOpen" class="menu-container">
                 <ul class="list-unstyled bg-dark text-white p-3">
-                    <li>Prueba</li>
-                    <li>Prueba</li>
+                    <li class="menu-title">Pdte fijar opciones,</li>
+                    <li class="menu-title">traducir y restringir</li>
+                    <li class="menu-separator"></li>
+                    <li class="menu-title">Opciones de usuario</li>
+                    <li>Editar perfil</li>
+                    <li>Ver todos los servicios</li>
+                    <li>Mis reservas</li>
+                    <li class="menu-separator"></li>
+                    <li class="menu-title">Opciones de empresas</li>
+                    <li>Editar perfil</li>
+                    <li>Ver/editar mis servicios</li>
+                    <li>Crear servicio</li>
+                    <li>Mis reservas</li>
                 </ul>
             </div>
         </div>

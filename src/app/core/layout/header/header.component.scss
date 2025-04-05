@@ -112,7 +112,7 @@ header {
 .menu-container {
     position: absolute;
     top: 100%;
-    right: 0;
+    right: -7px;
     width: max-content;
     min-width: 150px;
     background: #212529;
@@ -127,14 +127,74 @@ header {
     list-style: none;
 }
 
+/* Proba estils menú usuaris*/
+.user-menu-wrapper {
+    position: relative;
+}
+
+.user-label {
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+}
+
+.user-label i {
+    transition: transform 0.3s ease;
+}
+
+.user-label i.rotate {
+    transform: rotate(180deg);
+}
+
+.menu-container,
+.user-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: max-content;
+    min-width: 150px;
+    background: #212529;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000;
+    padding: 5px;
+}
+
+.user-menu ul {
+    margin: 0;
+    padding: 0 !important;
+}
+
+.user-menu li {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.user-menu li:hover {
+    background: #343a40;
+}
+
+
+
 /* Tablets i phablets */
 @media only screen and (min-width: 576px) and (max-width: 767px) {
-    /*  Sin cambios por ahora */
+    .menu-wrapper {
+        display: none;
+        /* Oculta el menú hamburguesa */
+    }
+
+    .user-menu-wrapper {
+        display: block;
+        /* Mostra el menú desplegable */
+    }
 }
 
 /* Telèfons */
 @media only screen and (max-width: 575px) {
-    
+
     .main-menu {
         display: none !important;
     }
@@ -193,5 +253,29 @@ header {
     .hamburguer-menu {
         position: relative;
         left: 10px;
+    }
+
+    .menu-title {
+        font-weight: bold;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+        color: #ffffffb3;
+    }
+
+    .menu-separator {
+        border-top: 1px solid #ffffff33;
+        margin: 0.5rem 0;
+    }
+
+    .menu-icon,
+    .user-menu {
+        display: none;
+    }
+
+    .menu-container li:hover,
+    .user-menu li:hover {
+        background: #343a40;
+        transition: background 0.3s ease;
     }
 }

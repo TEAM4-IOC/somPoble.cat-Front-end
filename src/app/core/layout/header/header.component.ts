@@ -20,6 +20,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   isLoggedIn = false;
   tipoUsuario: number | null = null;
   tipoEmpresa: number | null = null;
+  isUserMenuOpen: boolean = false;
+
 
   constructor(
     private i18nService: I18nService,
@@ -67,6 +69,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     event.stopPropagation(); // Evita que el clic se propague y cierre el menú inmediatamente
     this.isMenuOpen = !this.isMenuOpen;
     this.cdr.detectChanges();
+  }
+
+  toggleUserMenu(): void {
+    this.isUserMenuOpen = !this.isUserMenuOpen;
   }
 
   ngAfterViewInit() {
