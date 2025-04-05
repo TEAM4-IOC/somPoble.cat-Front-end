@@ -1,13 +1,18 @@
 export interface ServicioData {
   idServicio: number;
-  idEmpresa: number;
   nombre: string;
   descripcion: string;
-  duracion: string;
-  precio: string;
+  duracion: number;
+  precio: number;
   limiteReservas: number;
-  horario: string;
-  fechaAlta: string;
-  fechaModificacion: string;
-  reservasts: any[];
+  fechaAltaServicio: string;
+  fechaModificacionServicio: string;
+  empresaId: number;
+  idHorario: number;
+  diasLaborables: string;
+  horarioInicio: string;
+  horarioFin: string;
+  fechaAltaHorario: string;
+  fechaModificacionHorario: string;
+  identificadorFiscal: string;
 }

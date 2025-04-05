@@ -37,9 +37,9 @@ export class ServiceStateService {
   loadServiciosByEmpresaId(empresaId: number): void {
     console.log('[ServiceStateService] loadServiciosByEmpresaId =>', empresaId);
     this.apiService.getServicios().subscribe({
-      next: (servicios: any[]) => {
+      next: (servicios: ServicioData[]) => {
         console.log('[ServiceStateService] GET servicios success:', servicios);
-        const empresaServices = servicios.filter(s => s.idEmpresa === empresaId);
+        const empresaServices = servicios.filter(s => s.empresaId === empresaId);
         if (empresaServices.length > 0) {
           this.saveAndEmit(empresaServices);
           console.log('[ServiceStateService] Servicios encontrados:', empresaServices);
@@ -70,27 +70,27 @@ export class ServiceStateService {
   }
 
   updateServiceField(partial: Partial<ServicioData>): void {
-      const current = this.getServicesValue();
-      if (current.length > 0) {
-        const servicioId = current[0].idServicio;
-        console.log('[ServiceStateService] updateEnterpriseField using fiscalId =>', servicioId, 'partial:', partial);
-        this.apiService.updateServicio(servicioId, partial).subscribe({
-          next: (updated: ServicioData) => {
-            console.log('[ServiceStateService] PUT success => updated:', updated);
-            if (isEmptyService(updated)) {
-              this.saveAndEmit([]);
-            } else {
-              this.saveAndEmit([updated]);
-            }
-          },
-          error: (err) => {
-            console.error('[ServiceStateService] PUT error:', err);
+    const current = this.getServicesValue();
+    if (current.length > 0) {
+      const servicioId = current[0].idServicio;
+      console.log('[ServiceStateService] updateEnterpriseField using fiscalId =>', servicioId, 'partial:', partial);
+      this.apiService.updateServicio(servicioId, partial).subscribe({
+        next: (updated: ServicioData) => {
+          console.log('[ServiceStateService] PUT success => updated:', updated);
+          if (isEmptyService(updated)) {
+            this.saveAndEmit([]);
+          } else {
+            this.saveAndEmit([updated]);
           }
-        });
-      } else {
-        console.warn('[ServiceStateService] No service available to update');
-      }
+        },
+        error: (err) => {
+          console.error('[ServiceStateService] PUT error:', err);
+        }
+      });
+    } else {
+      console.warn('[ServiceStateService] No service available to update');
     }
+  }
 
   deleteServicio(id: number): void {
     console.log('[ServiceStateService] deleteService => id:', id);
@@ -133,4 +133,3 @@ export class ServiceStateService {
     });
   }
 }
-

@@ -80,15 +80,16 @@ export class ServicesFormComponent implements OnInit {
         console.log('Servei carregat:', servicio);
         this.nombre = servicio.nombre;
         this.descripcion = servicio.descripcion;
-        this.duracion = servicio.duracion;
-        this.precio = servicio.precio;
+        this.duracion = servicio.duracion.toString();
+        this.precio = servicio.precio.toString();
         this.limiteReservas = servicio.limiteReservas;
-        this.horario = servicio.horario;
+        this.horario = `${servicio.diasLaborables} - ${servicio.horarioInicio} - ${servicio.horarioFin}`;
       } else {
         console.warn(`No s'ha trobat cap servei amb l'ID: ${id}`);
       }
     });
   }
+
 
   // Validació i enviament del formulari
   onSubmit(): void {
@@ -97,9 +98,9 @@ export class ServicesFormComponent implements OnInit {
       !this.descripcion?.trim() || // Descripció no pot estar buida
       !this.duracion?.trim() || // Duració no pot estar buida
       !this.horario?.trim() || // Horari no pot estar buit
-      this.precio === null || 
-      this.precio === undefined || 
-      this.limiteReservas === null || 
+      this.precio === null ||
+      this.precio === undefined ||
+      this.limiteReservas === null ||
       this.limiteReservas === undefined ||
       this.limiteReservas <= 0 || // Límit de reserves ha de ser > 0
       this.precio === '' // Preu no pot estar buit
@@ -138,7 +139,7 @@ export class ServicesFormComponent implements OnInit {
     } else {
       console.warn(`El valor temporal per al camp '${field}' és buit o no vàlid.`);
     }
-  
+
     // Reinicia els valors d'edició
     this.editingKey = null;
     this.tempValue = '';
@@ -189,26 +190,26 @@ export class ServicesFormComponent implements OnInit {
 
   validateHorario(event: Event): void {
     const input = (event.target as HTMLInputElement).value;
-  
+
     // Expressió regular per validar el format HH:mm-HH:mm
     const regex = /^([01]\d|2[0-3]):([0-5]\d)-([01]\d|2[0-3]):([0-5]\d)$/;
     if (!regex.test(input)) {
       this.formError = 'El format de l\'horari és incorrecte. Usa HH:mm-HH:mm.';
       return;
     }
-  
+
     // Validar que l'hora d'inici sigui anterior a l'hora de finalització
     const [start, end] = input.split('-');
     const startTime = this.parseTime(start);
     const endTime = this.parseTime(end);
-  
+
     if (startTime >= endTime) {
       this.formError = 'L\'hora d\'inici ha de ser anterior a l\'hora de finalització.';
     } else {
       this.formError = ''; // Cap error
     }
   }
-  
+
   parseTime(time: string): number {
     const [hours, minutes] = time.split(':').map(Number);
     return hours * 60 + minutes; // Convertir hores i minuts a minuts totals

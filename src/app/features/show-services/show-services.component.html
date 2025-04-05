@@ -18,28 +18,8 @@
                 €{{ service.precio }}
               </li>
               <li>
-                <strong>{{ 'showServices.maxReservations' | translate }}:</strong>
-                {{ service.limiteReservas }}
-              </li>
-              <li>
                 <strong>{{ 'showServices.schedule' | translate }}:</strong>
-                {{ service.horario }}
-              </li>
-              <li>
-                <strong>{{ 'showServices.companyId' | translate }}:</strong>
-                {{ service.idEmpresa }}
-              </li>
-              <li>
-                <strong>{{ 'showServices.createdAt' | translate }}:</strong>
-                {{ service.fechaAlta }}
-              </li>
-              <li>
-                <strong>{{ 'showServices.modifiedAt' | translate }}:</strong>
-                {{ service.fechaModificacion }}
-              </li>
-              <li>
-                <strong>{{ 'showServices.reservations' | translate }}:</strong>
-                {{ service.reservasts.length }}
+                {{ service.diasLaborables }} - {{ service.horarioInicio }} - {{ service.horarioFin }}
               </li>
             </ul>
           </div>
