@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { EmpresaData } from '../../core/models/EmpresaData.interface';
+import { ServicioData } from '../../core/models/ServicioData.interface';
+
 
 @Component({
   selector: 'app-landing-page',
@@ -33,7 +35,10 @@ export class LandingPageComponent implements OnInit {
   private fetchData(): void {
     this.apiService.getEmpresas().subscribe({
       next: (data: any[]) => {
+        console.log('Dades rebudes de l\'API (abans de transformar):', data);
         this.empresas = data.map(item => item.empresa).slice(0, 6);
+        console.log('Empreses després de transformar:', this.empresas);
+        this.empresas.forEach(empresa => this.fetchServicios(empresa));
         this.cdr.detectChanges();
       },
       error: (error: HttpErrorResponse) => {
@@ -41,6 +46,19 @@ export class LandingPageComponent implements OnInit {
       },
       complete: () => {
         setTimeout(() => this.loadingService.idle(), 0);
+      }
+    });
+  }
+
+  private fetchServicios(empresa: EmpresaData): void {
+    this.apiService.getServiciosByIdentificadorFiscal(empresa.identificadorFiscal).subscribe({
+      next: (servicios: ServicioData[]) => {
+        empresa.servicios = servicios; // Assigna els serveis a l'empresa
+        console.log(`Serveis per a l'empresa ${empresa.nombre}:`, servicios);
+        this.cdr.detectChanges();
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error(`Error al obtenir els serveis per a l'empresa ${empresa.nombre}:`, error.message);
       }
     });
   }

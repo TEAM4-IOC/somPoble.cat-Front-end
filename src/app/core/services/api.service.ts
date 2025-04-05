@@ -49,10 +49,9 @@ export class ApiService {
   }
 
   //Implementación servicios - A revisar cuando backend lo tenga listo
-  getServicioByIdentificador(servicioId: number): Observable<ServicioData> {
-    return this.http
-      .get<{ servicio: ServicioData; id: number }>(`${this.servicioUrl}/${servicioId}`)
-      .pipe(map(response => response.servicio));
+  getServiciosByIdentificadorFiscal(identificadorFiscal: string): Observable<ServicioData[]> {
+    const url = `https://sompoblecatsb-production.up.railway.app/api/servicio-horario/obtener?identificadorFiscal=${identificadorFiscal}`;
+    return this.http.get<ServicioData[]>(url);
   }
 
   createServicio(payload: CreateServicePayload): Observable<ServicioData> {
@@ -61,12 +60,12 @@ export class ApiService {
       .pipe(map(response => response.servicio));
   }
 
-  updateServicio(servicioId: number, partial: Partial<ServicioData>): Observable<ServicioData> {
+  /* updateServicio(servicioId: number, partial: Partial<ServicioData>): Observable<ServicioData> {
     return this.http.put(`${this.servicioUrl}/${servicioId}`, partial, { responseType: 'text' })
       .pipe(
-        switchMap(() => this.getServicioByIdentificador(servicioId))
+        switchMap(() => this.getServiciosByIdentificadorFiscal(servicioId))
       );
-  }
+  } */
 
   deleteServicio(servicioId: number): Observable<any> {
     return this.http.delete(`${this.servicioUrl}/${servicioId}`, { responseType: 'text' });

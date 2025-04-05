@@ -12,10 +12,8 @@
                 <div class="w-100 services-section">
                     <h5>{{ 'landing.services' | translate }}</h5>
                     <ul>
-                        <li>Servicio 1</li>
-                        <li>Servicio 2</li>
-                        <li>Servicio 3</li>
-                    </ul>
+                        <li *ngFor="let servicio of empresa.servicios">{{ servicio.nombre || 'Servicio sin nombre' }}</li>
+                      </ul>
                 </div>
             </div>
             <div class="contact">
