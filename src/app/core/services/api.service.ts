@@ -67,9 +67,10 @@ export class ApiService {
       );
   } */
 
-  deleteServicio(servicioId: number): Observable<any> {
-    return this.http.delete(`${this.servicioUrl}/${servicioId}`, { responseType: 'text' });
-  }
+      deleteServicio(idServicio: number, identificadorFiscal: string): Observable<void> {
+        const url = `https://sompoblecatsb-production.up.railway.app/api/servicio-horario/anular/${idServicio}?identificadorFiscal=${identificadorFiscal}`;
+        return this.http.delete<void>(url);
+      }
 
   getServicios(): Observable<ServicioData[]> {
     return this.http.get<ServicioData[]>(`${environment.authUrl}/servicio-horario/obtener-todos`);

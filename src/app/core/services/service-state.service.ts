@@ -92,17 +92,14 @@ export class ServiceStateService {
   //   }
   // }
 
-  deleteServicio(id: number): void {
-    console.log('[ServiceStateService] deleteService => id:', id);
-    this.apiService.deleteServicio(id).subscribe({
+  deleteServicio(idServicio: number, identificadorFiscal: string): void {
+    this.apiService.deleteServicio(idServicio, identificadorFiscal).subscribe({
       next: () => {
-        console.log('[ServiceStateService] DELETE success => removing service');
-        const filtered = this.getServicesValue().filter(s => s.idServicio !== id);
-        this.saveAndEmit(filtered);
-        this.deletionSubject.next(true);
+        console.log(`Servicio con ID ${idServicio} eliminado correctamente.`);
+        this.loadServicios(); // Recargar la lista de servicios después de eliminar
       },
       error: (err) => {
-        console.error('[ServiceStateService] DELETE error:', err);
+        console.error(`Error al eliminar el servicio con ID ${idServicio}:`, err);
       }
     });
   }

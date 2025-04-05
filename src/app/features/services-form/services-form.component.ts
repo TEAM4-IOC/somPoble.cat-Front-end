@@ -38,7 +38,7 @@ export class ServicesFormComponent implements OnInit {
   constructor(
     private servicioState: ServiceStateService,
     private route: ActivatedRoute // Per obtenir l'ID de la URL
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Obtenim l'empresa de la sessió
@@ -73,6 +73,7 @@ export class ServicesFormComponent implements OnInit {
     this.servicio$ = this.servicioState.service$;
   }
 
+  public identificadorFiscal: string = ''; // Nueva propiedad para almacenar el identificador fiscal
   // Mètode per carregar el servei
   loadServicio(id: number): void {
     this.servicioState.getServicioById(id).subscribe(servicio => {
@@ -84,6 +85,10 @@ export class ServicesFormComponent implements OnInit {
         this.precio = servicio.precio.toString();
         this.limiteReservas = servicio.limiteReservas;
         this.horario = `${servicio.diasLaborables} - ${servicio.horarioInicio} - ${servicio.horarioFin}`;
+
+        // Capturamos el identificador fiscal del servicio
+        this.identificadorFiscal = servicio.identificadorFiscal || ''; // Asegúrate de que este campo exista en el modelo
+        console.log('Identificador Fiscal del servicio:', this.identificadorFiscal);
       } else {
         console.warn(`No s'ha trobat cap servei amb l'ID: ${id}`);
       }
@@ -156,8 +161,14 @@ export class ServicesFormComponent implements OnInit {
 
   // Mètode per eliminar un servei
   public deleteServicio(idServicio: number): void {
-    console.log('Eliminant servei amb ID:', idServicio);
-    this.servicioState.deleteServicio(idServicio);
+    if (!this.identificadorFiscal) {
+      console.error('El identificador fiscal no está definido.');
+      return;
+    }
+
+    console.log('Intentando eliminar el servicio con los siguientes datos:');
+    console.log('ID del servicio:', idServicio);
+    this.servicioState.deleteServicio(idServicio, this.identificadorFiscal);
   }
 
   // Validacions del camp preu
