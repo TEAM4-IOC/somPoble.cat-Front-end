@@ -31,9 +31,14 @@ export class ServicesFormComponent implements OnInit {
   descripcion = '';
   duracion = '';
   precio = '';
-  horario = '';
+  diasLaborables: number[] = [];
+  horarioInicio = '';
+  horarioFin = '';
   limiteReservas: number | null = null;
   idEmpresa!: number;
+
+  // Días de la semana con valores numéricos y claves de traducción
+  weekDays: { value: number; key: string }[] = [];
 
   constructor(
     private servicioState: ServiceStateService,
@@ -41,6 +46,17 @@ export class ServicesFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    // Inicializar los días de la semana
+    this.weekDays = [
+      { value: 1, key: 'add-services-form.monday' },
+      { value: 2, key: 'add-services-form.tuesday' },
+      { value: 3, key: 'add-services-form.wednesday' },
+      { value: 4, key: 'add-services-form.thursday' },
+      { value: 5, key: 'add-services-form.friday' },
+      { value: 6, key: 'add-services-form.saturday' },
+      { value: 7, key: 'add-services-form.sunday' }
+    ];
     // Obtenim l'empresa de la sessió
     const sessionStr = localStorage.getItem('session');
     if (sessionStr) {
@@ -73,6 +89,21 @@ export class ServicesFormComponent implements OnInit {
     this.servicio$ = this.servicioState.service$;
   }
 
+  onDaySelected(event: Event): void {
+    const checkbox = event.target as HTMLInputElement;
+    const dayValue = +checkbox.value; // Convertimos el valor a número
+  
+    if (checkbox.checked) {
+      // Agregar el día seleccionado al array
+      this.diasLaborables.push(dayValue);
+    } else {
+      // Eliminar el día deseleccionado del array
+      this.diasLaborables = this.diasLaborables.filter(d => d !== dayValue);
+    }
+  
+    console.log('Días laborables seleccionados:', this.diasLaborables);
+  }
+
   public identificadorFiscal: string = ''; // Nueva propiedad para almacenar el identificador fiscal
   // Mètode per carregar el servei
   loadServicio(id: number): void {
@@ -84,7 +115,8 @@ export class ServicesFormComponent implements OnInit {
         this.duracion = servicio.duracion.toString();
         this.precio = servicio.precio.toString();
         this.limiteReservas = servicio.limiteReservas;
-        this.horario = `${servicio.diasLaborables} - ${servicio.horarioInicio} - ${servicio.horarioFin}`;
+        this.horarioInicio = servicio.horarioInicio;
+        this.horarioFin = servicio.horarioFin;
 
         // Capturamos el identificador fiscal del servicio
         this.identificadorFiscal = servicio.identificadorFiscal || ''; // Asegúrate de que este campo exista en el modelo
@@ -102,7 +134,8 @@ export class ServicesFormComponent implements OnInit {
       !this.nombre?.trim() || // Nom no pot estar buit
       !this.descripcion?.trim() || // Descripció no pot estar buida
       !this.duracion?.trim() || // Duració no pot estar buida
-      !this.horario?.trim() || // Horari no pot estar buit
+      !this.horarioInicio?.trim() || // Horari no pot estar buit
+      !this.horarioFin?.trim() || // Horari no pot estar buit
       this.precio === null ||
       this.precio === undefined ||
       this.limiteReservas === null ||
@@ -122,8 +155,10 @@ export class ServicesFormComponent implements OnInit {
         descripcion: this.descripcion,
         duracion: this.duracion,
         precio: this.precio,
+        diasLaborables: this.diasLaborables.join(','),
         limiteReservas: this.limiteReservas,
-        horario: this.horario,
+        horarioInicio: this.horarioInicio,
+        horarioFin: this.horarioFin,
       },
       empresa: this.idEmpresa
     };
@@ -199,25 +234,28 @@ export class ServicesFormComponent implements OnInit {
     }
   }
 
-  validateHorario(event: Event): void {
-    const input = (event.target as HTMLInputElement).value;
-
-    // Expressió regular per validar el format HH:mm-HH:mm
-    const regex = /^([01]\d|2[0-3]):([0-5]\d)-([01]\d|2[0-3]):([0-5]\d)$/;
-    if (!regex.test(input)) {
-      this.formError = 'El format de l\'horari és incorrecte. Usa HH:mm-HH:mm.';
+  restrictToTimeFormat(event: KeyboardEvent): void {
+    const inputChar = event.key;
+    const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', ':']; // Teclas permitidas
+  
+    // Permitir solo números, dos puntos y teclas de navegación
+    if (!/^\d$/.test(inputChar) && !allowedKeys.includes(inputChar)) {
+      event.preventDefault();
       return;
     }
+  
+    // Validar que no haya más de un carácter `:` en el campo
+    const currentValue = (event.target as HTMLInputElement).value;
+    if (inputChar === ':' && currentValue.includes(':')) {
+      event.preventDefault();
+    }
+  }
 
-    // Validar que l'hora d'inici sigui anterior a l'hora de finalització
-    const [start, end] = input.split('-');
-    const startTime = this.parseTime(start);
-    const endTime = this.parseTime(end);
-
-    if (startTime >= endTime) {
-      this.formError = 'L\'hora d\'inici ha de ser anterior a l\'hora de finalització.';
-    } else {
-      this.formError = ''; // Cap error
+  validateHorario(event: Event): void {
+    const input = (event.target as HTMLInputElement).value;
+    const regex = /^([01]\d|2[0-3]):([0-5]\d)$/; // Valida formato HH:mm
+    if (!regex.test(input)) {
+      console.error('Hora no válida:', input);
     }
   }
 
@@ -235,4 +273,6 @@ export class ServicesFormComponent implements OnInit {
     }
     this.precio = inputValue;
   }
+
+  
 }

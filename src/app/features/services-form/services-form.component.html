@@ -81,12 +81,70 @@
               }
             </div>
             <div class="input-group">
+              <label for="diasLaborables" class="form-label">{{ 'add-services-form.workingDays' | translate }}:</label>
+              <div class="input-control two-columns">
+                <div *ngFor="let day of weekDays">
+                  <label class="day-checkbox">
+                    <input
+                      type="checkbox"
+                      [value]="day.value"
+                      (change)="onDaySelected($event)"
+                      name="diasLaborables"
+                    />
+                    {{ day.key | translate }}
+                  </label>
+                </div>
+              </div>
+              @if (diasLaborables.length === 0) {
+                <div class="error">{{ 'add-services-form.workingDays_error' | translate }}</div>
+              }
+            </div>
+            <div class="input-group">
+              <label for="precioServicio" class="form-label">{{ 'add-services-form.servicePrice' | translate }}:</label>
+              <div class="input-control">
+                <input
+                  type="text"
+                  id="precioServicio"
+                  [(ngModel)]="precio"
+                  name="precioServicio"
+                  placeholder="{{ 'add-services-form.servicePrice_placeholder' | translate }}"
+                  required
+                  (input)="onInputChange($event)"
+                  (keydown)="validatePrecio($event)"
+                  #precioModel="ngModel"
+                />
+              </div>
+              @if (precioModel.invalid && (precioModel.touched || precioModel.dirty)) {
+                <div class="error">{{ 'add-services-form.servicePrice_error' | translate }}</div>
+              }
+            </div>
+            <div class="input-group">
+              <label for="horarioInicio" class="form-label">{{ 'add-services-form.serviceStartTime' | translate }}</label>
+              <div class="input-control">
+                <input
+                  type="text"
+                  id="horarioInicio"
+                  [(ngModel)]="horarioInicio"
+                  name="horarioInicio"
+                  placeholder="{{ 'add-services-form.serviceStartTime_placeholder' | translate }}: 09:00"
+                  required
+                  pattern="^([01]\d|2[0-3]):([0-5]\d)$"
+                  #horarioInicioModel="ngModel"
+                  (keydown)="restrictToTimeFormat($event)"
+                  (input)="validateHorario($event)"
+                />
+              </div>
+              @if (horarioInicioModel.invalid && (horarioInicioModel.touched || horarioInicioModel.dirty)) {
+                <div class="error">{{ 'add-services-form.serviceAvailability_error' | translate }}</div>
+              }
+            </div>
+            <div class="input-group">
               <label for="horario" class="form-label">{{ 'add-services-form.serviceAvailability' | translate }}:</label>
               <div class="input-control">
                 <input
                   type="text"
                   id="horario"
-                  [(ngModel)]="horario"
+                  [(ngModel)]="horarioFin"
                   name="horario"
                   placeholder="{{ 'add-services-form.serviceAvailability_placeholder' | translate }} e: 09:00-18:00"
                   required
@@ -238,14 +296,48 @@
                 }
               }
             </div>
+            <!-- Días Laborables -->
+<div class="data-field">
+  <label style="width:100%">{{ 'add-services-form.workingDays' | translate }}:</label>
+  @if (!editingField('diasLaborables')) {
+    <span>{{ diasLaborables.join(', ') }}</span> <!-- Muestra los días seleccionados como texto -->
+    <button class="icon-btn" (click)="startEditing('diasLaborables', diasLaborables.join(','))">
+      <i class="fas fa-edit"></i>
+    </button>
+  } @else {
+    <div class="input-control two-columns">
+      <div *ngFor="let day of weekDays">
+        <label class="day-checkbox">
+          <input
+            type="checkbox"
+            [value]="day.value"
+            [checked]="diasLaborables.includes(day.value)" 
+          />
+          {{ day.key | translate }}
+        </label>
+      </div>
+    </div>
+    <button class="icon-btn" (click)="confirmEditing('diasLaborables')">
+      <i class="fas fa-check"></i>
+    </button>
+    <button class="icon-btn" (click)="cancelEditing()">
+      <i class="fas fa-times"></i>
+    </button>
+  }
+</div>
+
+
+
+
+
             <!-- Horario -->
             <div class="data-field">
               <label>{{ 'add-services-form.serviceAvailability' | translate }}:</label>
               @if (!editingField('horario')) {
-                <span>{{ horario }}</span>
+                <!-- <span>{{ horario }}</span> 
                 <button class="icon-btn" (click)="startEditing('horario', horario)">
                   <i class="fas fa-edit"></i>
-                </button>
+                </button>  -->
               } @else {
                 <input
                   type="text"

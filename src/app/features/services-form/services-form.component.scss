@@ -203,3 +203,18 @@ input::placeholder {
 .delete-btn:hover {
   background: $btn-hover-bg;
 }
+
+.input-control.two-columns {
+  display: flex; /* Usa flexbox para organizar las columnas */
+  flex-wrap: wrap; /* Permite que los elementos se ajusten en varias filas */
+  gap: 0.5rem; /* Espaciado entre los elementos */
+}
+
+.day-checkbox {
+  display: flex; /* Usa flexbox para alinear el checkbox y el texto */
+  align-items: center; /* Alinea verticalmente el checkbox y el texto */
+  gap: 0.5rem; /* Espaciado entre el checkbox y el texto */
+  flex: 0 0 50%; /* Cada elemento ocupa el 50% del ancho del contenedor padre */
+  text-align: left; /* Asegura que el texto esté alineado a la izquierda */
+  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+}

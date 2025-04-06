@@ -4,8 +4,10 @@ export interface CreateServicePayload {
         descripcion: string;
         duracion: string;
         precio: string;
+        diasLaborables: string;
         limiteReservas: number;
-        horario: string; //Por definir
+        horarioInicio: string;
+        horarioFin: string;
     };
     empresa: number; //¿llegará el ID)
 }
