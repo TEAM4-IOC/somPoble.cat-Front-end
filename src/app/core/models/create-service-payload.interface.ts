@@ -9,5 +9,5 @@ export interface CreateServicePayload {
         horarioInicio: string;
         horarioFin: string;
     };
-    empresa: number; //¿llegará el ID)
+    identificadorFiscal: string; 
 }

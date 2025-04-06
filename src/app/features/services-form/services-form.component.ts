@@ -31,8 +31,7 @@ export class ServicesFormComponent implements OnInit {
   descripcion = '';
   duracion = '';
   precio = '';
-  diasLaborables = '';
-  //diasLaborables: number[] = [];
+  diasLaborables: number[] = [];
   horarioInicio = '';
   horarioFin = '';
   limiteReservas: number | null = null;
@@ -59,17 +58,26 @@ export class ServicesFormComponent implements OnInit {
       { value: 7, key: 'add-services-form.sunday' }
     ];
     // Obtenim l'empresa de la sessió
-    const sessionStr = localStorage.getItem('session');
-    if (sessionStr) {
-      try {
-        const session = JSON.parse(sessionStr);
-        this.idEmpresa = session.usuario?.empresas?.idEmpresa || 0;
-        const empresa = session.usuario?.empresas;
-        this.empresaNombre = empresa?.actividad ?? empresa?.nombre ?? 'Nombre Empresa';
-      } catch (err) {
-        console.error('[ServicioFormComponent] Error parseando session:', err);
-      }
-    }
+const sessionStr = localStorage.getItem('session');
+if (sessionStr) {
+  try {
+    const session = JSON.parse(sessionStr);
+    console.log('Sessió carregada:', session);
+
+    // Extraer el identificador fiscal del primer elemento del array `empresas`
+    const empresa = session.usuario?.empresas?.[0]; // Acceder al primer elemento del array
+    this.identificadorFiscal = empresa?.identificadorFiscal || ''; // Asegúrate de que este campo exista
+    console.log('Identificador Fiscal cargado desde la sesión:', this.identificadorFiscal);
+
+    // Extraer otros datos de la empresa
+    this.idEmpresa = empresa?.idEmpresa || 0;
+    this.empresaNombre = empresa?.actividad ?? empresa?.nombre ?? 'Nombre Empresa';
+  } catch (err) {
+    console.error('[ServicioFormComponent] Error parseando session:', err);
+  }
+} else {
+  console.warn('No se encontró ninguna sesión en el almacenamiento local.');
+}
 
     // Carreguem els serveis inicialment
     this.servicioState.loadServicios();
@@ -91,7 +99,7 @@ export class ServicesFormComponent implements OnInit {
   }
 
   //A descomentar cuando días Laborables esté por check
-  /* onDaySelected(event: Event): void {
+  onDaySelected(event: Event): void {
     const checkbox = event.target as HTMLInputElement;
     const dayValue = +checkbox.value; // Convertimos el valor a número
 
@@ -104,7 +112,7 @@ export class ServicesFormComponent implements OnInit {
     }
 
     console.log('Días laborables seleccionados:', this.diasLaborables);
-  } */
+  }
 
   public identificadorFiscal: string = ''; // Nueva propiedad para almacenar el identificador fiscal
   // Mètode per carregar el servei
@@ -117,12 +125,17 @@ export class ServicesFormComponent implements OnInit {
         this.duracion = servicio.duracion.toString();
         this.precio = servicio.precio.toString();
         this.limiteReservas = servicio.limiteReservas;
-        this.diasLaborables = servicio.diasLaborables;
         this.horarioInicio = servicio.horarioInicio;
         this.horarioFin = servicio.horarioFin;
 
+        this.diasLaborables = servicio.diasLaborables
+          ? servicio.diasLaborables.split(',').map(Number) // Convierte "1,2,3" a [1, 2, 3]
+          : [];
+
+        console.log('Días laborables cargados:', this.diasLaborables);
+
         // Capturamos el identificador fiscal del servicio
-        this.identificadorFiscal = servicio.identificadorFiscal || ''; // Asegúrate de que este campo exista en el modelo
+        this.identificadorFiscal = servicio.identificadorFiscal; // Asegúrate de que este campo exista en el modelo
         console.log('Identificador Fiscal del servicio:', this.identificadorFiscal);
       } else {
         console.warn(`No s'ha trobat cap servei amb l'ID: ${id}`);
@@ -163,19 +176,21 @@ export class ServicesFormComponent implements OnInit {
     }
     this.formError = '';
 
+    console.log('Identificador Fiscal obtenido de la sesión:', this.identificadorFiscal);
+
+
     const payload: CreateServicePayload = {
       servicio: {
         nombre: this.nombre,
         descripcion: this.descripcion,
         duracion: this.duracion,
         precio: this.precio,
-        diasLaborables: this.diasLaborables, // A descomentar cuando días Laborables esté por check
-        //diasLaborables: this.diasLaborables.join(','),
+        diasLaborables: this.diasLaborables.join(','),
         limiteReservas: this.limiteReservas,
         horarioInicio: this.horarioInicio,
         horarioFin: this.horarioFin,
       },
-      empresa: this.idEmpresa
+      identificadorFiscal: this.identificadorFiscal
     };
     console.log(payload); // Verificació de l'enviament de dades
     // this.servicioState.createService(payload, this.idEmpresa); // Descomentar per enviar al backend

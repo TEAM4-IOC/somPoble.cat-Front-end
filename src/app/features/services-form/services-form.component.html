@@ -84,47 +84,25 @@
             <!-- Días Laborables a cambiar por checks  -->
             <div class="input-group">
               <label for="diasLaborables" class="form-label">{{ 'add-services-form.workingDays' | translate }}:</label>
-              <div class="input-control">
-                <input
-                  type="text"
-                  id="diasLaborables"
-                  [(ngModel)]="diasLaborables"
-                  name="diasLaborables"
-                  placeholder="{{ 'add-services-form.workingDays_placeholder' | translate }}"
-                  required
-                  pattern="^[A-Za-zÀ-ÿ, ]+$" 
-                  #diasLaborablesModel="ngModel"
-                />
+              <div class="input-control two-columns">
+                <div *ngFor="let day of weekDays">
+                  <label class="day-checkbox">
+                    <input
+                      type="checkbox"
+                      [value]="day.value"
+                      (change)="onDaySelected($event)"
+                      name="diasLaborables"
+                    />
+                    {{ day.key | translate }}
+                  </label>
+                </div>
               </div>
-              @if (diasLaborablesModel.invalid && (diasLaborablesModel.touched || diasLaborablesModel.dirty)) {
+              @if (diasLaborables.length === 0) {
                 <div class="error">{{ 'add-services-form.workingDays_error' | translate }}</div>
               }
             </div>
 
 
-
-
-
-
-            <div class="input-group">
-              <label for="precioServicio" class="form-label">{{ 'add-services-form.servicePrice' | translate }}:</label>
-              <div class="input-control">
-                <input
-                  type="text"
-                  id="precioServicio"
-                  [(ngModel)]="precio"
-                  name="precioServicio"
-                  placeholder="{{ 'add-services-form.servicePrice_placeholder' | translate }}"
-                  required
-                  (input)="onInputChange($event)"
-                  (keydown)="validatePrecio($event)"
-                  #precioModel="ngModel"
-                />
-              </div>
-              @if (precioModel.invalid && (precioModel.touched || precioModel.dirty)) {
-                <div class="error">{{ 'add-services-form.servicePrice_error' | translate }}</div>
-              }
-            </div>
             <div class="input-group">
               <label for="horarioInicio" class="form-label">{{ 'add-services-form.serviceStartTime' | translate }}</label>
               <div class="input-control">
@@ -304,31 +282,33 @@
                 }
               }
             </div>
-            <!-- Días Laborables TEMPORAL A CAMBIAR -->
+            <!-- Días Laborables -->
             <div class="data-field">
-              <label>{{ 'add-services-form.workingDays' | translate }}:</label>
+              <label style="width:100%">{{ 'add-services-form.workingDays' | translate }}:</label>
               @if (!editingField('diasLaborables')) {
-                <span>{{ diasLaborables }}</span>
-                <button class="icon-btn" (click)="startEditing('diasLaborables', diasLaborables)">
+                <span>{{ diasLaborables.join(', ') }}</span> <!-- Muestra los días seleccionados como texto -->
+                <button class="icon-btn" (click)="startEditing('diasLaborables', diasLaborables.join(','))">
                   <i class="fas fa-edit"></i>
                 </button>
               } @else {
-                <input
-                  type="text"
-                  [(ngModel)]="tempValue"
-                  required
-                  placeholder="{{ 'add-services-form.workingDays_placeholder' | translate }}" 
-                  #diasLaborablesEdit="ngModel"
-                />
+                <div class="input-control two-columns">
+                  <div *ngFor="let day of weekDays">
+                    <label class="day-checkbox">
+                      <input
+                        type="checkbox"
+                        [value]="day.value"
+                        [checked]="diasLaborables.includes(day.value)" 
+                      />
+                      {{ day.key | translate }}
+                    </label>
+                  </div>
+                </div>
                 <button class="icon-btn" (click)="confirmEditing('diasLaborables')">
                   <i class="fas fa-check"></i>
                 </button>
                 <button class="icon-btn" (click)="cancelEditing()">
                   <i class="fas fa-times"></i>
                 </button>
-                @if (diasLaborablesEdit.invalid && (diasLaborablesEdit.touched || diasLaborablesEdit.dirty)) {
-                  <div class="error">{{ 'add-services-form.workingDays_error' | translate }}</div>
-                }
               }
             </div>
 
