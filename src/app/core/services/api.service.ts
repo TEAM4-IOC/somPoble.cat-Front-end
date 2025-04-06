@@ -61,12 +61,10 @@ export class ApiService {
       .pipe(map(response => response.servicio));
   }
 
-  /* updateServicio(servicioId: number, partial: Partial<ServicioData>): Observable<ServicioData> {
-    return this.http.put(`${this.servicioUrl}/${servicioId}`, partial, { responseType: 'text' })
-      .pipe(
-        switchMap(() => this.getServiciosByIdentificadorFiscal(servicioId))
-      );
-  } */
+  updateServicio(idServicio: number, identificadorFiscal: string, payload: any): Observable<any> {
+    const url = `https://sompoblecatsb-production.up.railway.app/api/servicio-horario/actualizar/${idServicio}?identificadorFiscal=${identificadorFiscal}`;
+    return this.http.put(url, payload);
+  }
 
       deleteServicio(idServicio: number, identificadorFiscal: string): Observable<void> {
         const url = `https://sompoblecatsb-production.up.railway.app/api/servicio-horario/anular/${idServicio}?identificadorFiscal=${identificadorFiscal}`;

@@ -274,7 +274,20 @@ if (sessionStr) {
       identificadorFiscal: this.identificadorFiscal
     };
     console.log('Payload generado:', payload); // Verificació de l'enviament de dades
-    // Enviar el payload al backend
+
+
+    if (this.isEditMode && this.idServicio !== null) {
+    // Modo edición: actualizar el servicio
+    this.servicioState.updateService(this.idServicio, payload, this.identificadorFiscal).subscribe(
+      response => {
+        console.log('Servicio actualizado correctamente:', response);
+      },
+      error => {
+        console.error('Error al actualizar el servicio:', error);
+      }
+    );
+  } else {
+    // Modo creación: crear un nuevo servicio
     this.servicioState.createService(payload).subscribe(
       response => {
         console.log('Servicio creado correctamente:', response);
@@ -283,6 +296,7 @@ if (sessionStr) {
         console.error('Error al crear el servicio:', error);
       }
     );
+  }
 
 
 

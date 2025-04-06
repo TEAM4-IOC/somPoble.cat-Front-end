@@ -59,28 +59,9 @@ export class ServiceStateService {
     return this.apiService.createServicio(payload);
   }
 
-  // updateServiceField(partial: Partial<ServicioData>): void {
-  //   const current = this.getServicesValue();
-  //   if (current.length > 0) {
-  //     const servicioId = current[0].idServicio;
-  //     console.log('[ServiceStateService] updateEnterpriseField using fiscalId =>', servicioId, 'partial:', partial);
-  //     this.apiService.updateServicio(servicioId, partial).subscribe({
-  //       next: (updated: ServicioData) => {
-  //         console.log('[ServiceStateService] PUT success => updated:', updated);
-  //         if (isEmptyService(updated)) {
-  //           this.saveAndEmit([]);
-  //         } else {
-  //           this.saveAndEmit([updated]);
-  //         }
-  //       },
-  //       error: (err) => {
-  //         console.error('[ServiceStateService] PUT error:', err);
-  //       }
-  //     });
-  //   } else {
-  //     console.warn('[ServiceStateService] No service available to update');
-  //   }
-  // }
+  updateService(idServicio: number, payload: any, identificadorFiscal: string): Observable<any> {
+    return this.apiService.updateServicio(idServicio, identificadorFiscal, payload);
+  }
 
   deleteServicio(idServicio: number, identificadorFiscal: string): void {
     this.apiService.deleteServicio(idServicio, identificadorFiscal).subscribe({
