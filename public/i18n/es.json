@@ -118,11 +118,13 @@
     "servicePrice": "Precio",
     "servicePrice_placeholder": "Precio del servicio en €",
     "servicePrice_error": "Precio obligatorio, máximo dos decimales.",
-    "serviceStartTime": "Disponibilidad: hora inicio",
-    "serviceStartTime_placeholder": "Horario de disponibilidad del servicio",
-    "serviceEndTime": "Disponibilidad: hora fin",
-    "serviceEndTime_placeholder": "Horario de disponibilidad del servicio",
-    "serviceAvailability_error": "Horario obligatorio, mínimo 4 caracteres.",
+
+    "serviceStartTime": "Horario de disponibilidad: hora inicio",
+    "serviceStartTime_placeholder": "Formato necesario HH:MM, solamente horas en punto",
+    "serviceEndTime": "Horario de disponibilidad: hora fin",
+    "serviceEndTime_placeholder": "Formato necesario HH:MM, solamente horas en punto",
+    "serviceAvailability_error": "Formato de hora incorrecto, debe ser HH:MM.",
+
     "serviceReservations": "Límite máximo de reservas",
     "serviceReservations_placeholder": "Número límite de reservas",
     "serviceReservations_error": "Límite de reservas obligatorio, solo admite números enteros.",

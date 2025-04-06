@@ -118,11 +118,13 @@
     "servicePrice": "Preu",
     "servicePrice_placeholder": "Preu del servei en €",
     "servicePrice_error": "Preu obligatori, màxim dos decimals.",
-    "serviceStartTime": "Disponibilitat: hora d'inici",
-    "serviceStartTime_placeholder": "Horari de disponibilitat del servei",
-    "serviceEndTime": "Disponibilitat: hora fi",
-    "serviceEndTime_placeholder": "Horari de disponibilitat del servei",
-    "serviceAvailability_error": "Horari obligatori, mínim 4 caràcters.",
+
+    "serviceStartTime": "Horari de disponibilitat - hora d'inici",
+    "serviceStartTime_placeholder": "Format necessari HH:MM, només hores en punt",
+    "serviceEndTime": "Horari de disponibilitat - hora de finalització",
+    "serviceEndTime_placeholder": "Format necessari HH:MM, només",
+    "serviceAvailability_error": "Horari obligatori, format HH:MM.",
+
     "serviceReservations": "Límit màxim de reserves",
     "serviceReservations_placeholder": "Nombre límit de reserves",
     "serviceReservations_error": "Límit de reserves obligatoris, només s'admeten nombres enters.",
