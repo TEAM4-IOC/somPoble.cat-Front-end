@@ -293,23 +293,40 @@
             <div class="data-field">
               <label style="width:100%">{{ 'add-services-form.workingDays' | translate }}:</label>
               @if (!editingField('diasLaborables')) {
-                <span>{{ diasLaborables.join(', ') }}</span> <!-- Muestra los días seleccionados como texto -->
-                <button class="icon-btn" (click)="startEditing('diasLaborables', diasLaborables.join(','))">
-                  <i class="fas fa-edit"></i>
-                </button>
-              } @else {
+                <!-- Mostrar los checkboxes deshabilitados -->
                 <div class="input-control two-columns">
                   <div *ngFor="let day of weekDays">
                     <label class="day-checkbox">
                       <input
                         type="checkbox"
                         [value]="day.value"
-                        [checked]="diasLaborables.includes(day.value)" 
+                        [checked]="diasLaborables.includes(day.value)"
+                        disabled
                       />
                       {{ day.key | translate }}
                     </label>
                   </div>
                 </div>
+                <!-- Botón para habilitar la edición -->
+                <button class="icon-btn" (click)="startEditing('diasLaborables', diasLaborables.join(','))">
+                  <i class="fas fa-edit"></i>
+                </button>
+              } @else {
+                <!-- Mostrar los checkboxes habilitados para edición -->
+                <div class="input-control two-columns">
+                  <div *ngFor="let day of weekDays">
+                    <label class="day-checkbox">
+                      <input
+                        type="checkbox"
+                        [value]="day.value"
+                        [checked]="diasLaborables.includes(day.value)"
+                        (change)="onDaySelected($event)"
+                      />
+                      {{ day.key | translate }}
+                    </label>
+                  </div>
+                </div>
+                <!-- Botones para confirmar o cancelar la edición -->
                 <button class="icon-btn" (click)="confirmEditing('diasLaborables')">
                   <i class="fas fa-check"></i>
                 </button>

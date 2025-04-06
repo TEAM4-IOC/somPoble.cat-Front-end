@@ -125,8 +125,8 @@ if (sessionStr) {
         this.duracion = servicio.duracion.toString();
         this.precio = servicio.precio.toString();
         this.limiteReservas = servicio.limiteReservas;
-        this.horarioInicio = servicio.horarioInicio;
-        this.horarioFin = servicio.horarioFin;
+        this.horarioInicio = servicio.horarioInicio.substring(0, 5);
+      this.horarioFin = servicio.horarioFin.substring(0, 5);
 
         this.diasLaborables = servicio.diasLaborables
           ? servicio.diasLaborables.split(',').map(Number) // Convierte "1,2,3" a [1, 2, 3]
@@ -280,8 +280,13 @@ if (sessionStr) {
 
   confirmEditing(field: string): void {
     if (this.tempValue !== null && this.tempValue.trim() !== '') {
-      // Asigna el valor temporal a la propiedad correspondiente del componente
-      (this as any)[field] = this.tempValue;
+      if (field === 'diasLaborables') {
+        // No usamos tempValue directamente, ya que los checkboxes ya actualizan el array diasLaborables
+        console.log('Días laborables confirmados:', this.diasLaborables);
+      } else {
+        // Asigna el valor temporal a la propiedad correspondiente del componente
+        (this as any)[field] = this.tempValue;
+      }
   
       // Recalcular el límite de reservas si se editan los horarios
       if (field === 'horarioInicio' || field === 'horarioFin') {
