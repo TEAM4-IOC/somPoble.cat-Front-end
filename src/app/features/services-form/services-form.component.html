@@ -249,6 +249,7 @@
                   required
                   pattern="^[0-9]+$"
                   #duracionEdit="ngModel"
+                  (input)="validateDuracionEdit()"
                 />
                 <button class="icon-btn" (click)="confirmEditing('duracion')">
                   <i class="fas fa-check"></i>

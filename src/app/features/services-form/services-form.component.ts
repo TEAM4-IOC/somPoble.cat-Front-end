@@ -159,6 +159,22 @@ if (sessionStr) {
     }
   }
 
+  validateDuracionEdit(): void {
+    const duracionNumerica = parseInt(this.tempValue, 10);
+  
+    if (isNaN(duracionNumerica) || duracionNumerica <= 0) {
+      this.formError = 'La duración debe ser un número mayor a 0.';
+      return;
+    }
+  
+    if (duracionNumerica > 60) {
+      this.formError = 'La duración no puede ser mayor a 60 minutos.';
+      this.tempValue = '60'; // Ajustar automáticamente a 60 si excede el límite
+    } else {
+      this.formError = ''; // Limpia el error si la duración es válida
+    }
+  }
+
   validateTimeRange(): boolean {
     const startTime = this.parseTime(this.horarioInicio);
     const endTime = this.parseTime(this.horarioFin);
