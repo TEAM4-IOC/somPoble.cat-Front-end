@@ -20,7 +20,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ServicesFormComponent implements OnInit {
   idServicio: number | null = null; // ID del servei obtingut de la URL
   editingKey: string | null = null; // Camp en edició
-  tempValue: string | null = null;  // Valor temporal per a l'edició
+  tempValue: string = '';  // Valor temporal per a l'edició
   isEditMode: boolean = false; // Determina si és mode edició
 
   empresaNombre: string = 'Nombre Empresa';
@@ -143,15 +143,82 @@ if (sessionStr) {
     });
   }
 
+  validateDuracion(): void {
+    const duracionNumerica = parseInt(this.duracion, 10);
+  
+    if (isNaN(duracionNumerica) || duracionNumerica <= 0) {
+      this.formError = 'La duración debe ser un número mayor a 0.';
+      return;
+    }
+  
+    if (duracionNumerica > 60) {
+      this.formError = 'La duración no puede ser mayor a 60 minutos.';
+      this.duracion = '60'; // Ajustar automáticamente a 60 si excede el límite
+    } else {
+      this.formError = ''; // Limpia el error si la duración es válida
+    }
+  }
+
+  validateTimeRange(): boolean {
+    const startTime = this.parseTime(this.horarioInicio);
+    const endTime = this.parseTime(this.horarioFin);
+  
+    if (endTime <= startTime) {
+      this.formErrorHorarioInicio = 'La hora de fin debe ser posterior a la hora de inicio.';
+      return false;
+    }
+  
+    this.formErrorHorarioInicio = '';
+    this.calculateMaxReservations(); // Recalcular el límite de reservas
+    return true;
+  }
+
+  validateTimeRangeEdit(startTime: string, endTime: string, field: string): void {
+    const startMinutes = this.parseTime(startTime);
+    const endMinutes = this.parseTime(endTime);
+  
+    if (endMinutes <= startMinutes) {
+      this.formErrorHorarioInicio = 'La hora de fin debe ser posterior a la hora de inicio.';
+      if (field === 'horarioInicio') {
+        this.tempValue = startTime; // Restaurar el valor temporal si es inválido
+      } else if (field === 'horarioFin') {
+        this.tempValue = endTime; // Restaurar el valor temporal si es inválido
+      }
+    } else {
+      this.formErrorHorarioInicio = ''; // Limpia el error si la validación es correcta
+    }
+  }
+
+  calculateMaxReservations(): void {
+    const startMinutes = this.parseTime(this.horarioInicio);
+    const endMinutes = this.parseTime(this.horarioFin);
+  
+    if (endMinutes > startMinutes) {
+      const totalHours = (endMinutes - startMinutes) / 60; // Diferencia en horas
+      this.limiteReservas = Math.floor(totalHours); // Una reserva por hora
+    } else {
+      this.limiteReservas = null; // Si las horas no son válidas, no se puede calcular
+    }
+  }
+
 
   // Validació i enviament del formulari
   onSubmit(): void {
 
-    const regex = /^([01]\d|2[0-3]):00$/; // Valida formato HH:00
+    const regex = /^([01]\d|2[0-3]):00$/; // Valida format HH:00
 
     if (!regex.test(this.horarioInicio)) {
       this.formErrorHorarioInicio = 'El formato debe ser HH:00 (ejemplo: 09:00).';
       return; // Detener el envío del formulario
+    }
+  
+    if (!regex.test(this.horarioFin)) {
+      this.formErrorHorarioInicio = 'El formato debe ser HH:00 (ejemplo: 18:00).';
+      return; // Detener el envío del formulario
+    }
+  
+    if (!this.validateTimeRange()) {
+      return; // Detener el envío del formulario si la validación de rango falla
     }
 
     // Si no hay errores, limpia el mensaje de error
@@ -179,22 +246,27 @@ if (sessionStr) {
     console.log('Identificador Fiscal obtenido de la sesión:', this.identificadorFiscal);
 
 
-    const payload: CreateServicePayload = {
-      servicio: {
-        nombre: this.nombre,
-        descripcion: this.descripcion,
-        duracion: this.duracion,
-        precio: this.precio,
-        diasLaborables: this.diasLaborables.join(','),
-        limiteReservas: this.limiteReservas,
-        horarioInicio: this.horarioInicio,
-        horarioFin: this.horarioFin,
-      },
+    const payload = {
+      nombre: this.nombre,
+      descripcion: this.descripcion,
+      duracion: +this.duracion, // Convertir a número
+      precio: parseFloat(this.precio), // Convertir a número flotante
+      limiteReservas: this.limiteReservas,
+      diasLaborables: this.diasLaborables.join(','), // Enviar tal cual llega como string
+      horarioInicio: this.horarioInicio,
+      horarioFin: this.horarioFin,
       identificadorFiscal: this.identificadorFiscal
     };
-    console.log(payload); // Verificació de l'enviament de dades
-    // this.servicioState.createService(payload, this.idEmpresa); // Descomentar per enviar al backend
-
+    console.log('Payload generado:', payload); // Verificació de l'enviament de dades
+    // Enviar el payload al backend
+    this.servicioState.createService(payload).subscribe(
+      response => {
+        console.log('Servicio creado correctamente:', response);
+      },
+      error => {
+        console.error('Error al crear el servicio:', error);
+      }
+    );
 
 
 
@@ -208,13 +280,18 @@ if (sessionStr) {
 
   confirmEditing(field: string): void {
     if (this.tempValue !== null && this.tempValue.trim() !== '') {
-      // Assigna el valor temporal a la propietat corresponent del component
+      // Asigna el valor temporal a la propiedad correspondiente del componente
       (this as any)[field] = this.tempValue;
+  
+      // Recalcular el límite de reservas si se editan los horarios
+      if (field === 'horarioInicio' || field === 'horarioFin') {
+        this.calculateMaxReservations();
+      }
     } else {
-      console.warn(`El valor temporal per al camp '${field}' és buit o no vàlid.`);
+      console.warn(`El valor temporal para el campo '${field}' es vacío o no válido.`);
     }
-
-    // Reinicia els valors d'edició
+  
+    // Reinicia los valores de edición
     this.editingKey = null;
     this.tempValue = '';
   }
@@ -297,11 +374,12 @@ if (sessionStr) {
   validateHorario(event: Event): void {
     const input = (event.target as HTMLInputElement).value;
     const regex = /^([01]\d|2[0-3]):00$/; // Valida formato HH:00
-
+  
     if (!regex.test(input) && input.length === 5) {
       this.formErrorHorarioInicio = 'El formato debe ser HH:00 (ejemplo: 09:00).';
     } else {
       this.formErrorHorarioInicio = ''; // Limpia el error si el formato es válido
+      this.calculateMaxReservations(); // Recalcular el límite de reservas
     }
   }
 

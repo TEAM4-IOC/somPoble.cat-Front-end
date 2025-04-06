@@ -55,8 +55,9 @@ export class ApiService {
   }
 
   createServicio(payload: CreateServicePayload): Observable<ServicioData> {
+    const url = 'https://sompoblecatsb-production.up.railway.app/api/servicio-horario/crear'; // URL correcta
     return this.http
-      .post<{ servicio: ServicioData, empresa:string }>(this.servicioUrl, payload)
+      .post<{ servicio: ServicioData, empresa: string }>(url, payload)
       .pipe(map(response => response.servicio));
   }
 

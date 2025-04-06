@@ -55,18 +55,8 @@ export class ServiceStateService {
     });
   }
 
-  createService(payload: CreateServicePayload, empresaId: number): void {
-    console.log('[ServiceStateService] createService => payload:', payload);
-    this.apiService.createServicio(payload).subscribe({
-      next: () => {
-        console.log('[ServiceStateService] POST success => updating state...');
-        this.loadServiciosByEmpresaId(empresaId);
-      },
-      error: (err) => {
-        console.error('[ServiceStateService] POST error:', err);
-        this.loadServiciosByEmpresaId(empresaId);
-      }
-    });
+  createService(payload: CreateServicePayload): Observable<ServicioData> {
+    return this.apiService.createServicio(payload);
   }
 
   // updateServiceField(partial: Partial<ServicioData>): void {

@@ -55,6 +55,7 @@
                   required
                   pattern="^[0-9]+$"
                   #duracionModel="ngModel"
+                  (input)="validateDuracion()"
                 />
               </div>
               @if (duracionModel.invalid && (duracionModel.touched || duracionModel.dirty)) {
@@ -143,6 +144,12 @@
                 <div class="error">{{ 'add-services-form.serviceAvailability_error' | translate }}</div>
               }
             </div>
+
+            <!-- Mostrar mensaje de error si hay un problema con las horas -->
+            <div *ngIf="formErrorHorarioInicio" class="error">
+              {{ formErrorHorarioInicio }}
+            </div>
+
             <div class="input-group">
               <label for="limiteReserva" class="form-label">{{ 'add-services-form.serviceReservations' | translate }}:</label>
               <div class="input-control">
@@ -153,8 +160,8 @@
                   name="limiteReserva"
                   placeholder="{{ 'add-services-form.serviceReservations_placeholder' | translate }}"
                   required
-                  pattern="^[0-9]+$"
                   #limiteReservasModel="ngModel"
+                  readonly
                 />
               </div>
               @if (limiteReservasModel.invalid && (limiteReservasModel.touched || limiteReservasModel.dirty)) {
@@ -333,6 +340,7 @@
       pattern="^([01]\d|2[0-3]):00$" 
       #horarioInicioEdit="ngModel"
       (keydown)="restrictToTimeFormat($event)"
+      (blur)="validateTimeRangeEdit(tempValue, horarioFin, 'horarioInicio'); calculateMaxReservations()"
     />
     <button class="icon-btn" (click)="confirmEditing('horarioInicio')">
       <i class="fas fa-check"></i>
@@ -345,6 +353,8 @@
     }
   }
 </div>
+
+
 
 <!-- Horario Fin -->
 <div class="data-field">
@@ -362,6 +372,7 @@
       pattern="^([01]\d|2[0-3]):00$"
       #horarioFinEdit="ngModel"
       (keydown)="restrictToTimeFormat($event)"
+      (blur)="validateTimeRangeEdit(horarioInicio, tempValue, 'horarioFin'); calculateMaxReservations()"
     />
     <button class="icon-btn" (click)="confirmEditing('horarioFin')">
       <i class="fas fa-check"></i>
@@ -374,7 +385,10 @@
     }
   }
 </div>
-
+<!-- Mostrar mensaje de error si hay un problema con las horas -->
+<div *ngIf="formErrorHorarioInicio" class="error">
+  {{ formErrorHorarioInicio }}
+</div>
 
 
 
@@ -384,32 +398,14 @@
 
 
             <!-- Límite de reservas -->
-            <div class="data-field">
-              <label>{{ 'add-services-form.serviceReservations' | translate }}:</label>
-              @if (!editingField('limiteReservas')) {
-                <span>{{ limiteReservas }}</span>
-                <button class="icon-btn" (click)="startEditing('limiteReservas', limiteReservas!.toString())">
-                  <i class="fas fa-edit"></i>
-                </button>
-              } @else {
-                <input
-                  type="text"
-                  [(ngModel)]="tempValue"
-                  required
-                  pattern="^[0-9]+$"
-                  #limiteReservasEdit="ngModel"
-                />
-                <button class="icon-btn" (click)="confirmEditing('limiteReservas')">
-                  <i class="fas fa-check"></i>
-                </button>
-                <button class="icon-btn" (click)="cancelEditing()">
-                  <i class="fas fa-times"></i>
-                </button>
-                @if (limiteReservasEdit.invalid && (limiteReservasEdit.touched || limiteReservasEdit.dirty)) {
-                  <div class="error">{{ 'add-services-form.serviceReservations_error' | translate }}</div>
-                }
-              }
-            </div>
+            <!-- Límite de reservas -->
+<div class="data-field">
+  <label>{{ 'add-services-form.serviceReservations' | translate }}:</label>
+  <span>{{ limiteReservas }}</span>
+</div>
+
+
+
             <button class="auth-btn" (click)="onSubmit()">
               {{ 'add-services-form.serviceSubmit_edit' | translate }}
             </button>
