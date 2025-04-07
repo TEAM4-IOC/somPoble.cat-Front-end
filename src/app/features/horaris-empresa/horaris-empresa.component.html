@@ -1,0 +1,62 @@
+<div>
+    <button (click)="toggleView()">
+      {{ isMonthlyView ? 'Cambiar a vista diaria' : 'Cambiar a vista mensual' }}
+    </button>
+  </div>
+  
+  <!-- Vista diaria -->
+  <div *ngIf="!isMonthlyView">
+    <div class="calendar-container">
+      <div class="calendar-header">
+        <button (click)="prevDay()">&#8592;</button>
+        <h2>{{ currentDayName }}, {{ currentDay }} {{ currentMonthName }} {{ currentYear }}</h2>
+        <button (click)="nextDay()">&#8594;</button>
+      </div>
+      <div class="agenda-grid">
+        <!-- Horas del día -->
+        <div class="hour-row" *ngFor="let hour of getHours()">
+          <div class="hour-cell">
+            <div class="hour-label">{{ hour }}</div>
+            <!-- Iterar sobre los servicios -->
+            <div *ngFor="let servicio of servicios">
+              <!-- Mostrar solo si el servicio está disponible en la hora actual -->
+              <div
+                *ngIf="isServiceAvailable(servicio, hour)"
+                [style.backgroundColor]="servicio.color"
+                class="service-block"
+              >
+                {{ servicio.nombre }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  
+  <!-- Vista mensual -->
+  <div *ngIf="isMonthlyView">
+    <div class="calendar-container">
+      <div class="calendar-header">
+        <button (click)="prevMonth()">&#8592;</button>
+        <h2>{{ currentMonthName }} {{ currentYear }}</h2>
+        <button (click)="nextMonth()">&#8594;</button>
+      </div>
+      <div class="month-grid">
+        <!-- Encabezados de los días de la semana -->
+        <div class="day-header" *ngFor="let day of weekDays">{{ day }}</div>
+        <!-- Días del mes -->
+        <div
+          class="day-cell"
+          *ngFor="let day of daysInMonth"
+          [class.disabled]="!day.isCurrentMonth"
+          [class.has-service]="hasService(day.date)"
+        >
+          {{ day.date }}
+        </div>
+      </div>
+    </div>
+  </div>

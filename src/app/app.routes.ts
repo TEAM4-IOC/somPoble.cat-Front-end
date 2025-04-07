@@ -26,7 +26,7 @@ export const routes: Routes = [
   },
   {
     path: 'services-form',
-    //canActivate: [empresaGuard],
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./features/services-form/services-form.component').then(
         (m) => m.ServicesFormComponent
@@ -34,10 +34,18 @@ export const routes: Routes = [
   },
   {
     path: 'services-form/:id',
-    //canActivate: [empresaGuard],
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./features/services-form/services-form.component').then(
         (m) => m.ServicesFormComponent
+      ),
+  },
+  {
+    path: 'horaris-empresa',
+    //canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/horaris-empresa/horaris-empresa.component').then(
+        (m) => m.HorarisEmpresaComponent
       ),
   },
   {

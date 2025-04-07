@@ -1,0 +1,76 @@
+.calendar-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .agenda-grid {
+    display: flex;
+    flex-direction: column; /* Asegura que las filas se apilen verticalmente */
+    gap: 5px;
+  }
+  
+  .hour-row {
+    display: flex;
+    flex-direction: column; /* Asegura que cada fila tenga una sola columna */
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .hour-cell {
+    display: flex;
+    flex-direction: column; /* Servicios apilados verticalmente */
+    gap: 5px;
+  }
+  
+  .hour-label {
+    font-weight: bold;
+    margin-bottom: 5px; /* Espacio entre la hora y los servicios */
+  }
+  
+  .service-block {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 5px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  .month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 columnas para los días de la semana */
+    gap: 5px;
+  }
+  
+  .day-header {
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  
+  .day-cell {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  .day-cell.disabled {
+    background-color: #f0f0f0;
+    color: #aaa;
+  }
+  
+  .day-cell.has-service {
+    background-color: #d4edda; /* Color para días con servicios */
+    border-color: #28a745;
+  }
