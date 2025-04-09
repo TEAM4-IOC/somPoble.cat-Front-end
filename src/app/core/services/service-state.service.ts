@@ -118,4 +118,7 @@ export class ServiceStateService {
       this.serviceSubject.next(servicios); // Actualitza l'estat amb els serveis carregats
     });
   }
+  getServicioHorarioById(identificadorFiscal: string, idServicio: number): Observable<ServicioData> {
+    return this.apiService.getServicioById(identificadorFiscal, idServicio);
+  }
 }

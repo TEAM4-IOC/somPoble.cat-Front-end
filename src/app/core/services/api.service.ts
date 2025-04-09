@@ -75,8 +75,8 @@ export class ApiService {
     return this.http.get<ServicioData[]>(`${environment.authUrl}/servicio-horario/obtener-todos`);
   }
 
-  // getServicios(): Observable<ServicioData[]> {
-  //   return this.http.get<ServicioData[]>('/assets/mock-servicios.json');
-  // }
-
+  getServicioById(identificadorFiscal: string, idServicio: number): Observable<ServicioData> {
+    const url: string = `${environment.authUrl}/servicio-horario/obtener-empresa-idservicio?identificadorFiscal=${identificadorFiscal}&idServicio=${idServicio}`;
+    return this.http.get<ServicioData>(url);
+  }
 }

@@ -52,7 +52,17 @@ export const routes: Routes = [
     path: 'show-services',
     canActivate: [authGuard],
     loadComponent: () =>
-      import('./features/show-services/show-services.component').then((m) => m.ShowServicesComponent),
+      import('./features/show-services/show-services.component').then(
+        (m) => m.ShowServicesComponent
+      ),
+  },
+  {
+    path: 'service-detail/:id/:identificadorFiscal',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./shared/component/service-detail/service-detail.component').then(
+        (m) => m.ServiceDetailComponent
+      ),
   },
   {
     path: 'login',
