@@ -1,76 +1,91 @@
 .calendar-container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .agenda-grid {
-    display: flex;
-    flex-direction: column; /* Asegura que las filas se apilen verticalmente */
-    gap: 5px;
-  }
-  
-  .hour-row {
-    display: flex;
-    flex-direction: column; /* Asegura que cada fila tenga una sola columna */
-    border: 1px solid #ccc;
-    padding: 10px;
-  }
-  
-  .hour-cell {
-    display: flex;
-    flex-direction: column; /* Servicios apilados verticalmente */
-    gap: 5px;
-  }
-  
-  .hour-label {
-    font-weight: bold;
-    margin-bottom: 5px; /* Espacio entre la hora y los servicios */
-  }
-  
-  .service-block {
-    color: #fff;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 4px;
-    padding: 5px;
-    text-align: center;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  
-  .month-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 7 columnas para los días de la semana */
-    gap: 5px;
-  }
-  
-  .day-header {
-    font-weight: bold;
-    text-transform: uppercase;
-    text-align: center;
-  }
-  
-  .day-cell {
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-align: center;
-    background-color: #fff;
-  }
-  
-  .day-cell.disabled {
-    background-color: #f0f0f0;
-    color: #aaa;
-  }
-  
-  .day-cell.has-service {
-    background-color: #d4edda; /* Color para días con servicios */
-    border-color: #28a745;
-  }
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 columnas para los días de la semana */
+  gap: 5px;
+}
+
+.day-header {
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.day-cell {
+  position: relative;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  text-align: center;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.day-cell.disabled {
+  background-color: #f0f0f0;
+  color: #aaa;
+}
+
+.day-number {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.service-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 2px; /* Espacio entre las barras */
+}
+
+.service-bar {
+  height: 10px; /* Altura de cada barra */
+  border-radius: 3px;
+}
+
+.agenda-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hour-row {
+  display: flex;
+  align-items: center;
+}
+
+.hour-label {
+  width: 100px;
+  text-align: right;
+  padding-right: 10px;
+  font-weight: bold;
+}
+
+.hour-cell {
+  flex: 1;
+  border: 1px solid #ccc;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.service-block {
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px;
+  border-radius: 4px;
+  text-align: center;
+}

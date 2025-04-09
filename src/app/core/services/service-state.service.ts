@@ -55,6 +55,24 @@ export class ServiceStateService {
     });
   }
 
+  loadServiciosByIdentificadorFiscal(identificadorFiscal: string): void {
+    this.apiService.getServiciosByIdentificadorFiscal(identificadorFiscal).subscribe({
+      next: (servicios: ServicioData[]) => {
+        if (servicios.length > 0) {
+          console.log('[ServiceStateService] Servicios encontrados:', servicios);
+          this.saveAndEmit(servicios); // Actualizamos el estado local
+        } else {
+          console.warn('[ServiceStateService] No se encontraron servicios para el identificador fiscal:', identificadorFiscal);
+          this.saveAndEmit([]); // Emitimos un array vacío si no hay servicios
+        }
+      },
+      error: (err: any) => {
+        console.error('[ServiceStateService] Error al obtener servicios:', err);
+        this.saveAndEmit([]); // Emitimos un array vacío en caso de error
+      }
+    });
+  }
+
   createService(payload: CreateServicePayload): Observable<ServicioData> {
     return this.apiService.createServicio(payload);
   }

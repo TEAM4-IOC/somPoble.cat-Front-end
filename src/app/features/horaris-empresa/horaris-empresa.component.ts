@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ServiceStateService } from '../../core/services/service-state.service';
+import { ServicioData } from '../../core/models/ServicioData.interface';
 
 @Component({
   selector: 'app-horaris-empresa',
@@ -15,32 +17,30 @@ export class HorarisEmpresaComponent implements OnInit {
   daysInMonth: { date: number; isCurrentMonth: boolean }[] = [];
   weekDays: string[] = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
   isMonthlyView: boolean = true;
+  servicios: ServicioData[] = [];
+  identificadorFiscal: string = '';
 
-  servicios = [
-    {
-      nombre: 'Servicio A',
-      horarioInicio: '09:00',
-      horarioFin: '11:00',
-      diasLaborables: [1, 2, 3, 4, 5], // Lunes a Viernes
-      color: '#FF5733' // Color único
-    },
-    {
-      nombre: 'Servicio B',
-      horarioInicio: '10:00',
-      horarioFin: '12:00',
-      diasLaborables: [1, 2, 3, 4, 5], // Lunes a Viernes
-      color: '#33FF57' // Color único
-    },
-    {
-      nombre: 'Servicio C',
-      horarioInicio: '09:30',
-      horarioFin: '10:30',
-      diasLaborables: [1, 3, 5], // Lunes, Miércoles y Viernes
-      color: '#3357FF' // Color único
-    }
-  ];
+  constructor(private serviceState: ServiceStateService) {}
+
   ngOnInit(): void {
-    this.generateCalendar();
+    // Cargar el identificador fiscal desde la sesión
+    const sessionStr = localStorage.getItem('session');
+    if (sessionStr) {
+      const session = JSON.parse(sessionStr);
+      const empresa = session.usuario?.empresas?.[0]; // Acceder a la primera empresa
+      this.identificadorFiscal = empresa?.identificadorFiscal || ''; // Guardar el identificador fiscal
+    }
+
+    // Cargar los servicios de la empresa
+    if (this.identificadorFiscal) {
+      this.serviceState.loadServiciosByIdentificadorFiscal(this.identificadorFiscal);
+      this.serviceState.service$.subscribe((servicios) => {
+        this.servicios = servicios;
+        this.generateCalendar(); // Generar el calendario con los servicios
+      });
+    } else {
+      console.warn('No se encontró un identificador fiscal en la sesión.');
+    }
   }
 
   get currentDayName(): string {
@@ -80,6 +80,16 @@ export class HorarisEmpresaComponent implements OnInit {
     }
   }
 
+  hasService(day: number): boolean {
+    const today = new Date(this.currentYear, this.currentMonth, day).getDay();
+    const adjustedDay = today === 0 ? 7 : today; // Ajustar el día de la semana (0 = Domingo -> 7)
+
+    return this.servicios.some(servicio => {
+      const diasLaborables = servicio.diasLaborables.split(',').map(Number); // Convertir "1,2,3" a [1, 2, 3]
+      return diasLaborables.includes(adjustedDay);
+    });
+  }
+
   prevDay(): void {
     const currentDate = new Date(this.currentYear, this.currentMonth, this.currentDay - 1);
     this.currentYear = currentDate.getFullYear();
@@ -114,13 +124,6 @@ export class HorarisEmpresaComponent implements OnInit {
     this.generateCalendar();
   }
 
-  hasService(day: number): boolean {
-    const today = new Date(this.currentYear, this.currentMonth, day).getDay();
-    return this.servicios.some(servicio =>
-      servicio.diasLaborables.includes(today)
-    );
-  }
-
   toggleView(): void {
     this.isMonthlyView = !this.isMonthlyView;
   }
@@ -133,7 +136,18 @@ export class HorarisEmpresaComponent implements OnInit {
     return hours;
   }
 
-  isServiceAvailable(servicio: any, hour: string): boolean {
+  getServicesForDay(day: number): ServicioData[] {
+    const date = new Date(this.currentYear, this.currentMonth, day);
+    const dayOfWeek = date.getDay() === 0 ? 7 : date.getDay(); // Ajustar el día de la semana
+  
+    // Filtrar los servicios que están disponibles en este día
+    return this.servicios.filter(servicio => {
+      const diasLaborables = servicio.diasLaborables.split(',').map(Number);
+      return diasLaborables.includes(dayOfWeek);
+    });
+  }
+  
+  isServiceAvailable(servicio: ServicioData, hour: string): boolean {
     const [hourStart] = servicio.horarioInicio.split(':').map(Number);
     const [hourEnd] = servicio.horarioFin.split(':').map(Number);
     const currentHour = parseInt(hour.split(':')[0], 10);
@@ -141,9 +155,15 @@ export class HorarisEmpresaComponent implements OnInit {
     // Verificar si el servicio está disponible en el día actual y la hora actual
     const today = new Date(this.currentYear, this.currentMonth, this.currentDay).getDay(); // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
     return (
-      servicio.diasLaborables.includes(today) &&
+      servicio.diasLaborables.split(',').map(Number).includes(today) &&
       currentHour >= hourStart &&
       currentHour < hourEnd
     );
+  }  
+  getServiceColor(servicio: ServicioData): string {
+    const colors = ['#FF5733', '#33FF57', '#3357FF', '#FFC300', '#DAF7A6'];
+    const index = servicio.idServicio % colors.length; // Asignar un color basado en el ID del servicio
+    return colors[index];
   }
+
 }
