@@ -1,11 +1,11 @@
 export interface CreateServicePayload {
-    servicio: {
-        nombre: string;
-        descripcion: string;
-        duracion: string;
-        precio: string;
-        limiteReservas: number;
-        horario: string; //Por definir
-    };
-    empresa: number; //¿llegará el ID)
+    nombre: string;
+    descripcion: string;
+    duracion: number;
+    precio: number;
+    diasLaborables: string;
+    limiteReservas: number;
+    horarioInicio: string;
+    horarioFin: string;
+    identificadorFiscal: string;
 }

@@ -55,6 +55,7 @@
                   required
                   pattern="^[0-9]+$"
                   #duracionModel="ngModel"
+                  (input)="validateDuracion()"
                 />
               </div>
               @if (duracionModel.invalid && (duracionModel.touched || duracionModel.dirty)) {
@@ -80,25 +81,75 @@
                 <div class="error">{{ 'add-services-form.servicePrice_error' | translate }}</div>
               }
             </div>
+
+            <!-- Días Laborables a cambiar por checks  -->
             <div class="input-group">
-              <label for="horario" class="form-label">{{ 'add-services-form.serviceAvailability' | translate }}:</label>
+              <label for="diasLaborables" class="form-label">{{ 'add-services-form.workingDays' | translate }}:</label>
+              <div class="input-control two-columns">
+                <div *ngFor="let day of weekDays">
+                  <label class="day-checkbox">
+                    <input
+                      type="checkbox"
+                      [value]="day.value"
+                      (change)="onDaySelected($event)"
+                      name="diasLaborables"
+                    />
+                    {{ day.key | translate }}
+                  </label>
+                </div>
+              </div>
+              @if (diasLaborables.length === 0) {
+                <div class="error">{{ 'add-services-form.workingDays_error' | translate }}</div>
+              }
+            </div>
+
+
+            <div class="input-group">
+              <label for="horarioInicio" class="form-label">{{ 'add-services-form.serviceStartTime' | translate }}</label>
               <div class="input-control">
                 <input
                   type="text"
-                  id="horario"
-                  [(ngModel)]="horario"
-                  name="horario"
-                  placeholder="{{ 'add-services-form.serviceAvailability_placeholder' | translate }} e: 09:00-18:00"
+                  id="horarioInicio"
+                  [(ngModel)]="horarioInicio"
+                  name="horarioInicio"
+                  placeholder="{{ 'add-services-form.serviceStartTime_placeholder' | translate }}"
                   required
-                  pattern="^([01]\d|2[0-3]):([0-5]\d)-([01]\d|2[0-3]):([0-5]\d)$"
-                  #horarioModel="ngModel"
+                  pattern="^([01]\d|2[0-3]):00$"
+                  #horarioInicioModel="ngModel"
+                  (keydown)="restrictToTimeFormat($event)"
                   (input)="validateHorario($event)"
                 />
               </div>
-              @if (horarioModel.invalid && (horarioModel.touched || horarioModel.dirty)) {
+              @if (horarioInicioModel.invalid && (horarioInicioModel.touched || horarioInicioModel.dirty)) {
                 <div class="error">{{ 'add-services-form.serviceAvailability_error' | translate }}</div>
               }
             </div>
+            <div class="input-group">
+              <label for="horarioFin" class="form-label">{{ 'add-services-form.serviceEndTime' | translate }}:</label>
+              <div class="input-control">
+                <input
+                  type="text"
+                  id="horarioFin"
+                  [(ngModel)]="horarioFin"
+                  name="horarioFin"
+                  placeholder="{{ 'add-services-form.serviceEndTime_placeholder' | translate }}"
+                  required
+                  pattern="^([01]\d|2[0-3]):00$"
+                  #horarioFinModel="ngModel"
+                  (keydown)="restrictToTimeFormat($event)"
+                  (input)="validateHorario($event)"
+                />
+              </div>
+              @if (horarioFinModel.invalid && (horarioFinModel.touched || horarioFinModel.dirty)) {
+                <div class="error">{{ 'add-services-form.serviceAvailability_error' | translate }}</div>
+              }
+            </div>
+
+            <!-- Mostrar mensaje de error si hay un problema con las horas -->
+            <div *ngIf="formErrorHorarioInicio" class="error">
+              {{ formErrorHorarioInicio }}
+            </div>
+
             <div class="input-group">
               <label for="limiteReserva" class="form-label">{{ 'add-services-form.serviceReservations' | translate }}:</label>
               <div class="input-control">
@@ -109,8 +160,8 @@
                   name="limiteReserva"
                   placeholder="{{ 'add-services-form.serviceReservations_placeholder' | translate }}"
                   required
-                  pattern="^[0-9]+$"
                   #limiteReservasModel="ngModel"
+                  readonly
                 />
               </div>
               @if (limiteReservasModel.invalid && (limiteReservasModel.touched || limiteReservasModel.dirty)) {
@@ -198,6 +249,7 @@
                   required
                   pattern="^[0-9]+$"
                   #duracionEdit="ngModel"
+                  (input)="validateDuracionEdit()"
                 />
                 <button class="icon-btn" (click)="confirmEditing('duracion')">
                   <i class="fas fa-check"></i>
@@ -238,60 +290,139 @@
                 }
               }
             </div>
-            <!-- Horario -->
+            <!-- Días Laborables -->
             <div class="data-field">
-              <label>{{ 'add-services-form.serviceAvailability' | translate }}:</label>
-              @if (!editingField('horario')) {
-                <span>{{ horario }}</span>
-                <button class="icon-btn" (click)="startEditing('horario', horario)">
+              <label style="width:100%">{{ 'add-services-form.workingDays' | translate }}:</label>
+              @if (!editingField('diasLaborables')) {
+                <!-- Mostrar los checkboxes deshabilitados -->
+                <div class="input-control two-columns">
+                  <div *ngFor="let day of weekDays">
+                    <label class="day-checkbox">
+                      <input
+                        type="checkbox"
+                        [value]="day.value"
+                        [checked]="diasLaborables.includes(day.value)"
+                        disabled
+                      />
+                      {{ day.key | translate }}
+                    </label>
+                  </div>
+                </div>
+                <!-- Botón para habilitar la edición -->
+                <button class="icon-btn" (click)="startEditing('diasLaborables', diasLaborables.join(','))">
                   <i class="fas fa-edit"></i>
                 </button>
               } @else {
-                <input
-                  type="text"
-                  [(ngModel)]="tempValue"
-                  required
-                  pattern="^([01]\d|2[0-3]):([0-5]\d)-([01]\d|2[0-3]):([0-5]\d)$"
-                  #horarioEdit="ngModel"
-                />
-                <button class="icon-btn" (click)="confirmEditing('horario')">
+                <!-- Mostrar los checkboxes habilitados para edición -->
+                <div class="input-control two-columns">
+                  <div *ngFor="let day of weekDays">
+                    <label class="day-checkbox">
+                      <input
+                        type="checkbox"
+                        [value]="day.value"
+                        [checked]="diasLaborables.includes(day.value)"
+                        (change)="onDaySelected($event)"
+                      />
+                      {{ day.key | translate }}
+                    </label>
+                  </div>
+                </div>
+                <!-- Botones para confirmar o cancelar la edición -->
+                <button class="icon-btn" (click)="confirmEditing('diasLaborables')">
                   <i class="fas fa-check"></i>
                 </button>
                 <button class="icon-btn" (click)="cancelEditing()">
                   <i class="fas fa-times"></i>
                 </button>
-                @if (horarioEdit.invalid && (horarioEdit.touched || horarioEdit.dirty)) {
-                  <div class="error">{{ 'add-services-form.serviceAvailability_error' | translate }}</div>
-                }
               }
             </div>
+
+
+
+
+
+
+            <!-- Horario Inicio -->
+<div class="data-field">
+  <label>{{ 'add-services-form.serviceStartTime' | translate }}:</label>
+  @if (!editingField('horarioInicio')) {
+    <span>{{ horarioInicio }}</span>
+    <button class="icon-btn" (click)="startEditing('horarioInicio', horarioInicio)">
+      <i class="fas fa-edit"></i>
+    </button>
+  } @else {
+    <input
+      type="text"
+      [(ngModel)]="tempValue"
+      required
+      pattern="^([01]\d|2[0-3]):00$" 
+      #horarioInicioEdit="ngModel"
+      (keydown)="restrictToTimeFormat($event)"
+      (blur)="validateTimeRangeEdit(tempValue, horarioFin, 'horarioInicio'); calculateMaxReservations()"
+    />
+    <button class="icon-btn" (click)="confirmEditing('horarioInicio')">
+      <i class="fas fa-check"></i>
+    </button>
+    <button class="icon-btn" (click)="cancelEditing()">
+      <i class="fas fa-times"></i>
+    </button>
+    @if (horarioInicioEdit.invalid && (horarioInicioEdit.touched || horarioInicioEdit.dirty)) {
+      <div class="error">{{ 'add-services-form.serviceStartTime_error' | translate }}</div>
+    }
+  }
+</div>
+
+
+
+<!-- Horario Fin -->
+<div class="data-field">
+  <label>{{ 'add-services-form.serviceEndTime' | translate }}:</label>
+  @if (!editingField('horarioFin')) {
+    <span>{{ horarioFin }}</span>
+    <button class="icon-btn" (click)="startEditing('horarioFin', horarioFin)">
+      <i class="fas fa-edit"></i>
+    </button>
+  } @else {
+    <input
+      type="text"
+      [(ngModel)]="tempValue"
+      required
+      pattern="^([01]\d|2[0-3]):00$"
+      #horarioFinEdit="ngModel"
+      (keydown)="restrictToTimeFormat($event)"
+      (blur)="validateTimeRangeEdit(horarioInicio, tempValue, 'horarioFin'); calculateMaxReservations()"
+    />
+    <button class="icon-btn" (click)="confirmEditing('horarioFin')">
+      <i class="fas fa-check"></i>
+    </button>
+    <button class="icon-btn" (click)="cancelEditing()">
+      <i class="fas fa-times"></i>
+    </button>
+    @if (horarioFinEdit.invalid && (horarioFinEdit.touched || horarioFinEdit.dirty)) {
+      <div class="error">{{ 'add-services-form.serviceEndTime_error' | translate }}</div>
+    }
+  }
+</div>
+<!-- Mostrar mensaje de error si hay un problema con las horas -->
+<div *ngIf="formErrorHorarioInicio" class="error">
+  {{ formErrorHorarioInicio }}
+</div>
+
+
+
+
+
+
+
+
             <!-- Límite de reservas -->
-            <div class="data-field">
-              <label>{{ 'add-services-form.serviceReservations' | translate }}:</label>
-              @if (!editingField('limiteReservas')) {
-                <span>{{ limiteReservas }}</span>
-                <button class="icon-btn" (click)="startEditing('limiteReservas', limiteReservas!.toString())">
-                  <i class="fas fa-edit"></i>
-                </button>
-              } @else {
-                <input
-                  type="text"
-                  [(ngModel)]="tempValue"
-                  required
-                  pattern="^[0-9]+$"
-                  #limiteReservasEdit="ngModel"
-                />
-                <button class="icon-btn" (click)="confirmEditing('limiteReservas')">
-                  <i class="fas fa-check"></i>
-                </button>
-                <button class="icon-btn" (click)="cancelEditing()">
-                  <i class="fas fa-times"></i>
-                </button>
-                @if (limiteReservasEdit.invalid && (limiteReservasEdit.touched || limiteReservasEdit.dirty)) {
-                  <div class="error">{{ 'add-services-form.serviceReservations_error' | translate }}</div>
-                }
-              }
-            </div>
+<div class="data-field">
+  <label>{{ 'add-services-form.serviceReservations' | translate }}:</label>
+  <span>{{ limiteReservas }}</span>
+</div>
+
+
+
             <button class="auth-btn" (click)="onSubmit()">
               {{ 'add-services-form.serviceSubmit_edit' | translate }}
             </button>

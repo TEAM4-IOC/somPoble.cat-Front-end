@@ -55,21 +55,21 @@ export class ApiService {
   }
 
   createServicio(payload: CreateServicePayload): Observable<ServicioData> {
+    const url = 'https://sompoblecatsb-production.up.railway.app/api/servicio-horario/crear'; // URL correcta
     return this.http
-      .post<{ servicio: ServicioData, empresa:string }>(this.servicioUrl, payload)
+      .post<{ servicio: ServicioData, empresa: string }>(url, payload)
       .pipe(map(response => response.servicio));
   }
 
-  /* updateServicio(servicioId: number, partial: Partial<ServicioData>): Observable<ServicioData> {
-    return this.http.put(`${this.servicioUrl}/${servicioId}`, partial, { responseType: 'text' })
-      .pipe(
-        switchMap(() => this.getServiciosByIdentificadorFiscal(servicioId))
-      );
-  } */
-
-  deleteServicio(servicioId: number): Observable<any> {
-    return this.http.delete(`${this.servicioUrl}/${servicioId}`, { responseType: 'text' });
+  updateServicio(idServicio: number, identificadorFiscal: string, payload: any): Observable<any> {
+    const url = `https://sompoblecatsb-production.up.railway.app/api/servicio-horario/actualizar/${idServicio}?identificadorFiscal=${identificadorFiscal}`;
+    return this.http.put(url, payload);
   }
+
+      deleteServicio(idServicio: number, identificadorFiscal: string): Observable<void> {
+        const url = `https://sompoblecatsb-production.up.railway.app/api/servicio-horario/anular/${idServicio}?identificadorFiscal=${identificadorFiscal}`;
+        return this.http.delete<void>(url);
+      }
 
   getServicios(): Observable<ServicioData[]> {
     return this.http.get<ServicioData[]>(`${environment.authUrl}/servicio-horario/obtener-todos`);

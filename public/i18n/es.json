@@ -118,9 +118,13 @@
     "servicePrice": "Precio",
     "servicePrice_placeholder": "Precio del servicio en €",
     "servicePrice_error": "Precio obligatorio, máximo dos decimales.",
-    "serviceAvailability": "Horario de disponibilidad",
-    "serviceAvailability_placeholder": "Horario de disponibilidad del servicio",
-    "serviceAvailability_error": "Horario obligatorio, mínimo 4 caracteres.",
+
+    "serviceStartTime": "Horario de disponibilidad: hora inicio",
+    "serviceStartTime_placeholder": "Formato necesario HH:MM, solamente horas en punto",
+    "serviceEndTime": "Horario de disponibilidad: hora fin",
+    "serviceEndTime_placeholder": "Formato necesario HH:MM, solamente horas en punto",
+    "serviceAvailability_error": "Formato de hora incorrecto, debe ser HH:MM.",
+
     "serviceReservations": "Límite máximo de reservas",
     "serviceReservations_placeholder": "Número límite de reservas",
     "serviceReservations_error": "Límite de reservas obligatorio, solo admite números enteros.",
@@ -128,7 +132,16 @@
     "formError": "Error en el formulario, todos los campos son obligatorios.",
     "nameForm_edit": "Formulario de modificación de servicio",
     "serviceSubmit_edit": "Guardar los cambios",
-    "serviceDelete": "Elimina el servicio"
+    "serviceDelete": "Elimina el servicio",
+    "workingDays": "Días laborables",
+    "monday": "Lunes",
+    "tuesday": "Martes",
+    "wednesday": "Miércoles",
+    "thursday": "Jueves",
+    "friday": "Viernes",
+    "saturday": "Sábado",
+    "sunday": "Domingo",
+    "workingDays_error": "Campo obligatorio, selecciona al menos un día."
   },
   "notfound-page": {
     "msg": "Ups! Parece que este enlace no funciona",
