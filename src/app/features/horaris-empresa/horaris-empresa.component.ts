@@ -55,23 +55,29 @@ export class HorarisEmpresaComponent implements OnInit {
   generateCalendar(): void {
     const firstDayOfMonth = new Date(this.currentYear, this.currentMonth, 1);
     const lastDayOfMonth = new Date(this.currentYear, this.currentMonth + 1, 0);
-    const firstDayOfWeek = firstDayOfMonth.getDay() === 0 ? 7 : firstDayOfMonth.getDay();
+    const firstDayOfWeek = firstDayOfMonth.getDay() === 0 ? 7 : firstDayOfMonth.getDay(); // Ajustar para que el lunes sea el primer día
     const lastDateOfMonth = lastDayOfMonth.getDate();
-
+  
     this.daysInMonth = [];
-
-    // Agregar días del mes anterior
-    for (let i = firstDayOfWeek - 1; i > 0; i--) {
-      const date = new Date(this.currentYear, this.currentMonth, -i + 1);
-      this.daysInMonth.push({ date: date.getDate(), isCurrentMonth: false });
+  
+    // Agregar días del mes anterior para completar la primera fila
+    const daysFromPrevMonth = firstDayOfWeek - 1; // Días necesarios del mes anterior
+    if (daysFromPrevMonth > 0) {
+      const prevMonth = this.currentMonth === 0 ? 11 : this.currentMonth - 1;
+      const prevYear = this.currentMonth === 0 ? this.currentYear - 1 : this.currentYear;
+      const lastDayOfPrevMonth = new Date(prevYear, prevMonth + 1, 0).getDate();
+  
+      for (let i = daysFromPrevMonth; i > 0; i--) {
+        this.daysInMonth.push({ date: lastDayOfPrevMonth - i + 1, isCurrentMonth: false });
+      }
     }
-
+  
     // Agregar días del mes actual
     for (let i = 1; i <= lastDateOfMonth; i++) {
       this.daysInMonth.push({ date: i, isCurrentMonth: true });
     }
-
-    // Agregar días del mes siguiente
+  
+    // Agregar días del mes siguiente para completar la última fila
     const remainingCells = 7 - (this.daysInMonth.length % 7);
     if (remainingCells < 7) {
       for (let i = 1; i <= remainingCells; i++) {
@@ -131,12 +137,20 @@ export class HorarisEmpresaComponent implements OnInit {
   getHours(): string[] {
     const hours: string[] = [];
     for (let i = 0; i < 24; i++) {
-      hours.push(i.toString().padStart(2, '0') + ':00');
+      const start = `${i.toString().padStart(2, '0')}:00`;
+      const end = `${(i + 1).toString().padStart(2, '0')}:00`;
+      hours.push(`${start} ${end}`);
     }
     return hours;
   }
 
   getServicesForDay(day: number): ServicioData[] {
+    // Verificar si el día pertenece al mes actual
+    const dayData = this.daysInMonth.find(d => d.date === day && d.isCurrentMonth);
+    if (!dayData || !dayData.isCurrentMonth) {
+      return []; // No devolver servicios si el día no pertenece al mes actual
+    }
+  
     const date = new Date(this.currentYear, this.currentMonth, day);
     const dayOfWeek = date.getDay() === 0 ? 7 : date.getDay(); // Ajustar el día de la semana
   
@@ -159,11 +173,10 @@ export class HorarisEmpresaComponent implements OnInit {
       currentHour >= hourStart &&
       currentHour < hourEnd
     );
-  }  
+  } 
   getServiceColor(servicio: ServicioData): string {
-    const colors = ['#FF5733', '#33FF57', '#3357FF', '#FFC300', '#DAF7A6'];
-    const index = servicio.idServicio % colors.length; // Asignar un color basado en el ID del servicio
-    return colors[index];
+    const hue = (servicio.idServicio * 137) % 360; // Generar un tono único basado en el ID
+    return `hsl(${hue}, 70%, 50%)`; // Usar HSL para generar colores
   }
 
 }

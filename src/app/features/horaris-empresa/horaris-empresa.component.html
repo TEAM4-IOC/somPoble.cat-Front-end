@@ -8,28 +8,45 @@
 <div *ngIf="isMonthlyView">
   <div class="calendar-container">
     <div class="calendar-header">
-      <button (click)="prevMonth()">&#8592;</button>
-      <h2>{{ currentMonthName }} {{ currentYear }}</h2>
-      <button (click)="nextMonth()">&#8594;</button>
+      <button class="nav-button" (click)="prevMonth()">&#8592;</button>
+      <h2 class="calendar-title">{{ currentMonthName }} {{ currentYear }}</h2>
+      <button class="nav-button" (click)="nextMonth()">&#8594;</button>
     </div>
-    <div class="month-grid">
-      <!-- Encabezados de los días de la semana -->
-      <div class="day-header" *ngFor="let day of weekDays">{{ day }}</div>
-      <!-- Días del mes -->
-      <div
-        class="day-cell"
-        *ngFor="let day of daysInMonth"
-        [class.disabled]="!day.isCurrentMonth"
-      >
-        <div class="day-number">{{ day.date }}</div>
-        <div class="service-bars">
-          <!-- Mostrar una barra de color por cada servicio disponible en el día -->
-          <div
-            *ngFor="let servicio of getServicesForDay(day.date)"
-            class="service-bar"
-            [style.backgroundColor]="getServiceColor(servicio)"
-          ></div>
+    <div class="calendar-content">
+      <!-- Calendario -->
+      <div class="month-grid">
+        <!-- Encabezados de los días de la semana -->
+        <div class="day-header" *ngFor="let day of weekDays">{{ day }}</div>
+        <!-- Días del mes -->
+        <div
+          class="day-cell"
+          *ngFor="let day of daysInMonth"
+          [class.disabled]="!day.isCurrentMonth"
+        >
+          <div class="day-number">{{ day.date }}</div>
+          <div class="service-bars">
+            <!-- Mostrar una barra de color por cada servicio disponible en el día -->
+            <div
+              *ngFor="let servicio of getServicesForDay(day.date)"
+              class="service-bar"
+              [style.backgroundColor]="getServiceColor(servicio)"
+            ></div>
+          </div>
         </div>
+      </div>
+
+      <!-- Leyenda -->
+      <div class="legend">
+        <h3>Servicios</h3>
+        <ul>
+          <li *ngFor="let servicio of servicios">
+            <span
+              class="legend-color"
+              [style.backgroundColor]="getServiceColor(servicio)"
+            ></span>
+            {{ servicio.nombre }}
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -46,13 +63,18 @@
     <div class="agenda-grid">
       <!-- Horas del día -->
       <div class="hour-row" *ngFor="let hour of getHours()">
-        <div class="hour-label">{{ hour }}</div>
+        <div class="hour-label">
+          <!-- Dividir las horas en dos líneas -->
+          <span>{{ hour.split(' ')[0] }}</span><br />
+          <span>{{ hour.split(' ')[1] }}</span>
+        </div>
         <div class="hour-cell">
           <!-- Mostrar los servicios disponibles en esta hora -->
           <div *ngFor="let servicio of servicios">
             <div
               *ngIf="isServiceAvailable(servicio, hour)"
               class="service-block"
+              [style.backgroundColor]="getServiceColor(servicio)"
             >
               {{ servicio.nombre }}
             </div>
