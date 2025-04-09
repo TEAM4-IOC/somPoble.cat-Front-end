@@ -1,0 +1,20 @@
+<div class="main-content">
+  <div class="service-detail-container" *ngIf="service$ | async as service; else loading">
+    <h1>{{ service.nombre }}</h1>
+    <p>{{ service.descripcion }}</p>
+    <ul>
+      <li>
+        <strong>{{ 'Duration:' }}</strong> {{ service.duracion }} {{ 'minutes' }}
+      </li>
+      <li>
+        <strong>{{ 'Price:' }}</strong> €{{ service.precio }}
+      </li>
+      <li>
+        <strong>{{ 'Schedule:' }}</strong> {{ service.diasLaborables }} - {{ service.horarioInicio }} - {{ service.horarioFin }}
+      </li>
+    </ul>
+  </div>
+</div>
+<ng-template #loading>
+  <p>{{ 'Loading...' }}</p>
+</ng-template>

@@ -1,0 +1,46 @@
+@import '../../../../colors.scss';
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: $bg-gradient;
+  color: $white;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.service-detail-container {
+  background-color: $container-bg;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 90%;
+  padding: 2rem;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: $white;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+    }
+  }
+}

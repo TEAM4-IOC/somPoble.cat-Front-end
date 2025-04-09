@@ -5,7 +5,7 @@
     @if (services.length > 0) {
       <div class="services-grid">
         @for (service of services; track service.nombre) {
-          <div class="service-card">
+          <div class="service-card" (click)="onSelectService(service)">
             <h2>{{ service.nombre }}</h2>
             <p>{{ service.descripcion }}</p>
             <ul>
