@@ -20,6 +20,54 @@ export class HorarisEmpresaComponent implements OnInit {
   servicios: ServicioData[] = [];
   identificadorFiscal: string = '';
 
+  // Reservas ficticias
+  reservas: { 
+    id: number; 
+    fechaReserva: string; 
+    hora: string; 
+    estado: string; 
+    dniCliente: string; 
+    idServicio: number; 
+    identificadorFiscalEmpresa: string; 
+  }[] = [
+    {
+      id: 99,
+      fechaReserva: '2025-04-10',
+      hora: '10:00',
+      estado: 'CONFIRMADA',
+      dniCliente: '12345678A',
+      idServicio: 9,
+      identificadorFiscalEmpresa: 'B12345678'
+    },
+    {
+      id: 166,
+      fechaReserva: '2025-04-15',
+      hora: '11:00',
+      estado: 'PENDIENTE',
+      dniCliente: '87654321B',
+      idServicio: 16,
+      identificadorFiscalEmpresa: 'B12345678'
+    },
+    {
+      id: 177,
+      fechaReserva: '2025-04-15',
+      hora: '09:00',
+      estado: 'CONFIRMADA',
+      dniCliente: '11223344C',
+      idServicio: 17,
+      identificadorFiscalEmpresa: 'B12345678'
+    },
+    {
+      id: 188,
+      fechaReserva: '2025-04-16',
+      hora: '14:00',
+      estado: 'CANCELADA',
+      dniCliente: '55667788D',
+      idServicio: 18,
+      identificadorFiscalEmpresa: 'B12345678'
+    }
+  ];
+
   constructor(private serviceState: ServiceStateService) {}
 
   ngOnInit(): void {
@@ -178,5 +226,51 @@ export class HorarisEmpresaComponent implements OnInit {
     const hue = (servicio.idServicio * 137) % 360; // Generar un tono único basado en el ID
     return `hsl(${hue}, 70%, 50%)`; // Usar HSL para generar colores
   }
+
+  goToDailyView(day: { date: number; isCurrentMonth: boolean }): void {
+    if (!day.isCurrentMonth) {
+      return; // No hacer nada si el día no pertenece al mes actual
+    }
+  
+    const calendarContainer = document.querySelector('.calendar-container');
+    if (calendarContainer) {
+      calendarContainer.classList.add('hidden'); // Añadir la clase para la animación
+      setTimeout(() => {
+        this.currentDay = day.date; // Actualizar el día seleccionado
+        this.isMonthlyView = false; // Cambiar a la vista diaria
+        calendarContainer.classList.remove('hidden'); // Quitar la clase después de cambiar la vista
+      }, 300); // Esperar a que termine la animación
+    }
+  }
+
+  // Método para obtener las reservas de un servicio en una hora específica
+  getReservasForServiceAndHour(idServicio: number, hour: string): { id: number; estado: string }[] {
+    const [hourStart] = hour.split(' '); // Obtener solo la hora inicial (ejemplo: "10:00")
+    const currentDate = `${this.currentYear}-${(this.currentMonth + 1).toString().padStart(2, '0')}-${this.currentDay.toString().padStart(2, '0')}`;
+  
+    const reservasFiltradas = this.reservas.filter(reserva => {
+      const matchesServicio = reserva.idServicio === idServicio;
+      const matchesHora = reserva.hora === hourStart;
+      const matchesFecha = reserva.fechaReserva === currentDate;
+  
+      console.log('Comparando reserva:', {
+        reserva,
+        idServicio,
+        hourStart,
+        currentDate,
+        matchesServicio,
+        matchesHora,
+        matchesFecha
+      });
+  
+      return matchesServicio && matchesHora && matchesFecha;
+    });
+  
+    console.log(`Servicio: ${idServicio}, Hora: ${hour}, Fecha: ${currentDate}, Reservas filtradas:`, reservasFiltradas);
+  
+    return reservasFiltradas.map(reserva => ({ id: reserva.id, estado: reserva.estado }));
+  }
+
+  
 
 }
