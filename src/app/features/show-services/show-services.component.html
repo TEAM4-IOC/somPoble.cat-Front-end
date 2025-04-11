@@ -1,6 +1,5 @@
 <div class="show-services-container">
   <h1>{{ 'showServices.title' | translate }}</h1>
-
   @if (services$ | async; as services) {
     @if (services.length > 0) {
       <div class="services-grid">
@@ -28,7 +27,5 @@
     } @else {
       <p>{{ 'showServices.noServices' | translate }}</p>
     }
-  } @else {
-    <p>{{ 'showServices.loading' | translate }}</p>
   }
 </div>

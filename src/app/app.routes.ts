@@ -40,8 +40,18 @@ export const routes: Routes = [
         (m) => m.ServicesFormComponent
       ),
   },
+  // Ruta sin parámetro: muestra todos los servicios
   {
     path: 'show-services',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/show-services/show-services.component').then(
+        (m) => m.ShowServicesComponent
+      ),
+  },
+  // Ruta con parámetro: muestra los servicios de una empresa concreta
+  {
+    path: 'show-services/:identificadorFiscal',
     canActivate: [authGuard],
     loadComponent: () =>
       import('./features/show-services/show-services.component').then(
