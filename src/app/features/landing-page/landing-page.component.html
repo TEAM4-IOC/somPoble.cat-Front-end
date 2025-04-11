@@ -1,6 +1,9 @@
 <ngx-spinner type="pacman" size="large"></ngx-spinner>
-
 <div class="landing-container text-white">
+  <div class="search-wrapper">
+    <app-search (searchChanged)="filterEmpresas($event)"></app-search>
+  </div>
+
   @if (empresas; as companies) {
     <div class="col-12 d-flex justify-content-center flex-wrap card-container">
       @for (empresa of companies; track empresa.idEmpresa) {

@@ -9,17 +9,20 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { EmpresaData } from '../../core/models/EmpresaData.interface';
 import { ServicioData } from '../../core/models/ServicioData.interface';
+import { SearchComponent } from '../../shared/component/search/search.component';
+
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [NgxSpinnerModule, TranslateModule, RouterModule, CommonModule],
+  imports: [NgxSpinnerModule, TranslateModule, RouterModule, CommonModule, SearchComponent],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandingPageComponent implements OnInit {
   empresas: EmpresaData[] = [];
+  originalEmpresas: EmpresaData[] = [];
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -36,7 +39,8 @@ export class LandingPageComponent implements OnInit {
   private fetchData(): void {
     this.apiService.getEmpresas().subscribe({
       next: (data: any[]) => {
-        this.empresas = data.map(item => item.empresa).slice(0, 6);
+        this.originalEmpresas = data.map(item => item.empresa).slice(0, 6);
+        this.empresas = [...this.originalEmpresas];
         this.empresas.forEach(empresa => this.fetchServicios(empresa));
         this.cdr.detectChanges();
       },
@@ -64,6 +68,7 @@ export class LandingPageComponent implements OnInit {
   goToCompanyServices(empresa: EmpresaData): void {
     this.router.navigate(['/show-services', empresa.identificadorFiscal]);
   }
+
   trackByEmpresa(index: number, empresa: EmpresaData): number {
     return empresa.idEmpresa;
   }
@@ -72,4 +77,14 @@ export class LandingPageComponent implements OnInit {
     return servicio.idServicio;
   }
 
+  public filterEmpresas(searchTerm: string): void {
+    if (!searchTerm) {
+      this.empresas = [...this.originalEmpresas];
+    } else {
+      this.empresas = this.originalEmpresas.filter((empresa) =>
+        empresa.nombre!.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    this.cdr.detectChanges();
+  }
 }
