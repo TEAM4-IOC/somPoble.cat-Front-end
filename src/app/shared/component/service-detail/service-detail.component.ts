@@ -79,18 +79,14 @@ export class ServiceDetailComponent implements OnInit {
   // Mètode per navegar al component reserves-cli
   goToReservation(service: ServicioData | undefined): void {
     if (!service) return;
-  
-    // Navegar al component reserves-cli amb els paràmetres necessaris
+
+    console.log('Dades del servei:', service);
+    console.log('Identificador Fiscal:', service.identificadorFiscal);
+
     this.router.navigate(['/reserves-cli'], {
       queryParams: {
         id: service.idServicio,
-        nombre: service.nombre,
-        descripcion: service.descripcion,
-        duracion: service.duracion,
-        precio: service.precio,
-        diasLaborables: service.diasLaborables,
-        horarioInicio: service.horarioInicio,
-        horarioFin: service.horarioFin
+        identificadorFiscal: service.identificadorFiscal, // Assegura't que aquesta propietat existeix
       }
     });
   }

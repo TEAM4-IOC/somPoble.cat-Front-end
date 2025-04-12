@@ -79,4 +79,23 @@ export class ApiService {
     const url: string = `${environment.authUrl}/servicio-horario/obtener-empresa-idservicio?identificadorFiscal=${identificadorFiscal}&idServicio=${idServicio}`;
     return this.http.get<ServicioData>(url);
   }
+
+  //Implementació reserves
+  //Creació de reserves
+  createReserva(payload: any): Observable<any> {
+    const url = 'https://sompoblecatsb-production.up.railway.app/api/reservas'; // URL de l'endpoint
+    return this.http.post<any>(url, payload);
+  }
+
+  // Obtenir reserves per client (DNI)
+getReservasByCliente(dni: string): Observable<any[]> {
+  const url = `https://sompoblecatsb-production.up.railway.app/api/reservas/clientes/${dni}`;
+  return this.http.get<any[]>(url);
+}
+
+// Obtenir reserves per empresa (identificador fiscal)
+getReservasByEmpresa(identificadorFiscal: string): Observable<any[]> {
+  const url = `https://sompoblecatsb-production.up.railway.app/api/reservas/empresas/${identificadorFiscal}`;
+  return this.http.get<any[]>(url);
+}
 }
