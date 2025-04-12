@@ -210,7 +210,7 @@ export class ReservesCliComponent implements OnInit {
           console.log(`Hores reservades per a la data ${selectedDate}:`, reservedHours);
 
           const startHour = parseInt(this.serviceData.horarioInicio.split(':')[0], 10);
-          const endHour = parseInt(this.serviceData.horarioFin.split(':')[0], 10);
+          const endHour = parseInt(this.serviceData.horarioFin.split(':')[0], 10) -1;
 
           const allHours = Array.from({ length: endHour - startHour + 1 }, (_, i) => `${startHour + i}:00`);
           console.log('Totes les hores possibles:', allHours);
@@ -237,17 +237,34 @@ export class ReservesCliComponent implements OnInit {
   }
 
   createReserva(): void {
+    // Sincronitzar els valors dels camps amb el formulari
+    if (!this.reservaForm.get('fechaReserva')?.value && this.selectedDate) {
+      this.reservaForm.get('fechaReserva')?.setValue(this.selectedDate);
+    }
+  
+    if (!this.reservaForm.get('hora')?.value && this.availableHours.length > 0) {
+      this.reservaForm.get('hora')?.setValue(this.availableHours[0]); // Assignar la primera hora disponible si no hi ha cap seleccionada
+    }
+  
+    this.reservaForm.updateValueAndValidity(); // Actualitzar l'estat del formulari
+  
+    // Logs per depurar
+    console.log('Valor del formulari:', this.reservaForm.value);
+    console.log('Estat del formulari:', this.reservaForm.valid);
+    console.log('Validació de fechaReserva:', this.reservaForm.get('fechaReserva')?.valid);
+    console.log('Validació de hora:', this.reservaForm.get('hora')?.valid);
+  
     if (this.reservaForm.invalid) {
       alert('Si us plau, completa tots els camps del formulari.');
       return;
     }
-
+  
     if (!this.serviceData || !this.serviceData.identificadorFiscal) {
       console.error('Les dades del servei no estan disponibles o són incompletes:', this.serviceData);
       alert('Error: Les dades del servei no estan disponibles. Si us plau, torna-ho a intentar.');
       return;
     }
-
+  
     const payload = {
       reserva: {
         cliente: {
@@ -264,9 +281,9 @@ export class ReservesCliComponent implements OnInit {
         estado: 'pendiente'
       }
     };
-
+  
     console.log('Payload del formulari:', payload);
-
+  
     this.reservaStateService.createReserva(payload).subscribe(
       response => {
         console.log('Reserva creada amb èxit:', response);
@@ -282,4 +299,6 @@ export class ReservesCliComponent implements OnInit {
   get currentMonthName(): string {
     return new Date(this.currentYear, this.currentMonth).toLocaleString('default', { month: 'long' });
   }
+
+  
 }
