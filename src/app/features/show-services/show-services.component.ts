@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { ServicioData } from '../../core/models/ServicioData.interface';
 import { ApiService } from '../../core/services/api.service';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { SearchComponent } from '../../shared/component/search/search.component';
+
 
 @Component({
   selector: 'app-show-services',
@@ -13,27 +17,65 @@ import { Router, RouterModule } from '@angular/router';
     CommonModule,
     TranslateModule,
     RouterModule,
+    SearchComponent
   ],
   templateUrl: './show-services.component.html',
   styleUrls: ['./show-services.component.scss']
 })
 export class ShowServicesComponent implements OnInit {
-  services$: Observable<ServicioData[]>;
+  services$!: Observable<ServicioData[]>;
+  originalServices: ServicioData[] = []; // Almacena la lista original de servicios
 
-  constructor(private apiService: ApiService, private router: Router) {
-    this.services$ = new Observable<ServicioData[]>();
-  }
+  constructor(
+    private apiService: ApiService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.services$ = this.apiService.getServicios();
+    const identificadorFiscal = this.route.snapshot.paramMap.get('identificadorFiscal');
+    if (identificadorFiscal && identificadorFiscal.trim() !== '') {
+      this.services$ = this.apiService.getServiciosByIdentificadorFiscal(identificadorFiscal)
+        .pipe(
+          tap((services: ServicioData[]) => {
+            this.originalServices = services;
+          }),
+          catchError(error => {
+            console.error("Error al obtener els serveis per a l'empresa:", error);
+            return of([]);
+          })
+        );
+    } else {
+      this.services$ = this.apiService.getServicios()
+        .pipe(
+          tap((services: ServicioData[]) => {
+            this.originalServices = services;
+          }),
+          catchError(error => {
+            console.error("Error al obtener todos los servicios:", error);
+            return of([]);
+          })
+        );
+    }
   }
 
   onSelectService(service: ServicioData): void {
     this.router.navigate(['/service-detail', service.idServicio, service.identificadorFiscal]);
   }
 
-
   trackByServiceName(index: number, service: ServicioData): string {
     return service.nombre;
+  }
+
+  public filterServices(searchTerm: string): void {
+    if (!searchTerm) {
+      this.services$ = of(this.originalServices);
+      return;
+    }
+
+    const filteredServices = this.originalServices.filter(service =>
+      service.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    this.services$ = of(filteredServices);
   }
 }

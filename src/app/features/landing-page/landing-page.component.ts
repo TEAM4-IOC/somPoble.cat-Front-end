@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoadingService } from '../../core/services/loading.service';
 import { ApiService } from '../../core/services/api.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -8,23 +9,26 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { EmpresaData } from '../../core/models/EmpresaData.interface';
 import { ServicioData } from '../../core/models/ServicioData.interface';
+import { SearchComponent } from '../../shared/component/search/search.component';
 
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [NgxSpinnerModule, TranslateModule, RouterModule, CommonModule],
+  imports: [NgxSpinnerModule, TranslateModule, RouterModule, CommonModule, SearchComponent],
   templateUrl: './landing-page.component.html',
-  styleUrl: './landing-page.component.scss',
+  styleUrls: ['./landing-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandingPageComponent implements OnInit {
   empresas: EmpresaData[] = [];
+  originalEmpresas: EmpresaData[] = [];
 
   constructor(
     private cdr: ChangeDetectorRef,
     public loadingService: LoadingService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -35,9 +39,8 @@ export class LandingPageComponent implements OnInit {
   private fetchData(): void {
     this.apiService.getEmpresas().subscribe({
       next: (data: any[]) => {
-        console.log('Dades rebudes de l\'API (abans de transformar):', data);
-        this.empresas = data.map(item => item.empresa).slice(0, 6);
-        console.log('Empreses després de transformar:', this.empresas);
+        this.originalEmpresas = data.map(item => item.empresa).slice(0, 6);
+        this.empresas = [...this.originalEmpresas];
         this.empresas.forEach(empresa => this.fetchServicios(empresa));
         this.cdr.detectChanges();
       },
@@ -51,15 +54,37 @@ export class LandingPageComponent implements OnInit {
   }
 
   private fetchServicios(empresa: EmpresaData): void {
-    this.apiService.getServiciosByIdentificadorFiscal(empresa.identificadorFiscal).subscribe({
+    this.apiService.getServicios().subscribe({
       next: (servicios: ServicioData[]) => {
-        empresa.servicios = servicios; // Assigna els serveis a l'empresa
-        console.log(`Serveis per a l'empresa ${empresa.nombre}:`, servicios);
+        empresa.servicios = servicios.filter(s => s.identificadorFiscal === empresa.identificadorFiscal);
         this.cdr.detectChanges();
       },
       error: (error: HttpErrorResponse) => {
         console.error(`Error al obtenir els serveis per a l'empresa ${empresa.nombre}:`, error.message);
       }
     });
+  }
+
+  goToCompanyServices(empresa: EmpresaData): void {
+    this.router.navigate(['/show-services', empresa.identificadorFiscal]);
+  }
+
+  trackByEmpresa(index: number, empresa: EmpresaData): number {
+    return empresa.idEmpresa;
+  }
+
+  trackByServicio(index: number, servicio: ServicioData): number {
+    return servicio.idServicio;
+  }
+
+  public filterEmpresas(searchTerm: string): void {
+    if (!searchTerm) {
+      this.empresas = [...this.originalEmpresas];
+    } else {
+      this.empresas = this.originalEmpresas.filter((empresa) =>
+        empresa.nombre!.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    this.cdr.detectChanges();
   }
 }
