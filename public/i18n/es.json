@@ -97,6 +97,23 @@
     "modifiedAt": "Fecha de modificación",
     "reservations": "Reservas"
   },
+  "serviceDetail": {
+    "days": {
+      "1": "Lunes",
+      "2": "Martes",
+      "3": "Miércoles",
+      "4": "Jueves",
+      "5": "Viernes",
+      "6": "Sábado",
+      "7": "Domingo"
+    },
+    "duration": "Duración estimada",
+    "price": "Precio",
+    "availability": "Días de disponibilidad",
+    "schedule": "Horario del servicio",
+    "minutes": "minuts",
+    "actionButton": "Hacer una reserva AHORA"
+  },
   "landing": {
     "services": "Servicios",
     "adress": "Dirección",

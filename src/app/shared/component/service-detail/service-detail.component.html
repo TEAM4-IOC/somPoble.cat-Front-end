@@ -4,15 +4,26 @@
     <p>{{ service.descripcion }}</p>
     <ul>
       <li>
-        <strong>{{ 'Duration:' }}</strong> {{ service.duracion }} {{ 'minutes' }}
+        <strong>{{ 'serviceDetail.duration' | translate }}: </strong> {{ service.duracion }} {{ 'serviceDetail.minutes' | translate }}
       </li>
       <li>
-        <strong>{{ 'Price:' }}</strong> €{{ service.precio }}
+        <strong>{{ 'serviceDetail.price' | translate }}: </strong> {{ service.precio }}€
       </li>
       <li>
-        <strong>{{ 'Schedule:' }}</strong> {{ service.diasLaborables }} - {{ service.horarioInicio }} - {{ service.horarioFin }}
+        <strong>{{ 'serviceDetail.availability' | translate }}: </strong>
+        <span *ngIf="formattedDays$ | async as days">{{ days }}</span>
+      </li>
+      <li>
+        <strong>{{ 'serviceDetail.schedule' | translate }}: </strong>
+        <span *ngIf="formattedHours$ | async as hours"> {{ hours }}</span>
       </li>
     </ul>
+    <!-- El botó ha d'estar dins del mateix bloc *ngIf -->
+    <div class="button-container w-100">
+      <button type="button" class="auth-btn" (click)="goToReservation(service)">
+        {{ 'serviceDetail.actionButton' | translate }}
+      </button>
+    </div>
   </div>
 </div>
 <ng-template #loading>

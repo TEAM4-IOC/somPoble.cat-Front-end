@@ -81,7 +81,7 @@
     "submit_button": "Enviar",
     "delete_button": "Eliminar empresa",
     "cif_error": "El camp és obligatori i ha de seguir el format correcte.",
-    "dni_error" : "El camp és obligatori i ha de seguir el format correcte."
+    "dni_error": "El camp és obligatori i ha de seguir el format correcte."
   },
   "showServices": {
     "title": "Serveis",
@@ -96,6 +96,23 @@
     "createdAt": "Data de creació",
     "modifiedAt": "Data de modificació",
     "reservations": "Reserves"
+  },
+  "serviceDetail": {
+    "days": {
+      "1": "Dilluns",
+      "2": "Dimarts",
+      "3": "Dimecres",
+      "4": "Dijous",
+      "5": "Divendres",
+      "6": "Dissabte",
+      "7": "Diumenge"
+    },
+    "duration": "Durada estimada",
+    "price": "Preu",
+    "availability": "Dies disponibilitat",
+    "schedule": "Horari del servei",
+    "minutes": "minuts",
+    "actionButton": "Fer una reserva ARA"
   },
   "landing": {
     "services": "Serveis",
@@ -118,13 +135,11 @@
     "servicePrice": "Preu",
     "servicePrice_placeholder": "Preu del servei en €",
     "servicePrice_error": "Preu obligatori, màxim dos decimals.",
-
     "serviceStartTime": "Horari de disponibilitat - hora d'inici",
     "serviceStartTime_placeholder": "Format necessari HH:MM, només hores en punt",
     "serviceEndTime": "Horari de disponibilitat - hora de finalització",
     "serviceEndTime_placeholder": "Format necessari HH:MM, només",
     "serviceAvailability_error": "Horari obligatori, format HH:MM.",
-
     "serviceReservations": "Límit màxim de reserves",
     "serviceReservations_placeholder": "Nombre límit de reserves",
     "serviceReservations_error": "Límit de reserves obligatoris, només s'admeten nombres enters.",
