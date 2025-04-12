@@ -40,13 +40,20 @@ export const routes: Routes = [
         (m) => m.ServicesFormComponent
       ),
   },
-  // Ruta sin parámetro: muestra todos los servicios
   {
     path: 'horaris-empresa',
-    //canActivate: [authGuard],
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./features/horaris-empresa/horaris-empresa.component').then(
         (m) => m.HorarisEmpresaComponent
+      ),
+  },
+  {
+    path: 'reserves-cli',
+    //canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/reserves-cli/reserves-cli.component').then(
+        (m) => m.ReservesCliComponent
       ),
   },
   {
