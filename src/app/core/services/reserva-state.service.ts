@@ -15,4 +15,8 @@ export class ReservaStateService {
   createReserva(payload: any): Observable<any> {
     return this.apiService.createReserva(payload);
   }
+
+  getReservasByEmpresa(identificadorFiscal: string): Observable<any[]> {
+    return this.apiService.getReservasByEmpresa(identificadorFiscal);
+  }
 }

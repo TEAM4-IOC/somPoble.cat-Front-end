@@ -3,13 +3,10 @@
 
     <!-- Detalls del servei -->
     <div class="service-details">
-
         <p><strong>Nom:</strong> {{ serviceData.nombre }}</p>
-
         <p>El resto de datos solo están pruestos para pruebas</p>
         <p>Para verificar que lo que muestra el calendario es coherente con los días y horarios</p>
         <p>se eliminarán</p>
-
         <p><strong>Descripció:</strong> {{ serviceData.descripcion }}</p>
         <p><strong>Límit de Reserves:</strong> {{ serviceData.limiteReservas }}</p>
         <p><strong>Horari:</strong> {{ serviceData.horarioInicio }} - {{ serviceData.horarioFin }}</p>
@@ -28,9 +25,15 @@
                     <button type="button" (click)="nextMonth()">&#8594;</button>
                 </div>
                 <div class="calendar-grid">
-                    <div *ngFor="let day of daysInMonth" [class.available]="day.isAvailable"
-                        [class.unavailable]="!day.isAvailable && day.date && !day.isPast" [class.past]="day.isPast"
-                        [class.empty]="!day.date" (click)="day.date && day.isAvailable ? selectDate(day) : null">
+                    <div
+                        *ngFor="let day of daysInMonth"
+                        [class.available]="day.isAvailable"
+                        [class.unavailable]="!day.isAvailable && day.date && !day.isPast"
+                        [class.past]="day.isPast"
+                        [class.selected]="isSelected(day.date)"
+                        [class.empty]="!day.date"
+                        (click)="selectDate(day)"
+                    >
                         {{ day.date?.getDate() }}
                     </div>
                 </div>

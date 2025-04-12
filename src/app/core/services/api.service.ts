@@ -15,7 +15,7 @@ export class ApiService {
   private empresaUrl = `${environment.authUrl}/empresas`;
   private servicioUrl = `${environment.authUrl}/servicios`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getEmpresaByIdentificador(fiscalId: string): Observable<EmpresaData> {
     return this.http
@@ -50,26 +50,26 @@ export class ApiService {
 
   //Implementación servicios - A revisar cuando backend lo tenga listo
   getServiciosByIdentificadorFiscal(identificadorFiscal: string): Observable<ServicioData[]> {
-    const url = `https://sompoblecatsb-production.up.railway.app/api/servicio-horario/obtener?identificadorFiscal=${identificadorFiscal}`;
+    const url = (`${environment.authUrl}/servicio-horario/obtener?identificadorFiscal=${identificadorFiscal}`);
     return this.http.get<ServicioData[]>(url);
   }
 
   createServicio(payload: CreateServicePayload): Observable<ServicioData> {
-    const url = 'https://sompoblecatsb-production.up.railway.app/api/servicio-horario/crear'; // URL correcta
+    const url = (`${environment.authUrl}/servicio-horario/crear`);
     return this.http
       .post<{ servicio: ServicioData, empresa: string }>(url, payload)
       .pipe(map(response => response.servicio));
   }
 
   updateServicio(idServicio: number, identificadorFiscal: string, payload: any): Observable<any> {
-    const url = `https://sompoblecatsb-production.up.railway.app/api/servicio-horario/actualizar/${idServicio}?identificadorFiscal=${identificadorFiscal}`;
+    const url = (`${environment.authUrl}/servicio-horario/actualizar/${idServicio}?identificadorFiscal=${identificadorFiscal}`);
     return this.http.put(url, payload);
   }
 
-      deleteServicio(idServicio: number, identificadorFiscal: string): Observable<void> {
-        const url = `https://sompoblecatsb-production.up.railway.app/api/servicio-horario/anular/${idServicio}?identificadorFiscal=${identificadorFiscal}`;
-        return this.http.delete<void>(url);
-      }
+  deleteServicio(idServicio: number, identificadorFiscal: string): Observable<void> {
+    const url = (`${environment.authUrl}/servicio-horario/anular/${idServicio}?identificadorFiscal=${identificadorFiscal}`);
+    return this.http.delete<void>(url);
+  }
 
   getServicios(): Observable<ServicioData[]> {
     return this.http.get<ServicioData[]>(`${environment.authUrl}/servicio-horario/obtener-todos`);
@@ -83,19 +83,21 @@ export class ApiService {
   //Implementació reserves
   //Creació de reserves
   createReserva(payload: any): Observable<any> {
-    const url = 'https://sompoblecatsb-production.up.railway.app/api/reservas'; // URL de l'endpoint
+    const url = (`${environment.authUrl}/reservas`);
     return this.http.post<any>(url, payload);
   }
 
   // Obtenir reserves per client (DNI)
-getReservasByCliente(dni: string): Observable<any[]> {
-  const url = `https://sompoblecatsb-production.up.railway.app/api/reservas/clientes/${dni}`;
-  return this.http.get<any[]>(url);
-}
+  getReservasByCliente(dni: string): Observable<any[]> {
+    const url = (`${environment.authUrl}/reservas/clientes/${dni}`);
+    return this.http.get<any[]>(url);
+  }
 
-// Obtenir reserves per empresa (identificador fiscal)
-getReservasByEmpresa(identificadorFiscal: string): Observable<any[]> {
-  const url = `https://sompoblecatsb-production.up.railway.app/api/reservas/empresas/${identificadorFiscal}`;
-  return this.http.get<any[]>(url);
-}
+  // Obtenir reserves per empresa (identificador fiscal)
+  getReservasByEmpresa(identificadorFiscal: string): Observable<any[]> {
+    const url = (`${environment.authUrl}/reservas/empresas/${identificadorFiscal}`);
+    return this.http.get<any[]>(url);
+  }
+
+
 }

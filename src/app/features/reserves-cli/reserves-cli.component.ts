@@ -18,6 +18,7 @@ export class ReservesCliComponent implements OnInit {
   availableHours: string[] = [];
   minDate: string = '';
   maxDate: string = '';
+  isHourSelectionEnabled: boolean = false;
 
   // Variables per al calendari
   currentYear: number = new Date().getFullYear();
@@ -36,20 +37,19 @@ export class ReservesCliComponent implements OnInit {
   ) {
     this.reservaForm = this.fb.group({
       fechaReserva: ['', Validators.required],
-      hora: ['', Validators.required]
+      hora: [{ value: '', disabled: true }, Validators.required] // Inicialment deshabilitat
     });
   }
 
   ngOnInit(): void {
-    // Recuperar el DNI del client des de la sessió
-    const sessionStr = localStorage.getItem('session'); // Canviem a localStorage
-  console.log('GUARDADO SESION:', sessionStr);
-  if (sessionStr) {
-    const session = JSON.parse(sessionStr);
-    const cliente = session.usuario;
-    this.dniCliente = cliente?.dni || ''; // Guardar el DNI del client
-    console.log('DNI del client recuperat de la sessió:', this.dniCliente);
-  }
+    const sessionStr = localStorage.getItem('session');
+    console.log('GUARDADO SESION:', sessionStr);
+    if (sessionStr) {
+      const session = JSON.parse(sessionStr);
+      const cliente = session.usuario;
+      this.dniCliente = cliente?.dni || '';
+      console.log('DNI del client recuperat de la sessió:', this.dniCliente);
+    }
 
     this.route.queryParams.subscribe(params => {
       const identificadorFiscal = params['identificadorFiscal'];
@@ -92,35 +92,33 @@ export class ReservesCliComponent implements OnInit {
   generateCalendar(): void {
     const year = this.currentYear;
     const month = this.currentMonth;
-    const firstDayOfMonth = new Date(year, month, 1).getDay(); // Dia de la setmana del primer dia del mes (0 = diumenge)
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
+    const adjustedFirstDay = (firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1); // Ajustar perquè dilluns sigui el primer dia
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-  
+
     const laborableDays = this.serviceData.diasLaborables.split(',').map((dia: string) => parseInt(dia.trim(), 10));
-    const today = new Date(); // Data actual
+    const today = new Date();
     today.setHours(0, 0, 0, 0); // Eliminar hores per comparar només dates
-  
+
     this.daysInMonth = [];
-  
+
     // Afegir dies buits per ajustar el primer dia del mes
-    for (let i = 0; i < (firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1); i++) {
-      this.daysInMonth.push({ date: null, isAvailable: false });
+    for (let i = 0; i < adjustedFirstDay; i++) {
+      this.daysInMonth.push({ date: null, isAvailable: false, isPast: false });
     }
-  
+
     // Afegir els dies del mes
     for (let i = 1; i <= daysInMonth; i++) {
       const date = new Date(year, month, i);
-      const dayOfWeek = date.getDay(); // 0 = diumenge, 1 = dilluns, etc.
-  
-      // Comprovar si el dia és laborable
+      const dayOfWeek = date.getDay();
+
       const isLaborable = laborableDays.includes(dayOfWeek);
-  
-      // Comprovar si el dia és anterior a avui
       const isPast = date < today;
-  
+
       this.daysInMonth.push({
         date,
-        isAvailable: isLaborable && !isPast, // Només disponible si és laborable i no és passat
-        isPast // Afegim una propietat per identificar dies passats
+        isAvailable: isLaborable && !isPast,
+        isPast
       });
     }
   }
@@ -145,40 +143,88 @@ export class ReservesCliComponent implements OnInit {
     this.generateCalendar();
   }
 
-  selectDate(day: { date: Date | null; isAvailable: boolean }): void {
-    if (day.date) {
-      // Actualitzar la data seleccionada
-      this.selectedDate = day.date.toISOString().split('T')[0];
-      // Actualitzar el valor del formulari
-      this.reservaForm.get('fechaReserva')?.setValue(this.selectedDate);
+  selectDate(day: any): void {
+    if (!day.date || !day.isAvailable) {
+      console.log('Dia no seleccionable:', day);
+      return;
+    }
+
+    console.log('Dia seleccionat:', day.date);
+    this.selectedDate = day.date.toISOString().split('T')[0]; // Guardar la data seleccionada
+
+    if (this.selectedDate) {
+      this.onDateChange(this.selectedDate); // Passar la data seleccionada
+    } else {
+      console.error('Error: selectedDate és null.');
     }
   }
 
-  onDateChange(event: Event): void {
-    const selectedDate = (event.target as HTMLInputElement).value;
-    const dayOfWeek = new Date(selectedDate).getDay(); // Obtenir el dia de la setmana (0 = diumenge, 1 = dilluns, etc.)
-
-    const laborableDays = this.serviceData.diasLaborables.split(',').map((dia: string) => parseInt(dia.trim(), 10));
-
-    this.isLaborableDay = laborableDays.includes(dayOfWeek);
-
-    if (!this.isLaborableDay) {
-      alert('El dia seleccionat no és laborable per a aquest servei.');
-      this.reservaForm.get('fechaReserva')?.setValue(''); // Restablir el valor del camp
+  isSelected(date: Date | null): boolean {
+    if (!date || !this.selectedDate) {
+      return false;
     }
+
+    // Convertir les dates a format "YYYY-MM-DD" per comparar només la part de la data
+    const selectedDateStr = new Date(this.selectedDate).toISOString().split('T')[0];
+    const dateStr = date.toISOString().split('T')[0];
+
+    return selectedDateStr === dateStr;
   }
 
-  mapDayToNumber(day: string): number {
-    const daysMap: { [key: string]: number } = {
-      'Lunes': 1,
-      'Martes': 2,
-      'Miércoles': 3,
-      'Jueves': 4,
-      'Viernes': 5,
-      'Sábado': 6,
-      'Domingo': 0
-    };
-    return daysMap[day] ?? -1;
+  onDateChange(selectedDate: string): void {
+    console.log('onDateChange s\'ha cridat.');
+    console.log('Dia seleccionat (ajustat):', selectedDate);
+
+    try {
+      if (!selectedDate) {
+        console.error('Error: selectedDate és buit o no vàlid:', selectedDate);
+        alert('Error: Selecciona una data vàlida.');
+        return;
+      }
+
+      if (!this.serviceData || !this.serviceData.identificadorFiscal) {
+        console.error('Error: Les dades del servei no estan disponibles.');
+        alert('Error: No es poden obtenir les hores disponibles perquè falten dades del servei.');
+        return;
+      }
+
+      console.log('Cridant l\'API per obtenir reserves amb identificadorFiscal:', this.serviceData.identificadorFiscal);
+
+      this.reservaStateService.getReservasByEmpresa(this.serviceData.identificadorFiscal).subscribe(
+        (reservas) => {
+          console.log('Reserves retornades per l\'API:', reservas);
+
+          const reservedHours = reservas
+            .filter((reserva: any) => reserva.fechaReserva.trim() === selectedDate)
+            .map((reserva: any) => reserva.hora.slice(0, 5));
+
+          console.log(`Hores reservades per a la data ${selectedDate}:`, reservedHours);
+
+          const startHour = parseInt(this.serviceData.horarioInicio.split(':')[0], 10);
+          const endHour = parseInt(this.serviceData.horarioFin.split(':')[0], 10);
+
+          const allHours = Array.from({ length: endHour - startHour + 1 }, (_, i) => `${startHour + i}:00`);
+          console.log('Totes les hores possibles:', allHours);
+
+          this.availableHours = allHours.filter((hour) => !reservedHours.includes(hour));
+          console.log('Hores disponibles després del filtrat:', this.availableHours);
+
+          if (this.availableHours.length > 0) {
+            this.reservaForm.get('hora')?.enable();
+          } else {
+            this.reservaForm.get('hora')?.disable();
+            alert('No hi ha hores disponibles per a la data seleccionada.');
+          }
+        },
+        (error) => {
+          console.error('Error al carregar les reserves:', error);
+          alert('Error al carregar les reserves. Si us plau, torna-ho a intentar.');
+          this.reservaForm.get('hora')?.disable();
+        }
+      );
+    } catch (error) {
+      console.error('Error inesperat:', error);
+    }
   }
 
   createReserva(): void {
@@ -187,7 +233,6 @@ export class ReservesCliComponent implements OnInit {
       return;
     }
 
-    // Validar que serviceData i les seves propietats existeixen
     if (!this.serviceData || !this.serviceData.identificadorFiscal) {
       console.error('Les dades del servei no estan disponibles o són incompletes:', this.serviceData);
       alert('Error: Les dades del servei no estan disponibles. Si us plau, torna-ho a intentar.');
