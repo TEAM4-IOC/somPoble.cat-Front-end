@@ -149,8 +149,13 @@ export class ReservesCliComponent implements OnInit {
       return;
     }
 
-    console.log('Dia seleccionat:', day.date);
-    this.selectedDate = day.date.toISOString().split('T')[0]; // Guardar la data seleccionada
+    // Guardar la data seleccionada en format local (YYYY-MM-DD)
+    const year = day.date.getFullYear();
+    const month = (day.date.getMonth() + 1).toString().padStart(2, '0'); // Mesos comencen en 0
+    const dayOfMonth = day.date.getDate().toString().padStart(2, '0');
+    this.selectedDate = `${year}-${month}-${dayOfMonth}`;
+
+    console.log('Dia seleccionat:', this.selectedDate);
 
     if (this.selectedDate) {
       this.onDateChange(this.selectedDate); // Passar la data seleccionada
@@ -164,11 +169,15 @@ export class ReservesCliComponent implements OnInit {
       return false;
     }
 
-    // Convertir les dates a format "YYYY-MM-DD" per comparar només la part de la data
-    const selectedDateStr = new Date(this.selectedDate).toISOString().split('T')[0];
-    const dateStr = date.toISOString().split('T')[0];
+    // Convertir la data seleccionada a un objecte Date
+    const selected = new Date(this.selectedDate);
 
-    return selectedDateStr === dateStr;
+    // Comparar any, mes i dia
+    return (
+      date.getFullYear() === selected.getFullYear() &&
+      date.getMonth() === selected.getMonth() &&
+      date.getDate() === selected.getDate()
+    );
   }
 
   onDateChange(selectedDate: string): void {
@@ -195,7 +204,7 @@ export class ReservesCliComponent implements OnInit {
           console.log('Reserves retornades per l\'API:', reservas);
 
           const reservedHours = reservas
-            .filter((reserva: any) => reserva.fechaReserva.trim() === selectedDate)
+            .filter((reserva: any) => reserva.fechaReserva === selectedDate)
             .map((reserva: any) => reserva.hora.slice(0, 5));
 
           console.log(`Hores reservades per a la data ${selectedDate}:`, reservedHours);
