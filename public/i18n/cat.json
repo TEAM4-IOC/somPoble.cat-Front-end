@@ -50,6 +50,12 @@
     "update_success": "Perfil actualitzat correctament.",
     "update_error": "Error en actualitzar el perfil."
   },
+  "interceptor": {
+    "error_generic": "S'ha produït un error inesperat.",
+    "error_400": "Sol·licitud incorrecta (400).",
+    "error_404": "No s'ha trobat el recurs (404).",
+    "error_500": "Ho sentim, s'ha produït un error al servidor. Torna-ho a intentar més tard o contacta amb l'administrador."
+  },
   "empresa": {
     "select_role_title": "Escull el teu rol",
     "select_role_placeholder": "Escull una opció",

@@ -50,6 +50,12 @@
     "update_success": "Perfil actualizado correctamente.",
     "update_error": "Error al actualizar el perfil."
   },
+  "interceptor": {
+    "error_generic": "Ha ocurrido un error inesperado.",
+    "error_400": "Solicitud incorrecta (400).",
+    "error_404": "No se encontró el recurso (404).",
+    "error_500": "Lo sentimos, ha ocurrido un error en el servidor. Por favor, inténtelo de nuevo más tarde o contacte con el administrador."
+  },
   "empresa": {
     "select_role_title": "Selecciona tu rol",
     "select_role_placeholder": "Elige una opción",
