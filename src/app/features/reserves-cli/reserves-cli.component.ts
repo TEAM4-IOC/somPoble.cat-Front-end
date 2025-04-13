@@ -4,11 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ServiceStateService } from '../../core/services/service-state.service';
 import { ReservaStateService } from '../../core/services/reserva-state.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-reserves-cli',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule ],
   templateUrl: './reserves-cli.component.html',
   styleUrls: ['./reserves-cli.component.scss']
 })
@@ -297,7 +298,21 @@ export class ReservesCliComponent implements OnInit {
   }
 
   get currentMonthName(): string {
-    return new Date(this.currentYear, this.currentMonth).toLocaleString('default', { month: 'long' });
+    const monthNames = [
+      'january',
+      'february',
+      'march',
+      'april',
+      'may',
+      'june',
+      'july',
+      'august',
+      'september',
+      'october',
+      'november',
+      'december'
+    ];
+    return `reservesCli.months.${monthNames[this.currentMonth]}`;
   }
 
   

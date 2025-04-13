@@ -1,59 +1,57 @@
-<div *ngIf="serviceData; else loading">
-    <h2>Gestión de reserva para el servicio: </h2>
+<div class="main-content" [class.loading-active]="!serviceData">
+    <div class="content-container">
+        <div *ngIf="serviceData; else loading">
 
-    <!-- Detalls del servei -->
-    <div class="service-details">
-        <p><strong>Nom:</strong> {{ serviceData.nombre }}</p>
-        <p>El resto de datos solo están pruestos para pruebas</p>
-        <p>Para verificar que lo que muestra el calendario es coherente con los días y horarios</p>
-        <p>se eliminarán</p>
-        <p><strong>Descripció:</strong> {{ serviceData.descripcion }}</p>
-        <p><strong>Límit de Reserves:</strong> {{ serviceData.limiteReservas }}</p>
-        <p><strong>Horari:</strong> {{ serviceData.horarioInicio }} - {{ serviceData.horarioFin }}</p>
-        <p><strong>Dies Laborables:</strong> {{ serviceData.diasLaborables }}</p>
-    </div>
+            <!-- Detalls del servei -->
+            <div class="service-details">
+                <h2 class="text-center">{{ 'reservesCli.title' | translate }}</h2>
+                <p class="text-center text-uppercase"><strong>{{ serviceData.nombre }}</strong></p>
+            </div>
 
-    <!-- Formulari de reserva -->
-    <form [formGroup]="reservaForm" (ngSubmit)="createReserva()">
-        <div>
-            <label for="fechaReserva">Selecciona un dia:</label>
-            <!-- Nou calendari -->
-            <div class="calendar">
-                <div class="calendar-header">
-                    <button type="button" (click)="prevMonth()">&#8592;</button>
-                    <span>{{ currentMonthName }} {{ currentYear }}</span>
-                    <button type="button" (click)="nextMonth()">&#8594;</button>
-                </div>
-                <div class="calendar-grid">
-                    <div
-                        *ngFor="let day of daysInMonth"
-                        [class.available]="day.isAvailable"
-                        [class.unavailable]="!day.isAvailable && day.date && !day.isPast"
-                        [class.past]="day.isPast"
-                        [class.selected]="isSelected(day.date)"
-                        [class.empty]="!day.date"
-                        (click)="selectDate(day)"
-                    >
-                        {{ day.date?.getDate() }}
+            <!-- Formulari de reserva -->
+            <form [formGroup]="reservaForm" (ngSubmit)="createReserva()">
+                <div class="d-flex justify-content-between">
+                    <!-- Calendari -->
+                    <div class="calendar-container w-50 me-3">
+                        <label for="fechaReserva" class="info-label">{{ 'reservesCli.daySelect' | translate }}:</label>
+                        <div class="calendar">
+                            <div class="calendar-header">
+                                <button type="button calendar-btn" (click)="prevMonth()">&#8592;</button>
+                                <span>{{ currentMonthName | translate}} {{ currentYear }}</span>
+                                <button type="button calendar-btn" (click)="nextMonth()">&#8594;</button>
+                            </div>
+                            <div class="calendar-grid">
+                                <div *ngFor="let day of daysInMonth" [class.available]="day.isAvailable"
+                                    [class.unavailable]="!day.isAvailable && day.date && !day.isPast"
+                                    [class.past]="day.isPast" [class.selected]="isSelected(day.date)"
+                                    [class.empty]="!day.date" (click)="selectDate(day)">
+                                    {{ day.date?.getDate() }}
+                                </div>
+                            </div>
+                        </div>
+                        <p *ngIf="!isLaborableDay" class="error-message">
+                            El dia seleccionat no és laborable per a aquest servei.
+                        </p>
+                    </div>
+
+                    <!-- Selector d'horari -->
+                    <div class="hora-container w-50 ms-3">
+                        <label for="hora" class="info-label">{{ 'reservesCli.hourSelect' | translate }}:</label>
+                        <select id="hora" formControlName="hora" class="form-select">
+                            <option *ngFor="let hour of availableHours" [value]="hour">{{ hour }}</option>
+                        </select>
                     </div>
                 </div>
-            </div>
-            <p *ngIf="!isLaborableDay" class="error-message">
-                El dia seleccionat no és laborable per a aquest servei.
-            </p>
-        </div>
 
-        <div>
-            <label for="hora">Selecciona una hora:</label>
-            <select id="hora" formControlName="hora">
-                <option *ngFor="let hour of availableHours" [value]="hour">{{ hour }}</option>
-            </select>
+                <button type="submit" class="btn btn-primary mt-3 auth-btn">{{ 'reservesCli.create' | translate
+                    }}</button>
+            </form>
         </div>
+    </div>
 
-        <button type="submit">Crear Reserva</button>
-    </form>
+    <ng-template #loading>
+        <div class="loading-container">
+            <p>{{ 'Loading...' }}</p>
+        </div>
+    </ng-template>
 </div>
-
-<ng-template #loading>
-    <p>Carregant dades del servei...</p>
-</ng-template>

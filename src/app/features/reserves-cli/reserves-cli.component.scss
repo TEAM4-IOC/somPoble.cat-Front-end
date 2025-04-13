@@ -1,3 +1,15 @@
+@import '../../../colors.scss';
+
+.main-content {
+  height: 90%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: $bg-gradient;
+}
+
 .calendar {
   display: flex;
   flex-direction: column;
@@ -13,16 +25,18 @@
 }
 
 .calendar-header button {
-  background-color: #007bff;
-  color: white;
+  background: none;
   border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+  font-size: 20px;
   cursor: pointer;
+  padding: 15px 20px;
+  transition: background-color 0.3s ease;
+  color: #da4f8e !important;
 }
 
 .calendar-header button:hover {
-  background-color: #0056b3;
+  color: #4141fa !important;
+  border-radius: 5px;
 }
 
 .calendar-grid {
@@ -54,11 +68,11 @@
 }
 
 .calendar-grid div.past {
-  background-color: #f0f0f0; /* Fons gris clar */
-  color: #b0b0b0; /* Text gris */
-  pointer-events: none; /* Desactivar clics */
-  cursor: not-allowed; /* Cursor de "no permès" */
-  opacity: 0.7; /* Reduir la visibilitat */
+  background-color: #f0f0f0;
+  color: #b0b0b0;
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .calendar-grid div.empty {
@@ -78,7 +92,70 @@
 }
 
 .calendar-grid div.selected {
-  background-color: #ffc107; /* Color groc per al dia seleccionat */
-  color: #000; /* Text negre per contrast */
-  border: 2px solid #ff9800; /* Contorn destacat */
+  background-color: #ffc107;
+  color: #000;
+  border: 2px solid #ff9800;
+}
+
+.form-select {
+  width: 150px;
+}
+
+.hora-container label,
+.hora-container select {
+  margin-left: 50px;
+}
+
+.info-label {
+  margin-bottom: 20px;
+  ;
+}
+
+button.auth-btn {
+  display: block;
+  margin: 20px auto;
+  width: auto;
+  padding: 0.625rem 1.25rem;
+  background: transparent;
+  border: 0.0625rem solid $btn-border;
+  color: $white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3125rem;
+  transition: all 0.3s ease;
+}
+
+button.auth-btn:hover {
+  background: $btn-hover-bg;
+  color: $white;
+}
+
+.content-container {
+  backdrop-filter: blur(0.625rem);
+  background: $container-bg;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  padding: 2rem;
+  margin: 1.5rem auto;
+}
+
+.main-content.loading-active .content-container {
+  backdrop-filter: none;
+  background: none;
+  box-shadow: none;
+}
+
+h2,
+h3,
+p,
+label,
+span {
+  color: #f0f0f0
+}
+
+.calendar-btn {
+  color: #da4f8e !important;
 }

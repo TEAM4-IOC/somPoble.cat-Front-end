@@ -127,6 +127,26 @@
     "minutes": "minuts",
     "actionButton": "Fer una reserva ARA"
   },
+  "reservesCli": {
+    "title": "Gestió de reserva per al servei",
+    "create": "Crear reserva",
+    "daySelect": "Selecciona el dia",
+    "hourSelect": "Hores disponibles",
+    "months": {
+      "january": "Gener",
+      "february": "Febrer",
+      "march": "Març",
+      "april": "Abril",
+      "may": "Maig",
+      "june": "Juny",
+      "july": "Juliol",
+      "august": "Agost",
+      "september": "Setembre",
+      "october": "Octubre",
+      "november": "Novembre",
+      "december": "Desembre"
+    }
+  },
   "landing": {
     "services": "Serveis",
     "adress": "Adreça",
