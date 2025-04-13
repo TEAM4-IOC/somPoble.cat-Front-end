@@ -1,0 +1,153 @@
+@import '../../../colors.scss';
+
+.main-content {
+  height: 90%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: $bg-gradient;
+}
+
+.content-container {
+  backdrop-filter: blur(0.625rem);
+  background: $container-bg;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  padding: 2rem;
+  margin: 1.5rem auto;
+}
+
+.main-content.loading-active .content-container {
+  backdrop-filter: none;
+  background: none;
+  box-shadow: none;
+}
+
+.service-details h2,
+.service-details p {
+  color: #f0f0f0;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.calendar-header button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 15px 20px;
+  transition: background-color 0.3s ease;
+  color: #da4f8e !important;
+}
+
+.calendar-header button:hover {
+  color: #4141fa !important;
+  border-radius: 5px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendar-grid div {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.calendar-grid div.available {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.calendar-grid div.unavailable {
+  background-color: #f8d7da;
+  color: #721c24;
+  cursor: not-allowed;
+}
+
+.calendar-grid div.past {
+  background-color: #f0f0f0;
+  color: #b0b0b0;
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.calendar-grid div.empty {
+  background-color: transparent;
+  border: none;
+  cursor: default;
+}
+
+.calendar-grid div:hover {
+  border-color: #007bff;
+}
+
+.calendar-grid div.selected {
+  background-color: #ffc107;
+  color: #000;
+  border: 2px solid #ff9800;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.form-select {
+  width: 150px;
+}
+
+.hora-container label,
+.hora-container select {
+  margin-left: 50px;
+}
+
+.info-label {
+  margin-bottom: 20px;
+}
+
+button.auth-btn {
+  display: block;
+  margin: 20px auto;
+  width: auto;
+  padding: 0.625rem 1.25rem;
+  background: transparent;
+  border: 0.0625rem solid $btn-border;
+  color: $white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3125rem;
+  transition: all 0.3s ease;
+}
+
+button.auth-btn:hover {
+  background: $btn-hover-bg;
+  color: $white;
+}

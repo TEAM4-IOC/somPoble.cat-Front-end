@@ -16,9 +16,9 @@
                         <label for="fechaReserva" class="info-label">{{ 'editarReserva.daySelect'}}:</label>
                         <div class="calendar">
                             <div class="calendar-header">
-                                <button type="button calendar-btn" (click)="prevMonth()">&#8592;</button>
-                                <span>{{ currentMonth}} {{ currentYear }}</span>
-                                <button type="button calendar-btn" (click)="nextMonth()">&#8594;</button>
+                                <button type="button" (click)="prevMonth()">&#8592;</button>
+                                <span>{{ currentMonthName | translate}} {{ currentYear }}</span>
+                                <button type="button" (click)="nextMonth()">&#8594;</button>
                             </div>
                             <div class="calendar-grid">
                                 <div *ngFor="let day of daysInMonth" [class.available]="day.isAvailable"

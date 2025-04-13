@@ -4,11 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ServiceStateService } from '../../core/services/service-state.service';
 import { ReservaStateService } from '../../core/services/reserva-state.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-editar-reserva',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './editar-reserva.component.html',
   styleUrls: ['./editar-reserva.component.scss']
 })
@@ -23,6 +24,7 @@ export class EditarReservaComponent implements OnInit {
   idReserva: number | null = null; // ID de la reserva en cas d'edició
   isEditMode: boolean = true; // Sempre estem en mode edició
   isLaborableDay: boolean = true;
+  diasLaborables: number[] = []; // Array per guardar els dies laborables
 
   // Variables per al calendari
   currentYear: number = new Date().getFullYear();
@@ -73,7 +75,6 @@ export class EditarReservaComponent implements OnInit {
           fechaReserva: reserva.fechaReserva,
           hora: reserva.hora
         });
-        this.selectedDate = reserva.fechaReserva;
         this.onDateChange(reserva.fechaReserva); // Carregar hores disponibles
       },
       (error) => {
@@ -89,6 +90,16 @@ export class EditarReservaComponent implements OnInit {
       data => {
         this.serviceData = data;
         console.log('Dades del servei carregades:', this.serviceData);
+  
+        // Processar `diasLaborables` des de `serviceData`
+        if (this.serviceData.diasLaborables) {
+          this.diasLaborables = this.serviceData.diasLaborables
+            .split(',')
+            .map((dia: string) => parseInt(dia.trim(), 10));
+        } else {
+          console.error('Error: `diasLaborables` no està disponible.');
+          this.diasLaborables = []; // Inicialitzar com a buit si no està disponible
+        }
   
         this.setupAvailableDatesAndHours();
         this.generateCalendar();
@@ -113,29 +124,34 @@ export class EditarReservaComponent implements OnInit {
   }
 
   generateCalendar(): void {
+    if (!this.serviceData || !this.serviceData.diasLaborables) {
+      console.error('Error: serviceData o diasLaborables no està inicialitzat.');
+      return;
+    }
+  
     const year = this.currentYear;
     const month = this.currentMonth;
     const firstDayOfMonth = new Date(year, month, 1).getDay();
     const adjustedFirstDay = (firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1);
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-
+  
     const laborableDays = this.serviceData.diasLaborables.split(',').map((dia: string) => parseInt(dia.trim(), 10));
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-
+  
     this.daysInMonth = [];
-
+  
     for (let i = 0; i < adjustedFirstDay; i++) {
       this.daysInMonth.push({ date: null, isAvailable: false });
     }
-
+  
     for (let i = 1; i <= daysInMonth; i++) {
       const date = new Date(year, month, i);
       const dayOfWeek = date.getDay();
-
+  
       const isLaborable = laborableDays.includes(dayOfWeek);
       const isPast = date < today;
-
+  
       this.daysInMonth.push({
         date,
         isAvailable: isLaborable && !isPast,
@@ -145,6 +161,11 @@ export class EditarReservaComponent implements OnInit {
   }
 
   prevMonth(): void {
+    if (!this.serviceData) {
+      console.error('Error: serviceData no està inicialitzat.');
+      return;
+    }
+  
     if (this.currentMonth === 0) {
       this.currentMonth = 11;
       this.currentYear--;
@@ -153,8 +174,13 @@ export class EditarReservaComponent implements OnInit {
     }
     this.generateCalendar();
   }
-
+  
   nextMonth(): void {
+    if (!this.serviceData) {
+      console.error('Error: serviceData no està inicialitzat.');
+      return;
+    }
+  
     if (this.currentMonth === 11) {
       this.currentMonth = 0;
       this.currentYear++;
@@ -182,18 +208,11 @@ export class EditarReservaComponent implements OnInit {
       alert('Selecciona una data vàlida.');
       return;
     }
-  
-    const laborableDays = this.serviceData.diasLaborables.split(',').map((dia: string) => parseInt(dia.trim(), 10));
-    const selectedDay = new Date(selectedDate).getDay();
-  
-    this.isLaborableDay = laborableDays.includes(selectedDay);
-  
-    if (!this.isLaborableDay) {
-      alert('El dia seleccionat no és laborable per a aquest servei.');
-    }
+
+    
   
     // Carregar hores disponibles segons la data seleccionada
-    this.reservaStateService.getReservasByEmpresa(this.serviceData.identificadorFiscal).subscribe(
+    this.reservaStateService.getReservasByEmpresa(this.route.snapshot.queryParams['identificadorFiscal']).subscribe(
       (reservas) => {
         const reservedHours = reservas
           .filter((reserva: any) => reserva.fechaReserva === selectedDate)
@@ -257,4 +276,23 @@ export class EditarReservaComponent implements OnInit {
       date.getDate() === selected.getDate()
     );
   }
+
+  get currentMonthName(): string {
+    const monthNames = [
+      'january',
+      'february',
+      'march',
+      'april',
+      'may',
+      'june',
+      'july',
+      'august',
+      'september',
+      'october',
+      'november',
+      'december'
+    ];
+    return `reservesCli.months.${monthNames[this.currentMonth]}`;
+  }
+
 }
