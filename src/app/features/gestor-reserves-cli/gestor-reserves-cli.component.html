@@ -21,7 +21,11 @@
           <td>{{ reserva.hora }}</td>
           <td>{{ reserva.nombreServicio }}</td>
           <td>
-            <i class="fa-solid fa-calendar-days"></i>
+            <i class="fa-solid fa-calendar-days"
+              (click)="editarReserva(reserva)"
+              style="cursor: pointer; color: blue;"
+              title="Eliminar reserva"
+              ></i>
           </td>
           <td>
             <i

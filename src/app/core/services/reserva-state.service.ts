@@ -37,4 +37,12 @@ export class ReservaStateService {
       })
     );
   }
+
+  updateReserva(idReserva: number, payload: any): Observable<any> {
+    return this.apiService.updateReserva(idReserva, payload);
+  }
+
+  getReservaById(idReserva: number): Observable<any> {
+    return this.apiService.getReservaById(idReserva);
+  }
 }

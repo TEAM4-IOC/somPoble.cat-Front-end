@@ -109,4 +109,13 @@ export class ApiService {
     return this.http.delete<void>(url, { responseType: 'text' as 'json' });
   }
 
+  updateReserva(idReserva: number, payload: any): Observable<any> {
+    const url = `${environment.authUrl}/reservas/${idReserva}`;
+    return this.http.put<any>(url, payload);
+  }
+
+  getReservaById(idReserva: number): Observable<any> {
+    const url = `${environment.authUrl}/reservas/${idReserva}`; // Endpoint per obtenir una reserva per ID
+    return this.http.get<any>(url);
+  }
 }

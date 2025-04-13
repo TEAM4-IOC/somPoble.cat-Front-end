@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef } from '@
 import { ServiceStateService } from '../../core/services/service-state.service';
 import { ReservaStateService } from '../../core/services/reserva-state.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gestor-reserves-cli',
@@ -21,7 +22,8 @@ export class GestorReservesCliComponent implements OnInit {
   constructor(
     private reservaStateService: ReservaStateService,
     private serviceStateService: ServiceStateService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -136,5 +138,25 @@ export class GestorReservesCliComponent implements OnInit {
         }
       );
     }
+  }
+
+  editarReserva(reserva: any): void {
+    console.log('Reserva seleccionada per editar:', reserva); // Log per depurar l'objecte complet
+  
+    // Verificar si identificadorFiscalEmpresa existeix
+    if (!reserva.identificadorFiscalEmpresa) {
+      console.error('Error: identificadorFiscalEmpresa no està definit a l\'objecte reserva.');
+      return;
+    }
+  
+    console.log('Identificador Fiscal enviat:', reserva.identificadorFiscalEmpresa); // Log per verificar el valor
+  
+    this.router.navigate(['/editar-reserva'], {
+      queryParams: {
+        idReserva: reserva.idReserva, // ID de la reserva
+        identificadorFiscal: reserva.identificadorFiscalEmpresa, // Identificador fiscal de l'empresa
+        idServicio: reserva.idServicio // ID del servei
+      },
+    });
   }
 }

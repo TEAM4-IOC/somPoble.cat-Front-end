@@ -57,6 +57,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'editar-reserva',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/editar-reserva/editar-reserva.component').then(
+        (m) => m.EditarReservaComponent
+      ),
+  },
+  {
     path: 'show-services',
     canActivate: [authGuard],
     loadComponent: () =>
