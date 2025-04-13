@@ -1,20 +1,22 @@
 <div class="event-card">
   <div class="event-header">
     <h3 class="event-title">
-      {{ event.nombre || 'Event without name' }}
+      {{ event.nombre || ('event.default_name' | translate) }}
     </h3>
     <span class="separator"></span>
   </div>
 
   <div class="event-info">
     <p class="event-description">
-      {{ event.descripcion || 'No description available' }}
+      {{ event.descripcion || ('event.default_description' | translate) }}
     </p>
     <p class="event-location">
-      <strong>Location:</strong> {{ event.ubicacion || 'Not available' }}
+      <strong>{{ 'event.location_label' | translate }}</strong>
+      {{ event.ubicacion || ('event.location_default' | translate) }}
     </p>
     <p class="event-date">
-      <strong>Date:</strong> {{ event.fechaEvento | date:'medium' }}
+      <strong>{{ 'event.date_label' | translate }}</strong>
+      {{ event.fechaEvento | date:'medium' }}
     </p>
   </div>
 </div>
