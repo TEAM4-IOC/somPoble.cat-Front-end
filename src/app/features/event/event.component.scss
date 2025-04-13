@@ -1,0 +1,76 @@
+@import '../../../colors.scss';
+
+.event-card {
+  width: 250px;
+  height: 320px;
+  margin: 20px;
+  background: $container-bg;
+  backdrop-filter: blur(0.625rem);
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
+  border-radius: 0.625rem;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.event-header {
+  position: relative;
+  height: 4.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.event-title {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.separator {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.event-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  box-sizing: border-box;
+}
+
+.event-description {
+  margin: 0;
+  font-size: 0.875rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.event-location,
+.event-date {
+  margin: 0;
+  font-size: 0.875rem;
+}

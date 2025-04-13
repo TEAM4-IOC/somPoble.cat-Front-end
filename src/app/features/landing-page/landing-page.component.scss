@@ -1,181 +1,235 @@
 @import '../../../colors.scss';
 
+.slider-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+.slider {
+  display: flex;
+  animation: slideLeft 20s linear infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+.slider-item {
+  background: $container-bg;
+  backdrop-filter: blur(0.625rem);
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 0.625rem;
+  max-width: 700px;
+  width: 100%;
+  flex-shrink: 0;
+  color: #000;
+  cursor: pointer;
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .slider-item {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .slider-item {
+    max-width: 90% !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    padding: 15px;
+    margin-top: 20px;
+  }
+}
+
 .landing-container {
-    background: $bg-gradient;
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
+  background: $bg-gradient;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
 }
 
 .search-wrapper {
-    display: flex;
-    justify-content: center;
-    margin: 3.125rem 0;
-    max-width: 600px;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 3.125rem 0;
+  max-width: 600px;
+  width: 100%;
 }
 
 .card-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
 }
 
 .card-1,
 .card-2 {
-    background: $container-bg;
-    backdrop-filter: blur(0.625rem);
-    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
-    margin: 20px;
-    padding: 20px;
-    border-radius: 0.625rem;
-    max-width: 700px;
-    width: 100%;
+  background: $container-bg;
+  backdrop-filter: blur(0.625rem);
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 0.625rem;
+  max-width: 700px;
+  width: 100%;
 }
 
 .shop-img,
 .img-container {
-    max-width: 200px;
+  max-width: 200px;
 }
 
 .services-section {
-    margin-left: 20px;
-    backdrop-filter: brightness(1.5);
-    padding: 20px;
-    border-radius: 15px;
-    width: calc(100% - 220px);
+  margin-left: 20px;
+  backdrop-filter: brightness(1.5);
+  padding: 20px;
+  border-radius: 15px;
+  width: calc(100% - 220px);
 }
 
 .separator {
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 .contact {
-    color: $white;
-    font-size: 0.875rem;
-    line-height: 0.3;
-    outline: none;
-    padding-top: 30px;
+  font-size: 0.875rem;
+  line-height: 0.3;
+  outline: none;
+  padding-top: 30px;
 }
 
 .register-btn {
-    width: 200px;
-    padding: 0.625rem;
-    background: transparent;
-    border: 0.0625rem solid $btn-border;
-    color: $white;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 0.3125rem;
-    transition: all 0.3s ease;
+  width: 200px;
+  padding: 0.625rem;
+  background: transparent;
+  border: 0.0625rem solid $btn-border;
+  color: $white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3125rem;
+  transition: all 0.3s ease;
 }
 
 .register-btn:hover {
-    background: $btn-hover-bg;
+  background: $btn-hover-bg;
 }
 
 .register-container {
-    padding-bottom: 30px;
+  padding-bottom: 30px;
 }
 
 @media only screen and (max-width: 1100px) {
-    .landing-container {
-        min-height: auto;
-        overflow: hidden;
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem;
-    }
+  .landing-container {
+    min-height: auto;
+    overflow: hidden;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
 
-    .card-1,
-    .card-2 {
-        width: 100% !important;
-    }
+  .card-1,
+  .card-2 {
+    width: 100% !important;
+  }
 
-    .card-container {
-        width: 100%;
-        max-width: 95vw;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+  .card-container {
+    width: 100%;
+    max-width: 95vw;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    .register-container {
-        margin: 20px;
-    }
+  .register-container {
+    margin: 20px;
+  }
 }
 
 @media only screen and (max-width: 575px) {
-    [class^="card-"] {
-        max-width: 90% !important;
-        width: 100% !important;
-        box-sizing: border-box;
-        padding: 15px;
-        margin-top: 20px;
-    }
+  [class^="card-"] {
+    max-width: 90% !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    padding: 15px;
+    margin-top: 20px;
+  }
 
-    .landing-container {
-        min-height: auto;
-        overflow: hidden;
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem;
-    }
+  .landing-container {
+    min-height: auto;
+    overflow: hidden;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
 
-    .col-12.d-flex {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        padding: 0 5%;
-    }
+  .col-12.d-flex {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 5%;
+  }
 
-    .d-flex {
-        flex-direction: column !important;
-        align-items: center;
-        width: 100%;
-    }
+  .d-flex {
+    flex-direction: column !important;
+    align-items: center;
+    width: 100%;
+  }
 
-    .img-container {
-        width: 100%;
-        max-width: 250px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto;
-    }
+  .img-container {
+    width: 100%;
+    max-width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
 
-    .shop-img {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
+  .shop-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 
-    .w-100.services-section {
-        width: 100% !important;
-        margin-top: 10px;
-        margin-left: 0;
-        padding: 15px;
-    }
+  .w-100.services-section {
+    width: 100% !important;
+    margin-top: 10px;
+    margin-left: 0;
+    padding: 15px;
+  }
 
-    .card-container {
-        width: 100%;
-        max-width: 95vw;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+  .card-container {
+    width: 100%;
+    max-width: 95vw;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    .register-container {
-        margin: 20px;
-    }
+  .register-container {
+    margin: 20px;
+  }
 }

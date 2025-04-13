@@ -4,55 +4,105 @@
     <app-search (searchChanged)="filterEmpresas($event)"></app-search>
   </div>
 
-  @if (empresas; as companies) {
-    <div class="col-12 d-flex justify-content-center flex-wrap card-container">
-      @for (empresa of companies; track empresa.idEmpresa) {
-        <div class="w-50"
-             [ngClass]="{'card-1': $index % 2 === 0, 'card-2': $index % 2 !== 0}"
-             (click)="goToCompanyServices(empresa)"
-             style="cursor: pointer;">
-          <h3 class="text-center mb-3">
-            {{ empresa?.nombre || empresa?.actividad || 'Empresa sin nombre' }}
-          </h3>
-          <span class="separator"></span>
-          <div class="d-flex">
-            <div class="img-container">
-              <img src="../images/tienda1.png" class="shop-img rounded-4" alt="Imagen de la empresa">
-            </div>
-            <div class="w-100 services-section">
-              <h5>{{ 'landing.services' | translate }}</h5>
-              <ul>
-                @if (empresa.servicios; as servicios) {
-                  @if (servicios.length > 0) {
-                    @for (servicio of servicios; track servicio.idServicio) {
-                      <li>{{ servicio.nombre || 'Servicio sin nombre' }}</li>
+  <div class="slider-wrapper">
+    <div class="slider">
+      @if (empresas; as companies) {
+        @for (empresa of companies; track empresa.idEmpresa) {
+          <div class="slider-item" (click)="goToCompanyServices(empresa)">
+            <h3 class="text-center mb-3">
+              {{ empresa?.nombre || empresa?.actividad || 'Empresa sin nombre' }}
+            </h3>
+            <span class="separator"></span>
+            <div class="d-flex">
+              <div class="img-container">
+                <img src="../images/tienda1.png" class="shop-img rounded-4" alt="Imagen de la empresa">
+              </div>
+              <div class="w-100 services-section">
+                <h5>{{ 'landing.services' | translate }}</h5>
+                <ul>
+                  @if (empresa.servicios; as servicios) {
+                    @if (servicios.length > 0) {
+                      @for (servicio of servicios; track servicio.idServicio) {
+                        <li>{{ servicio.nombre || 'Servicio sin nombre' }}</li>
+                      }
+                    } @else {
+                      <li>{{ 'No hay servicios disponibles' }}</li>
                     }
-                  } @else {
-                    <li>{{ 'No hay servicios disponibles' }}</li>
                   }
-                }
-              </ul>
+                </ul>
+              </div>
+            </div>
+            <div class="contact">
+              <p>
+                <strong>{{ 'landing.adress' | translate }}:</strong> {{ empresa?.direccion || 'No disponible' }}
+              </p>
+              <p>
+                <strong>{{ 'landing.phone' | translate }}:</strong> {{ empresa?.telefono || 'No disponible' }}
+              </p>
+              <p>
+                <strong>{{ 'landing.mail' | translate }}:</strong> {{ empresa?.email || 'No disponible' }}
+              </p>
             </div>
           </div>
-          <div class="contact">
-            <p>
-              <strong>{{ 'landing.adress' | translate }}:</strong> {{ empresa?.direccion || 'No disponible' }}
-            </p>
-            <p>
-              <strong>{{ 'landing.phone' | translate }}:</strong> {{ empresa?.telefono || 'No disponible' }}
-            </p>
-            <p>
-              <strong>{{ 'landing.mail' | translate }}:</strong> {{ empresa?.email || 'No disponible' }}
-            </p>
+        }
+        @for (empresa of companies; track empresa.idEmpresa) {
+          <div class="slider-item" (click)="goToCompanyServices(empresa)">
+            <h3 class="text-center mb-3">
+              {{ empresa?.nombre || empresa?.actividad || 'Empresa sin nombre' }}
+            </h3>
+            <span class="separator"></span>
+            <div class="d-flex">
+              <div class="img-container">
+                <img src="../images/tienda1.png" class="shop-img rounded-4" alt="Imagen de la empresa">
+              </div>
+              <div class="w-100 services-section">
+                <h5>{{ 'landing.services' | translate }}</h5>
+                <ul>
+                  @if (empresa.servicios; as servicios) {
+                    @if (servicios.length > 0) {
+                      @for (servicio of servicios; track servicio.idServicio) {
+                        <li>{{ servicio.nombre || 'Servicio sin nombre' }}</li>
+                      }
+                    } @else {
+                      <li>{{ 'No hay servicios disponibles' }}</li>
+                    }
+                  }
+                </ul>
+              </div>
+            </div>
+            <div class="contact">
+              <p>
+                <strong>{{ 'landing.adress' | translate }}:</strong> {{ empresa?.direccion || 'No disponible' }}
+              </p>
+              <p>
+                <strong>{{ 'landing.phone' | translate }}:</strong> {{ empresa?.telefono || 'No disponible' }}
+              </p>
+              <p>
+                <strong>{{ 'landing.mail' | translate }}:</strong> {{ empresa?.email || 'No disponible' }}
+              </p>
+            </div>
           </div>
-        </div>
+        }
       }
     </div>
-  }
+  </div>
 
   <div class="d-flex col-12 justify-content-center register-container">
     <button type="submit" class="register-btn" [routerLink]="'/register'">
       {{ 'landing.register' | translate }}
     </button>
+  </div>
+
+  <div class="slider-wrapper events-slider">
+    <div class="slider">
+      @if (eventos; as events) {
+        @for (evento of events; track evento.idEvento) {
+          <app-event [event]="evento"></app-event>
+        }
+        @for (evento of events; track evento.idEvento) {
+          <app-event [event]="evento"></app-event>
+        }
+      }
+    </div>
   </div>
 </div>
