@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiService } from './api.service';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,17 @@ export class ReservaStateService {
   // Obtenir reserves per client (DNI)
   getReservasByCliente(dni: string): Observable<any[]> {
     return this.apiService.getReservasByCliente(dni);
+  }
+
+  deleteReserva(idReserva: number): Observable<void> {
+    return this.apiService.deleteReserva(idReserva).pipe(
+      tap(() => {
+        console.log(`Reserva amb ID ${idReserva} eliminada correctament.`);
+        // Opcional: Actualitzar l'estat local si cal
+        const reservasActuals = this.reservasSubject.getValue();
+        const novesReservas = reservasActuals.filter((reserva) => reserva.idReserva !== idReserva);
+        this.reservasSubject.next(novesReservas);
+      })
+    );
   }
 }

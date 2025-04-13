@@ -49,7 +49,6 @@ export class ApiService {
     return this.http.get<EmpresaData[]>(`${environment.authUrl}/empresas`);
   }
 
-  //Implementación servicios - A revisar cuando backend lo tenga listo
   getServiciosByIdentificadorFiscal(identificadorFiscal: string): Observable<ServicioData[]> {
     const url = (`${environment.authUrl}/servicio-horario/obtener?identificadorFiscal=${identificadorFiscal}`);
     return this.http.get<ServicioData[]>(url);
@@ -105,5 +104,9 @@ export class ApiService {
     return this.http.get<any[]>(url);
   }
 
+  deleteReserva(idReserva: number): Observable<void> {
+    const url = (`${environment.authUrl}/reservas/${idReserva}`);
+    return this.http.delete<void>(url, { responseType: 'text' as 'json' });
+  }
 
 }

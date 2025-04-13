@@ -118,4 +118,23 @@ export class GestorReservesCliComponent implements OnInit {
       this.serviceStateService.loadServicios();
     });
   }
+
+  deleteReserva(idReserva: number): void {
+    if (confirm('Estàs segur que vols eliminar aquesta reserva?')) {
+      // Actualitzem l'estat local immediatament
+      this.reservas = this.reservas.filter((reserva) => reserva.idReserva !== idReserva);
+      this.cdr.detectChanges(); // Forcem l'actualització de la vista
+  
+      this.reservaStateService.deleteReserva(idReserva).subscribe(
+        () => {
+          console.log(`Reserva amb ID ${idReserva} eliminada correctament.`);
+          alert('Reserva eliminada correctament.');
+        },
+        (error) => {
+          console.error(`Error al eliminar la reserva amb ID ${idReserva}:`, error);
+          alert('Hi ha hagut un problema al eliminar la reserva. Tot i això, pot ser que ja s\'hagi eliminat.');
+        }
+      );
+    }
+  }
 }

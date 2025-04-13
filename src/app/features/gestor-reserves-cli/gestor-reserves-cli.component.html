@@ -19,12 +19,17 @@
           <td>{{ reserva.fechaReserva }}</td>
           <td>{{ reserva.idReserva }}</td>
           <td>{{ reserva.hora }}</td>
-          <td>{{ reserva.nombreServicio }}</td> <!-- Mostra el nom del servei -->
+          <td>{{ reserva.nombreServicio }}</td>
           <td>
             <i class="fa-solid fa-calendar-days"></i>
           </td>
           <td>
-            <i class="fa-solid fa-rectangle-xmark"></i>
+            <i
+              class="fa-solid fa-rectangle-xmark"
+              (click)="deleteReserva(reserva.idReserva)"
+              style="cursor: pointer; color: red;"
+              title="Eliminar reserva"
+            ></i>
           </td>
         </tr>
       </tbody>
