@@ -50,7 +50,7 @@ export const routes: Routes = [
   },
   {
     path: 'reserves-cli',
-    //canActivate: [authGuard],
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./features/reserves-cli/reserves-cli.component').then(
         (m) => m.ReservesCliComponent
@@ -79,6 +79,22 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./shared/component/service-detail/service-detail.component').then(
         (m) => m.ServiceDetailComponent
+      ),
+  },
+  {
+    path: 'user-home',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/user-home/user-home.component').then(
+        (m) => m.UserHomeComponent
+      ),
+  },
+  {
+    path: 'gestor-reserves-cli',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/gestor-reserves-cli/gestor-reserves-cli.component').then(
+        (m) => m.GestorReservesCliComponent
       ),
   },
   {

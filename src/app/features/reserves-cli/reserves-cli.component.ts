@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ServiceStateService } from '../../core/services/service-state.service';
 import { ReservaStateService } from '../../core/services/reserva-state.service';
@@ -32,6 +32,7 @@ export class ReservesCliComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private fb: FormBuilder,
     private serviceStateService: ServiceStateService,
     private reservaStateService: ReservaStateService
@@ -289,6 +290,7 @@ export class ReservesCliComponent implements OnInit {
       response => {
         console.log('Reserva creada amb èxit:', response);
         alert('Reserva creada amb èxit!');
+        this.router.navigate(['/user-home']);
       },
       error => {
         console.error('Error al crear la reserva:', error);
