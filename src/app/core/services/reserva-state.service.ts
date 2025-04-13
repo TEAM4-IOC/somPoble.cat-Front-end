@@ -19,4 +19,9 @@ export class ReservaStateService {
   getReservasByEmpresa(identificadorFiscal: string): Observable<any[]> {
     return this.apiService.getReservasByEmpresa(identificadorFiscal);
   }
+
+  // Obtenir reserves per client (DNI)
+  getReservasByCliente(dni: string): Observable<any[]> {
+    return this.apiService.getReservasByCliente(dni);
+  }
 }
