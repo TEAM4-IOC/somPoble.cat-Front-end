@@ -45,7 +45,6 @@
             </div>
           </div>
         }
-
         @for (empresa of companies; track empresa.idEmpresa) {
           <div class="slider-item" (click)="goToCompanyServices(empresa)">
             <h3 class="text-center mb-3">
@@ -92,5 +91,18 @@
     <button type="submit" class="register-btn" [routerLink]="'/register'">
       {{ 'landing.register' | translate }}
     </button>
+  </div>
+
+  <div class="slider-wrapper events-slider">
+    <div class="slider">
+      @if (eventos; as events) {
+        @for (evento of events; track evento.idEvento) {
+          <app-event [event]="evento"></app-event>
+        }
+        @for (evento of events; track evento.idEvento) {
+          <app-event [event]="evento"></app-event>
+        }
+      }
+    </div>
   </div>
 </div>

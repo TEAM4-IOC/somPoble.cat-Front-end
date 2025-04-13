@@ -56,6 +56,13 @@
     "error_404": "No se encontró el recurso (404).",
     "error_500": "Lo sentimos, ha ocurrido un error en el servidor. Por favor, inténtelo de nuevo más tarde o contacte con el administrador."
   },
+  "event": {
+    "default_name": "Evento sin nombre",
+    "default_description": "Sin descripción disponible",
+    "location_label": "Ubicación:",
+    "location_default": "No disponible",
+    "date_label": "Fecha:"
+  },
   "empresa": {
     "select_role_title": "Selecciona tu rol",
     "select_role_placeholder": "Elige una opción",

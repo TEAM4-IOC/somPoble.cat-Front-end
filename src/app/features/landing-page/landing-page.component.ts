@@ -9,12 +9,15 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { EmpresaData } from '../../core/models/EmpresaData.interface';
 import { ServicioData } from '../../core/models/ServicioData.interface';
+import { EventData } from '../../core/models/EventData.interface';
+import { EventStateService } from '../../core/services/event-state.service';
 import { SearchComponent } from '../../shared/component/search/search.component';
+import { EventComponent } from "../event/event.component";
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [NgxSpinnerModule, TranslateModule, RouterModule, CommonModule, SearchComponent],
+  imports: [NgxSpinnerModule, TranslateModule, RouterModule, CommonModule, SearchComponent, EventComponent],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -22,17 +25,24 @@ import { SearchComponent } from '../../shared/component/search/search.component'
 export class LandingPageComponent implements OnInit {
   empresas: EmpresaData[] = [];
   originalEmpresas: EmpresaData[] = [];
+  eventos: EventData[] = [];
 
   constructor(
     private cdr: ChangeDetectorRef,
     public loadingService: LoadingService,
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private eventStateService: EventStateService
   ) {}
 
   ngOnInit(): void {
     this.loadingService.loading();
     this.fetchData();
+    this.eventStateService.loadEvents();
+    this.eventStateService.events$.subscribe(events => {
+      this.eventos = events;
+      this.cdr.detectChanges();
+    });
   }
 
   private fetchData(): void {
@@ -44,7 +54,7 @@ export class LandingPageComponent implements OnInit {
         this.cdr.detectChanges();
       },
       error: (error: HttpErrorResponse) => {
-        console.error('Error al obtener los datos:', error.message);
+        console.error('Error fetching companies:', error.message);
       },
       complete: () => {
         setTimeout(() => this.loadingService.idle(), 0);
@@ -59,7 +69,7 @@ export class LandingPageComponent implements OnInit {
         this.cdr.detectChanges();
       },
       error: (error: HttpErrorResponse) => {
-        console.error(`Error al obtenir els serveis per a l'empresa ${empresa.nombre}:`, error.message);
+        console.error(`Error fetching services for company ${empresa.nombre}:`, error.message);
       }
     });
   }

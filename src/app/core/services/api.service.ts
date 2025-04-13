@@ -7,6 +7,7 @@ import { EmpresaData } from '../models/EmpresaData.interface';
 import { CreateEmpresaPayload } from '../models/create-empresa-payload.interface';
 import { ServicioData } from '../models/ServicioData.interface'
 import { CreateServicePayload } from '../models/create-service-payload.interface';
+import { EventData } from '../models/EventData.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -79,4 +80,9 @@ export class ApiService {
     const url: string = `${environment.authUrl}/servicio-horario/obtener-empresa-idservicio?identificadorFiscal=${identificadorFiscal}&idServicio=${idServicio}`;
     return this.http.get<ServicioData>(url);
   }
+
+  getEventos(): Observable<EventData[]> {
+    return this.http.get<EventData[]>(`${environment.authUrl}/eventos`);
+  }
+
 }

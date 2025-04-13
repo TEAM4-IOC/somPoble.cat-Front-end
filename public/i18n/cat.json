@@ -56,6 +56,13 @@
     "error_404": "No s'ha trobat el recurs (404).",
     "error_500": "Ho sentim, s'ha produït un error al servidor. Torna-ho a intentar més tard o contacta amb l'administrador."
   },
+  "event": {
+    "default_name": "Esdeveniment sense nom",
+    "default_description": "Sense descripció disponible",
+    "location_label": "Ubicació:",
+    "location_default": "No disponible",
+    "date_label": "Data:"
+  },
   "empresa": {
     "select_role_title": "Escull el teu rol",
     "select_role_placeholder": "Escull una opció",
