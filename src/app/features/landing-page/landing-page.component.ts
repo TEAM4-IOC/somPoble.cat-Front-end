@@ -11,7 +11,6 @@ import { EmpresaData } from '../../core/models/EmpresaData.interface';
 import { ServicioData } from '../../core/models/ServicioData.interface';
 import { SearchComponent } from '../../shared/component/search/search.component';
 
-
 @Component({
   selector: 'app-landing-page',
   standalone: true,
@@ -81,7 +80,7 @@ export class LandingPageComponent implements OnInit {
     if (!searchTerm) {
       this.empresas = [...this.originalEmpresas];
     } else {
-      this.empresas = this.originalEmpresas.filter((empresa) =>
+      this.empresas = this.originalEmpresas.filter(empresa =>
         empresa.nombre!.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
