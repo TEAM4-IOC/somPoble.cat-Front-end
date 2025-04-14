@@ -1,0 +1,69 @@
+@import '../../../colors.scss';
+
+.main-content {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: $bg-gradient;
+  }
+  
+  .content-container {
+    backdrop-filter: blur(0.625rem);
+    background: $container-bg;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    margin: 1.5rem auto;
+    padding: 10px;
+  }
+  
+  .main-content.loading-active .content-container {
+    backdrop-filter: none;
+    background: none;
+    box-shadow: none;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: transparent; // Eliminar el fons de la taula
+  }
+  
+  .table th,
+  .table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    background: transparent; // Eliminar el fons de les cel·les
+  }
+  
+  .table th {
+    font-weight: bold;
+    border-bottom: 2px solid #ddd; // Afegir una línia més gruixuda per a la capçalera
+  }
+  
+  .table tr:hover {
+    background-color: rgba(255, 255, 255, 0.1); // Afegir un efecte de "hover" subtil
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+
+  .fa-calendar-days:hover {
+    color: #da4f8e!important;
+  }
+
+  .fa-rectangle-xmark:hover {
+    color: #4141fa!important;
+  }
+
+  th, h2 {
+    color:#ddd
+  }

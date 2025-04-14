@@ -3,11 +3,12 @@ import { ServiceStateService } from '../../core/services/service-state.service';
 import { ReservaStateService } from '../../core/services/reserva-state.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-gestor-reserves-cli',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './gestor-reserves-cli.component.html',
   styleUrls: ['./gestor-reserves-cli.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -60,6 +61,8 @@ export class GestorReservesCliComponent implements OnInit {
         console.log('Serveis disponibles:', this.servicios); // Log dels serveis carregats
   
         this.reservas = reservas.map((reserva) => {
+          reserva.hora = reserva.hora.replace(/:00$/, '');
+
           // Busquem el servei corresponent a la reserva localment
           let servicio = this.servicios.find((s) => {
             console.log(`Comparant reserva.idServicio (${reserva.idServicio}) amb servei.idServicio (${s.idServicio})`);

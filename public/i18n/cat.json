@@ -147,6 +147,20 @@
       "december": "Desembre"
     }
   },
+  "gestor-reserves": {
+    "title": "Gestionar reserves",
+    "id": "Reserva",
+    "date": "Data",
+    "hour": "Hora",
+    "service": "Servei"
+  },
+  "editar-reserva": {
+    "title": "Modificació de reserva",
+    "daySelect": "Selecciona el dia",
+    "nonLaborableDay": "El servei no està disponible aquest dia.",
+    "hourSelect": "Selecciona una hora disponible",
+    "save": "Modificar reserva"
+  },
   "landing": {
     "services": "Serveis",
     "adress": "Adreça",

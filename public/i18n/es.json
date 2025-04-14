@@ -147,6 +147,20 @@
       "december": "Diciembre"
     }
   },
+  "gestor-reserves": {
+    "title": "Gestionar reservas",
+    "id": "Reserva",
+    "date": "Fecha",
+    "hour": "Hora",
+    "service": "Servicio"
+  },
+  "editar-reserva": {
+    "title": "Modificación de reserva",
+    "daySelect": "Selecciona el día",
+    "nonLaborableDay": "El servicio no está disponible este día.",
+    "hourSelect": "Selecciona una hora disponible",
+    "save": "Modificar reserva"
+  },
   "landing": {
     "services": "Servicios",
     "adress": "Dirección",

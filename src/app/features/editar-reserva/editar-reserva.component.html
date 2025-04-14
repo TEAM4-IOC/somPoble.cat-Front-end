@@ -4,7 +4,7 @@
 
             <!-- Detalls del servei -->
             <div class="service-details">
-                <h2 class="text-center">{{ 'editarReserva.title'}}</h2>
+                <h2 class="text-center">{{ 'editar-reserva.title' | translate}}</h2>
                 <p class="text-center text-uppercase"><strong>{{ serviceData.nombre }}</strong></p>
             </div>
 
@@ -13,7 +13,7 @@
                 <div class="d-flex justify-content-between">
                     <!-- Calendari -->
                     <div class="calendar-container w-50 me-3">
-                        <label for="fechaReserva" class="info-label">{{ 'editarReserva.daySelect'}}:</label>
+                        <label for="fechaReserva" class="info-label">{{ 'editar-reserva.daySelect' | translate}}:</label>
                         <div class="calendar">
                             <div class="calendar-header">
                                 <button type="button" (click)="prevMonth()">&#8592;</button>
@@ -30,20 +30,20 @@
                             </div>
                         </div>
                         <p *ngIf="!isLaborableDay" class="error-message">
-                            {{ 'editarReserva.nonLaborableDay'}}
+                            {{ 'editar-reserva.nonLaborableDay' | translate }}
                         </p>
                     </div>
 
                     <!-- Selector d'horari -->
                     <div class="hora-container w-50 ms-3">
-                        <label for="hora" class="info-label">{{ 'editarReserva.hourSelect'}}:</label>
+                        <label for="hora" class="info-label">{{ 'editar-reserva.hourSelect' | translate}}:</label>
                         <select id="hora" formControlName="hora" class="form-select">
                             <option *ngFor="let hour of availableHours" [value]="hour">{{ hour }}</option>
                         </select>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-3 auth-btn">{{ 'editarReserva.save'}}</button>
+                <button type="submit" class="btn btn-primary mt-3 auth-btn">{{ 'editar-reserva.save' | translate }}</button>
             </form>
         </div>
     </div>

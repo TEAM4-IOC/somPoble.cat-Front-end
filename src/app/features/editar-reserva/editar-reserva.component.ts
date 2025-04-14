@@ -224,7 +224,7 @@ export class EditarReservaComponent implements OnInit {
           .map((reserva: any) => reserva.hora.slice(0, 5));
   
         const startHour = parseInt(this.serviceData.horarioInicio.split(':')[0], 10);
-        const endHour = parseInt(this.serviceData.horarioFin.split(':')[0], 10);
+        const endHour = parseInt(this.serviceData.horarioFin.split(':')[0], 10) -1;
   
         const allHours = Array.from({ length: endHour - startHour + 1 }, (_, i) => `${startHour + i}:00`);
         this.availableHours = allHours.filter((hour) => !reservedHours.includes(hour));
