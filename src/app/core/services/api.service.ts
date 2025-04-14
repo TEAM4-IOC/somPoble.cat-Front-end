@@ -111,7 +111,7 @@ export class ApiService {
 
   updateReserva(idReserva: number, payload: any): Observable<any> {
     const url = `${environment.authUrl}/reservas/${idReserva}`;
-    return this.http.put<any>(url, payload);
+    return this.http.put(url, payload, { responseType: 'text' });
   }
 
   getReservaById(idReserva: number): Observable<any> {

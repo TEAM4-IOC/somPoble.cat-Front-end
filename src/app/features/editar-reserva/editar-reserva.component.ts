@@ -25,6 +25,7 @@ export class EditarReservaComponent implements OnInit {
   isEditMode: boolean = true; // Sempre estem en mode edició
   isLaborableDay: boolean = true;
   diasLaborables: number[] = []; // Array per guardar els dies laborables
+  dniCliente: string | null = null; // Guardar el DNI del client
 
   // Variables per al calendari
   currentYear: number = new Date().getFullYear();
@@ -75,6 +76,10 @@ export class EditarReservaComponent implements OnInit {
           fechaReserva: reserva.fechaReserva,
           hora: reserva.hora
         });
+  
+        // Guardar el DNI del client des de les dades de la reserva
+        this.dniCliente = reserva.dniCliente;
+  
         this.onDateChange(reserva.fechaReserva); // Carregar hores disponibles
       },
       (error) => {
@@ -239,27 +244,47 @@ export class EditarReservaComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.reservaForm.invalid) {
-      alert('Si us plau, completa tots els camps del formulari.');
-      return;
-    }
-
-    const payload = {
-      fechaReserva: this.reservaForm.value.fechaReserva,
-      hora: this.reservaForm.value.hora
-    };
-
-    this.reservaStateService.updateReserva(this.idReserva!, payload).subscribe(
-      () => {
-        alert('Reserva actualitzada correctament!');
-        this.router.navigate(['/gestor-reserves-cli']);
-      },
-      (error) => {
-        console.error('Error al actualitzar la reserva:', error);
-        alert('Error al actualitzar la reserva. Si us plau, torna-ho a intentar.');
-      }
-    );
+  if (this.reservaForm.invalid) {
+    alert('Si us plau, completa tots els camps del formulari.');
+    return;
   }
+
+  console.log('Contingut del formulari:', this.reservaForm.value); // Depuració
+
+  if (!this.dniCliente) {
+    console.error('Error: `dniCliente` no està disponible.');
+    alert('Error: No es pot identificar el client.');
+    return;
+  }
+
+  const payload = {
+    fechaReserva: this.reservaForm.value.fechaReserva,
+    hora: this.reservaForm.value.hora,
+    cliente: {
+      dni: this.dniCliente // Utilitzar el DNI del client obtingut de la reserva
+    },
+    empresa: {
+      identificadorFiscal: this.route.snapshot.queryParams['identificadorFiscal'] // Obtenir l'identificador fiscal des dels paràmetres
+    },
+    servicio: {
+      idServicio: +this.route.snapshot.queryParams['idServicio'] // Obtenir l'ID del servei des dels paràmetres
+    }
+  };
+
+  console.log('Payload enviat al backend:', payload); // Depuració
+
+  this.reservaStateService.updateReserva(this.idReserva!, payload).subscribe(
+    (response) => {
+      console.log('Resposta del backend:', response); // Depuració
+      alert('Reserva actualitzada correctament!');
+      this.router.navigate(['/gestor-reserves-cli']);
+    },
+    (error) => {
+      console.error('Error al actualitzar la reserva:', error);
+      alert('Error al actualitzar la reserva. Si us plau, torna-ho a intentar.');
+    }
+  );
+}
 
   isSelected(date: Date | null): boolean {
     if (!date || !this.selectedDate) {
