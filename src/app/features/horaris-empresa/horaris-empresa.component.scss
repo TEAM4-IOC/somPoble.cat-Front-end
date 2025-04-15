@@ -231,3 +231,85 @@
 .past-day:hover {
   background-color: #e0e0e0; /* Canvi subtil en passar el ratolí */
 }
+
+.table-view {
+  margin: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+}
+
+.legend li .btn-icon {
+  margin-left: auto; /* Alinea el botó a la dreta */
+}
+
+.service-block {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.service-header {
+  display: flex; /* Activa Flexbox per alinear elements */
+  justify-content: space-between; /* Col·loca el nom centrat i el botó a la dreta */
+  align-items: center; /* Centra verticalment el contingut */
+  text-align: center; /* Centra el text del nom del servei */
+}
+
+.no-reservas {
+  display: block;
+  font-size: 14px;
+  color: #888; /* Color gris per al text */
+}
+.reserva-item {
+  display: flex; /* Activa Flexbox per alinear elements horitzontalment */
+  justify-content: space-between; /* Col·loca el text a l'esquerra i el botó a la dreta */
+  align-items: center; /* Centra verticalment el contingut */
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  background-color: #f9f9f9;
+}
+
+.reserva-info {
+  flex: 1; /* Permet que el text ocupi l'espai restant */
+  margin-right: 10px; /* Espai entre el text i el botó */
+  white-space: nowrap; /* Evita que el text es trenqui en múltiples línies */
+  overflow: hidden; /* Oculta el text que excedeixi l'espai disponible */
+  text-overflow: ellipsis; /* Afegeix punts suspensius si el text és massa llarg */
+}
+
+.btn-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon i {
+  font-size: 16px;
+  color: #333;
+}
