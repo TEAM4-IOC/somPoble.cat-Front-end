@@ -1,6 +1,17 @@
-<div>
-  <button (click)="toggleView()">
-    {{ isMonthlyView ? 'Cambiar a vista diaria' : 'Cambiar a vista mensual' }}
+<div class="d-flex justify-content-center mb-3">
+  <button
+    class="btn me-2"
+    [ngClass]="{ 'btn-primary': isMonthlyView, 'btn-secondary': !isMonthlyView }"
+    (click)="toggleView()"
+    [disabled]="isMonthlyView">
+    Vista Mensual
+  </button>
+  <button
+    class="btn"
+    [ngClass]="{ 'btn-primary': !isMonthlyView, 'btn-secondary': isMonthlyView }"
+    (click)="toggleView()"
+    [disabled]="!isMonthlyView">
+    Vista Diària
   </button>
 </div>
 
@@ -19,21 +30,22 @@
         <div class="day-header" *ngFor="let day of weekDays">{{ day }}</div>
         <!-- Días del mes -->
         <div
-          class="day-cell"
-          *ngFor="let day of daysInMonth"
-          [class.disabled]="!day.isCurrentMonth"
-          (click)="goToDailyView(day)"
-        >
-          <div class="day-number">{{ day.date }}</div>
-          <div class="service-bars">
-            <!-- Mostrar una barra de color por cada servicio disponible en el día -->
-            <div
-              *ngFor="let servicio of getServicesForDay(day.date)"
-              class="service-bar"
-              [style.backgroundColor]="getServiceColor(servicio)"
-            ></div>
-          </div>
-        </div>
+  class="day-cell"
+  *ngFor="let day of daysInMonth"
+  [class.disabled]="!day.isCurrentMonth"
+  [class.past-day]="isPastDay(day.date, day.isCurrentMonth)"
+  (click)="goToDailyView(day)"
+>
+  <div class="day-number">{{ day.date }}</div>
+  <div class="service-bars">
+    <!-- Mostrar una barra de color por cada servicio disponible en el día -->
+    <div
+      *ngFor="let servicio of getServicesForDay(day.date)"
+      class="service-bar"
+      [style.backgroundColor]="getServiceColor(servicio)"
+    ></div>
+  </div>
+</div>
       </div>
 
       <!-- Leyenda -->
@@ -77,13 +89,19 @@
               class="service-block"
               [style.backgroundColor]="getServiceColor(servicio)"
             >
-              {{ servicio.nombre }}
+              <strong>{{ servicio.nombre }}</strong>
 
-              <div class="reservas" *ngIf="getReservasForServiceAndHour(servicio.idServicio, hour).length > 0">
+              <!-- Mostrar reservas -->
+              <div class="reservas" *ngIf="getReservasForServiceAndHour(servicio.idServicio, hour).length > 0; else noReservas">
+                <h5>Reserves:</h5>
                 <div *ngFor="let reserva of getReservasForServiceAndHour(servicio.idServicio, hour)">
-                  <span>ID: {{ reserva.id }} - Estado: {{ reserva.estado }}</span>
+                  <span>ID: {{ reserva.id }} - Estat: {{ reserva.estado }} - DNI: {{ reserva.dniCliente }}</span>
                 </div>
               </div>
+              <!-- Missatge quan no hi ha reserves -->
+              <ng-template #noReservas>
+                <span class="no-reservas">Sense reserves</span>
+              </ng-template>
             </div>
           </div>
         </div>

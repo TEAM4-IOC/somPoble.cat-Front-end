@@ -195,3 +195,39 @@
   margin-bottom: 3px;
   font-weight: bold;
 }
+
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &.btn-primary {
+    background-color: #007bff;
+    color: white;
+  }
+
+  &.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+  }
+
+  &:disabled {
+    background-color: #e0e0e0;
+    color: #a0a0a0;
+    cursor: not-allowed;
+  }
+
+  
+}
+
+.past-day {
+  background-color: #f0f0f0; /* Gris clar */
+  
+}
+
+.past-day:hover {
+  background-color: #e0e0e0; /* Canvi subtil en passar el ratolí */
+}

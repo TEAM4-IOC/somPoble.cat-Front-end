@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ServiceStateService } from '../../core/services/service-state.service';
 import { ServicioData } from '../../core/models/ServicioData.interface';
+import { ReservaStateService } from '../../core/services/reserva-state.service';
 
 @Component({
   selector: 'app-horaris-empresa',
@@ -19,56 +20,9 @@ export class HorarisEmpresaComponent implements OnInit {
   isMonthlyView: boolean = true;
   servicios: ServicioData[] = [];
   identificadorFiscal: string = '';
+  reservas: any[] = [];
 
-  // Reservas ficticias
-  reservas: { 
-    id: number; 
-    fechaReserva: string; 
-    hora: string; 
-    estado: string; 
-    dniCliente: string; 
-    idServicio: number; 
-    identificadorFiscalEmpresa: string; 
-  }[] = [
-    {
-      id: 99,
-      fechaReserva: '2025-04-10',
-      hora: '10:00',
-      estado: 'CONFIRMADA',
-      dniCliente: '12345678A',
-      idServicio: 9,
-      identificadorFiscalEmpresa: 'B12345678'
-    },
-    {
-      id: 166,
-      fechaReserva: '2025-04-15',
-      hora: '11:00',
-      estado: 'PENDIENTE',
-      dniCliente: '87654321B',
-      idServicio: 16,
-      identificadorFiscalEmpresa: 'B12345678'
-    },
-    {
-      id: 177,
-      fechaReserva: '2025-04-15',
-      hora: '09:00',
-      estado: 'CONFIRMADA',
-      dniCliente: '11223344C',
-      idServicio: 17,
-      identificadorFiscalEmpresa: 'B12345678'
-    },
-    {
-      id: 188,
-      fechaReserva: '2025-04-16',
-      hora: '14:00',
-      estado: 'CANCELADA',
-      dniCliente: '55667788D',
-      idServicio: 18,
-      identificadorFiscalEmpresa: 'B12345678'
-    }
-  ];
-
-  constructor(private serviceState: ServiceStateService) {}
+  constructor(private serviceState: ServiceStateService, private reservaState: ReservaStateService) {}
 
   ngOnInit(): void {
     // Cargar el identificador fiscal desde la sesión
@@ -78,7 +32,7 @@ export class HorarisEmpresaComponent implements OnInit {
       const empresa = session.usuario?.empresas?.[0]; // Acceder a la primera empresa
       this.identificadorFiscal = empresa?.identificadorFiscal || ''; // Guardar el identificador fiscal
     }
-
+  
     // Cargar los servicios de la empresa
     if (this.identificadorFiscal) {
       this.serviceState.loadServiciosByIdentificadorFiscal(this.identificadorFiscal);
@@ -86,6 +40,17 @@ export class HorarisEmpresaComponent implements OnInit {
         this.servicios = servicios;
         this.generateCalendar(); // Generar el calendario con los servicios
       });
+  
+      // Cargar las reservas reales
+      this.reservaState.getReservasByEmpresa(this.identificadorFiscal).subscribe(
+        (reservas) => {
+          this.reservas = reservas; // Guardar las reservas reales
+          console.log('Reservas cargadas:', this.reservas);
+        },
+        (error) => {
+          console.error('Error al cargar las reservas:', error);
+        }
+      );
     } else {
       console.warn('No se encontró un identificador fiscal en la sesión.');
     }
@@ -244,33 +209,33 @@ export class HorarisEmpresaComponent implements OnInit {
   }
 
   // Método para obtener las reservas de un servicio en una hora específica
-  getReservasForServiceAndHour(idServicio: number, hour: string): { id: number; estado: string }[] {
+  getReservasForServiceAndHour(idServicio: number, hour: string): { id: number; estado: string; dniCliente: string }[] {
     const [hourStart] = hour.split(' '); // Obtener solo la hora inicial (ejemplo: "10:00")
     const currentDate = `${this.currentYear}-${(this.currentMonth + 1).toString().padStart(2, '0')}-${this.currentDay.toString().padStart(2, '0')}`;
   
-    const reservasFiltradas = this.reservas.filter(reserva => {
-      const matchesServicio = reserva.idServicio === idServicio;
-      const matchesHora = reserva.hora === hourStart;
-      const matchesFecha = reserva.fechaReserva === currentDate;
-  
-      console.log('Comparando reserva:', {
-        reserva,
-        idServicio,
-        hourStart,
-        currentDate,
-        matchesServicio,
-        matchesHora,
-        matchesFecha
-      });
-  
-      return matchesServicio && matchesHora && matchesFecha;
-    });
-  
-    console.log(`Servicio: ${idServicio}, Hora: ${hour}, Fecha: ${currentDate}, Reservas filtradas:`, reservasFiltradas);
-  
-    return reservasFiltradas.map(reserva => ({ id: reserva.id, estado: reserva.estado }));
+    return this.reservas
+      .filter((reserva) => {
+        const reservaHora = reserva.hora.slice(0, 5); // Extraer solo "HH:mm" de "HH:mm:ss"
+        return (
+          reserva.idServicio === idServicio &&
+          reservaHora === hourStart && // Comparar solo "HH:mm"
+          reserva.fechaReserva === currentDate // Comparar la fecha exacta
+        );
+      })
+      .map((reserva) => ({
+        id: reserva.idReserva,
+        estado: reserva.estado,
+        dniCliente: reserva.dniCliente, // Añadir el DNI del cliente
+      }));
   }
 
+  isPastDay(date: number, isCurrentMonth: boolean): boolean {
+    if (!isCurrentMonth) return false; // Només aplicar als dies del mes actual
+    const today = new Date();
+    const currentDate = new Date(this.currentYear, this.currentMonth, date);
   
+    // Comprovar si el dia és anterior a avui (excloent el dia actual)
+    return currentDate < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  }
 
 }
