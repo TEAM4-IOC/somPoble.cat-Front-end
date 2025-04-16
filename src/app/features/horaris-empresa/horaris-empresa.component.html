@@ -1,155 +1,162 @@
-<div class="d-flex justify-content-center mb-3">
-  <button class="btn me-2" [ngClass]="{ 'btn-primary': isMonthlyView, 'btn-secondary': !isMonthlyView }"
-    (click)="setView('monthly')" [disabled]="isMonthlyView">
-    Vista Mensual
-  </button>
-  <button class="btn me-2"
-    [ngClass]="{ 'btn-primary': !isMonthlyView && !isTableView, 'btn-secondary': isMonthlyView || isTableView }"
-    (click)="setView('daily')" [disabled]="!isMonthlyView && !isTableView">
-    Vista Diària
-  </button>
-  <button class="btn" [ngClass]="{ 'btn-primary': isTableView, 'btn-secondary': !isTableView }"
-    (click)="setView('table')" [disabled]="isTableView">
-    Vista Taula
-  </button>
-</div>
+<div class="main-content">
+  <div class="d-flex justify-content-center mb-3">
+    <button class="auth-btn me-2" [ngClass]="{ 'btn-primary': isMonthlyView }" (click)="setView('monthly')" [disabled]="isMonthlyView">
+      {{ 'horaris-empresa.vista-mensual' | translate}}
+    </button>
+    <button class="auth-btn me-2" [ngClass]="{ 'btn-primary': !isMonthlyView && !isTableView }" (click)="setView('daily')" [disabled]="!isMonthlyView && !isTableView">
+      {{ 'horaris-empresa.daily' | translate}}
+    </button>
+    <button class="auth-btn" [ngClass]="{ 'btn-primary': isTableView }" (click)="setView('table')" [disabled]="isTableView">
+      {{ 'horaris-empresa.reservations' | translate}}
+    </button>
+  </div>
 
-<!-- Vista mensual -->
-<div *ngIf="isMonthlyView">
-  <div class="calendar-container">
-    <div class="calendar-header">
-      <button class="nav-button" (click)="prevMonth()">&#8592;</button>
-      <h2 class="calendar-title">{{ currentMonthName }} {{ currentYear }}</h2>
-      <button class="nav-button" (click)="nextMonth()">&#8594;</button>
-    </div>
-    <div class="calendar-content">
-      <!-- Calendario -->
-      <div class="month-grid">
-        <!-- Encabezados de los días de la semana -->
-        <div class="day-header" *ngFor="let day of weekDays">{{ day }}</div>
-        <!-- Días del mes -->
-        <div class="day-cell" *ngFor="let day of daysInMonth" [class.disabled]="!day.isCurrentMonth"
-          [class.past-day]="isPastDay(day.date, day.isCurrentMonth)" (click)="goToDailyView(day)">
-          <div class="day-number">{{ day.date }}</div>
-          <div class="service-bars">
-            <!-- Mostrar una barra de color por cada servicio disponible en el día -->
-            <div *ngFor="let servicio of getServicesForDay(day.date)" class="service-bar"
-              [style.backgroundColor]="getServiceColor(servicio)">
+  <!-- Vista mensual -->
+  <div *ngIf="isMonthlyView" class="monthly-view">
+    <div class="calendar-container">
+      <div class="calendar-header">
+        <button class="nav-button" (click)="prevMonth()">&#8592;</button>
+        <h2 class="calendar-title">{{ 'reservesCli.months.' + currentMonthName | translate }} {{ currentYear }}</h2>
+        <button class="nav-button" (click)="nextMonth()">&#8594;</button>
+      </div>
+      <div class="calendar-content">
+        <!-- Calendario -->
+        <div class="month-grid">
+          <!-- Encabezados de los días de la semana -->
+          <div class="day-header" *ngFor="let day of weekDays; let i = index">
+            {{ 'serviceDetail.days.' + (i + 1) | translate }}
+          </div>
+          <!-- Días del mes -->
+          <div class="day-cell" *ngFor="let day of daysInMonth" [class.disabled]="!day.isCurrentMonth"
+            [class.past-day]="isPastDay(day.date, day.isCurrentMonth)" (click)="goToDailyView(day)">
+            <div class="day-number">{{ day.date }}</div>
+            <div class="service-bars">
+              <!-- Mostrar una barra de color por cada servicio disponible en el día -->
+              <div *ngFor="let servicio of getServicesForDay(day.date)" class="service-bar"
+                [style.backgroundColor]="getServiceColor(servicio)">
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Leyenda -->
-      <div class="legend">
-        <h3>Servicios</h3>
-        <ul>
-          <li *ngFor="let servicio of servicios">
-            <span class="legend-color" [style.backgroundColor]="getServiceColor(servicio)">
-            </span>
-            {{ servicio.nombre }}
-            <button class="btn btn-icon" (click)="onEditServiceClick(servicio)">
-              <i class="fa-solid fa-pencil"></i> <!-- Icona d'edició -->
-            </button>
-          </li>
-        </ul>
+        <!-- Leyenda -->
+        <div class="legend">
+          <h3>{{'horaris-empresa.services' | translate}}</h3>
+          <ul>
+            <li *ngFor="let servicio of servicios">
+              <span class="legend-color" [style.backgroundColor]="getServiceColor(servicio)">
+              </span>
+              {{ servicio.nombre }}
+              <button class="btn btn-icon" (click)="onEditServiceClick(servicio)">
+                <i class="fa-solid fa-pencil legend-icon"></i> <!-- Icona d'edició -->
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Vista diaria -->
-<div *ngIf="!isMonthlyView && !isTableView">
-  <div class="calendar-container">
-    <div class="calendar-header">
-      <button class="nav-button" (click)="prevDay()">&#8592;</button>
-      <h2 class="calendar-title">{{ currentDayName }}, {{ currentDay }} {{ currentMonthName }} {{ currentYear }}</h2>
-      <button class="nav-button" (click)="nextDay()">&#8594;</button>
-    </div>
-    <div class="agenda-grid">
-      <!-- Horas del día -->
-      <div class="hour-row" *ngFor="let hour of getHours()">
-        <div class="hour-label">
-          <!-- Dividir las horas en dos líneas -->
-          <span>{{ hour.split(' ')[0] }}</span><br />
-          <span>{{ hour.split(' ')[1] }}</span>
-        </div>
-        <div class="hour-cell">
-          <!-- Mostrar los servicios disponibles en esta hora -->
-          <div *ngFor="let servicio of servicios">
-            <div *ngIf="isServiceAvailable(servicio, hour)" class="service-block"
-              [style.backgroundColor]="getServiceColor(servicio)">
-              <div class="service-header">
-                <strong>{{ servicio.nombre }}</strong>
-                <button class="btn btn-icon" (click)="onEditServiceClick(servicio)">
-                  <i class="fa-solid fa-pencil"></i> <!-- Icona d'edició -->
-                </button>
-              </div>
-
-              <!-- Mostrar reservas -->
-              <div class="reservas"
-                *ngIf="getReservasForServiceAndHour(servicio.idServicio, hour).length > 0; else noReservas">
-                <h5>Reserva:</h5>
-                <div *ngFor="let reserva of getReservasForServiceAndHour(servicio.idServicio, hour)" class="reserva-item">
-                  <span class="reserva-info">ID: {{ reserva.id }} - Estat: {{ reserva.estado }} - DNI: {{ reserva.dniCliente }}</span>
-                  <button class="btn btn-icon" (click)="onDeleteReserva(reserva.id)">
-                    <i class="fa-solid fa-trash"></i> <!-- Icona de paperera -->
+  <!-- Vista diaria -->
+  <div *ngIf="!isMonthlyView && !isTableView">
+    <div class="calendar-container">
+      <div class="calendar-header">
+        <button class="nav-button" (click)="prevDay()">&#8592;</button>
+        <h2 class="calendar-title">
+          {{ 'serviceDetail.days.' + currentDayOfWeek | translate }}, 
+          {{ currentDay }} 
+          {{ 'reservesCli.months.' + currentMonthName | translate }} 
+          {{ currentYear }}
+        </h2>
+        <button class="nav-button" (click)="nextDay()">&#8594;</button>
+      </div>
+      <div class="agenda-grid">
+        <!-- Horas del día -->
+        <div class="hour-row" *ngFor="let hour of getHours()">
+          <div class="hour-label">
+            <!-- Dividir las horas en dos líneas -->
+            <span>{{ hour.split(' ')[0] }}</span><br />
+            <span>{{ hour.split(' ')[1] }}</span>
+          </div>
+          <div class="hour-cell">
+            <!-- Mostrar los servicios disponibles en esta hora -->
+            <div *ngFor="let servicio of servicios">
+              <div *ngIf="isServiceAvailable(servicio, hour)" class="service-block"
+                [style.backgroundColor]="getServiceColor(servicio)">
+                <div class="service-header">
+                  <strong>{{ servicio.nombre }}</strong>
+                  <button class="btn btn-icon" (click)="onEditServiceClick(servicio)">
+                    <i class="fa-solid fa-pencil edit-daily"></i>
                   </button>
                 </div>
+
+                <!-- Mostrar reservas -->
+                <div class="reservas"
+                  *ngIf="getReservasForServiceAndHour(servicio.idServicio, hour).length > 0; else noReservas">
+                  <h5>Reserva:</h5>
+                  <div *ngFor="let reserva of getReservasForServiceAndHour(servicio.idServicio, hour)"
+                    class="reserva-item">
+                    <span class="reserva-info">ID: {{ reserva.id }} - DNI: {{
+                      reserva.dniCliente }}</span>
+                    <button class="btn btn-icon" (click)="onDeleteReserva(reserva.id)">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- Missatge quan no hi ha reserves -->
+                <ng-template #noReservas>
+                  <span class="no-reservas">{{'horaris-empresa.withoutReservations' | translate}}</span>
+                </ng-template>
               </div>
-              <!-- Missatge quan no hi ha reserves -->
-              <ng-template #noReservas>
-                <span class="no-reservas">Sense reserves</span>
-              </ng-template>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Vista taula -->
-<div *ngIf="isTableView" class="table-view">
-  <h3>Llista de Reserves per Servei</h3>
-  <div *ngFor="let agrupacion of getReservasAgrupadasPorServicio()" class="service-group">
-    <h4 class="d-flex justify-content-between align-items-center">
-      <span>ID Servei: {{ agrupacion.servicio.idServicio }} - {{ agrupacion.servicio.nombre }}</span>
-      <button class="btn btn-icon" (click)="onEditServiceClick(agrupacion.servicio)">
-        <i class="fa-solid fa-pencil"></i> <!-- Icona d'edició -->
-      </button>
-    </h4>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ID Reserva</th>
-          <th>Data</th>
-          <th>Hora</th>
-          <th>Estat</th>
-          <th>DNI Client</th>
-          <th class="actions-column">Accions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let reserva of agrupacion.reservas">
-          <td>{{ reserva.idReserva }}</td>
-          <td>{{ formatDateToDDMMYYYY(reserva.fechaReserva) }}</td>
-          <td>{{ reserva.hora.slice(0, 5) }}</td>
-          <td>{{ reserva.estado }}</td>
-          <td>{{ reserva.dniCliente }}</td>
-          <td>
-            <!-- Icona d'acció -->
-            <div>
-              <button class="btn btn-icon" (click)="onDeleteReserva(reserva.idReserva)">
-                <i class="fa-solid fa-trash"></i> <!-- Icona -->
-              </button>
-            </div>
-          </td>
-        </tr>
-        <tr *ngIf="agrupacion.reservas.length === 0">
-          <td colspan="6" class="text-center">Sense reserves</td>
-        </tr>
-      </tbody>
-    </table>
+  <!-- Vista taula -->
+  <div *ngIf="isTableView" class="table-view">
+    <h3>Llista de Reserves per Servei</h3>
+    <div *ngFor="let agrupacion of getReservasAgrupadasPorServicio()" class="service-group">
+      <h4 class="d-flex justify-content-between align-items-center">
+        <span>ID Servei: {{ agrupacion.servicio.idServicio }} - {{ agrupacion.servicio.nombre }}</span>
+        <button class="btn btn-icon" (click)="onEditServiceClick(agrupacion.servicio)">
+          <i class="fa-solid fa-pencil reservation-service"></i>
+        </button>
+      </h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID Reserva</th>
+            <th>Data</th>
+            <th>Hora</th>
+            <th>Estat</th>
+            <th>DNI Client</th>
+            <th class="actions-column">Accions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reserva of agrupacion.reservas">
+            <td>{{ reserva.idReserva }}</td>
+            <td>{{ formatDateToDDMMYYYY(reserva.fechaReserva) }}</td>
+            <td>{{ reserva.hora.slice(0, 5) }}</td>
+            <td>{{ reserva.estado }}</td>
+            <td>{{ reserva.dniCliente }}</td>
+            <td>
+              <!-- Icona d'acció -->
+              <div>
+                <button class="btn btn-icon" (click)="onDeleteReserva(reserva.idReserva)">
+                  <i class="fa-solid fa-trash"></i> <!-- Icona -->
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="agrupacion.reservas.length === 0">
+            <td colspan="6" class="text-center">Sense reserves</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

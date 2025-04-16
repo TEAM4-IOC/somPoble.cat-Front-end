@@ -161,6 +161,13 @@
     "hourSelect": "Selecciona una hora disponible",
     "save": "Modificar reserva"
   },
+  "horaris-empresa": {
+    "vista-mensual": "Servicios - Vista mensual",
+    "daily": "Detalle diario",
+    "reservations": "Reservas",
+    "services": "Servicios",
+    "withoutReservations": "Sin reservas"
+  },
   "landing": {
     "services": "Servicios",
     "adress": "Dirección",

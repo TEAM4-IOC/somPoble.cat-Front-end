@@ -4,11 +4,12 @@ import { ServiceStateService } from '../../core/services/service-state.service';
 import { ServicioData } from '../../core/models/ServicioData.interface';
 import { ReservaStateService } from '../../core/services/reserva-state.service';
 import { Router } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-horaris-empresa',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './horaris-empresa.component.html',
   styleUrls: ['./horaris-empresa.component.scss']
 })
@@ -17,7 +18,7 @@ export class HorarisEmpresaComponent implements OnInit {
   currentMonth: number = new Date().getMonth();
   currentDay: number = new Date().getDate(); // Día actual del mes
   daysInMonth: { date: number; isCurrentMonth: boolean }[] = [];
-  weekDays: string[] = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+  weekDays: number[] = [1, 2, 3, 4, 5, 6, 7];
   isMonthlyView: boolean = true;
   isTableView: boolean = false; // Nueva propiedad para la vista de tabla
   servicios: ServicioData[] = [];
@@ -64,7 +65,21 @@ export class HorarisEmpresaComponent implements OnInit {
   }
 
   get currentMonthName(): string {
-    return new Date(this.currentYear, this.currentMonth).toLocaleString('default', { month: 'long' });
+    const monthNames = [
+      'january',
+      'february',
+      'march',
+      'april',
+      'may',
+      'june',
+      'july',
+      'august',
+      'september',
+      'october',
+      'november',
+      'december'
+    ];
+    return monthNames[this.currentMonth];
   }
 
   generateCalendar(): void {
@@ -277,5 +292,11 @@ export class HorarisEmpresaComponent implements OnInit {
   formatDateToDDMMYYYY(dateString: string): string {
     const [year, month, day] = dateString.split('-'); // Divideix la cadena en any, mes i dia
     return `${day}-${month}-${year}`; // Reorganitza en format DD-MM-YYYY
+  }
+
+  get currentDayOfWeek(): number {
+    const today = new Date(this.currentYear, this.currentMonth, this.currentDay);
+    const dayOfWeek = today.getDay(); // 0 = Diumenge, 1 = Dilluns, ..., 6 = Dissabte
+    return dayOfWeek === 0 ? 7 : dayOfWeek; // Ajustar perquè 7 sigui Diumenge
   }
 }
