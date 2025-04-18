@@ -166,7 +166,13 @@
     "daily": "Detall diari",
     "reservations": "Reserves",
     "services": "Serveis",
-    "withoutReservations": "Sense reserves"
+    "withoutReservations": "Sense reserves",
+    "reservaId": "ID Reserva",
+    "date": "Data",
+    "hour": "Hora",
+    "dniClient": "DNI Client",
+    "cancel": "Cancel·lar",
+    "serviceName": "Servei"
   },
   "landing": {
     "services": "Serveis",

@@ -1,5 +1,18 @@
-<p>Nou component user-home, s'implementarà al següent TEA</p>
+<div class="home-container">
+    <h1>Nou component user-home PROVISIONAL, s'implementarà al següent TEA</h1><br>
 
-<ul>
-    <li routerLink="/gestor-reserves-cli">Veure i gestionar les meves reserves - en gestió Miriam - fes click!</li>
-</ul>
+    <div class="vista-particular" *ngIf="tipoUsuario === 1">
+        <h2>Vista particular</h2>
+        <ul>
+            <li routerLink="/show-services">Veure tots els serveis disponibles a la plataforma - fes click!</li>
+            <li routerLink="/gestor-reserves-cli">Veure i gestionar les meves reserves - fes click!</li>
+        </ul>
+    </div>
+
+    <div class="vista-empresa-empresari" *ngIf="tipoUsuario === 2">
+        <h2>Vista empresa empresari</h2>
+        <ul>
+            <li routerLink="/horaris-empresa">Panel servicios + Reservas - haz click</li>
+        </ul>
+    </div>
+</div>

@@ -11,36 +11,36 @@ background: $bg-gradient;
 }
 
 .calendar-container {
-  max-width: 1000px; /* Aumentar el ancho máximo del contenedor */
+  max-width: 1000px;
   margin: 0 auto;
   opacity: 1;
-  transition: opacity 0.3s ease; /* Transición suave para el desvanecimiento */
+  transition: opacity 0.3s ease;
 }
 
 .calendar-container.hidden {
   opacity: 0;
-  pointer-events: none; /* Deshabilitar la interacción mientras está oculto */
+  pointer-events: none; 
 }
 
 .calendar-content {
   display: flex;
-  gap: 20px; /* Espacio entre el calendario y la leyenda */
-  align-items: flex-start; /* Alinear la leyenda al inicio del calendario */
+  gap: 20px; 
+  align-items: flex-start;
 }
 
 .calendar-header {
   display: flex;
-  justify-content: space-between; /* Alinear las flechas y el título */
-  align-items: center; /* Centrar verticalmente */
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
-  padding: 0 10px; /* Espaciado interno */
+  padding: 0 10px; 
 }
 
 .calendar-title {
-  font-size: 24px; /* Tamaño del texto del título */
+  font-size: 24px;
   font-weight: bold;
   text-align: center;
-  flex: 1; /* Ocupa el espacio restante entre las flechas */
+  flex: 1; 
 }
 
 button.auth-btn {
@@ -65,9 +65,9 @@ button.auth-btn:hover {
 
 .month-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr); /* 7 columnas para los días de la semana */
+  grid-template-columns: repeat(7, 1fr);
   gap: 5px;
-  flex: 3; /* El calendario ocupa más espacio */
+  flex: 3;
 }
 
 .day-header {
@@ -90,20 +90,20 @@ button.auth-btn:hover {
 }
 
 .day-cell:hover {
-  transform: scale(1.05); /* Escalar ligeramente */
-  background-color: #f0f8ff; /* Cambiar el color de fondo */
-  cursor: pointer; /* Mostrar el cursor de mano */
+  transform: scale(1.05);
+  background-color: #f0f8ff; 
+  cursor: pointer;
 }
 
 .day-cell:active {
-  transform: scale(0.95); /* Reducir ligeramente el tamaño */
-  transition: transform 0.1s ease; /* Transición rápida */
+  transform: scale(0.95); 
+  transition: transform 0.1s ease;
 }
 
 
 .day-cell.disabled {
-  visibility: hidden; /* Ocultar visualmente los días de otros meses */
-  pointer-events: none; /* Deshabilitar la interacción con estos días */
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .day-number {
@@ -114,17 +114,17 @@ button.auth-btn:hover {
 .service-bars {
   display: flex;
   flex-direction: column;
-  gap: 2px; /* Espacio entre las barras */
+  gap: 2px;
 }
 
 .service-bar {
-  height: 10px; /* Altura de cada barra */
+  height: 10px;
   border-radius: 3px;
 }
 
 .legend, .nav-button {
-  flex: 1; /* La leyenda ocupa menos espacio que el calendario */
-  max-width: 250px; /* Limitar el ancho máximo de la leyenda */
+  flex: 1;
+  max-width: 250px; 
   border: 1px solid #ccc;
   padding: 10px;
   background-color: #f9f9f9;
@@ -198,7 +198,7 @@ button.auth-btn:hover {
   border: 1px solid #ccc;
   padding: 5px;
   display: flex;
-  flex-direction: column; /* Servicios apilados verticalmente */
+  flex-direction: column;
   gap: 5px;
   background-color: #f9f9f9;
   border-radius: 5px;
@@ -263,12 +263,12 @@ button.auth-btn:hover {
 }
 
 .past-day {
-  background-color:  #d6d6d6;/* Gris clar */
+  background-color:  #d6d6d6;
   
 }
 
 .past-day:hover {
-  background-color: #e0e0e0; /* Canvi subtil en passar el ratolí */
+  background-color: #e0e0e0;
 }
 
 .table-view {
@@ -284,11 +284,12 @@ button.auth-btn:hover {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
+  background-color: $container-bg;
 }
 
 .table th {
-  background-color: #f4f4f4;
   font-weight: bold;
+  background-color: $btn-hover-bg;
 }
 
 .legend li {
@@ -297,7 +298,7 @@ button.auth-btn:hover {
 }
 
 .legend li .btn-icon {
-  margin-left: auto; /* Alinea el botó a la dreta */
+  margin-left: auto;
 }
 
 .service-block {
@@ -309,21 +310,21 @@ button.auth-btn:hover {
 }
 
 .service-header {
-  display: flex; /* Activa Flexbox per alinear elements */
-  justify-content: space-between; /* Col·loca el nom centrat i el botó a la dreta */
-  align-items: center; /* Centra verticalment el contingut */
-  text-align: center; /* Centra el text del nom del servei */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
 }
 
 .no-reservas {
   display: block;
   font-size: 14px;
-  color: #e0e0e0; /* Color gris per al text */
+  color: #e0e0e0;
 }
 .reserva-item {
-  display: flex; /* Activa Flexbox per alinear elements horitzontalment */
-  justify-content: space-between; /* Col·loca el text a l'esquerra i el botó a la dreta */
-  align-items: center; /* Centra verticalment el contingut */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 5px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -332,11 +333,11 @@ button.auth-btn:hover {
 }
 
 .reserva-info {
-  flex: 1; /* Permet que el text ocupi l'espai restant */
-  margin-right: 10px; /* Espai entre el text i el botó */
-  white-space: nowrap; /* Evita que el text es trenqui en múltiples línies */
-  overflow: hidden; /* Oculta el text que excedeixi l'espai disponible */
-  text-overflow: ellipsis; /* Afegeix punts suspensius si el text és massa llarg */
+  flex: 1;
+  margin-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .btn-icon {
@@ -356,3 +357,20 @@ button.auth-btn:hover {
 .edit-daily {
   color:#FFF!important;
 }
+
+.reservation-title, .serviceName, table th, table td {
+  color: #ffffff
+}
+
+.action-column {
+  width: 100px;
+}
+
+table .fa-trash {
+  color: #4141fa!important;
+}
+
+table .fa-trash:hover {
+  color: red!important;
+}
+

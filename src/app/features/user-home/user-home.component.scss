@@ -1,0 +1,10 @@
+@import '../../../colors.scss';
+
+.home-container {
+    height: 90%;
+    background: $bg-gradient;
+}
+
+li:hover {
+    color:aliceblue;
+}

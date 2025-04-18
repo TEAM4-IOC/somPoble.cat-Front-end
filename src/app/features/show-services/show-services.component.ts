@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { SearchComponent } from '../../shared/component/search/search.component';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -17,7 +18,8 @@ import { SearchComponent } from '../../shared/component/search/search.component'
     CommonModule,
     TranslateModule,
     RouterModule,
-    SearchComponent
+    SearchComponent,
+    
   ],
   templateUrl: './show-services.component.html',
   styleUrls: ['./show-services.component.scss']
@@ -29,7 +31,8 @@ export class ShowServicesComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -77,5 +80,20 @@ export class ShowServicesComponent implements OnInit {
       service.nombre.toLowerCase().includes(searchTerm.toLowerCase())
     );
     this.services$ = of(filteredServices);
+  }
+
+  formatDays(diasLaborables: string): string {
+    const dayOrder = ['1', '2', '3', '4', '5', '6', '7']; // Orden dels dies
+    const diasOrdenados = diasLaborables
+      .split(',')
+      .sort((a, b) => dayOrder.indexOf(a.trim()) - dayOrder.indexOf(b.trim()));
+  
+    return diasOrdenados
+      .map(dia => this.translate.instant(`serviceDetail.days.${dia.trim()}`))
+      .join(', ');
+  }
+  
+  formatHours(horarioInicio: string, horarioFin: string): string {
+    return `${horarioInicio.slice(0, 5)} a ${horarioFin.slice(0, 5)}`;
   }
 }

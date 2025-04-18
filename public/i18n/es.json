@@ -166,7 +166,13 @@
     "daily": "Detalle diario",
     "reservations": "Reservas",
     "services": "Servicios",
-    "withoutReservations": "Sin reservas"
+    "withoutReservations": "Sin reservas",
+    "reservaId": "ID Reserva",
+    "date": "Fecha",
+    "hour": "Hora",
+    "dniClient": "DNI Cliente",
+    "cancel": "Cancelar",
+    "serviceName": "Servicio"
   },
   "landing": {
     "services": "Servicios",

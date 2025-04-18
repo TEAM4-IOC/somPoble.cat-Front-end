@@ -117,10 +117,10 @@
 
   <!-- Vista taula -->
   <div *ngIf="isTableView" class="table-view">
-    <h3>Llista de Reserves per Servei</h3>
+    <h3 class="reservation-title text-center">Llista de Reserves per Servei</h3>
     <div *ngFor="let agrupacion of getReservasAgrupadasPorServicio()" class="service-group">
       <h4 class="d-flex justify-content-between align-items-center">
-        <span>ID Servei: {{ agrupacion.servicio.idServicio }} - {{ agrupacion.servicio.nombre }}</span>
+        <span class="serviceName">{{ 'horaris-empresa.serviceName' | translate }}: {{ agrupacion.servicio.nombre }}</span>
         <button class="btn btn-icon" (click)="onEditServiceClick(agrupacion.servicio)">
           <i class="fa-solid fa-pencil reservation-service"></i>
         </button>
@@ -128,12 +128,11 @@
       <table class="table">
         <thead>
           <tr>
-            <th>ID Reserva</th>
-            <th>Data</th>
-            <th>Hora</th>
-            <th>Estat</th>
-            <th>DNI Client</th>
-            <th class="actions-column">Accions</th>
+            <th>{{ 'horaris-empresa.reservaId' | translate }}</th>
+            <th>{{ 'horaris-empresa.date' | translate }}</th>
+            <th>{{ 'horaris-empresa.hour' | translate }}</th>
+            <th>{{ 'horaris-empresa.dniClient' | translate }}</th>
+            <th class="action-column">{{ 'horaris-empresa.cancel' | translate }}</th>
           </tr>
         </thead>
         <tbody>
@@ -141,9 +140,8 @@
             <td>{{ reserva.idReserva }}</td>
             <td>{{ formatDateToDDMMYYYY(reserva.fechaReserva) }}</td>
             <td>{{ reserva.hora.slice(0, 5) }}</td>
-            <td>{{ reserva.estado }}</td>
             <td>{{ reserva.dniCliente }}</td>
-            <td>
+            <td class="actions-column">
               <!-- Icona d'acció -->
               <div>
                 <button class="btn btn-icon" (click)="onDeleteReserva(reserva.idReserva)">
