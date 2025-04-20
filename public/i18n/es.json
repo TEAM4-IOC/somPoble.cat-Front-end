@@ -45,6 +45,15 @@
     "client_option": "Cliente",
     "business_option": "Empresario"
   },
+  "menu": {
+    "personal_space": "Espacio personal",
+    "bookings": "Reservas",
+    "create_company": "Creación empresa/autónomo",
+    "create_services": "Crear servicios",
+    "edit_services": "Editar servicios",
+    "show_services": "Mostrar servicios"
+
+  },
   "edit_profile": {
     "edit_title": "Editar Perfil",
     "update_success": "Perfil actualizado correctamente.",
@@ -94,7 +103,7 @@
     "submit_button": "Enviar",
     "delete_button": "Eliminar empresa",
     "cif_error": "El campo es obligatorio y debe tener el formato correcto.",
-    "dni_error" : "El campo es obligatorio y debe tener el formato correcto."
+    "dni_error": "El campo es obligatorio y debe tener el formato correcto."
   },
   "showServices": {
     "title": "Servicios",
@@ -195,13 +204,11 @@
     "servicePrice": "Precio",
     "servicePrice_placeholder": "Precio del servicio en €",
     "servicePrice_error": "Precio obligatorio, máximo dos decimales.",
-
     "serviceStartTime": "Horario de disponibilidad: hora inicio",
     "serviceStartTime_placeholder": "Formato necesario HH:MM, solamente horas en punto",
     "serviceEndTime": "Horario de disponibilidad: hora fin",
     "serviceEndTime_placeholder": "Formato necesario HH:MM, solamente horas en punto",
     "serviceAvailability_error": "Formato de hora incorrecto, debe ser HH:MM.",
-
     "serviceReservations": "Límite máximo de reservas",
     "serviceReservations_placeholder": "Número límite de reservas",
     "serviceReservations_error": "Límite de reservas obligatorio, solo admite números enteros.",

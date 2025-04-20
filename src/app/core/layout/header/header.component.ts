@@ -1,10 +1,23 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { I18nService } from '../../../core/services/i18n.service';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+  computed,
+  inject,
+  signal
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { EnterpriseStateService } from '../../../core/services/enterprise-state.service'; // IMPORTANTE
-import { AuthService } from '../../services/auth.service';
+import { I18nService } from '../../../core/services/i18n.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { EnterpriseStateService } from '../../../core/services/enterprise-state.service';
+
+export interface MenuItem {
+  label: string;
+  route: string;
+}
 
 @Component({
   selector: 'app-header',
@@ -14,118 +27,109 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
-  language: string = localStorage.getItem('language') || 'es';
-  isMenuOpen = false;
-  isLoggedIn = false;
-  tipoUsuario: number | null = null;
-  tipoEmpresa: number | null = null;
+export class HeaderComponent {
+  private readonly i18nService = inject(I18nService);
+  private readonly authService = inject(AuthService);
+  private readonly enterpriseStateService = inject(EnterpriseStateService);
+  private readonly cdr = inject(ChangeDetectorRef);
+  private readonly router = inject(Router);
 
-  constructor(
-    private i18nService: I18nService,
-    private authService: AuthService,
-    private enterpriseStateService: EnterpriseStateService,
-    private cdr: ChangeDetectorRef,
-    private router: Router
-  ) {}
+  readonly language = signal(localStorage.getItem('language') ?? 'es');
+  readonly isMenuOpen = signal(false);
+  readonly showLangSelector = signal(false);
 
-  ngOnInit(): void {
-    this.authService.session$.subscribe((loggedIn) => {
-      this.isLoggedIn = loggedIn;
-      this.checkSession();
+  readonly isLoggedIn = signal(false);
+  readonly userType = signal<number | null>(null);
+  readonly companyType = signal<number | null>(null);
+
+  readonly menu = computed<MenuItem[]>(() => {
+    if (!this.isLoggedIn()) return [];
+
+    if (this.userType() === 1) {
+      return [
+        { label: 'menu.personal_space', route: '/edit' },
+        { label: 'menu.bookings', route: '/reserves-cli' },
+        { label: 'menu.show_services', route: '/show-services' }
+      ];
+    }
+
+    if (this.userType() === 2) {
+      return [
+        { label: 'menu.personal_space', route: '/edit' },
+        { label: 'menu.create_company', route: '/empresa-form' },
+        { label: 'menu.create_services', route: '/services-form' },
+        { label: 'menu.edit_services', route: '/editar-reserva' }
+      ];
+    }
+
+    return [];
+  });
+
+
+  constructor() {
+    this.authService.session$.subscribe((logged) => {
+      this.isLoggedIn.set(logged);
+      this.readSession();
       this.cdr.markForCheck();
     });
-
-    this.enterpriseStateService.enterprise$.subscribe((empresas) => {
-      if (empresas.length > 0) {
-        this.tipoEmpresa = empresas[0].tipo || null;
-      } else {
-        this.tipoEmpresa = null;
-      }
+    this.enterpriseStateService.enterprise$.subscribe((companies) => {
+      this.companyType.set(companies.length ? companies[0].tipo ?? null : null);
       this.cdr.markForCheck();
     });
   }
 
-  checkSession(): void {
-    const sessionData = localStorage.getItem('session');
-    if (sessionData) {
-      const session = JSON.parse(sessionData);
-      console.log(session);
-      this.tipoUsuario = session.tipoUsuario || null;
+  private readSession(): void {
+    const data = localStorage.getItem('session');
+    if (data) {
+      try {
+        const session = JSON.parse(data);
+        this.userType.set(session.tipoUsuario ?? null);
+      } catch {
+        this.userType.set(null);
+      }
     } else {
-      this.tipoUsuario = null;
+      this.userType.set(null);
     }
+  }
+
+  changeLanguage(lang: string): void {
+    this.language.set(lang);
+    localStorage.setItem('language', lang);
+    this.i18nService.changeLanguage(lang);
+    this.showLangSelector.set(false);
+  }
+
+  toggleMenu(event?: Event): void {
+    event?.stopPropagation();
+    this.isMenuOpen.update((v) => !v);
+  }
+
+  toggleLangSelector(event: Event): void {
+    event.stopPropagation();
+    this.showLangSelector.update((v) => !v);
+  }
+
+  closeMenu(): void {
+    this.isMenuOpen.set(false);
   }
 
   logout(): void {
     this.authService.logout();
-    this.cdr.markForCheck();
+    this.isLoggedIn.set(false);
+    this.closeMenu();
     this.router.navigate(['/landing']);
   }
 
-  toggleMenu(event: Event): void {
-    event.stopPropagation(); // Evita que el clic se propague y cierre el menú inmediatamente
-    this.isMenuOpen = !this.isMenuOpen;
-    this.cdr.detectChanges();
+  @HostListener('document:click', ['$event'])
+  handleOutsideClick(event: Event): void {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.menu-wrapper') && !target.closest('.lang-btn-container')) {
+      this.closeMenu();
+      this.showLangSelector.set(false);
+    }
   }
 
-  ngAfterViewInit() {
-    const langBtn = document.querySelector(".lang-btn") as HTMLElement;
-    const langSelector = document.querySelector(".lang-selector") as HTMLElement;
-    const langEs = document.getElementById("lang-es");
-    const langCat = document.getElementById("lang-cat");
-
-    if (langBtn && langSelector) {
-      langBtn.addEventListener("click", (event) => {
-        event.stopPropagation();
-        langSelector.classList.toggle("d-none");
-        langBtn.classList.toggle("active");
-      });
-
-      document.addEventListener("click", (event) => {
-        if (!langBtn.contains(event.target as Node) && !langSelector.contains(event.target as Node)) {
-          langSelector.classList.add("d-none");
-          langBtn.classList.remove("active");
-        }
-      });
-    }
-
-    if (langEs) {
-      langEs.addEventListener("click", () => {
-        this.language = "es";
-        localStorage.setItem('language', this.language);
-        this.i18nService.changeLanguage(this.language);
-        langSelector.classList.add("d-none");
-    langBtn.classList.remove("active");
-        this.cdr.markForCheck();
-      });
-    }
-
-    if (langCat) {
-      langCat.addEventListener("click", () => {
-        this.language = "cat";
-        localStorage.setItem('language', this.language);
-        this.i18nService.changeLanguage(this.language);
-        langSelector.classList.add("d-none");
-    langBtn.classList.remove("active");
-        this.cdr.markForCheck();
-      });
-    }
-
-    document.addEventListener("click", (event) => {
-      const menu = document.querySelector(".menu-container") as HTMLElement;
-      const menuButton = document.querySelector(".hamburguer-menu") as HTMLElement;
-
-      if (
-        this.isMenuOpen &&
-        menu &&
-        menuButton &&
-        !menu.contains(event.target as Node) &&
-        !menuButton.contains(event.target as Node)
-      ) {
-        this.isMenuOpen = false;
-        this.cdr.detectChanges();
-      }
-    });
+  navigateToLanding(): void {
+    this.router.navigate(['/landing']);
   }
 }

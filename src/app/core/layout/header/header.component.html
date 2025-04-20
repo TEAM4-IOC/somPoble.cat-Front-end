@@ -1,72 +1,75 @@
-<header class="col-12 p-3 d-flex justify-content-between align-items-center header-container">
+<header class="header-container col-12 p-3 d-flex justify-content-between align-items-center">
+  <div class="logo col-4 d-flex" (click)="navigateToLanding()">
+    <img class="rounded-4" src="../images/SomPoble.png" alt="Logo" />
+  </div>
 
-    <!-- Logo -->
-    <div class="logo col-4 d-flex">
-        <img class="rounded-4" src="../images/SomPoble.png" alt="Logo">
-    </div>
+  <nav class="col-4 d-flex align-items-center justify-content-center main-menu">
+    @if (isLoggedIn() && menu().length) {
+      <ul class="d-flex list-unstyled m-0">
+        @for (item of menu(); track item) {
+          <li class="menu-item me-3">
+            <a [routerLink]="item.route">{{ item.label | translate }}</a>
+          </li>
+        }
+      </ul>
+    }
+  </nav>
+  <div class="d-flex col-4 align-items-center justify-content-end right-content">
+    @if (isLoggedIn()) {
+      @if (userType() === 1) {
+        <span class="user-label">Particular</span>
+      } @else {
+        @if (companyType() === 1) {
+          <span class="user-label">Empresa</span>
+        } @else {
+          @if (companyType() === 2) {
+            <span class="user-label">Autónomo</span>
+          }
+        }
+      }
+    }
+    @if (!isLoggedIn()) {
+      <a routerLink="/login" title="Login">
+        <i class="fa-solid fa-right-to-bracket login-icon fs-2"></i>
+      </a>
+    } @else {
+      <a title="Logout" (click)="logout()">
+        <i class="fa-regular fa-circle-xmark logout-icon fs-2"></i>
+      </a>
+    }
 
-    <!-- Menú versión Desktop -->
-    <div class="col-4 align-items-center justify-content-center main-menu">
-        <p class="text-center d-none">Futuro menú versión Desktop</p>
-    </div>
-
-    <!-- Login - Logout + idiomas -->
-    <div class="d-flex col-4 align-items-center justify-content-end right-content">
-
-        <!-- Si el usuario es tipoUsuario 1, mostrar "Particular" -->
-        <span *ngIf="isLoggedIn && tipoUsuario === 1" class="user-label">Particular</span>
-
-        <!-- Si el usuario es tipoUsuario 2 y tipoEmpresa === 1, mostrar "Empresa" -->
-        <span *ngIf="isLoggedIn && tipoUsuario === 2 && tipoEmpresa === 1" class="user-label">Empresa</span>
-
-        <!-- Si el usuario es tipoUsuario 2 y tipoEmpresa === 2, mostrar "Autónomo" -->
-        <span *ngIf="isLoggedIn && tipoUsuario === 2 && tipoEmpresa === 2" class="user-label">Autónomo</span>
-
-        <!-- Si NO hay sesión, muestra el icono de login -->
-        <a *ngIf="!isLoggedIn" routerLink="/login" title="Login">
-            <i class="fa-solid fa-right-to-bracket login-icon fs-2"></i>
-        </a>
-
-        <!-- Si hay sesión, muestra el icono de logout -->
-        <a *ngIf="isLoggedIn" (click)="logout()" title="Logout">
-            <i class="fa-regular fa-circle-xmark fs-2 logout-icon"></i>
-        </a>
-
-        <!-- Botón idiomas -->
-        <div class="d-flex align-items-center">
-            <div class="d-flex flex-column lang-btn-container">
-                <div class="d-flex lang-btn align-items-center py-2 px-4 rounded-5">
-                    <i class="fa-solid fa-globe lang-icon fs-5 "></i>
-                    <p class="lang text-uppercase ps-1">{{ language }}</p>
-                    <i class="fa-solid fa-check fs-6 ps-1"></i>
-                </div>
-                <div
-                    class=" bg-white bg-opacity-25 lang-selector d-none d-flex flex-column align-items-center rounded-5 py-3">
-                    <div class="w-100 rounded-5 text-center py-2 lang-es" id="lang-es">Castellano</div>
-                    <span class="w-100 border-bottom border-secondary"></span>
-                    <div class=" w-100 rounded-5 text-center py-2 lang-cat" id="lang-cat">Català</div>
-                </div>
-            </div>
+    <div class="d-flex align-items-center lang-btn-container">
+      <div class="d-flex lang-btn align-items-center py-2 px-4 rounded-5" (click)="toggleLangSelector($event)">
+        <i class="fa-solid fa-globe lang-icon fs-5"></i>
+        <p class="lang text-uppercase ps-1">{{ language() }}</p>
+        <i class="fa-solid fa-check fs-6 ps-1"></i>
+      </div>
+      @if (showLangSelector()) {
+        <div class="bg-white bg-opacity-25 lang-selector d-flex flex-column align-items-center rounded-5 py-3">
+          <div class="w-100 rounded-5 text-center py-2" (click)="changeLanguage('es')">Castellano</div>
+          <span class="w-100 border-bottom border-secondary"></span>
+          <div class="w-100 rounded-5 text-center py-2" (click)="changeLanguage('cat')">Català</div>
         </div>
-        <!-- Menú hamburguesa -->
-        <div class="menu-wrapper">
-            <!-- Botón menú hamburguesa -->
-            <div class="hamburguer-menu d-flex justify-content-center align-items-center text-white"
-                 (click)="toggleMenu($event)">
-                <i class="fa-solid fa-bars fs-2"></i>
-            </div>
-        
-            <!-- Menú oculto, solo aparece cuando isMenuOpen es true -->
-            <div *ngIf="isMenuOpen" class="menu-container">
-                <ul class="list-unstyled bg-dark text-white p-3">
-                    <li>Prueba</li>
-                    <li>Prueba</li>
-                </ul>
-            </div>
-        </div>
-
-
-
-
+      }
     </div>
+
+    <div class="menu-wrapper">
+      <div class="hamburguer-menu d-flex justify-content-center align-items-center text-white"
+           (click)="toggleMenu($event)">
+        <i class="fa-solid fa-bars fs-2"></i>
+      </div>
+
+      @if (isMenuOpen() && menu().length) {
+        <div class="menu-container bg-dark">
+          <ul class="list-unstyled m-0 p-3">
+            @for (item of menu(); track item) {
+              <li class="py-1">
+                <a [routerLink]="item.route" (click)="closeMenu()">{{ item.label | translate }}</a>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
 </header>

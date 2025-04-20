@@ -45,6 +45,14 @@
     "client_option": "Client",
     "business_option": "Empresari"
   },
+  "menu": {
+    "personal_space": "Espai personal",
+    "bookings": "Reserves",
+    "create_company": "Creació empresa/autònom",
+    "create_services": "Crear serveis",
+    "edit_services": "Editar serveis",
+    "show_services": "Mostrar serveis"
+  },
   "edit_profile": {
     "edit_title": "Edita el Perfil",
     "update_success": "Perfil actualitzat correctament.",

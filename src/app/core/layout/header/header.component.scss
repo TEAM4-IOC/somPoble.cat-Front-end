@@ -1,197 +1,193 @@
-header {
-    background: linear-gradient(to bottom, #a3d4f2, #67b8e8);
-    border-bottom: 2px solid #a3d4f2;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import '../../../../colors';
 
-/* Estil de logo */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: $bg-gradient;
+  border-bottom: 5px solid #67b8e8;
+  box-sizing: border-box;
+}
 
 .logo img {
-    height: 60px;
-    width: 200px;
+  height: 60px;
+  width: 200px;
+  cursor: pointer;
 }
 
-/* Estil icona login */
+
+.main-menu {
+  flex: 1;
+  margin: 0 1rem;
+}
+
+.main-menu ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.main-menu li {
+  flex: 1;
+  display: flex;
+}
+
+.main-menu a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1rem;
+  color: $white !important;
+  text-decoration: none !important;
+  background-color: transparent;
+  transition: color 0.25s;
+}
+
+.main-menu a:hover {
+  color: #000 !important;
+  background-color: transparent !important;
+  cursor: pointer;
+}
+
+.main-menu li:first-child a {
+  border-radius: 2px 0 0 2px;
+}
+
+.main-menu li:last-child a {
+  border-radius: 0 2px 2px 0;
+}
+
+
 .login-icon,
 .logout-icon {
-    color: #4141fa;
-    transition: background-color 0.2s ease-in-out;
-    margin-right: 20px;
+  color: $white;
+  transition: background-color 0.2s ease-in-out;
+  margin-right: 20px;
 }
 
 .login-icon:hover,
 .logout-icon:hover {
-    cursor: pointer;
-    color: #da4f8e;
+  cursor: pointer;
+  color: $error-color;
 }
 
 .user-label {
-    padding-right: 20px;
-    color: white;
-    font-size: 20px;
-    font-weight: 500;
+  padding-right: 20px;
+  color: $label-color;
+  font-size: 20px;
+  font-weight: 500;
 }
 
-/* Estils botó idiomes */
 .lang-icon {
-    margin-right: 10px;
+  margin-right: 10px;
+  color: $white;
 }
 
 .lang-btn {
-    border: 3px solid white;
-    transition: background-color 0.2s ease-in-out;
-    width: 133px;
+  border: 3px solid $btn-border;
+  transition: background-color 0.2s ease-in-out;
+  width: 133px;
 }
 
 .lang-btn:hover {
-    background-color: rgba(255, 255, 255, 0.25) !important;
-    cursor: pointer;
-}
-
-.lang-btn.active {
-    background-color: rgba(255, 255, 255, 0.25) !important;
+  background-color: $btn-hover-bg !important;
+  cursor: pointer;
 }
 
 .lang {
-    margin: 0
+  margin: 0;
+  color: $white;
 }
 
 .lang-btn-container {
-    position: relative;
+  position: relative;
 }
 
 .lang-selector {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    display: block;
-    z-index: 1000;
-    width: 100%
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: block;
+  z-index: 1000;
+  width: 100%;
 }
 
 .lang-selector div {
-    transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .lang-selector div:hover {
-    background-color: rgba(255, 255, 255, 0.25);
-    cursor: pointer;
+  background-color: $btn-hover-bg;
+  cursor: pointer;
 }
 
-/* Estils menú principal Desktop */
-.main-menu p {
-    margin: 0;
-}
-
-/*Estils menú hamburguesa */
 .hamburguer-menu {
-    border: 3px solid white;
-    height: 50px;
-    width: 50px;
-    border-radius: 15px;
+  border: 3px solid $btn-border;
+  height: 50px;
+  width: 50px;
+  border-radius: 15px;
+  cursor: pointer;
 }
 
 .hamburguer-menu:hover {
-    background-color: rgba(255, 255, 255, 0.25) !important;
-    cursor: pointer;
+  background-color: $btn-hover-bg !important;
 }
 
 .menu-wrapper {
-    position: relative;
-    display: none;
-}
-
-.hamburguer-menu {
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 5px;
+  position: relative;
+  display: none;
 }
 
 .menu-container {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: max-content;
-    min-width: 150px;
-    background: #212529;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    z-index: 1000;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 180px;
+  background: $container-bg;
+  box-shadow: 0 4px 6px rgba($white, 0.2);
+  border-radius: 5px;
+  z-index: 1000;
 }
 
-.menu-container ul {
-    margin: 0;
-    padding: 10px;
-    list-style: none;
-}
-
-/* Tablets i phablets */
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-    /*  Sin cambios por ahora */
-}
-
-/* Telèfons */
 @media only screen and (max-width: 575px) {
-    
-    .main-menu {
-        display: none !important;
-    }
-
-    .header-container {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        position: relative;
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        width: auto;
-        position: absolute;
-        left: 10px;
-        top: 10px;
-    }
-
-    .lang-btn-container {
-        position: absolute;
-        right: 10px;
-        top: 17px;
-    }
-
-    .right-content {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        margin-top: 65px;
-        padding: 0 10px;
-    }
-
-    .user-label {
-        display: inline-block;
-        margin-right: 10px;
-        padding: 0;
-    }
-
-    .login-icon,
-    .logout-icon {
-        display: inline-block;
-        margin-right: 20px;
-    }
-
-    .menu-wrapper {
-        display: flex !important;
-        align-items: center;
-        justify-content: flex-end;
-    }
-
-    .hamburguer-menu {
-        position: relative;
-        left: 10px;
-    }
+  .main-menu {
+    display: none !important;
+  }
+  .header-container {
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+  }
+  .logo {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+  .lang-btn-container {
+    position: absolute;
+    right: 10px;
+    top: 17px;
+  }
+  .right-content {
+    width: 100%;
+    margin-top: 65px;
+    padding: 0 10px;
+    justify-content: space-between;
+  }
+  .menu-wrapper {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .hamburguer-menu {
+    left: 10px;
+  }
 }
