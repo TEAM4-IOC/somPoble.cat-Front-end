@@ -7,7 +7,7 @@ export const routes: Routes = [
     path: 'landing',
     loadComponent: () =>
       import('./features/landing-page/landing-page.component').then(
-        (m) => m.LandingPageComponent
+        (m) => m.LandingPageComponent,
       ),
   },
   {
@@ -21,7 +21,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () =>
       import('./features/empresa-form/empresa-form.component').then(
-        (m) => m.EmpresaFormComponent
+        (m) => m.EmpresaFormComponent,
       ),
   },
   {
@@ -29,7 +29,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () =>
       import('./features/services-form/services-form.component').then(
-        (m) => m.ServicesFormComponent
+        (m) => m.ServicesFormComponent,
       ),
   },
   {
@@ -37,7 +37,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () =>
       import('./features/services-form/services-form.component').then(
-        (m) => m.ServicesFormComponent
+        (m) => m.ServicesFormComponent,
       ),
   },
   {
@@ -45,7 +45,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () =>
       import('./features/horaris-empresa/horaris-empresa.component').then(
-        (m) => m.HorarisEmpresaComponent
+        (m) => m.HorarisEmpresaComponent,
       ),
   },
   {
@@ -53,7 +53,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () =>
       import('./features/reserves-cli/reserves-cli.component').then(
-        (m) => m.ReservesCliComponent
+        (m) => m.ReservesCliComponent,
       ),
   },
   {
@@ -61,7 +61,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () =>
       import('./features/editar-reserva/editar-reserva.component').then(
-        (m) => m.EditarReservaComponent
+        (m) => m.EditarReservaComponent,
       ),
   },
   {
@@ -69,16 +69,15 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () =>
       import('./features/show-services/show-services.component').then(
-        (m) => m.ShowServicesComponent
+        (m) => m.ShowServicesComponent,
       ),
   },
-  // Ruta con parámetro: muestra los servicios de una empresa concreta
   {
     path: 'show-services/:identificadorFiscal',
     canActivate: [authGuard],
     loadComponent: () =>
       import('./features/show-services/show-services.component').then(
-        (m) => m.ShowServicesComponent
+        (m) => m.ShowServicesComponent,
       ),
   },
   {
@@ -86,7 +85,15 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () =>
       import('./shared/component/service-detail/service-detail.component').then(
-        (m) => m.ServiceDetailComponent
+        (m) => m.ServiceDetailComponent,
+      ),
+  },
+  {
+    path: 'event-detail/:id',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./shared/component/event-detail/event-detail.component').then(
+        (m) => m.EventDetailComponent,
       ),
   },
   {
@@ -94,7 +101,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () =>
       import('./features/user-home/user-home.component').then(
-        (m) => m.UserHomeComponent
+        (m) => m.UserHomeComponent,
       ),
   },
   {
@@ -102,49 +109,49 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () =>
       import('./features/gestor-reserves-cli/gestor-reserves-cli.component').then(
-        (m) => m.GestorReservesCliComponent
+        (m) => m.GestorReservesCliComponent,
       ),
   },
   {
     path: 'login',
     loadComponent: () =>
       import('./features/auth/login/login.component').then(
-        (m) => m.LoginComponent
+        (m) => m.LoginComponent,
       ),
   },
   {
     path: 'register',
     loadComponent: () =>
       import('./features/auth/register/register.component').then(
-        (m) => m.RegisterComponent
+        (m) => m.RegisterComponent,
       ),
   },
   {
     path: 'legal-notice',
     loadComponent: () =>
       import('./shared/policy/legal-notice/legal-notice.component').then(
-        (m) => m.LegalNoticeComponent
+        (m) => m.LegalNoticeComponent,
       ),
   },
   {
     path: 'cookies',
     loadComponent: () =>
-      import('../app/shared/policy/cookies/cookies.component').then(
-        (m) => m.CookiesComponent
+      import('./shared/policy/cookies/cookies.component').then(
+        (m) => m.CookiesComponent,
       ),
   },
   {
     path: 'privacy',
     loadComponent: () =>
       import('./shared/policy/privacy/privacy.component').then(
-        (m) => m.PrivacyComponent
+        (m) => m.PrivacyComponent,
       ),
   },
   {
     path: 'not-found',
     loadComponent: () =>
       import('./shared/notfoundpage/notfoundpage.component').then(
-        (m) => m.NotfoundpageComponent
+        (m) => m.NotfoundpageComponent,
       ),
   },
   { path: '**', redirectTo: 'landing' },

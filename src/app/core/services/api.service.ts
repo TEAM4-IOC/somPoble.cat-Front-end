@@ -83,7 +83,9 @@ export class ApiService {
   getEventos(): Observable<EventData[]> {
     return this.http.get<EventData[]>(`${environment.authUrl}/eventos`);
   }
-
+  getEvento(id: number): Observable<EventData> {
+    return this.http.get<EventData>(`${environment.authUrl}/eventos/${id}`);
+  }
 
   //Implementació reserves
   //Creació de reserves

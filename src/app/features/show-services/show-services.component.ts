@@ -19,14 +19,14 @@ import { TranslateService } from '@ngx-translate/core';
     TranslateModule,
     RouterModule,
     SearchComponent,
-    
+
   ],
   templateUrl: './show-services.component.html',
   styleUrls: ['./show-services.component.scss']
 })
 export class ShowServicesComponent implements OnInit {
   services$!: Observable<ServicioData[]>;
-  originalServices: ServicioData[] = []; // Almacena la lista original de servicios
+  originalServices: ServicioData[] = [];
 
   constructor(
     private apiService: ApiService,
@@ -83,16 +83,16 @@ export class ShowServicesComponent implements OnInit {
   }
 
   formatDays(diasLaborables: string): string {
-    const dayOrder = ['1', '2', '3', '4', '5', '6', '7']; // Orden dels dies
+    const dayOrder = ['1', '2', '3', '4', '5', '6', '7'];
     const diasOrdenados = diasLaborables
       .split(',')
       .sort((a, b) => dayOrder.indexOf(a.trim()) - dayOrder.indexOf(b.trim()));
-  
+
     return diasOrdenados
       .map(dia => this.translate.instant(`serviceDetail.days.${dia.trim()}`))
       .join(', ');
   }
-  
+
   formatHours(horarioInicio: string, horarioFin: string): string {
     return `${horarioInicio.slice(0, 5)} a ${horarioFin.slice(0, 5)}`;
   }

@@ -1,0 +1,30 @@
+<div class="event-detail-container">
+  @if ((event$ | async); as event) {
+    <section class="hero">
+      <h1 class="hero-title">
+        {{ event.nombre || ('event.default_name' | translate) }}
+      </h1>
+    </section>
+
+    <section class="content-wrapper">
+      <div class="event-meta">
+        <ul>
+          @for (detail of details$ | async; track detail.label) {
+            <li>
+              <strong>{{ detail.label | translate }}</strong>
+              {{ detail.value }}
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="event-description">
+        <p>
+          {{ event.descripcion || ('event.default_description' | translate) }}
+        </p>
+      </div>
+    </section>
+  } @else {
+    <p class="loading">{{ 'loading' | translate }}</p>
+  }
+</div>
