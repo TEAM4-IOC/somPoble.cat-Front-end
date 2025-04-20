@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { ApiService } from './api.service';
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,17 @@ export class ReservaStateService {
   }
 
   getReservasByEmpresa(identificadorFiscal: string): Observable<any[]> {
-    return this.apiService.getReservasByEmpresa(identificadorFiscal);
+    return this.apiService.getReservasByEmpresa(identificadorFiscal).pipe(
+      catchError((error) => {
+        if (error.status === 404) {
+          console.warn(`No se encontraron reservas para la empresa con identificador fiscal: ${identificadorFiscal}`);
+          return of([]); 
+        } else {
+          console.error('Error al obtener reservas:', error);
+          return throwError(() => new Error('No se pudieron cargar las reservas. Inténtalo de nuevo más tarde.'));
+        }
+      })
+    );
   }
 
   // Obtenir reserves per client (DNI)

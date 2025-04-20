@@ -5,6 +5,7 @@ import { ServicioData } from '../../core/models/ServicioData.interface';
 import { ReservaStateService } from '../../core/services/reserva-state.service';
 import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient, HttpBackend } from '@angular/common/http';
 
 @Component({
   selector: 'app-horaris-empresa',
@@ -24,8 +25,18 @@ export class HorarisEmpresaComponent implements OnInit {
   servicios: ServicioData[] = [];
   identificadorFiscal: string = '';
   reservas: any[] = [];
+  private httpWithoutInterceptors: HttpClient; // Cliente HTTP sin interceptores
 
-  constructor(private serviceState: ServiceStateService, private reservaStateService: ReservaStateService, private router: Router) {}
+  constructor(
+    private serviceState: ServiceStateService,
+    private reservaStateService: ReservaStateService,
+    private router: Router,
+    private http: HttpClient,
+    private httpBackend: HttpBackend // Inyectar HttpBackend
+  ) {
+    // Crear un cliente HTTP sin interceptores
+    this.httpWithoutInterceptors = new HttpClient(this.httpBackend);
+  }
 
   ngOnInit(): void {
     // Cargar el identificador fiscal desde la sesión
@@ -35,7 +46,7 @@ export class HorarisEmpresaComponent implements OnInit {
       const empresa = session.usuario?.empresas?.[0]; // Acceder a la primera empresa
       this.identificadorFiscal = empresa?.identificadorFiscal || ''; // Guardar el identificador fiscal
     }
-  
+
     // Cargar los servicios de la empresa
     if (this.identificadorFiscal) {
       this.serviceState.loadServiciosByIdentificadorFiscal(this.identificadorFiscal);
@@ -43,22 +54,30 @@ export class HorarisEmpresaComponent implements OnInit {
         this.servicios = servicios;
         this.generateCalendar(); // Generar el calendario con los servicios
       });
-  
-      // Cargar las reservas reales
-      this.reservaStateService.getReservasByEmpresa(this.identificadorFiscal).subscribe(
-        (reservas) => {
-          this.reservas = reservas; // Guardar las reservas reales
-          console.log('Reservas cargadas:', this.reservas);
-        },
-        (error) => {
-          console.error('Error al cargar las reservas:', error);
-        }
-      );
+
+      // Llamada directa para obtener reservas sin pasar por el interceptor
+      this.httpWithoutInterceptors
+        .get<any[]>(`https://sompoblecatsb-production.up.railway.app/api/reservas/empresas/${this.identificadorFiscal}`)
+        .subscribe(
+          (reservas) => {
+            this.reservas = reservas; // Guardar las reservas reales
+            console.log('Reservas cargadas:', this.reservas);
+          },
+          (error) => {
+            if (error.status === 404) {
+              this.reservas = []; // Manejar el error 404 devolviendo un array vacío
+              console.warn('No se encontraron reservas para la empresa.');
+            } else {
+              console.error('Error al cargar las reservas:', error);
+            }
+          }
+        );
     } else {
       console.warn('No se encontró un identificador fiscal en la sesión.');
     }
   }
 
+  // Mantener el resto del código original sin cambios
   get currentDayName(): string {
     const today = new Date(this.currentYear, this.currentMonth, this.currentDay);
     return today.toLocaleString('default', { weekday: 'long' });
@@ -87,26 +106,26 @@ export class HorarisEmpresaComponent implements OnInit {
     const lastDayOfMonth = new Date(this.currentYear, this.currentMonth + 1, 0);
     const firstDayOfWeek = firstDayOfMonth.getDay() === 0 ? 7 : firstDayOfMonth.getDay(); // Ajustar para que el lunes sea el primer día
     const lastDateOfMonth = lastDayOfMonth.getDate();
-  
+
     this.daysInMonth = [];
-  
+
     // Agregar días del mes anterior para completar la primera fila
     const daysFromPrevMonth = firstDayOfWeek - 1; // Días necesarios del mes anterior
     if (daysFromPrevMonth > 0) {
       const prevMonth = this.currentMonth === 0 ? 11 : this.currentMonth - 1;
       const prevYear = this.currentMonth === 0 ? this.currentYear - 1 : this.currentYear;
       const lastDayOfPrevMonth = new Date(prevYear, prevMonth + 1, 0).getDate();
-  
+
       for (let i = daysFromPrevMonth; i > 0; i--) {
         this.daysInMonth.push({ date: lastDayOfPrevMonth - i + 1, isCurrentMonth: false });
       }
     }
-  
+
     // Agregar días del mes actual
     for (let i = 1; i <= lastDateOfMonth; i++) {
       this.daysInMonth.push({ date: i, isCurrentMonth: true });
     }
-  
+
     // Agregar días del mes siguiente para completar la última fila
     const remainingCells = 7 - (this.daysInMonth.length % 7);
     if (remainingCells < 7) {

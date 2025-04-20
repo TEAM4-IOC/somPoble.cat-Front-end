@@ -3,7 +3,7 @@
     <button class="auth-btn me-2" [ngClass]="{ 'btn-primary': isMonthlyView }" (click)="setView('monthly')" [disabled]="isMonthlyView">
       {{ 'horaris-empresa.vista-mensual' | translate}}
     </button>
-    <button class="auth-btn me-2" [ngClass]="{ 'btn-primary': !isMonthlyView && !isTableView }" (click)="setView('daily')" [disabled]="!isMonthlyView && !isTableView">
+    <button style="display: none;" class="auth-btn me-2" [ngClass]="{ 'btn-primary': !isMonthlyView && !isTableView }" (click)="setView('daily')" [disabled]="!isMonthlyView && !isTableView">
       {{ 'horaris-empresa.daily' | translate}}
     </button>
     <button class="auth-btn" [ngClass]="{ 'btn-primary': isTableView }" (click)="setView('table')" [disabled]="isTableView">
