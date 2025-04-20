@@ -58,7 +58,7 @@ export class HeaderComponent {
         { label: 'menu.personal_space', route: '/edit' },
         { label: 'menu.create_company', route: '/empresa-form' },
         { label: 'menu.create_services', route: '/services-form' },
-        { label: 'menu.edit_services', route: '/editar-reserva' }
+        { label: 'menu.edit_services', route: '/horaris-empresa' }
       ];
     }
 
