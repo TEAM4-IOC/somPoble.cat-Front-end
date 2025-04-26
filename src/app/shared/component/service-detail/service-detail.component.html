@@ -1,31 +1,37 @@
 <div class="main-content">
-  <div class="service-detail-container" *ngIf="service$ | async as service; else loading">
-    <h1>{{ service.nombre }}</h1>
-    <p>{{ service.descripcion }}</p>
-    <ul>
-      <li>
-        <strong>{{ 'serviceDetail.duration' | translate }}: </strong> {{ service.duracion }} {{ 'serviceDetail.minutes' | translate }}
-      </li>
-      <li>
-        <strong>{{ 'serviceDetail.price' | translate }}: </strong> {{ service.precio }}€
-      </li>
-      <li>
-        <strong>{{ 'serviceDetail.availability' | translate }}: </strong>
-        <span *ngIf="formattedDays$ | async as days">{{ days }}</span>
-      </li>
-      <li>
-        <strong>{{ 'serviceDetail.schedule' | translate }}: </strong>
-        <span *ngIf="formattedHours$ | async as hours"> {{ hours }}</span>
-      </li>
-    </ul>
-    <!-- El botó ha d'estar dins del mateix bloc *ngIf -->
-    <div class="button-container w-100">
-      <button type="button" class="auth-btn" (click)="goToReservation(service)">
-        {{ 'serviceDetail.actionButton' | translate }}
-      </button>
+  @if (service$ | async; as service) {
+    <div class="service-detail-container">
+      <h1>{{ service.nombre }}</h1>
+      <p>{{ service.descripcion }}</p>
+      <ul>
+        <li>
+          <strong>{{ 'serviceDetail.duration' | translate }}: </strong>
+          {{ service.duracion }} {{ 'serviceDetail.minutes' | translate }}
+        </li>
+        <li>
+          <strong>{{ 'serviceDetail.price' | translate }}: </strong>
+          {{ service.precio }}€
+        </li>
+        <li>
+          <strong>{{ 'serviceDetail.availability' | translate }}: </strong>
+          @if (formattedDays$ | async; as days) {
+            {{ days }}
+          }
+        </li>
+        <li>
+          <strong>{{ 'serviceDetail.schedule' | translate }}: </strong>
+          @if (formattedHours$ | async; as hours) {
+            {{ hours }}
+          }
+        </li>
+      </ul>
+      <div class="button-container w-100">
+        <button type="button" class="auth-btn" (click)="goToReservation(service)">
+          {{ 'serviceDetail.actionButton' | translate }}
+        </button>
+      </div>
     </div>
-  </div>
+  } @else {
+    <p>{{ 'Loading...' }}</p>
+  }
 </div>
-<ng-template #loading>
-  <p>{{ 'Loading...' }}</p>
-</ng-template>

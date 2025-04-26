@@ -185,7 +185,9 @@
     "hour": "Hora",
     "dniClient": "DNI Cliente",
     "cancel": "Cancelar",
-    "serviceName": "Servicio"
+    "serviceName": "Servicio",
+    "noReservations" : "No hay reservas para este servicio",
+    "listByService": "Listado de reservas por servicio"
   },
   "landing": {
     "services": "Servicios",
