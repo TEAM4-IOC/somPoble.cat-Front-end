@@ -44,7 +44,7 @@ export class HeaderComponent {
     if (this.userType() === 1) {
       return [
         { label: 'menu.personal_space', route: '/espai-client' },
-        { label: 'menu.bookings', route: '/reserves-cli' },
+        { label: 'menu.bookings', route: '/gestor-reserves-cli' },
         { label: 'menu.show_services', route: '/show-services' }
       ];
     }
