@@ -13,11 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { I18nService } from '../../../core/services/i18n.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { EnterpriseStateService } from '../../../core/services/enterprise-state.service';
-
-export interface MenuItem {
-  label: string;
-  route: string;
-}
+import { Routing } from '../../models/routing.interface';
 
 @Component({
   selector: 'app-header',
@@ -42,12 +38,12 @@ export class HeaderComponent {
   readonly userType = signal<number | null>(null);
   readonly companyType = signal<number | null>(null);
 
-  readonly menu = computed<MenuItem[]>(() => {
+  readonly menu = computed<Routing[]>(() => {
     if (!this.isLoggedIn()) return [];
 
     if (this.userType() === 1) {
       return [
-        { label: 'menu.personal_space', route: '/edit' },
+        { label: 'menu.personal_space', route: '/espai-client' },
         { label: 'menu.bookings', route: '/reserves-cli' },
         { label: 'menu.show_services', route: '/show-services' }
       ];

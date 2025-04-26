@@ -54,6 +54,10 @@
     "show_services": "Mostrar servicios"
 
   },
+  "espai_client": {
+    "edit": "Editar Perfil",
+    "edit_services": "Editar servicios"
+  },
   "edit_profile": {
     "edit_title": "Editar Perfil",
     "update_success": "Perfil actualizado correctamente.",

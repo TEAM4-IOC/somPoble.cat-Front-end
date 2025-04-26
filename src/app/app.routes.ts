@@ -105,6 +105,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'espai-client',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/espai-client/espai-client.component').then(
+        (m) => m.EspaiClientComponent,
+      ),
+  },
+  {
     path: 'gestor-reserves-cli',
     canActivate: [authGuard],
     loadComponent: () =>
