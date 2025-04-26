@@ -2,35 +2,37 @@
   <app-search (searchChanged)="filterServices($event)"></app-search>
 
   <h1>{{ 'showServices.title' | translate }}</h1>
-  <div *ngIf="services$ | async as services">
-    <div *ngIf="services.length > 0; else noServices">
+
+  @if (services$ | async; as services) {
+    @if (services.length > 0) {
       <div class="services-grid">
-        <div class="service-card" *ngFor="let service of services" (click)="onSelectService(service)">
-          <h2>{{ service.nombre }}</h2>
-          <p>{{ service.descripcion }}</p>
-          <ul>
-            <li>
-              <strong>{{ 'showServices.duration' | translate }}:</strong>
-              {{ service.duracion }} {{ 'showServices.minutes' | translate }}
-            </li>
-            <li>
-              <strong>{{ 'showServices.price' | translate }}:</strong>
-              {{ service.precio }} €
-            </li>
-            <li>
-              <strong>{{ 'serviceDetail.availability' | translate }}:</strong>
-              {{ formatDays(service.diasLaborables) }}
-            </li>
-            <li>
-              <strong>{{ 'serviceDetail.schedule' | translate }}:</strong>
-              {{ formatHours(service.horarioInicio, service.horarioFin) }}
-            </li>
-          </ul>
-        </div>
+        @for (service of services; track service.nombre) {
+          <div class="service-card" (click)="onSelectService(service)">
+            <h2>{{ service.nombre }}</h2>
+            <p>{{ service.descripcion }}</p>
+            <ul>
+              <li>
+                <strong>{{ 'showServices.duration' | translate }}:</strong>
+                {{ service.duracion }} {{ 'showServices.minutes' | translate }}
+              </li>
+              <li>
+                <strong>{{ 'showServices.price' | translate }}:</strong>
+                {{ service.precio }} €
+              </li>
+              <li>
+                <strong>{{ 'serviceDetail.availability' | translate }}:</strong>
+                {{ formatDays(service.diasLaborables) }}
+              </li>
+              <li>
+                <strong>{{ 'serviceDetail.schedule' | translate }}:</strong>
+                {{ formatHours(service.horarioInicio, service.horarioFin) }}
+              </li>
+            </ul>
+          </div>
+        }
       </div>
-    </div>
-    <ng-template #noServices>
+    } @else {
       <p>{{ 'showServices.noServices' | translate }}</p>
-    </ng-template>
-  </div>
+    }
+  }
 </div>

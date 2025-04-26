@@ -2,44 +2,49 @@
   <div class="content-container">
     <h2 class="text-center">{{ 'gestor-reserves.title' | translate }}</h2>
 
-    <p *ngIf="errorMessage" class="error-message text-center">{{ errorMessage }}</p>
+    @if (errorMessage) {
+      <p class="error-message text-center">{{ errorMessage }}</p>
+    }
 
-    <table *ngIf="reservas.length > 0" class="table">
-      <thead>
-        <tr>
-          <th>{{ 'gestor-reserves.id' | translate }}</th>
-          <th>{{ 'gestor-reserves.date' | translate }}</th>
-          <th>{{ 'gestor-reserves.hour' | translate }}</th>
-          <th>{{ 'gestor-reserves.service' | translate }}</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let reserva of reservas">
-          <td>{{ reserva.idReserva }}</td>
-          <td>{{ reserva.fechaReserva | date: 'dd-MM-yyyy' }}</td>
-          <td>{{ reserva.hora }}</td>
-          <td>{{ reserva.nombreServicio }}</td>
-          <td>
-            <i class="fa-solid fa-calendar-days"
-              (click)="editarReserva(reserva)"
-              style="cursor: pointer; color: blue;"
-              title="Canviar dia"></i>
-          </td>
-          <td>
-            <i
-              class="fa-solid fa-rectangle-xmark"
-              (click)="deleteReserva(reserva.idReserva)"
-              style="cursor: pointer; color: red;"
-              title="Cancelar reserva"></i>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p *ngIf="reservas.length === 0 && !errorMessage && !loading" class="text-center">
-      No tens reserves disponibles.
-    </p>
+    @if (reservas.length > 0) {
+      <table class="table">
+        <thead>
+          <tr>
+            <th>{{ 'gestor-reserves.id' | translate }}</th>
+            <th>{{ 'gestor-reserves.date' | translate }}</th>
+            <th>{{ 'gestor-reserves.hour' | translate }}</th>
+            <th>{{ 'gestor-reserves.service' | translate }}</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (reserva of reservas; track reserva.idReserva) {
+            <tr>
+              <td>{{ reserva.idReserva }}</td>
+              <td>{{ reserva.fechaReserva | date: 'dd-MM-yyyy' }}</td>
+              <td>{{ reserva.hora }}</td>
+              <td>{{ reserva.nombreServicio }}</td>
+              <td>
+                <i
+                  class="fa-solid fa-calendar-days"
+                  (click)="editarReserva(reserva)"
+                  title="Canviar dia"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="fa-solid fa-rectangle-xmark"
+                  (click)="deleteReserva(reserva.idReserva)"
+                  title="Cancelar reserva"
+                ></i>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else if (!errorMessage && !loading) {
+      <p class="text-center">No tens reserves disponibles.</p>
+    }
   </div>
 </div>
