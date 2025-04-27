@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ServiceStateService } from '../../core/services/service-state.service';
 import { ServicioData } from '../../core/models/ServicioData.interface';
 import { ReservaStateService } from '../../core/services/reserva-state.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient, HttpBackend } from '@angular/common/http';
 
@@ -17,55 +17,69 @@ import { HttpClient, HttpBackend } from '@angular/common/http';
 export class HorarisEmpresaComponent implements OnInit {
   currentYear: number = new Date().getFullYear();
   currentMonth: number = new Date().getMonth();
-  currentDay: number = new Date().getDate(); // Día actual del mes
+  currentDay: number = new Date().getDate();
   daysInMonth: { date: number; isCurrentMonth: boolean }[] = [];
   weekDays: number[] = [1, 2, 3, 4, 5, 6, 7];
   isMonthlyView: boolean = true;
-  isTableView: boolean = false; // Nueva propiedad para la vista de tabla
+  isTableView: boolean = false;
   servicios: ServicioData[] = [];
   identificadorFiscal: string = '';
   reservas: any[] = [];
-  private httpWithoutInterceptors: HttpClient; // Cliente HTTP sin interceptores
+  private httpWithoutInterceptors: HttpClient;
 
   constructor(
     private serviceState: ServiceStateService,
     private reservaStateService: ReservaStateService,
     private router: Router,
+    private route: ActivatedRoute,
     private http: HttpClient,
-    private httpBackend: HttpBackend // Inyectar HttpBackend
+    private httpBackend: HttpBackend
   ) {
-    // Crear un cliente HTTP sin interceptores
+    
     this.httpWithoutInterceptors = new HttpClient(this.httpBackend);
   }
 
   ngOnInit(): void {
-    // Cargar el identificador fiscal desde la sesión
+
+    this.route.queryParams.subscribe((params) => {
+      const view = params['view'];
+      if (view === 'table') {
+        this.isMonthlyView = false;
+        this.isTableView = true;
+      } else {
+        this.isMonthlyView = true;
+        this.isTableView = false;
+      }
+    });
+    
     const sessionStr = localStorage.getItem('session');
     if (sessionStr) {
       const session = JSON.parse(sessionStr);
-      const empresa = session.usuario?.empresas?.[0]; // Acceder a la primera empresa
-      this.identificadorFiscal = empresa?.identificadorFiscal || ''; // Guardar el identificador fiscal
+      const empresa = session.usuario?.empresas?.[0];
+      this.identificadorFiscal = empresa?.identificadorFiscal || '';
     }
 
-    // Cargar los servicios de la empresa
+
     if (this.identificadorFiscal) {
       this.serviceState.loadServiciosByIdentificadorFiscal(this.identificadorFiscal);
       this.serviceState.service$.subscribe((servicios) => {
         this.servicios = servicios;
-        this.generateCalendar(); // Generar el calendario con los servicios
+        this.generateCalendar();
       });
 
-      // Llamada directa para obtener reservas sin pasar por el interceptor
+      
+
+      
       this.httpWithoutInterceptors
         .get<any[]>(`https://sompoblecatsb-production.up.railway.app/api/reservas/empresas/${this.identificadorFiscal}`)
         .subscribe(
           (reservas) => {
-            this.reservas = reservas; // Guardar las reservas reales
+            this.reservas = reservas;
             console.log('Reservas cargadas:', this.reservas);
           },
           (error) => {
             if (error.status === 404) {
-              this.reservas = []; // Manejar el error 404 devolviendo un array vacío
+              this.reservas = [];
               console.warn('No se encontraron reservas para la empresa.');
             } else {
               console.error('Error al cargar las reservas:', error);
@@ -77,7 +91,7 @@ export class HorarisEmpresaComponent implements OnInit {
     }
   }
 
-  // Mantener el resto del código original sin cambios
+  
   get currentDayName(): string {
     const today = new Date(this.currentYear, this.currentMonth, this.currentDay);
     return today.toLocaleString('default', { weekday: 'long' });
@@ -104,13 +118,13 @@ export class HorarisEmpresaComponent implements OnInit {
   generateCalendar(): void {
     const firstDayOfMonth = new Date(this.currentYear, this.currentMonth, 1);
     const lastDayOfMonth = new Date(this.currentYear, this.currentMonth + 1, 0);
-    const firstDayOfWeek = firstDayOfMonth.getDay() === 0 ? 7 : firstDayOfMonth.getDay(); // Ajustar para que el lunes sea el primer día
+    const firstDayOfWeek = firstDayOfMonth.getDay() === 0 ? 7 : firstDayOfMonth.getDay(); 
     const lastDateOfMonth = lastDayOfMonth.getDate();
 
     this.daysInMonth = [];
 
-    // Agregar días del mes anterior para completar la primera fila
-    const daysFromPrevMonth = firstDayOfWeek - 1; // Días necesarios del mes anterior
+    
+    const daysFromPrevMonth = firstDayOfWeek - 1;
     if (daysFromPrevMonth > 0) {
       const prevMonth = this.currentMonth === 0 ? 11 : this.currentMonth - 1;
       const prevYear = this.currentMonth === 0 ? this.currentYear - 1 : this.currentYear;
@@ -121,12 +135,12 @@ export class HorarisEmpresaComponent implements OnInit {
       }
     }
 
-    // Agregar días del mes actual
+    
     for (let i = 1; i <= lastDateOfMonth; i++) {
       this.daysInMonth.push({ date: i, isCurrentMonth: true });
     }
 
-    // Agregar días del mes siguiente para completar la última fila
+    
     const remainingCells = 7 - (this.daysInMonth.length % 7);
     if (remainingCells < 7) {
       for (let i = 1; i <= remainingCells; i++) {
@@ -137,10 +151,10 @@ export class HorarisEmpresaComponent implements OnInit {
 
   hasService(day: number): boolean {
     const today = new Date(this.currentYear, this.currentMonth, day).getDay();
-    const adjustedDay = today === 0 ? 7 : today; // Ajustar el día de la semana (0 = Domingo -> 7)
+    const adjustedDay = today === 0 ? 7 : today;
 
     return this.servicios.some(servicio => {
-      const diasLaborables = servicio.diasLaborables.split(',').map(Number); // Convertir "1,2,3" a [1, 2, 3]
+      const diasLaborables = servicio.diasLaborables.split(',').map(Number);
       return diasLaborables.includes(adjustedDay);
     });
   }
@@ -182,6 +196,8 @@ export class HorarisEmpresaComponent implements OnInit {
   toggleView(): void {
     this.isMonthlyView = !this.isMonthlyView;
   }
+
+  
 
   setView(view: 'monthly' | 'daily' | 'table'): void {
     this.isMonthlyView = view === 'monthly';
@@ -288,8 +304,8 @@ export class HorarisEmpresaComponent implements OnInit {
   }
 
   onEditServiceClick(servicio: ServicioData): void {
-    const serviceId = servicio.idServicio; // Obtenim l'ID del servei
-    this.router.navigate([`services-form/${serviceId}`]); // Redirigim a la URL
+    const serviceId = servicio.idServicio;
+    this.router.navigate([`services-form/${serviceId}`]);
   }
 
   onDeleteReserva(idReserva: number): void {
@@ -297,7 +313,7 @@ export class HorarisEmpresaComponent implements OnInit {
       this.reservaStateService.deleteReserva(idReserva).subscribe({
         next: () => {
           alert('Reserva eliminada correctament.');
-          // Actualitzar la llista de reserves localment
+          
           this.reservas = this.reservas.filter((reserva) => reserva.idReserva !== idReserva);
         },
         error: (err) => {
@@ -309,13 +325,13 @@ export class HorarisEmpresaComponent implements OnInit {
   }
 
   formatDateToDDMMYYYY(dateString: string): string {
-    const [year, month, day] = dateString.split('-'); // Divideix la cadena en any, mes i dia
-    return `${day}-${month}-${year}`; // Reorganitza en format DD-MM-YYYY
+    const [year, month, day] = dateString.split('-');
+    return `${day}-${month}-${year}`;
   }
 
   get currentDayOfWeek(): number {
     const today = new Date(this.currentYear, this.currentMonth, this.currentDay);
-    const dayOfWeek = today.getDay(); // 0 = Diumenge, 1 = Dilluns, ..., 6 = Dissabte
-    return dayOfWeek === 0 ? 7 : dayOfWeek; // Ajustar perquè 7 sigui Diumenge
+    const dayOfWeek = today.getDay();
+    return dayOfWeek === 0 ? 7 : dayOfWeek;
   }
 }

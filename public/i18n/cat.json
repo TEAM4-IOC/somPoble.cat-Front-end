@@ -51,7 +51,12 @@
     "create_company": "Creació empresa/autònom",
     "create_services": "Crear serveis",
     "edit_services": "Editar serveis",
-    "show_services": "Mostrar serveis"
+    "show_services": "Mostrar serveis",
+    "create_service": "Crear nou servei",
+    "show_my_services": "Veure tots els meus serveis",
+    "show_reservations": "Veure reserves",
+    "edit_profile": "Editar perfil d'usuari",
+    "edit_bussiness_profile": "Editar perfil professional"
   },
   "espai_client": {
     "edit": "Editar perfil",

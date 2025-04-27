@@ -97,11 +97,11 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'user-home',
+    path: 'espai-empresa',
     canActivate: [authGuard],
     loadComponent: () =>
-      import('./features/user-home/user-home.component').then(
-        (m) => m.UserHomeComponent,
+      import('./features/espai-empresa/espai-empresa.component').then(
+        (m) => m.EspaiEmpresaComponent,
       ),
   },
   {

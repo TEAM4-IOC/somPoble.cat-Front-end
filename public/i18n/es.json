@@ -51,11 +51,16 @@
     "create_company": "Creación empresa/autónomo",
     "create_services": "Crear servicios",
     "edit_services": "Editar servicios",
-    "show_services": "Mostrar servicios"
+    "show_services": "Mostrar servicios",
+    "create_service": "Crear nuevo servicio",
+    "show_my_services": "Ver todos mis servicios",
+    "show_reservations": "Ver reservas",
+    "edit_profile": "Editar perfil de usuario",
+    "edit_bussiness_profile": "Editar perfil profesional"
 
   },
   "espai_client": {
-    "edit": "Editar Perfil",
+    "edit": "Editar perfil",
     "edit_reservation": "Editar reservas"
   },
   "edit_profile": {
