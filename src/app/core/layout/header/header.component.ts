@@ -40,24 +40,39 @@ export class HeaderComponent {
 
   readonly menu = computed<Routing[]>(() => {
     if (!this.isLoggedIn()) return [];
-
+  
     if (this.userType() === 1) {
       return [
-        { label: 'menu.personal_space', route: '/espai-client' },
-        { label: 'menu.bookings', route: '/gestor-reserves-cli' },
-        { label: 'menu.show_services', route: '/show-services' }
+        { id: 'personal_space', label: 'menu.personal_space', route: '/espai-client' },
+        { id: 'bookings', label: 'menu.bookings', route: '/gestor-reserves-cli' },
+        { id: 'show_services', label: 'menu.show_services', route: '/show-services' }
       ];
     }
-
+  
     if (this.userType() === 2) {
       return [
-        { label: 'menu.personal_space', route: '/edit' },
-        { label: 'menu.create_company', route: '/empresa-form' },
-        { label: 'menu.create_services', route: '/services-form' },
-        { label: 'menu.edit_services', route: '/horaris-empresa' }
+        {
+          id: 'edit',
+          label: 'espai_client.edit',
+          route: '',
+          subMenu: [
+            { id: 'edit_profile', label: 'menu.edit_profile', route: '/edit' },
+            { id: 'edit_business_profile', label: 'menu.edit_bussiness_profile', route: '/empresa-form' }
+          ]
+        },
+        {
+          id: 'show_services',
+          label: 'showServices.title',
+          route: '',
+          subMenu: [
+            { id: 'create_service', label: 'menu.create_service', route: '/services-form' },
+            { id: 'show_my_services', label: 'menu.show_my_services', route: '/horaris-empresa', queryParams: { view: 'monthly' } }
+          ]
+        },
+        { id: 'bookings_table', label: 'menu.bookings', route: '/horaris-empresa', queryParams: { view: 'table' } }
       ];
     }
-
+  
     return [];
   });
 
@@ -68,10 +83,6 @@ export class HeaderComponent {
       this.readSession();
       this.cdr.markForCheck();
     });
-    this.enterpriseStateService.enterprise$.subscribe((companies) => {
-      this.companyType.set(companies.length ? companies[0].tipo ?? null : null);
-      this.cdr.markForCheck();
-    });
   }
 
   private readSession(): void {
@@ -80,7 +91,13 @@ export class HeaderComponent {
       try {
         const session = JSON.parse(data);
         this.userType.set(session.tipoUsuario ?? null);
-      } catch {
+        
+      if (session.tipoUsuario === 2 && session.usuario?.empresas?.length) {
+        this.companyType.set(session.usuario.empresas[0].tipo ?? null);
+      } else {
+        this.companyType.set(null);
+      }
+      } catch (error){
         this.userType.set(null);
       }
     } else {
@@ -98,6 +115,16 @@ export class HeaderComponent {
   toggleMenu(event?: Event): void {
     event?.stopPropagation();
     this.isMenuOpen.update((v) => !v);
+  }
+
+  toggleSubMenu(item: any): void {
+    this.menu().forEach((menuItem) => {
+      if (menuItem !== item && menuItem.isSubMenuOpen) {
+        menuItem.isSubMenuOpen = false;
+      }
+    });
+
+    item.isSubMenuOpen = !item.isSubMenuOpen;
   }
 
   toggleLangSelector(event: Event): void {
@@ -123,9 +150,21 @@ export class HeaderComponent {
       this.closeMenu();
       this.showLangSelector.set(false);
     }
+
+    if (!target.closest('.dropdown')) {
+      this.closeAllSubMenus();
+    }
   }
 
   navigateToLanding(): void {
     this.router.navigate(['/landing']);
+  }
+
+  closeAllSubMenus(): void {
+    this.menu().forEach((item) => {
+      if (item.isSubMenuOpen) {
+        item.isSubMenuOpen = false;
+      }
+    });
   }
 }

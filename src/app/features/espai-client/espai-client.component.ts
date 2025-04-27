@@ -16,8 +16,8 @@ export class EspaiClientComponent {
   private router = inject(Router);
 
   cards = signal<Routing[]>([
-    { label: 'espai_client.edit', route: '/edit' },
-    { label: 'espai_client.edit_reservation', route: '/gestor-reserves-cli' }
+    { id: 'edit_client', label: 'espai_client.edit', route: '/edit' },
+    { id: 'edit_reservation', label: 'espai_client.edit_reservation', route: '/gestor-reserves-cli' }
   ]);
 
   goTo(route: string): void {

@@ -8,7 +8,26 @@
       <ul class="d-flex list-unstyled m-0">
         @for (item of menu(); track item) {
           <li class="menu-item me-3">
-            <a [routerLink]="item.route">{{ item.label | translate }}</a>
+            @if (item.subMenu) {
+              <div class="dropdown">
+                <span class="dropdown-toggle main-menu-item" (click)="toggleSubMenu(item)">
+                  {{ item.label | translate }}
+                </span>
+                @if (item.isSubMenuOpen) {
+                  <ul class="dropdown-menu">
+                    @for (subItem of item.subMenu; track subItem.label) {
+                      <li class="dropdown-item">
+                        <a [routerLink]="subItem.route" [queryParams]="subItem.queryParams || {}" (click)="closeAllSubMenus()">
+                          {{ subItem.label | translate }}
+                        </a>
+                      </li>
+                    }
+                  </ul>
+                }
+              </div>
+            } @else {
+              <a [routerLink]="item.route" [queryParams]="item.queryParams">{{ item.label | translate }}</a>
+            }
           </li>
         }
       </ul>
@@ -18,13 +37,11 @@
     @if (isLoggedIn()) {
       @if (userType() === 1) {
         <span class="user-label">Particular</span>
-      } @else {
+      } @else if (userType() === 2) {
         @if (companyType() === 1) {
           <span class="user-label">Empresa</span>
-        } @else {
-          @if (companyType() === 2) {
-            <span class="user-label">Autónomo</span>
-          }
+        } @else if (companyType() === 2) {
+          <span class="user-label">Autónomo</span>
         }
       }
     }

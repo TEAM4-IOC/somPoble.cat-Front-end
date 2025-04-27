@@ -28,11 +28,14 @@
   margin: 0;
   padding: 0;
   width: 100%;
+  justify-content: center;
 }
 
 .main-menu li {
   flex: 1;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-menu a {
@@ -155,6 +158,76 @@
   box-shadow: 0 4px 6px rgba($white, 0.2);
   border-radius: 5px;
   z-index: 1000;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid #ddd;
+  padding: 0.5rem 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  min-width: 180px;
+  width: auto!important;
+  white-space: nowrap;
+}
+
+.dropdown-menu .dropdown-item {
+  list-style: none;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+}
+
+.dropdown-menu .dropdown-item a {
+  text-decoration: none;
+  color: $white;
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.dropdown-menu .dropdown-item a:hover {
+  background-color: $btn-hover-bg;
+  color: #000;
+}
+
+.main-menu-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1rem;
+  color: $white !important;
+  text-decoration: none !important;
+  background-color: transparent;
+  transition: color 0.25s, background-color 0.25s;
+  cursor: pointer;
+}
+
+.main-menu-item:hover {
+  color: #000 !important;
+  background-color: transparent !important;
+}
+
+.dropdown-menu li a {
+  list-style: none;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+  text-align: left;
 }
 
 @media only screen and (max-width: 575px) {
