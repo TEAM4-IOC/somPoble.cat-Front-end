@@ -186,6 +186,12 @@
           @if (formError) {
             <div class="error">{{ formError | translate }}</div>
           }
+          <div class="button-container w-100">
+        <button class="redirect-btn" (click)="goToEspaiClient()">
+          <i class="fa-solid fa-arrow-left"></i>
+          {{ 'menu.return-btn' | translate }}
+        </button>
+      </div>
         </form>
       </div>
     } @else {
@@ -219,19 +225,21 @@
               }
             }
           </div>
-          <!-- Continúa el mismo patrón para cada campo en modo edición -->
-          <button class="auth-btn" (click)="onSubmit()">
-            {{ 'add-services-form.serviceSubmit_edit' | translate }}
-          </button>
           @if (idServicio !== null) {
             <button class="delete-btn" (click)="deleteServicio(idServicio!)">
               <i class="fas fa-trash"></i> {{ 'add-services-form.serviceDelete' | translate }}
             </button>
+            <div class="button-container w-100">
+              <button class="redirect-btn" (click)="goToEspaiClient()">
+                <i class="fa-solid fa-arrow-left"></i>
+                {{ 'menu.return-btn' | translate }}
+              </button>
+            </div>
           }
         </div>
       </div>
     }
   } @else {
-    <p>Cargando servicios...</p>
+    <p>{{ 'add-services-form.loadingServices' | translate }}</p>
   }
 </div>

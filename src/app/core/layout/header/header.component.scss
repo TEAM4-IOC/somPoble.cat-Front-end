@@ -87,6 +87,11 @@
   color: $label-color;
   font-size: 20px;
   font-weight: 500;
+  cursor: pointer;
+}
+
+.user-label:hover {
+  text-decoration: underline;
 }
 
 .lang-icon {

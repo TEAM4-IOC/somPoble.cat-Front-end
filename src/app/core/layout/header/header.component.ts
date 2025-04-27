@@ -167,4 +167,8 @@ export class HeaderComponent {
       }
     });
   }
+
+  navigateToEspaiEmpresa(): void {
+    this.router.navigate(['/espai-empresa']);
+  }
 }

@@ -116,16 +116,16 @@ input::placeholder {
   background: $btn-hover-bg;
 }
 .delete-btn {
-  display: flex; /* Utilitza flexbox per alinear contingut */
-  align-items: center; /* Centra verticalment l'icona i el text */
-  justify-content: center; /* Centra el contingut dins del botó */
-  color: #dc143c!important; /* Color del text */
-  border: 2px solid #dc143c!important; /* Color del contorn */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dc143c!important;
+  border: 2px solid #dc143c!important;
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
-  gap: 8px; /* Espai entre l'icona i el text */
+  gap: 8px;
 }
 
 .role-selection select {
@@ -205,16 +205,52 @@ input::placeholder {
 }
 
 .input-control.two-columns {
-  display: flex; /* Usa flexbox para organizar las columnas */
-  flex-wrap: wrap; /* Permite que los elementos se ajusten en varias filas */
-  gap: 0.5rem; /* Espaciado entre los elementos */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.input-control.two-columns input {
+  justify-content: flex-start!important;
 }
 
 .day-checkbox {
-  display: flex; /* Usa flexbox para alinear el checkbox y el texto */
-  align-items: center; /* Alinea verticalmente el checkbox y el texto */
-  gap: 0.5rem; /* Espaciado entre el checkbox y el texto */
-  flex: 0 0 50%; /* Cada elemento ocupa el 50% del ancho del contenedor padre */
-  text-align: left; /* Asegura que el texto esté alineado a la izquierda */
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 0 50%;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.redirect-btn {
+  width: 100%;
+  padding: 0.625rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: 0.0625rem solid $btn-border;
+  color: $white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3125rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.redirect-btn i {
+  position: absolute;
+  left: 1rem;
+}
+
+.redirect-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.button-container {
+  margin-top: 1.5rem;
+  width: 100%;
+  text-align: center;
 }

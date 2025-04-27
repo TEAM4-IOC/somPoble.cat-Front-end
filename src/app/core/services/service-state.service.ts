@@ -3,7 +3,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiService } from './api.service';
 import { ServicioData } from '../models/ServicioData.interface';
 import { CreateServicePayload } from '../models/create-service-payload.interface';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 function isEmptyService(servicio: ServicioData): boolean {
   return !servicio || !servicio.nombre || servicio.nombre.trim() === '';
@@ -68,7 +69,7 @@ export class ServiceStateService {
       },
       error: (err: any) => {
         console.error('[ServiceStateService] Error al obtener servicios:', err);
-        this.saveAndEmit([]); // Emitimos un array vacío en caso de error
+        this.saveAndEmit([]);
       }
     });
   }
@@ -81,16 +82,17 @@ export class ServiceStateService {
     return this.apiService.updateServicio(idServicio, identificadorFiscal, payload);
   }
 
-  deleteServicio(idServicio: number, identificadorFiscal: string): void {
-    this.apiService.deleteServicio(idServicio, identificadorFiscal).subscribe({
-      next: () => {
+  deleteServicio(idServicio: number, identificadorFiscal: string): Observable<void> {
+    return this.apiService.deleteServicio(idServicio, identificadorFiscal).pipe(
+      map(() => {
         console.log(`Servicio con ID ${idServicio} eliminado correctamente.`);
-        this.loadServicios(); // Recargar la lista de servicios después de eliminar
-      },
-      error: (err) => {
+        this.loadServicios();
+      }),
+      catchError((err) => {
         console.error(`Error al eliminar el servicio con ID ${idServicio}:`, err);
-      }
-    });
+        return throwError(err);
+      })
+    );
   }
 
   setServicesFromLogin(servicios: ServicioData[]): void {

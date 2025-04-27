@@ -56,7 +56,9 @@
     "show_my_services": "Veure tots els meus serveis",
     "show_reservations": "Veure reserves",
     "edit_profile": "Editar perfil d'usuari",
-    "edit_bussiness_profile": "Editar perfil professional"
+    "edit_bussiness_profile": "Editar perfil professional",
+    "return-btn": "Tornar a l'inici",
+    "autonomo": "Autònom"
   },
   "espai_client": {
     "edit": "Editar perfil",
@@ -235,7 +237,14 @@
     "friday": "Divendres",
     "saturday": "Dissabte",
     "sunday": "Diumenge",
-    "workingDays_error": "Camp obligatori, selecciona almenys un dia."
+    "workingDays_error": "Camp obligatori, selecciona almenys un dia.",
+    "loadingServices": "Carregant serveis...",
+    "deleteOK": "El serveo s'ha eliminat correctament.",
+    "deleteKO": "Error al eliminar el servei.",
+    "updateOK": "El servei s'ha actualitzat correctament.",
+    "updateKO": "Error al modificar el servei.",
+    "createOK": "El servei s'ha creat correctament.",
+    "createKO": "Error al crear el servei."
   },
   "notfound-page": {
     "msg": "Ups! Sembla que aquest enllaç no funciona",

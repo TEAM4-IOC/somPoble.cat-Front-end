@@ -39,9 +39,9 @@
         <span class="user-label">Particular</span>
       } @else if (userType() === 2) {
         @if (companyType() === 1) {
-          <span class="user-label">Empresa</span>
+          <span class="user-label" (click)="navigateToEspaiEmpresa()">Empresa</span>
         } @else if (companyType() === 2) {
-          <span class="user-label">Autónomo</span>
+          <span class="user-label" (click)="navigateToEspaiEmpresa()">{{ 'menu.autonomo' | translate }}</span>
         }
       }
     }

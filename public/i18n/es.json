@@ -56,8 +56,9 @@
     "show_my_services": "Ver todos mis servicios",
     "show_reservations": "Ver reservas",
     "edit_profile": "Editar perfil de usuario",
-    "edit_bussiness_profile": "Editar perfil profesional"
-
+    "edit_bussiness_profile": "Editar perfil profesional",
+    "return-btn": "Volver a inicio",
+    "autonomo": "Autónomo"
   },
   "espai_client": {
     "edit": "Editar perfil",
@@ -236,7 +237,14 @@
     "friday": "Viernes",
     "saturday": "Sábado",
     "sunday": "Domingo",
-    "workingDays_error": "Campo obligatorio, selecciona al menos un día."
+    "workingDays_error": "Campo obligatorio, selecciona al menos un día.",
+    "loadingServices": "Cargando servicios...",
+    "deleteOK": "El servicio se ha eliminado correctamente.",
+    "deleteKO": "Error al eliminar el servicio.",
+    "updateOK": "El servicio se ha actualizado correctamente.",
+    "updateKO": "Error al actualizar el servicio.",
+    "createOK": "El servicio se ha creado correctamente.",
+    "createKO": "Error al crear el servicio."
   },
   "notfound-page": {
     "msg": "Ups! Parece que este enlace no funciona",

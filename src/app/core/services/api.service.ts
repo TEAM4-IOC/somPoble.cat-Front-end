@@ -67,7 +67,7 @@ export class ApiService {
   }
 
   deleteServicio(idServicio: number, identificadorFiscal: string): Observable<void> {
-    const url = (`${environment.authUrl}/servicio-horario/anular/${idServicio}?identificadorFiscal=${identificadorFiscal}`);
+    const url = `${environment.authUrl}/servicio-horario/anular/${idServicio}?identificadorFiscal=${identificadorFiscal}`;
     return this.http.delete<void>(url);
   }
 

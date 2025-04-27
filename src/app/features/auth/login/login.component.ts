@@ -35,9 +35,9 @@ export class LoginComponent {
         console.log(sessionData);
         const tipoUsuario = sessionData?.tipoUsuario ?? null;
         if (tipoUsuario === 1) {
-          this.router.navigate(['/edit']);
+          this.router.navigate(['/espai-client']);
         } else {
-          this.router.navigate(['/empresa-form']);
+          this.router.navigate(['/espai-empresa']);
         }
       },
       error: () => {
