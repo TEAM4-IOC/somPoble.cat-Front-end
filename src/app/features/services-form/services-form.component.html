@@ -1,245 +1,310 @@
 <div class="serveis-form-container">
-  @if (servicio$ | async; as servicios) {
+  <div class="add-service-container">
+    @if (servicio$ | async; as servicios) {
     @if (!isEditMode) {
-      <div class="add-service-container">
-        <h1>{{ empresaNombre }}</h1>
-        <h2>{{ 'add-services-form.nameForm' | translate }}</h2>
-        <form (ngSubmit)="onSubmit()" #serviceForm="ngForm">
-          <div class="input-group">
-            <label for="nombreServicio" class="form-label">
-              {{ 'add-services-form.serviceName' | translate }}:
-            </label>
-            <div class="input-control">
-              <input
-                type="text"
-                id="nombreServicio"
-                [(ngModel)]="nombre"
-                name="nombreServicio"
-                placeholder="{{ 'add-services-form.serviceName_placeholder' | translate }}"
-                required
-                pattern="^(?=(.*[A-Za-z]){2,}).*$"
-                #nombreModel="ngModel"
-              />
-            </div>
-            @if (nombreModel.invalid && (nombreModel.touched || nombreModel.dirty)) {
-              <div class="error">{{ 'add-services-form.serviceName_error' | translate }}</div>
-            }
-          </div>
+    <h1>{{ empresaNombre }}</h1>
+    <h2>{{ 'add-services-form.nameForm' | translate }}</h2>
+    <form (ngSubmit)="onSubmit()" #serviceForm="ngForm">
+      <div class="input-group">
+        <label for="nombreServicio" class="form-label">{{ 'add-services-form.serviceName' | translate }}:</label>
+        <div class="input-control">
+          <input type="text" id="nombreServicio" [(ngModel)]="nombre" name="nombreServicio"
+            placeholder="{{ 'add-services-form.serviceName_placeholder' | translate }}" required
+            pattern="^(?=(.*[A-Za-z]){2,}).*$" #nombreModel="ngModel" />
+        </div>
+        @if (nombreModel.invalid && (nombreModel.touched || nombreModel.dirty)) {
+        <div class="error">{{ 'add-services-form.serviceName_error' | translate }}</div>
+        }
+      </div>
+      <div class="input-group">
+        <label for="descripcionServicio" class="form-label">{{ 'add-services-form.serviceDescription' | translate
+          }}:</label>
+        <div class="input-control">
+          <textarea id="descripcionServicio" [(ngModel)]="descripcion" name="descripcionServicio"
+            placeholder="{{ 'add-services-form.serviceDescription_placeholder' | translate }}" required rows="5"
+            pattern="^[A-Za-zÀ-ÿ0-9 .,!?()'\n\r-]{2,200}$" #descripcionModel="ngModel"></textarea>
+        </div>
+        @if (descripcionModel.invalid && (descripcionModel.touched || descripcionModel.dirty)) {
+        <div class="error">{{ 'add-services-form.serviceDescription_eror' | translate }}</div>
+        }
+      </div>
+      <div class="input-group">
+        <label for="duracionServicio" class="form-label">{{ 'add-services-form.serviceDuration' | translate }}:</label>
+        <div class="input-control">
+          <input type="text" id="duracionServicio" [(ngModel)]="duracion" name="duracionServicio"
+            placeholder="{{ 'add-services-form.serviceDuration_placeholder' | translate }}" required pattern="^[0-9]+$"
+            #duracionModel="ngModel" (input)="validateDuracion()" />
+        </div>
+        @if (duracionModel.invalid && (duracionModel.touched || duracionModel.dirty)) {
+        <div class="error">{{ 'add-services-form.serviceDuration_error' | translate }}</div>
+        }
+      </div>
+      <div class="input-group">
+        <label for="precioServicio" class="form-label">{{ 'add-services-form.servicePrice' | translate }}:</label>
+        <div class="input-control">
+          <input type="text" id="precioServicio" [(ngModel)]="precio" name="precioServicio"
+            placeholder="{{ 'add-services-form.servicePrice_placeholder' | translate }}" required
+            (input)="onInputChange($event)" (keydown)="validatePrecio($event)" #precioModel="ngModel" />
+        </div>
+        @if (precioModel.invalid && (precioModel.touched || precioModel.dirty)) {
+        <div class="error">{{ 'add-services-form.servicePrice_error' | translate }}</div>
+        }
+      </div>
 
-          <div class="input-group">
-            <label for="descripcionServicio" class="form-label">
-              {{ 'add-services-form.serviceDescription' | translate }}:
+      <div class="input-group">
+        <label for="diasLaborables" class="form-label">{{ 'add-services-form.workingDays' | translate }}:</label>
+        <div class="input-control two-columns">
+          <div *ngFor="let day of weekDays">
+            <label class="day-checkbox">
+              <input type="checkbox" [value]="day.value" (change)="onDaySelected($event)" name="diasLaborables" />
+              {{ day.key | translate }}
             </label>
-            <div class="input-control">
-              <textarea
-                id="descripcionServicio"
-                [(ngModel)]="descripcion"
-                name="descripcionServicio"
-                placeholder="{{ 'add-services-form.serviceDescription_placeholder' | translate }}"
-                required
-                rows="5"
-                pattern="^[A-Za-zÀ-ÿ0-9 .,!?()'\n\r-]{2,200}$"
-                #descripcionModel="ngModel"
-              ></textarea>
-            </div>
-            @if (descripcionModel.invalid && (descripcionModel.touched || descripcionModel.dirty)) {
-              <div class="error">{{ 'add-services-form.serviceDescription_eror' | translate }}</div>
-            }
           </div>
+        </div>
+        @if (diasLaborables.length === 0) {
+        <div class="error">{{ 'add-services-form.workingDays_error' | translate }}</div>
+        }
+      </div>
 
-          <div class="input-group">
-            <label for="duracionServicio" class="form-label">
-              {{ 'add-services-form.serviceDuration' | translate }}:
+
+      <div class="input-group">
+        <label for="horarioInicio" class="form-label">{{ 'add-services-form.serviceStartTime' | translate }}</label>
+        <div class="input-control">
+          <input type="text" id="horarioInicio" [(ngModel)]="horarioInicio" name="horarioInicio"
+            placeholder="{{ 'add-services-form.serviceStartTime_placeholder' | translate }}" required
+            pattern="^([01]\d|2[0-3]):00$" #horarioInicioModel="ngModel" (keydown)="restrictToTimeFormat($event)"
+            (input)="validateHorario($event)" />
+        </div>
+        @if (horarioInicioModel.invalid && (horarioInicioModel.touched || horarioInicioModel.dirty)) {
+        <div class="error">{{ 'add-services-form.serviceAvailability_error' | translate }}</div>
+        }
+      </div>
+      <div class="input-group">
+        <label for="horarioFin" class="form-label">{{ 'add-services-form.serviceEndTime' | translate }}:</label>
+        <div class="input-control">
+          <input type="text" id="horarioFin" [(ngModel)]="horarioFin" name="horarioFin"
+            placeholder="{{ 'add-services-form.serviceEndTime_placeholder' | translate }}" required
+            pattern="^([01]\d|2[0-3]):00$" #horarioFinModel="ngModel" (keydown)="restrictToTimeFormat($event)"
+            (input)="validateHorario($event)" />
+        </div>
+        @if (horarioFinModel.invalid && (horarioFinModel.touched || horarioFinModel.dirty)) {
+        <div class="error">{{ 'add-services-form.serviceAvailability_error' | translate }}</div>
+        }
+      </div>
+
+      <!-- Mostrar mensaje de error si hay un problema con las horas -->
+      <div *ngIf="formErrorHorarioInicio" class="error">
+        {{ formErrorHorarioInicio }}
+      </div>
+
+      <div class="input-group">
+        <label for="limiteReserva" class="form-label">{{ 'add-services-form.serviceReservations' | translate }}:</label>
+        <div class="input-control">
+          <input type="text" id="limite" [(ngModel)]="limiteReservas" name="limiteReserva"
+            placeholder="{{ 'add-services-form.serviceReservations_placeholder' | translate }}" required
+            #limiteReservasModel="ngModel" readonly />
+        </div>
+        @if (limiteReservasModel.invalid && (limiteReservasModel.touched || limiteReservasModel.dirty)) {
+        <div class="error">{{ 'add-services-form.serviceReservations_error' | translate }}</div>
+        }
+      </div>
+      <button type="submit" class="auth-btn">
+        {{ 'add-services-form.serviceSubmit' | translate }}
+      </button>
+      @if (formError) {
+      <div class="error">{{ formError | translate }}</div>
+      }
+    </form>
+    } @else {
+    <h1>{{ empresaNombre }}</h1>
+    <h2>{{ 'add-services-form.nameForm_edit' | translate }}</h2>
+    <div class="read-only-data">
+      <div class="data-field">
+        <label>{{ 'add-services-form.serviceName' | translate }}:</label>
+        @if (!editingField('nombre')) {
+        <span>{{ nombre }}</span>
+        <button class="icon-btn" (click)="startEditing('nombre', nombre)">
+          <i class="fas fa-edit"></i>
+        </button>
+        } @else {
+        <input type="text" [(ngModel)]="tempValue" required pattern="^(?=(.*[A-Za-z]){2,}).*$" #nombreEdit="ngModel" />
+        <button class="icon-btn" (click)="confirmEditing('nombre')">
+          <i class="fas fa-check"></i>
+        </button>
+        <button class="icon-btn" (click)="cancelEditing()">
+          <i class="fas fa-times"></i>
+        </button>
+        @if (nombreEdit.invalid && (nombreEdit.touched || nombreEdit.dirty)) {
+        <div class="error">{{ 'add-services-form.serviceName_error' | translate }}</div>
+        }
+        }
+      </div>
+      <!-- Descripción -->
+      <div class="data-field">
+        <label>{{ 'add-services-form.serviceDescription' | translate }}:</label>
+        @if (!editingField('descripcion')) {
+        <span>{{ descripcion }}</span>
+        <button class="icon-btn" (click)="startEditing('descripcion', descripcion)">
+          <i class="fas fa-edit"></i>
+        </button>
+        } @else {
+        <textarea [(ngModel)]="tempValue" required rows="5" pattern="^[A-Za-z0-9 ]{2,200}$"
+          #descripcionEdit="ngModel"></textarea>
+        <button class="icon-btn" (click)="confirmEditing('descripcion')">
+          <i class="fas fa-check"></i>
+        </button>
+        <button class="icon-btn" (click)="cancelEditing()">
+          <i class="fas fa-times"></i>
+        </button>
+        @if (descripcionEdit.invalid && (descripcionEdit.touched || descripcionEdit.dirty)) {
+        <div class="error">{{ 'add-services-form.serviceDescription_eror' | translate }}</div>
+        }
+        }
+      </div>
+      <div class="data-field">
+        <label>{{ 'add-services-form.serviceDuration' | translate }}:</label>
+        @if (!editingField('duracion')) {
+        <span>{{ duracion }}</span>
+        <button class="icon-btn" (click)="startEditing('duracion', duracion)">
+          <i class="fas fa-edit"></i>
+        </button>
+        } @else {
+        <input type="text" [(ngModel)]="tempValue" required pattern="^[0-9]+$" #duracionEdit="ngModel"
+          (input)="validateDuracionEdit()" />
+        <button class="icon-btn" (click)="confirmEditing('duracion')">
+          <i class="fas fa-check"></i>
+        </button>
+        <button class="icon-btn" (click)="cancelEditing()">
+          <i class="fas fa-times"></i>
+        </button>
+        @if (duracionEdit.invalid && (duracionEdit.touched || duracionEdit.dirty)) {
+        <div class="error">{{ 'add-services-form.serviceDuration_error' | translate }}</div>
+        }
+        }
+      </div>
+      <div class="data-field">
+        <label>{{ 'add-services-form.servicePrice' | translate }}:</label>
+        @if (!editingField('precio')) {
+        <span>{{ precio }}</span>
+        <button class="icon-btn" (click)="startEditing('precio', precio)">
+          <i class="fas fa-edit"></i>
+        </button>
+        } @else {
+        <input type="text" [(ngModel)]="tempValue" required (input)="onInputChange($event)"
+          (keydown)="validatePrecio($event)" #precioEdit="ngModel" />
+        <button class="icon-btn" (click)="confirmEditing('precio')">
+          <i class="fas fa-check"></i>
+        </button>
+        <button class="icon-btn" (click)="cancelEditing()">
+          <i class="fas fa-times"></i>
+        </button>
+        @if (precioEdit.invalid && (precioEdit.touched || precioEdit.dirty)) {
+        <div class="error">{{ 'add-services-form.servicePrice_error' | translate }}</div>
+        }
+        }
+      </div>
+      <div class="data-field">
+        <label style="width:100%">{{ 'add-services-form.workingDays' | translate }}:</label>
+        @if (!editingField('diasLaborables')) {
+        <div class="input-control two-columns">
+          <div *ngFor="let day of weekDays">
+            <label class="day-checkbox">
+              <input type="checkbox" [value]="day.value" [checked]="diasLaborables.includes(day.value)" disabled />
+              {{ day.key | translate }}
             </label>
-            <div class="input-control">
-              <input
-                type="text"
-                id="duracionServicio"
-                [(ngModel)]="duracion"
-                name="duracionServicio"
-                placeholder="{{ 'add-services-form.serviceDuration_placeholder' | translate }}"
-                required
-                pattern="^[0-9]+$"
-                #duracionModel="ngModel"
-                (input)="validateDuracion()"
-              />
-            </div>
-            @if (duracionModel.invalid && (duracionModel.touched || duracionModel.dirty)) {
-              <div class="error">{{ 'add-services-form.serviceDuration_error' | translate }}</div>
-            }
           </div>
-
-          <div class="input-group">
-            <label for="precioServicio" class="form-label">
-              {{ 'add-services-form.servicePrice' | translate }}:
+        </div>
+        <button class="icon-btn" (click)="startEditing('diasLaborables', diasLaborables.join(','))">
+          <i class="fas fa-edit"></i>
+        </button>
+        } @else {
+        <div class="input-control two-columns">
+          <div *ngFor="let day of weekDays">
+            <label class="day-checkbox">
+              <input type="checkbox" [value]="day.value" [checked]="diasLaborables.includes(day.value)"
+                (change)="onDaySelected($event)" />
+              {{ day.key | translate }}
             </label>
-            <div class="input-control">
-              <input
-                type="text"
-                id="precioServicio"
-                [(ngModel)]="precio"
-                name="precioServicio"
-                placeholder="{{ 'add-services-form.servicePrice_placeholder' | translate }}"
-                required
-                (input)="onInputChange($event)"
-                (keydown)="validatePrecio($event)"
-                #precioModel="ngModel"
-              />
-            </div>
-            @if (precioModel.invalid && (precioModel.touched || precioModel.dirty)) {
-              <div class="error">{{ 'add-services-form.servicePrice_error' | translate }}</div>
-            }
           </div>
+        </div>
+        <button class="icon-btn" (click)="confirmEditing('diasLaborables')">
+          <i class="fas fa-check"></i>
+        </button>
+        <button class="icon-btn" (click)="cancelEditing()">
+          <i class="fas fa-times"></i>
+        </button>
+        }
+      </div>
+      <div class="data-field">
+        <label>{{ 'add-services-form.serviceStartTime' | translate }}:</label>
+        @if (!editingField('horarioInicio')) {
+        <span>{{ horarioInicio }}</span>
+        <button class="icon-btn" (click)="startEditing('horarioInicio', horarioInicio)">
+          <i class="fas fa-edit"></i>
+        </button>
+        } @else {
+        <input type="text" [(ngModel)]="tempValue" required pattern="^([01]\d|2[0-3]):00$" #horarioInicioEdit="ngModel"
+          (keydown)="restrictToTimeFormat($event)"
+          (blur)="validateTimeRangeEdit(tempValue, horarioFin, 'horarioInicio'); calculateMaxReservations()" />
+        <button class="icon-btn" (click)="confirmEditing('horarioInicio')">
+          <i class="fas fa-check"></i>
+        </button>
+        <button class="icon-btn" (click)="cancelEditing()">
+          <i class="fas fa-times"></i>
+        </button>
+        @if (horarioInicioEdit.invalid && (horarioInicioEdit.touched || horarioInicioEdit.dirty)) {
+        <div class="error">{{ 'add-services-form.serviceStartTime_error' | translate }}</div>
+        }
+        }
+      </div>
 
-          <div class="input-group">
-            <label class="form-label">
-              {{ 'add-services-form.workingDays' | translate }}:
-            </label>
-            <div class="input-control two-columns">
-              @for (day of weekDays; track day.value) {
-                <label class="day-checkbox">
-                  <input
-                    type="checkbox"
-                    [value]="day.value"
-                    (change)="onDaySelected($event)"
-                    name="diasLaborables"
-                  />
-                  {{ day.key | translate }}
-                </label>
-              }
-            </div>
-            @if (diasLaborables.length === 0) {
-              <div class="error">{{ 'add-services-form.workingDays_error' | translate }}</div>
-            }
-          </div>
+      <div class="data-field">
+        <label>{{ 'add-services-form.serviceEndTime' | translate }}:</label>
+        @if (!editingField('horarioFin')) {
+        <span>{{ horarioFin }}</span>
+        <button class="icon-btn" (click)="startEditing('horarioFin', horarioFin)">
+          <i class="fas fa-edit"></i>
+        </button>
+        } @else {
+        <input type="text" [(ngModel)]="tempValue" required pattern="^([01]\d|2[0-3]):00$" #horarioFinEdit="ngModel"
+          (keydown)="restrictToTimeFormat($event)"
+          (blur)="validateTimeRangeEdit(horarioInicio, tempValue, 'horarioFin'); calculateMaxReservations()" />
+        <button class="icon-btn" (click)="confirmEditing('horarioFin')">
+          <i class="fas fa-check"></i>
+        </button>
+        <button class="icon-btn" (click)="cancelEditing()">
+          <i class="fas fa-times"></i>
+        </button>
+        @if (horarioFinEdit.invalid && (horarioFinEdit.touched || horarioFinEdit.dirty)) {
+        <div class="error">{{ 'add-services-form.serviceEndTime_error' | translate }}</div>
+        }
+        }
+      </div>
 
-          <div class="input-group">
-            <label for="horarioInicio" class="form-label">
-              {{ 'add-services-form.serviceStartTime' | translate }}
-            </label>
-            <div class="input-control">
-              <input
-                type="text"
-                id="horarioInicio"
-                [(ngModel)]="horarioInicio"
-                name="horarioInicio"
-                placeholder="{{ 'add-services-form.serviceStartTime_placeholder' | translate }}"
-                required
-                pattern="^([01]\d|2[0-3]):00$"
-                #horarioInicioModel="ngModel"
-                (keydown)="restrictToTimeFormat($event)"
-                (input)="validateHorario($event)"
-              />
-            </div>
-            @if (horarioInicioModel.invalid && (horarioInicioModel.touched || horarioInicioModel.dirty)) {
-              <div class="error">{{ 'add-services-form.serviceAvailability_error' | translate }}</div>
-            }
-          </div>
+      <div *ngIf="formErrorHorarioInicio" class="error">
+        {{ formErrorHorarioInicio }}
+      </div>
 
-          <div class="input-group">
-            <label for="horarioFin" class="form-label">
-              {{ 'add-services-form.serviceEndTime' | translate }}:
-            </label>
-            <div class="input-control">
-              <input
-                type="text"
-                id="horarioFin"
-                [(ngModel)]="horarioFin"
-                name="horarioFin"
-                placeholder="{{ 'add-services-form.serviceEndTime_placeholder' | translate }}"
-                required
-                pattern="^([01]\d|2[0-3]):00$"
-                #horarioFinModel="ngModel"
-                (keydown)="restrictToTimeFormat($event)"
-                (input)="validateHorario($event)"
-              />
-            </div>
-            @if (horarioFinModel.invalid && (horarioFinModel.touched || horarioFinModel.dirty)) {
-              <div class="error">{{ 'add-services-form.serviceAvailability_error' | translate }}</div>
-            }
-          </div>
-
-          <div class="input-group">
-            <label for="limiteReserva" class="form-label">
-              {{ 'add-services-form.serviceReservations' | translate }}:
-            </label>
-            <div class="input-control">
-              <input
-                type="text"
-                id="limiteReserva"
-                [(ngModel)]="limiteReservas"
-                name="limiteReserva"
-                placeholder="{{ 'add-services-form.serviceReservations_placeholder' | translate }}"
-                required
-                #limiteReservasModel="ngModel"
-                readonly
-              />
-            </div>
-            @if (limiteReservasModel.invalid && (limiteReservasModel.touched || limiteReservasModel.dirty)) {
-              <div class="error">{{ 'add-services-form.serviceReservations_error' | translate }}</div>
-            }
-          </div>
-
-          <button type="submit" class="auth-btn">
-            {{ 'add-services-form.serviceSubmit' | translate }}
-          </button>
-          @if (formError) {
-            <div class="error">{{ formError | translate }}</div>
-          }
-          <div class="button-container w-100">
+      <div class="data-field">
+        <label>{{ 'add-services-form.serviceReservations' | translate }}:</label>
+        <span>{{ limiteReservas }}</span>
+      </div>
+      <button class="auth-btn" (click)="onSubmit()">
+        {{ 'add-services-form.serviceSubmit_edit' | translate }}
+      </button>
+      <button *ngIf="idServicio !== null" class="delete-btn" (click)="deleteServicio(idServicio!)">
+        <i class="fas fa-trash"></i> {{ 'add-services-form.serviceDelete' | translate }}
+      </button>
+      <div class="button-container w-100">
         <button class="redirect-btn" (click)="goToEspaiClient()">
           <i class="fa-solid fa-arrow-left"></i>
           {{ 'menu.return-btn' | translate }}
         </button>
       </div>
-        </form>
-      </div>
-    } @else {
-      <div class="add-service-container">
-        <h1>{{ empresaNombre }}</h1>
-        <h2>{{ 'add-services-form.nameForm_edit' | translate }}</h2>
-        <div class="read-only-data">
-          <div class="data-field">
-            <label>{{ 'add-services-form.serviceName' | translate }}:</label>
-            @if (!editingField('nombre')) {
-              <span>{{ nombre }}</span>
-              <button class="icon-btn" (click)="startEditing('nombre', nombre)">
-                <i class="fas fa-edit"></i>
-              </button>
-            } @else {
-              <input
-                type="text"
-                [(ngModel)]="tempValue"
-                required
-                pattern="^(?=(.*[A-Za-z]){2,}).*$"
-                #nombreEdit="ngModel"
-              />
-              <button class="icon-btn" (click)="confirmEditing('nombre')">
-                <i class="fas fa-check"></i>
-              </button>
-              <button class="icon-btn" (click)="cancelEditing()">
-                <i class="fas fa-times"></i>
-              </button>
-              @if (nombreEdit.invalid && (nombreEdit.touched || nombreEdit.dirty)) {
-                <div class="error">{{ 'add-services-form.serviceName_error' | translate }}</div>
-              }
-            }
-          </div>
-          @if (idServicio !== null) {
-            <button class="delete-btn" (click)="deleteServicio(idServicio!)">
-              <i class="fas fa-trash"></i> {{ 'add-services-form.serviceDelete' | translate }}
-            </button>
-            <div class="button-container w-100">
-              <button class="redirect-btn" (click)="goToEspaiClient()">
-                <i class="fa-solid fa-arrow-left"></i>
-                {{ 'menu.return-btn' | translate }}
-              </button>
-            </div>
-          }
-        </div>
-      </div>
+    </div>
     }
-  } @else {
+    } @else {
     <p>{{ 'add-services-form.loadingServices' | translate }}</p>
-  }
+    }
+  </div>
 </div>

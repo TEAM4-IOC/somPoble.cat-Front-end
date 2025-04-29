@@ -73,8 +73,6 @@ export class ServicesFormComponent implements OnInit {
       } catch (err) {
         console.error('[ServicioFormComponent] Error parseando session:', err);
       }
-    } else {
-      console.warn('No se encontró ninguna sesión en el almacenamiento local.');
     }
 
     this.servicioState.loadServicios();
@@ -85,7 +83,6 @@ export class ServicesFormComponent implements OnInit {
         this.isEditMode = true;
         this.loadServicio(this.idServicio);
       } else {
-        console.warn('No s\'ha especificat cap ID a la URL.');
         this.isEditMode = false;
       }
     });
@@ -121,9 +118,7 @@ export class ServicesFormComponent implements OnInit {
           : [];
 
         this.identificadorFiscal = servicio.identificadorFiscal;
-      } else {
-        console.warn(`No s'ha trobat cap servei amb l'ID: ${id}`);
-      }
+      } 
     });
   }
 
@@ -131,12 +126,12 @@ export class ServicesFormComponent implements OnInit {
     const duracionNumerica = parseInt(this.duracion, 10);
 
     if (isNaN(duracionNumerica) || duracionNumerica <= 0) {
-      this.formError = 'La duración debe ser un número mayor a 0.';
+      this.formError = this.translate.instant('add-services-form.durationGreaterThanZeroError');      return;
       return;
     }
 
     if (duracionNumerica > 60) {
-      this.formError = 'La duración no puede ser mayor a 60 minutos.';
+      this.formError = this.translate.instant('add-services-form.durationError');      
       this.duracion = '60';
     } else {
       this.formError = '';
@@ -147,12 +142,11 @@ export class ServicesFormComponent implements OnInit {
     const duracionNumerica = parseInt(this.tempValue, 10);
 
     if (isNaN(duracionNumerica) || duracionNumerica <= 0) {
-      this.formError = 'La duración debe ser un número mayor a 0.';
-      return;
+      this.formError = this.translate.instant('add-services-form.durationGreaterThanZeroError');      return;
     }
 
     if (duracionNumerica > 60) {
-      this.formError = 'La duración no puede ser mayor a 60 minutos.';
+      this.formError = this.translate.instant('add-services-form.durationError');      
       this.tempValue = '60';
     } else {
       this.formError = '';
@@ -164,8 +158,7 @@ export class ServicesFormComponent implements OnInit {
     const endTime = this.parseTime(this.horarioFin);
 
     if (endTime <= startTime) {
-      this.formErrorHorarioInicio = 'La hora de fin debe ser posterior a la hora de inicio.';
-      return false;
+      this.formErrorHorarioInicio = this.translate.instant('add-services-form.endTimeError');      return false;
     }
 
     this.formErrorHorarioInicio = '';
@@ -178,8 +171,7 @@ export class ServicesFormComponent implements OnInit {
     const endMinutes = this.parseTime(endTime);
 
     if (endMinutes <= startMinutes) {
-      this.formErrorHorarioInicio = 'La hora de fin debe ser posterior a la hora de inicio.';
-      if (field === 'horarioInicio') {
+      this.formErrorHorarioInicio = this.translate.instant('add-services-form.endTimeError');      if (field === 'horarioInicio') {
         this.tempValue = startTime;
       } else if (field === 'horarioFin') {
         this.tempValue = endTime;
@@ -206,13 +198,11 @@ export class ServicesFormComponent implements OnInit {
     const regex = /^([01]\d|2[0-3]):00$/;
 
     if (!regex.test(this.horarioInicio)) {
-      this.formErrorHorarioInicio = 'El formato debe ser HH:00 (ejemplo: 09:00).';
-      return;
+      this.formErrorHorarioInicio = this.translate.instant('add-services-form.timeFormatError');      return;
     }
 
     if (!regex.test(this.horarioFin)) {
-      this.formErrorHorarioInicio = 'El formato debe ser HH:00 (ejemplo: 18:00).';
-      return;
+      this.formErrorHorarioInicio = this.translate.instant('add-services-form.timeFormatError');      return;
     }
 
     if (!this.validateTimeRange()) {
@@ -234,8 +224,7 @@ export class ServicesFormComponent implements OnInit {
       this.limiteReservas <= 0 ||
       this.precio === ''
     ) {
-      this.formError = 'add-services-form.formError';
-      return;
+      this.formError = this.translate.instant('add-services-form.formError');      return;
     }
     this.formError = '';
 
@@ -260,7 +249,6 @@ export class ServicesFormComponent implements OnInit {
           this.router.navigate(['/espai-empresa']);
         },
         (error) => {
-          console.error('Error al actualizar el servicio:', error);
           alert(this.translate.instant('add-services-form.updateKO'));
         }
       );
@@ -292,8 +280,6 @@ export class ServicesFormComponent implements OnInit {
       if (field === 'horarioInicio' || field === 'horarioFin') {
         this.calculateMaxReservations();
       }
-    } else {
-      console.warn(`El valor temporal para el campo '${field}' es vacío o no válido.`);
     }
 
     this.editingKey = null;
@@ -316,11 +302,11 @@ export class ServicesFormComponent implements OnInit {
   
     this.servicioState.deleteServicio(idServicio, this.identificadorFiscal).subscribe(
       () => {
-        alert('add-services-form.deleteOK');
+        alert(this.translate.instant('add-services-form.deleteOK'));
         this.router.navigate(['/espai-empresa']);
       },
       (error) => {
-        alert('add-services-form.deleteKO');
+        alert(this.translate.instant('add-services-form.deleteKO'));
       }
     );
   }
@@ -380,8 +366,7 @@ export class ServicesFormComponent implements OnInit {
     const regex = /^([01]\d|2[0-3]):00$/;
 
     if (!regex.test(input) && input.length === 5) {
-      this.formErrorHorarioInicio = 'El formato debe ser HH:00 (ejemplo: 09:00).';
-    } else {
+      this.formErrorHorarioInicio = this.translate.instant('add-services-form.timeFormatError');    } else {
       this.formErrorHorarioInicio = '';
       this.calculateMaxReservations();
     }

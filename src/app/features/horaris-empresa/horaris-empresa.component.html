@@ -1,223 +1,187 @@
 <div class="main-content">
   <div class="d-flex justify-content-center mb-3">
-    <button
-      class="auth-btn me-2"
-      [ngClass]="{ 'btn-primary': isMonthlyView }"
-      (click)="setView('monthly')"
-      [disabled]="isMonthlyView"
-    >
+    <button class="auth-btn me-2" [ngClass]="{ 'btn-primary': isMonthlyView }" (click)="setView('monthly')"
+      [disabled]="isMonthlyView">
       {{ 'horaris-empresa.vista-mensual' | translate }}
     </button>
-    <button
-      style="display: none;"
-      class="auth-btn me-2"
-      [ngClass]="{ 'btn-primary': !isMonthlyView && !isTableView }"
-      (click)="setView('daily')"
-      [disabled]="!isMonthlyView && !isTableView"
-    >
+    <button style="display: none;" class="auth-btn me-2" [ngClass]="{ 'btn-primary': !isMonthlyView && !isTableView }"
+      (click)="setView('daily')" [disabled]="!isMonthlyView && !isTableView">
       {{ 'horaris-empresa.daily' | translate }}
     </button>
-    <button
-      class="auth-btn"
-      [ngClass]="{ 'btn-primary': isTableView }"
-      (click)="setView('table')"
-      [disabled]="isTableView"
-    >
+    <button class="auth-btn" [ngClass]="{ 'btn-primary': isTableView }" (click)="setView('table')"
+      [disabled]="isTableView">
       {{ 'horaris-empresa.reservations' | translate }}
     </button>
   </div>
 
   @if (isMonthlyView) {
-    <div class="monthly-view">
-      <div class="calendar-container">
-        <div class="calendar-header">
-          <button class="nav-button" (click)="prevMonth()">&#8592;</button>
-          <h2 class="calendar-title">
-            {{ 'reservesCli.months.' + currentMonthName | translate }}
-            {{ currentYear }}
-          </h2>
-          <button class="nav-button" (click)="nextMonth()">&#8594;</button>
-        </div>
-        <div class="calendar-content">
-          <div class="month-grid">
-            @for (day of weekDays; track day; let i = $index) {
-              <div class="day-header">
-                {{ 'serviceDetail.days.' + (i + 1) | translate }}
-              </div>
-            }
-            @for (day of daysInMonth; track day.date) {
-              <div
-                class="day-cell"
-                [class.disabled]="!day.isCurrentMonth"
-                [class.past-day]="isPastDay(day.date, day.isCurrentMonth)"
-                (click)="goToDailyView(day)"
-              >
-                <div class="day-number">{{ day.date }}</div>
-                <div class="service-bars">
-                  @for (servicio of getServicesForDay(day.date); track servicio.idServicio) {
-                    <div
-                      class="service-bar"
-                      [style.backgroundColor]="getServiceColor(servicio)"
-                    ></div>
-                  }
-                </div>
-              </div>
-            }
-          </div>
-          <div class="legend">
-            <h3>{{ 'horaris-empresa.services' | translate }}</h3>
-            <ul>
-              @for (servicio of servicios; track servicio.idServicio) {
-                <li>
-                  <span
-                    class="legend-color"
-                    [style.backgroundColor]="getServiceColor(servicio)"
-                  ></span>
-                  {{ servicio.nombre }}
-                  <button
-                    class="btn btn-icon"
-                    (click)="onEditServiceClick(servicio)"
-                  >
-                    <i class="fa-solid fa-pencil legend-icon"></i>
-                  </button>
-                </li>
-              }
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  } @else if (!isMonthlyView && !isTableView) {
-    <div class="calendar-container">
+  <div class="monthly-view">
+    <div class="calendar-container" *ngIf="servicios.length > 0; else noServices">
       <div class="calendar-header">
-        <button class="nav-button" (click)="prevDay()">&#8592;</button>
+        <button class="nav-button" (click)="prevMonth()">&#8592;</button>
         <h2 class="calendar-title">
-          {{ 'serviceDetail.days.' + currentDayOfWeek | translate }},
-          {{ currentDay }}
           {{ 'reservesCli.months.' + currentMonthName | translate }}
           {{ currentYear }}
         </h2>
-        <button class="nav-button" (click)="nextDay()">&#8594;</button>
+        <button class="nav-button" (click)="nextMonth()">&#8594;</button>
       </div>
-      <div class="agenda-grid">
-        @for (hour of getHours(); track hour) {
-          <div class="hour-row">
-            <div class="hour-label">
-              <span>{{ hour.split(' ')[0] }}</span><br />
-              <span>{{ hour.split(' ')[1] }}</span>
-            </div>
-            <div class="hour-cell">
-              @for (servicio of servicios; track servicio.idServicio) {
-                @if (isServiceAvailable(servicio, hour)) {
-                  <div
-                    class="service-block"
-                    [style.backgroundColor]="getServiceColor(servicio)"
-                  >
-                    <div class="service-header">
-                      <strong>{{ servicio.nombre }}</strong>
-                      <button
-                        class="btn btn-icon"
-                        (click)="onEditServiceClick(servicio)"
-                      >
-                        <i class="fa-solid fa-pencil edit-daily"></i>
-                      </button>
-                    </div>
-                    @for (
-                      reserva of getReservasForServiceAndHour(servicio.idServicio, hour);
-                      track reserva.id
-                    ) {
-                      <div class="reserva-item">
-                        <span class="reserva-info">
-                          ID: {{ reserva.id }} - DNI: {{ reserva.dniCliente }}
-                        </span>
-                        <button
-                          class="btn btn-icon"
-                          (click)="onDeleteReserva(reserva.id)"
-                        >
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </div>
-                    } @empty {
-                      <span class="no-reservas">
-                        {{ 'horaris-empresa.withoutReservations' | translate }}
-                      </span>
-                    }
-                  </div>
-                }
+      <div class="calendar-content">
+        <div class="month-grid">
+          @for (day of weekDays; track day; let i = $index) {
+          <div class="day-header">
+            {{ 'serviceDetail.days.' + (i + 1) | translate }}
+          </div>
+          }
+          @for (day of daysInMonth; track day.date) {
+          <div class="day-cell" [class.disabled]="!day.isCurrentMonth"
+            [class.past-day]="isPastDay(day.date, day.isCurrentMonth)" (click)="goToDailyView(day)">
+            <div class="day-number">{{ day.date }}</div>
+            <div class="service-bars">
+              @for (servicio of getServicesForDay(day.date); track servicio.idServicio) {
+              <div class="service-bar" [style.backgroundColor]="getServiceColor(servicio)"></div>
               }
             </div>
           </div>
-        }
+          }
+        </div>
+        <div class="legend">
+          <h3>{{ 'horaris-empresa.services' | translate }}</h3>
+          <ul>
+            @for (servicio of servicios; track servicio.idServicio) {
+            <li>
+              <span class="legend-color" [style.backgroundColor]="getServiceColor(servicio)"></span>
+              {{ servicio.nombre }}
+              <button class="btn btn-icon" (click)="onEditServiceClick(servicio)">
+                <i class="fa-solid fa-pencil legend-icon"></i>
+              </button>
+            </li>
+            }
+          </ul>
+        </div>
       </div>
     </div>
-  } @else {
-    <div class="table-view">
-      <h3 class="reservation-title text-center">
-        {{ 'horaris-empresa.listByService' | translate }}
-      </h3>
-      @for (
-        agrupacion of getReservasAgrupadasPorServicio();
-        track agrupacion.servicio.idServicio
-      ) {
-        <div class="service-group">
-          <h4 class="d-flex justify-content-between align-items-center">
-            <span class="serviceName">
-              {{ 'horaris-empresa.serviceName' | translate }}:
-              {{ agrupacion.servicio.nombre }}
-            </span>
-            <button
-              class="btn btn-icon"
-              (click)="onEditServiceClick(agrupacion.servicio)"
-            >
-              <i class="fa-solid fa-pencil reservation-service"></i>
-            </button>
-          </h4>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>{{ 'horaris-empresa.reservaId' | translate }}</th>
-                <th>{{ 'horaris-empresa.date' | translate }}</th>
-                <th>{{ 'horaris-empresa.hour' | translate }}</th>
-                <th>{{ 'horaris-empresa.dniClient' | translate }}</th>
-                <th class="action-column">
-                  {{ 'horaris-empresa.cancel' | translate }}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              @for (
-                reserva of agrupacion.reservas;
-                track reserva.idReserva
-              ) {
-                <tr>
-                  <td>{{ reserva.idReserva }}</td>
-                  <td>{{ formatDateToDDMMYYYY(reserva.fechaReserva) }}</td>
-                  <td>{{ reserva.hora.slice(0, 5) }}</td>
-                  <td>{{ reserva.dniCliente }}</td>
-                  <td class="actions-column">
-                    <button
-                      class="btn btn-icon"
-                      (click)="onDeleteReserva(reserva.idReserva)"
-                    >
-                      <i class="fa-solid fa-trash"></i>
-                    </button>
-                  </td>
-                </tr>
-              } @empty {
-                <tr>
-                  <td colspan="6" class="text-center">
-                    {{ 'horaris-empresa.noReservations' | translate }}
-                  </td>
-                </tr>
-              }
-            </tbody>
-          </table>
+    <ng-template #noServices>
+      <p class="text-center text-muted">
+        {{ 'horaris-empresa.noServices' | translate }}
+      </p>
+    </ng-template>
+  </div>
+  } @else if (!isMonthlyView && !isTableView) {
+  <div class="calendar-container">
+    <div class="calendar-header">
+      <button class="nav-button" (click)="prevDay()">&#8592;</button>
+      <h2 class="calendar-title">
+        {{ 'serviceDetail.days.' + currentDayOfWeek | translate }},
+        {{ currentDay }}
+        {{ 'reservesCli.months.' + currentMonthName | translate }}
+        {{ currentYear }}
+      </h2>
+      <button class="nav-button" (click)="nextDay()">&#8594;</button>
+    </div>
+    <div class="agenda-grid">
+      @for (hour of getHours(); track hour) {
+      <div class="hour-row">
+        <div class="hour-label">
+          <span>{{ hour.split(' ')[0] }}</span><br />
+          <span>{{ hour.split(' ')[1] }}</span>
         </div>
-      } @empty {
-        <p class="text-center">
-          {{ 'horaris-empresa.noReservations' | translate }}
-        </p>
+        <div class="hour-cell">
+          @for (servicio of servicios; track servicio.idServicio) {
+          @if (isServiceAvailable(servicio, hour)) {
+          <div class="service-block" [style.backgroundColor]="getServiceColor(servicio)">
+            <div class="service-header">
+              <strong>{{ servicio.nombre }}</strong>
+              <button class="btn btn-icon" (click)="onEditServiceClick(servicio)">
+                <i class="fa-solid fa-pencil edit-daily"></i>
+              </button>
+            </div>
+            @for (
+            reserva of getReservasForServiceAndHour(servicio.idServicio, hour);
+            track reserva.id
+            ) {
+            <div class="reserva-item">
+              <span class="reserva-info">
+                ID: {{ reserva.id }} - DNI: {{ reserva.dniCliente }}
+              </span>
+              <button class="btn btn-icon" (click)="onDeleteReserva(reserva.id)">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+            } @empty {
+            <span class="no-reservas">
+              {{ 'horaris-empresa.withoutReservations' | translate }}
+            </span>
+            }
+          </div>
+          }
+          }
+        </div>
+      </div>
       }
     </div>
+  </div>
+  } @else {
+  <div class="table-view">
+    <h3 class="reservation-title text-center">
+      {{ 'horaris-empresa.listByService' | translate }}
+    </h3>
+    @for (
+    agrupacion of getReservasAgrupadasPorServicio();
+    track agrupacion.servicio.idServicio
+    ) {
+    <div class="service-group">
+      <h4 class="d-flex justify-content-between align-items-center">
+        <span class="serviceName">
+          {{ 'horaris-empresa.serviceName' | translate }}:
+          {{ agrupacion.servicio.nombre }}
+        </span>
+        <button class="btn btn-icon" (click)="onEditServiceClick(agrupacion.servicio)">
+          <i class="fa-solid fa-pencil reservation-service"></i>
+        </button>
+      </h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>{{ 'horaris-empresa.reservaId' | translate }}</th>
+            <th>{{ 'horaris-empresa.date' | translate }}</th>
+            <th>{{ 'horaris-empresa.hour' | translate }}</th>
+            <th>{{ 'horaris-empresa.dniClient' | translate }}</th>
+            <th class="action-column">
+              {{ 'horaris-empresa.cancel' | translate }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (
+          reserva of agrupacion.reservas;
+          track reserva.idReserva
+          ) {
+          <tr>
+            <td>{{ reserva.idReserva }}</td>
+            <td>{{ formatDateToDDMMYYYY(reserva.fechaReserva) }}</td>
+            <td>{{ reserva.hora.slice(0, 5) }}</td>
+            <td>{{ reserva.dniCliente }}</td>
+            <td class="actions-column">
+              <button class="btn btn-icon" (click)="onDeleteReserva(reserva.idReserva)">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          } @empty {
+          <tr>
+            <td colspan="6" class="text-center">
+              {{ 'horaris-empresa.noReservations' | translate }}
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    } @empty {
+    <p class="text-center">
+      {{ 'horaris-empresa.noReservations' | translate }}
+    </p>
+    }
+  </div>
   }
 </div>

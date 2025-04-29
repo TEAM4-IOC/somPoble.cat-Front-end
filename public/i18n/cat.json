@@ -53,7 +53,7 @@
     "edit_services": "Editar serveis",
     "show_services": "Mostrar serveis",
     "create_service": "Crear nou servei",
-    "show_my_services": "Veure tots els meus serveis",
+    "show_my_services": "Veure i editar serveis",
     "show_reservations": "Veure reserves",
     "edit_profile": "Editar perfil d'usuari",
     "edit_bussiness_profile": "Editar perfil professional",
@@ -192,15 +192,20 @@
     "dniClient": "DNI Client",
     "cancel": "Cancel·lar",
     "serviceName": "Servei",
-    "noReservations" : "No hi ha reserves per a aquest servei",
-    "listByService": "Llistat de reserves per servei"
+    "noReservations" : "No hi ha reserves",
+    "listByService": "Llistat de reserves per servei",
+    "noServices": "Sense serveis disponibles"
+
   },
   "landing": {
     "services": "Serveis",
     "adress": "Adreça",
     "phone": "Telèfon",
     "mail": "E-mail",
-    "register": "Registra't"
+    "register": "Registra't",
+    "no_services": "No hi ha serveis disponibles",
+    "default_name": "Servei sense nom",
+    "not_available": "No disponible"
   },
   "add-services-form": {
     "nameForm": "Formulari d'alta de nou servei",
@@ -239,12 +244,16 @@
     "sunday": "Diumenge",
     "workingDays_error": "Camp obligatori, selecciona almenys un dia.",
     "loadingServices": "Carregant serveis...",
-    "deleteOK": "El serveo s'ha eliminat correctament.",
+    "deleteOK": "El servei s'ha eliminat correctament.",
     "deleteKO": "Error al eliminar el servei.",
     "updateOK": "El servei s'ha actualitzat correctament.",
     "updateKO": "Error al modificar el servei.",
     "createOK": "El servei s'ha creat correctament.",
-    "createKO": "Error al crear el servei."
+    "createKO": "Error al crear el servei.",
+    "timeFormatError": "El format ha de ser HH:00 (exemple: 09:00).",
+    "endTimeError": "L'hora fi ha de ser posterior a l'hora d'inici.",
+    "durationError": "La durada no pot superar els 60 minuts.",
+    "durationGreaterThanZeroError": "La durada ha de ser un numero major de 0."
   },
   "notfound-page": {
     "msg": "Ups! Sembla que aquest enllaç no funciona",

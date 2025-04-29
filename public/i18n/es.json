@@ -53,7 +53,7 @@
     "edit_services": "Editar servicios",
     "show_services": "Mostrar servicios",
     "create_service": "Crear nuevo servicio",
-    "show_my_services": "Ver todos mis servicios",
+    "show_my_services": "Ver y editar servicios",
     "show_reservations": "Ver reservas",
     "edit_profile": "Editar perfil de usuario",
     "edit_bussiness_profile": "Editar perfil profesional",
@@ -192,15 +192,19 @@
     "dniClient": "DNI Cliente",
     "cancel": "Cancelar",
     "serviceName": "Servicio",
-    "noReservations" : "No hay reservas para este servicio",
-    "listByService": "Listado de reservas por servicio"
+    "noReservations" : "No hay reservas",
+    "listByService": "Listado de reservas por servicio",
+    "noServices": "No hay servicios disponibles"
   },
   "landing": {
     "services": "Servicios",
     "adress": "Dirección",
     "phone": "Teléfono",
     "mail": "E-mail",
-    "register": "Regístrate"
+    "register": "Regístrate",
+    "no_services": "No hay servicios disponibles",
+    "default_name": "Servicio sin nombre",
+    "not_available": "No disponible"
   },
   "add-services-form": {
     "nameForm": "Formulario alta de nuevo servicio",
@@ -244,7 +248,11 @@
     "updateOK": "El servicio se ha actualizado correctamente.",
     "updateKO": "Error al actualizar el servicio.",
     "createOK": "El servicio se ha creado correctamente.",
-    "createKO": "Error al crear el servicio."
+    "createKO": "Error al crear el servicio.",
+    "timeFormatError": "El formato debe ser HH:00 (ejemplo: 09:00).",
+    "endTimeError": "La hora de fin debe ser posterior a la hora de inicio.",
+    "durationError": "La duración no puede ser mayor a 60 minutos.",
+    "durationGreaterThanZeroError": "La duración debe ser un número mayor a 0."
   },
   "notfound-page": {
     "msg": "Ups! Parece que este enlace no funciona",

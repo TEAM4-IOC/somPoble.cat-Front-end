@@ -90,18 +90,21 @@ export class HeaderComponent {
     if (data) {
       try {
         const session = JSON.parse(data);
+  
         this.userType.set(session.tipoUsuario ?? null);
-        
-      if (session.tipoUsuario === 2 && session.usuario?.empresas?.length) {
-        this.companyType.set(session.usuario.empresas[0].tipo ?? null);
-      } else {
-        this.companyType.set(null);
-      }
-      } catch (error){
+  
+        if (session.tipoUsuario === 2 && session.usuario?.empresas?.length) {
+          this.companyType.set(session.usuario.empresas[0].tipo ?? null);
+        } else {
+          this.companyType.set(null);
+        }
+      } catch (error) {
         this.userType.set(null);
+        this.companyType.set(null);
       }
     } else {
       this.userType.set(null);
+      this.companyType.set(null);
     }
   }
 
