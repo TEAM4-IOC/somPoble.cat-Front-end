@@ -12,12 +12,19 @@ import { ServicioData } from '../../core/models/ServicioData.interface';
 import { EventData } from '../../core/models/EventData.interface';
 import { EventStateService } from '../../core/services/event-state.service';
 import { SearchComponent } from '../../shared/component/search/search.component';
-import { EventComponent } from "../event/event.component";
+import { EventComponent } from '../event/event.component';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [NgxSpinnerModule, TranslateModule, RouterModule, CommonModule, SearchComponent, EventComponent],
+  imports: [
+    NgxSpinnerModule,
+    TranslateModule,
+    RouterModule,
+    CommonModule,
+    SearchComponent,
+    EventComponent
+  ],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -26,6 +33,7 @@ export class LandingPageComponent implements OnInit {
   empresas: EmpresaData[] = [];
   originalEmpresas: EmpresaData[] = [];
   eventos: EventData[] = [];
+  isFiltering = false;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -87,6 +95,7 @@ export class LandingPageComponent implements OnInit {
   }
 
   public filterEmpresas(searchTerm: string): void {
+    this.isFiltering = !!searchTerm;
     if (!searchTerm) {
       this.empresas = [...this.originalEmpresas];
     } else {

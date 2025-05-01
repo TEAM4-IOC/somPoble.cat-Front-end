@@ -5,14 +5,18 @@
   width: 100%;
   position: relative;
   margin: 0 auto;
+  &.paused {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .slider {
   display: flex;
   animation: slideLeft 20s linear infinite;
-
-  &:hover {
-    animation-play-state: paused;
+  &.paused {
+    animation-play-state: paused !important;
+    justify-content: center;
   }
 }
 
@@ -39,13 +43,13 @@
   }
 }
 
-@media only screen and (max-width: 1100px) {
+@media (max-width: 1100px) {
   .slider-item {
     width: 100% !important;
   }
 }
 
-@media only screen and (max-width: 575px) {
+@media (max-width: 575px) {
   .slider-item {
     max-width: 90% !important;
     width: 100% !important;
@@ -73,26 +77,6 @@
   width: 100%;
 }
 
-.card-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 0 auto;
-}
-
-.card-1,
-.card-2 {
-  background: $container-bg;
-  backdrop-filter: blur(0.625rem);
-  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
-  margin: 20px;
-  padding: 20px;
-  border-radius: 0.625rem;
-  max-width: 700px;
-  width: 100%;
-}
-
 .shop-img,
 .img-container {
   max-width: 200px;
@@ -116,8 +100,7 @@
 
 .contact {
   font-size: 0.875rem;
-  line-height: 0.3;
-  outline: none;
+  line-height: 1.2;
   padding-top: 30px;
 }
 
@@ -142,94 +125,39 @@
   padding-bottom: 30px;
 }
 
-@media only screen and (max-width: 1100px) {
+@media (max-width: 1100px) {
   .landing-container {
-    min-height: auto;
-    overflow: hidden;
-    flex-direction: column;
-    align-items: center;
     padding: 1rem;
   }
-
-  .card-1,
-  .card-2 {
-    width: 100% !important;
-  }
-
-  .card-container {
-    width: 100%;
-    max-width: 95vw;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
   .register-container {
     margin: 20px;
   }
 }
 
-@media only screen and (max-width: 575px) {
-  [class^="card-"] {
-    max-width: 90% !important;
-    width: 100% !important;
-    box-sizing: border-box;
-    padding: 15px;
-    margin-top: 20px;
-  }
-
+@media (max-width: 575px) {
   .landing-container {
-    min-height: auto;
-    overflow: hidden;
-    flex-direction: column;
-    align-items: center;
     padding: 1rem;
   }
-
-  .col-12.d-flex {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    padding: 0 5%;
-  }
-
   .d-flex {
     flex-direction: column !important;
     align-items: center;
-    width: 100%;
   }
-
   .img-container {
     width: 100%;
     max-width: 250px;
     display: flex;
     justify-content: center;
-    align-items: center;
     margin: 0 auto;
   }
-
   .shop-img {
     width: 100%;
     height: auto;
     display: block;
   }
-
   .w-100.services-section {
     width: 100% !important;
     margin-top: 10px;
     margin-left: 0;
     padding: 15px;
-  }
-
-  .card-container {
-    width: 100%;
-    max-width: 95vw;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  .register-container {
-    margin: 20px;
   }
 }
