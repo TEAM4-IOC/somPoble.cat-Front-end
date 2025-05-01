@@ -113,7 +113,8 @@
     "submit_button": "Enviar",
     "delete_button": "Eliminar empresa",
     "cif_error": "El campo es obligatorio y debe tener el formato correcto.",
-    "dni_error": "El campo es obligatorio y debe tener el formato correcto."
+    "dni_error": "El campo es obligatorio y debe tener el formato correcto.",
+    "imagen_label": "Imagen"
   },
   "showServices": {
     "title": "Servicios",

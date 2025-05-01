@@ -12,4 +12,6 @@ export interface EmpresaData {
   reservas: any[];
   servicios: any[];
   horarios: any[];
+  imagenUrl: string | null;
+  imagenPublicId: string | null;
 }

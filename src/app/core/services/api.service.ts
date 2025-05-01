@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
+import { Observable, switchMap, map } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { EmpresaData } from '../models/EmpresaData.interface';
 import { CreateEmpresaPayload } from '../models/create-empresa-payload.interface';
-import { ServicioData } from '../models/ServicioData.interface'
+import { ServicioData } from '../models/ServicioData.interface';
 import { CreateServicePayload } from '../models/create-service-payload.interface';
 import { EventData } from '../models/EventData.interface';
 
@@ -25,16 +24,43 @@ export class ApiService {
   }
 
   createEmpresa(payload: CreateEmpresaPayload): Observable<EmpresaData> {
+    const form = new FormData();
+    form.append('empresa', JSON.stringify({
+      identificadorFiscal: payload.empresa.identificadorFiscal,
+      nombre: payload.empresa.nombre,
+      actividad: payload.empresa.actividad,
+      direccion: payload.empresa.direccion,
+      email: payload.empresa.email,
+      telefono: payload.empresa.telefono
+    }));
+    form.append('dni', JSON.stringify({ dni: payload.dni }));
+    if (payload.empresa.imagen) {
+      form.append('imagen', payload.empresa.imagen);
+    }
     return this.http
-      .post<{ empresa: EmpresaData; dni: string }>(this.empresaUrl, payload)
-      .pipe(map(response => response.empresa));
+      .post(this.empresaUrl, form, { responseType: 'text' })
+      .pipe(switchMap(() => this.getEmpresaByIdentificador(payload.empresa.identificadorFiscal)));
   }
 
-  updateEmpresa(fiscalId: string, partial: Partial<EmpresaData>): Observable<EmpresaData> {
-    return this.http.put(`${this.empresaUrl}/${fiscalId}`, partial, { responseType: 'text' })
-      .pipe(
-        switchMap(() => this.getEmpresaByIdentificador(fiscalId))
-      );
+  updateEmpresa(
+    fiscalId: string,
+    partial: Partial<CreateEmpresaPayload['empresa']>
+  ): Observable<EmpresaData> {
+    const form = new FormData();
+    form.append('empresa', JSON.stringify({
+      identificadorFiscal: partial.identificadorFiscal,
+      nombre: partial.nombre,
+      actividad: partial.actividad,
+      direccion: partial.direccion,
+      email: partial.email,
+      telefono: partial.telefono
+    }));
+    if (partial.imagen) {
+      form.append('imagen', partial.imagen);
+    }
+    return this.http
+      .put(`${this.empresaUrl}/${fiscalId}`, form, { responseType: 'text' })
+      .pipe(switchMap(() => this.getEmpresaByIdentificador(fiscalId)));
   }
 
   deleteEmpresa(fiscalId: string): Observable<any> {
@@ -50,74 +76,85 @@ export class ApiService {
   }
 
   getServiciosByIdentificadorFiscal(identificadorFiscal: string): Observable<ServicioData[]> {
-    const url = (`${environment.authUrl}/servicio-horario/obtener?identificadorFiscal=${identificadorFiscal}`);
-    return this.http.get<ServicioData[]>(url);
+    return this.http.get<ServicioData[]>(
+      `${environment.authUrl}/servicio-horario/obtener?identificadorFiscal=${identificadorFiscal}`
+    );
   }
 
   createServicio(payload: CreateServicePayload): Observable<ServicioData> {
-    const url = (`${environment.authUrl}/servicio-horario/crear`);
     return this.http
-      .post<{ servicio: ServicioData, empresa: string }>(url, payload)
+      .post<{ servicio: ServicioData; empresa: string }>(
+        `${this.servicioUrl}/horario/crear`,
+        payload
+      )
       .pipe(map(response => response.servicio));
   }
 
-  updateServicio(idServicio: number, identificadorFiscal: string, payload: any): Observable<any> {
-    const url = (`${environment.authUrl}/servicio-horario/actualizar/${idServicio}?identificadorFiscal=${identificadorFiscal}`);
-    return this.http.put(url, payload);
+  updateServicio(
+    idServicio: number,
+    identificadorFiscal: string,
+    payload: any
+  ): Observable<any> {
+    return this.http.put(
+      `${this.servicioUrl}/horario/actualizar/${idServicio}?identificadorFiscal=${identificadorFiscal}`,
+      payload
+    );
   }
 
   deleteServicio(idServicio: number, identificadorFiscal: string): Observable<void> {
-    const url = `${environment.authUrl}/servicio-horario/anular/${idServicio}?identificadorFiscal=${identificadorFiscal}`;
-    return this.http.delete<void>(url);
+    return this.http.delete<void>(
+      `${this.servicioUrl}/horario/anular/${idServicio}?identificadorFiscal=${identificadorFiscal}`
+    );
   }
 
   getServicios(): Observable<ServicioData[]> {
     return this.http.get<ServicioData[]>(`${environment.authUrl}/servicio-horario/obtener-todos`);
   }
 
-  getServicioById(identificadorFiscal: string, idServicio: number): Observable<ServicioData> {
-    const url: string = `${environment.authUrl}/servicio-horario/obtener-empresa-idservicio?identificadorFiscal=${identificadorFiscal}&idServicio=${idServicio}`;
-    return this.http.get<ServicioData>(url);
+  getServicioById(
+    identificadorFiscal: string,
+    idServicio: number
+  ): Observable<ServicioData> {
+    return this.http.get<ServicioData>(
+      `${environment.authUrl}/servicio-horario/obtener-empresa-idservicio?identificadorFiscal=${identificadorFiscal}&idServicio=${idServicio}`
+    );
   }
 
   getEventos(): Observable<EventData[]> {
     return this.http.get<EventData[]>(`${environment.authUrl}/eventos`);
   }
+
   getEvento(id: number): Observable<EventData> {
     return this.http.get<EventData>(`${environment.authUrl}/eventos/${id}`);
   }
 
-  //Implementació reserves
-  //Creació de reserves
   createReserva(payload: any): Observable<any> {
-    const url = (`${environment.authUrl}/reservas`);
-    return this.http.post<any>(url, payload);
+    return this.http.post<any>(`${environment.authUrl}/reservas`, payload);
   }
 
-  // Obtenir reserves per client (DNI)
   getReservasByCliente(dni: string): Observable<any[]> {
-    const url = (`${environment.authUrl}/reservas/clientes/${dni}`);
-    return this.http.get<any[]>(url);
+    return this.http.get<any[]>(`${environment.authUrl}/reservas/clientes/${dni}`);
   }
 
-  // Obtenir reserves per empresa (identificador fiscal)
   getReservasByEmpresa(identificadorFiscal: string): Observable<any[]> {
-    const url = (`${environment.authUrl}/reservas/empresas/${identificadorFiscal}`);
-    return this.http.get<any[]>(url);
+    return this.http.get<any[]>(`${environment.authUrl}/reservas/empresas/${identificadorFiscal}`);
   }
 
   deleteReserva(idReserva: number): Observable<void> {
-    const url = (`${environment.authUrl}/reservas/${idReserva}`);
-    return this.http.delete<void>(url, { responseType: 'text' as 'json' });
+    return this.http.delete<void>(`${environment.authUrl}/reservas/${idReserva}`, {
+      responseType: 'text' as 'json'
+    });
   }
 
   updateReserva(idReserva: number, payload: any): Observable<any> {
-    const url = `${environment.authUrl}/reservas/${idReserva}`;
-    return this.http.put(url, payload, { responseType: 'text' });
+    return this.http.put(
+      `${environment.authUrl}/reservas/${idReserva}`,
+      payload,
+      { responseType: 'text' }
+    );
   }
 
   getReservaById(idReserva: number): Observable<any> {
-    const url = `${environment.authUrl}/reservas/${idReserva}`; // Endpoint per obtenir una reserva per ID
-    return this.http.get<any>(url);
+    return this.http.get<any>(`${environment.authUrl}/reservas/${idReserva}`);
   }
 }

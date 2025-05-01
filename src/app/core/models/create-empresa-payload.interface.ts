@@ -6,6 +6,7 @@ export interface CreateEmpresaPayload {
     direccion: string;
     email: string;
     telefono: string;
+    imagen?: File;
   };
   dni: string;
 }

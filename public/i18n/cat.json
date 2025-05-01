@@ -113,7 +113,8 @@
     "submit_button": "Enviar",
     "delete_button": "Eliminar empresa",
     "cif_error": "El camp és obligatori i ha de seguir el format correcte.",
-    "dni_error": "El camp és obligatori i ha de seguir el format correcte."
+    "dni_error": "El camp és obligatori i ha de seguir el format correcte.",
+    "imagen_label": "Imatge"
   },
   "showServices": {
     "title": "Serveis",
