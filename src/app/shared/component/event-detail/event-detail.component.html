@@ -1,5 +1,13 @@
 <div class="event-detail-container">
   @if ((event$ | async); as event) {
+    <div class="event-image" *ngIf="event.imagenUrl">
+      <img
+        [src]="event.imagenUrl"
+        [alt]="event.nombre"
+        class="detail-img"
+      />
+    </div>
+
     <section class="hero">
       <h1 class="hero-title">
         {{ event.nombre || ('event.default_name' | translate) }}

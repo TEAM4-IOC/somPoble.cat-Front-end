@@ -2,19 +2,11 @@
 
 :host {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   background: $bg-gradient;
   color: $white;
-}
-
-.main-content {
-  flex: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .event-detail-container {
@@ -23,30 +15,59 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 800px;
   width: 100%;
-  padding: 2rem;
+  padding: 0;
   margin-bottom: 1.5rem;
+  overflow: hidden;
+}
 
-  h1 {
+.event-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+
+  .detail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.hero {
+  padding: 1.5rem;
+
+  .hero-title {
     font-size: 2rem;
-    margin-bottom: 1rem;
+    margin: 0;
     color: $white;
   }
+}
 
-  p {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
+.content-wrapper {
+  padding: 1.5rem;
+}
 
+.event-meta {
   ul {
     list-style: none;
     padding: 0;
-    width: 100%;
+    margin: 0 0 1rem 0;
 
     li {
       margin: 0.5rem 0;
       font-size: 1rem;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
+  }
+}
+
+.event-description {
+  padding: 0 1.5rem 1.5rem;
+  p {
+    font-size: 1.2rem;
+    margin: 0;
   }
 }
 
