@@ -324,7 +324,7 @@ export class HorarisEmpresaComponent implements OnInit {
       );
       return {
         servicio,
-        reservas: reservasDelServicio,
+        reservas: reservasDelServicio.length > 0 ? reservasDelServicio : [],
       };
     });
   }

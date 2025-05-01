@@ -66,9 +66,37 @@ export class HeaderComponent {
           route: '',
           subMenu: [
             { id: 'create_service', label: 'menu.create_service', route: '/services-form' },
-            { id: 'show_my_services', label: 'menu.show_my_services', route: '/horaris-empresa', queryParams: { view: 'monthly' } }
+            { id: 'show_my_services', label: 'menu.show_my_services', route: '/horaris-empresa', queryParams: { view: 'cards' } },
+            { id: 'show_my_services', label: 'horaris-empresa.services-calendar', route: '/horaris-empresa', queryParams: { view: 'monthly' } }
           ]
         },
+        { id: 'bookings_table', label: 'menu.bookings', route: '/horaris-empresa', queryParams: { view: 'table' } }
+      ];
+    }
+  
+    return [];
+  });
+
+  readonly mobileMenu = computed<Routing[]>(() => {
+    if (!this.isLoggedIn()) return [];
+  
+    if (this.userType() === 1) {
+      return [
+        { id: 'personal_space', label: 'menu.personal_space', route: '/espai-client' },
+        { id: 'bookings', label: 'menu.bookings', route: '/gestor-reserves-cli' },
+        { id: 'show_services', label: 'menu.show_services', route: '/show-services' }
+      ];
+    }
+  
+    if (this.userType() === 2) {
+      return [
+        { id: 'edit_title', label: 'Editar', isTitle: true },
+        { id: 'edit_profile', label: 'menu.edit_profile', route: '/edit' },
+        { id: 'edit_business_profile', label: 'menu.edit_bussiness_profile', route: '/empresa-form' },
+        { id: 'edit_title', label: 'showServices.title', isTitle: true },
+        { id: 'create_service', label: 'menu.create_service', route: '/services-form' },
+        { id: 'show_my_services', label: 'menu.show_my_services', route: '/horaris-empresa', queryParams: { view: 'cards' } },
+        { id: 'edit_title', label: 'menu.bookings', isTitle: true },
         { id: 'bookings_table', label: 'menu.bookings', route: '/horaris-empresa', queryParams: { view: 'table' } }
       ];
     }

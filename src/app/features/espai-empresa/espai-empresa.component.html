@@ -1,5 +1,5 @@
 <div class="cards-container">
-  @for (card of cards(); track card.route) {
+  @for (card of cards(); track card.id) {
     <div class="client-card" (click)="goTo(card.route, card.queryParams)" tabindex="0">
       <h3>{{ card.label | translate }}</h3>
     </div>

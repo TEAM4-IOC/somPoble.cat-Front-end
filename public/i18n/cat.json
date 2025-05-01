@@ -194,7 +194,8 @@
     "serviceName": "Servei",
     "noReservations" : "No hi ha reserves",
     "listByService": "Llistat de reserves per servei",
-    "noServices": "Sense serveis disponibles"
+    "noServices": "Sense serveis disponibles",
+    "services-calendar": "Calendari de serveis"
 
   },
   "landing": {
@@ -222,9 +223,9 @@
     "servicePrice_placeholder": "Preu del servei en €",
     "servicePrice_error": "Preu obligatori, màxim dos decimals.",
     "serviceStartTime": "Horari de disponibilitat - hora d'inici",
-    "serviceStartTime_placeholder": "Format necessari HH:MM, només hores en punt",
+    "serviceStartTime_placeholder": "Format HH:MM, només hores en punt",
     "serviceEndTime": "Horari de disponibilitat - hora de finalització",
-    "serviceEndTime_placeholder": "Format necessari HH:MM, només",
+    "serviceEndTime_placeholder": "Format HH:MM, només hores en punt",
     "serviceAvailability_error": "Horari obligatori, format HH:MM.",
     "serviceReservations": "Límit màxim de reserves",
     "serviceReservations_placeholder": "Nombre límit de reserves",

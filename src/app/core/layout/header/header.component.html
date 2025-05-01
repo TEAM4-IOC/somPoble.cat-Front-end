@@ -39,9 +39,11 @@
         <span class="user-label">Particular</span>
       } @else if (userType() === 2) {
         @if (companyType() === 1) {
-          <span class="user-label" (click)="navigateToEspaiEmpresa()">Empresa</span>
+          <span class="user-label no-underline" (click)="navigateToEspaiEmpresa()">
+            <i class="fa-solid fa-house"></i> Empresa</span>
         } @else if (companyType() === 2) {
-          <span class="user-label" (click)="navigateToEspaiEmpresa()">{{ 'menu.autonomo' | translate }}</span>
+          <span class="user-label no-underline" (click)="navigateToEspaiEmpresa()">
+            <i class="fa-solid fa-house"></i> {{ 'menu.autonomo' | translate }}</span>
         }
       }
     }
@@ -75,13 +77,21 @@
            (click)="toggleMenu($event)">
         <i class="fa-solid fa-bars fs-2"></i>
       </div>
-
-      @if (isMenuOpen() && menu().length) {
+    
+      @if (isMenuOpen() && mobileMenu().length) {
         <div class="menu-container bg-dark">
           <ul class="list-unstyled m-0 p-3">
-            @for (item of menu(); track item) {
+            @for (item of mobileMenu(); track item) {
               <li class="py-1">
-                <a [routerLink]="item.route" (click)="closeMenu()">{{ item.label | translate }}</a>
+                @if (item.isTitle) {
+                  <span class="menu-title text-uppercase text-white fw-bold">
+                    {{ item.label | translate}}
+                  </span>
+                } @else {
+                  <a [routerLink]="item.route" [queryParams]="item.queryParams || {}" (click)="closeMenu()">
+                    {{ item.label | translate }}
+                  </a>
+                }
               </li>
             }
           </ul>

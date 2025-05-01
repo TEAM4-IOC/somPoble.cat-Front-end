@@ -194,7 +194,8 @@
     "serviceName": "Servicio",
     "noReservations" : "No hay reservas",
     "listByService": "Listado de reservas por servicio",
-    "noServices": "No hay servicios disponibles"
+    "noServices": "No hay servicios disponibles",
+    "services-calendar": "Calendario de servicios"
   },
   "landing": {
     "services": "Servicios",
@@ -221,9 +222,9 @@
     "servicePrice_placeholder": "Precio del servicio en €",
     "servicePrice_error": "Precio obligatorio, máximo dos decimales.",
     "serviceStartTime": "Horario de disponibilidad: hora inicio",
-    "serviceStartTime_placeholder": "Formato necesario HH:MM, solamente horas en punto",
+    "serviceStartTime_placeholder": "Formato HH:MM, solamente horas en punto",
     "serviceEndTime": "Horario de disponibilidad: hora fin",
-    "serviceEndTime_placeholder": "Formato necesario HH:MM, solamente horas en punto",
+    "serviceEndTime_placeholder": "Formato HH:MM, solamente horas en punto",
     "serviceAvailability_error": "Formato de hora incorrecto, debe ser HH:MM.",
     "serviceReservations": "Límite máximo de reservas",
     "serviceReservations_placeholder": "Número límite de reservas",

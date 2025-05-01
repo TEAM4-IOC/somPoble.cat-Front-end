@@ -10,7 +10,7 @@
       <div class="data-field">
         <label>{{ 'register.nombre_label' | translate }}:</label>
         @if (!editingField('nombre')) {
-          <span>{{ profile.nombre }}</span>
+          <span class="evita-desbordamiento">{{ profile.nombre }}</span>
           <button class="icon-btn" (click)="startEditing('nombre', profile.nombre)">
             <i class="fas fa-edit"></i>
           </button>
@@ -30,7 +30,7 @@
       <div class="data-field">
         <label>{{ 'register.apellidos_label' | translate }}:</label>
         @if (!editingField('apellidos')) {
-          <span>{{ profile.apellidos }}</span>
+          <span class="evita-desbordamiento">{{ profile.apellidos }}</span>
           <button class="icon-btn" (click)="startEditing('apellidos', profile.apellidos)">
             <i class="fas fa-edit"></i>
           </button>
@@ -50,7 +50,7 @@
       <div class="data-field">
         <label>{{ 'register.email_label' | translate }}:</label>
         @if (!editingField('email')) {
-          <span>{{ profile.email }}</span>
+          <span class="evita-desbordamiento">{{ profile.email }}</span>
           <button class="icon-btn" (click)="startEditing('email', profile.email)">
             <i class="fas fa-edit"></i>
           </button>
@@ -70,7 +70,7 @@
       <div class="data-field">
         <label>{{ 'register.telefono_label' | translate }}:</label>
         @if (!editingField('telefono')) {
-          <span>{{ profile.telefono }}</span>
+          <span class="evita-desbordamiento">{{ profile.telefono }}</span>
           <button class="icon-btn" (click)="startEditing('telefono', profile.telefono)">
             <i class="fas fa-edit"></i>
           </button>

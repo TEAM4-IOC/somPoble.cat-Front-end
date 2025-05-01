@@ -89,3 +89,11 @@ input::placeholder {
   text-align: center;
   width: 100%;
 }
+
+.evita-desbordamiento {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  max-width: 200px;
+}

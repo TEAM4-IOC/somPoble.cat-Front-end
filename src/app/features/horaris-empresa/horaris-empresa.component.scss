@@ -497,3 +497,49 @@ table .fa-trash:hover {
   font-size: 14px;
   gap: 8px;
 }
+
+
+@media only screen and (max-width: 575px) {
+  
+.main-content, .view4 {
+    min-height: 100%;
+
+  }
+
+  .table-view .card {
+  background: var(--container-bg);
+  border: 1px solid #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  transform-style: preserve-3d;
+  }
+
+  .table-view .card:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  } 
+
+  .table-responsive {
+    display: none !important;
+  }
+
+  .card-group {
+    display: block !important;
+  }
+}
+
+/* Tablets i phablets */
+@media only screen and (min-width: 576px){
+  .table-responsive {
+    display: block !important;
+  }
+
+  .card-group {
+    display: none !important;
+  }
+
+  .main-content {
+    min-height: 100%;
+  }
+}

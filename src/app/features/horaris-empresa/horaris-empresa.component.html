@@ -107,47 +107,71 @@
     </div>
   </div>
 
-  <div class="table-view" *ngIf="isTableView">
+  <div *ngIf="isTableView" class="table-view">
     <h3 class="reservation-title text-center">
       {{ 'horaris-empresa.listByService' | translate }}
     </h3>
-    <div class="service-group" *ngFor="let agrupacion of getReservasAgrupadasPorServicio()">
-      <h4 class="d-flex justify-content-between align-items-center">
-        <span class="serviceName">
-          {{ 'horaris-empresa.serviceName' | translate }}:
-          {{ agrupacion.servicio.nombre }}
-        </span>
-        <button class="btn btn-icon" (click)="onEditServiceClick(agrupacion.servicio)">
-          <i class="fa-solid fa-pencil reservation-service"></i>
-        </button>
-      </h4>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>{{ 'horaris-empresa.reservaId' | translate }}</th>
-            <th>{{ 'horaris-empresa.date' | translate }}</th>
-            <th>{{ 'horaris-empresa.hour' | translate }}</th>
-            <th>{{ 'horaris-empresa.dniClient' | translate }}</th>
-            <th class="action-column">
-              {{ 'horaris-empresa.cancel' | translate }}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let reserva of agrupacion.reservas">
-            <td>{{ reserva.idReserva }}</td>
-            <td>{{ formatDateToDDMMYYYY(reserva.fechaReserva) }}</td>
-            <td>{{ reserva.hora.slice(0, 5) }}</td>
-            <td>{{ reserva.dniCliente }}</td>
-            <td class="actions-column">
-              <button class="btn btn-icon" (click)="onDeleteReserva(reserva.idReserva)">
-                <i class="fa-solid fa-trash"></i>
+    <div *ngIf="getReservasAgrupadasPorServicio().length > 0; else noReservations">
+      <div class="service-group" *ngFor="let agrupacion of getReservasAgrupadasPorServicio()">
+        <h4>{{ agrupacion.servicio.nombre }}</h4>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>{{ 'horaris-empresa.reservaId' | translate }}</th>
+                <th>{{ 'horaris-empresa.date' | translate }}</th>
+                <th>{{ 'horaris-empresa.hour' | translate }}</th>
+                <th>{{ 'horaris-empresa.dniClient' | translate }}</th>
+                <th class="action-column">{{ 'horaris-empresa.cancel' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="agrupacion.reservas.length === 0">
+                <td colspan="5" class="text-center text-muted">
+                  {{ 'horaris-empresa.withoutReservations' | translate }}
+                </td>
+              </tr>
+              <tr *ngFor="let reserva of agrupacion.reservas">
+                <td>{{ reserva.idReserva }}</td>
+                <td>{{ formatDateToDDMMYYYY(reserva.fechaReserva) }}</td>
+                <td>{{ reserva.hora.slice(0, 5) }}</td>
+                <td>{{ reserva.dniCliente }}</td>
+                <td class="actions-column">
+                  <button class="btn btn-icon" (click)="onDeleteReserva(reserva.idReserva)">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-group">
+          <div class="card" *ngIf="agrupacion.reservas.length === 0">
+            <div class="card-body">
+              <p class="card-text text-center text-muted">
+                {{ 'horaris-empresa.withoutReservations' | translate }}
+              </p>
+            </div>
+          </div>
+          <div class="card" *ngFor="let reserva of agrupacion.reservas">
+            <div class="card-body">
+              <h5 class="card-title">{{ 'horaris-empresa.reservaId' | translate }}: {{ reserva.idReserva }}</h5>
+              <p class="card-text">{{ 'horaris-empresa.date' | translate }}: {{ formatDateToDDMMYYYY(reserva.fechaReserva) }}</p>
+              <p class="card-text">{{ 'horaris-empresa.hour' | translate }}: {{ reserva.hora.slice(0, 5) }}</p>
+              <p class="card-text">{{ 'horaris-empresa.dniClient' | translate }}: {{ reserva.dniCliente }}</p>
+              <button class="btn btn-danger btn-sm" (click)="onDeleteReserva(reserva.idReserva)">
+                {{ 'horaris-empresa.cancel' | translate }}
               </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <ng-template #noReservations>
+      <p class="text-center text-muted">
+        {{ 'horaris-empresa.withoutReservations' | translate }}
+      </p>
+    </ng-template>
   </div>
 
   <div class="wiew4">

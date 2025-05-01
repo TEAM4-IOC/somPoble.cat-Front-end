@@ -6,7 +6,7 @@
     <h2>{{ 'add-services-form.nameForm' | translate }}</h2>
     <form (ngSubmit)="onSubmit()" #serviceForm="ngForm">
       <div class="input-group">
-        <label for="nombreServicio" class="form-label">{{ 'add-services-form.serviceName' | translate }}:</label>
+        <label for="nombreServicio" class="form-label evita-desbordamiento">{{ 'add-services-form.serviceName' | translate }}:</label>
         <div class="input-control">
           <input type="text" id="nombreServicio" [(ngModel)]="nombre" name="nombreServicio"
             placeholder="{{ 'add-services-form.serviceName_placeholder' | translate }}" required
@@ -20,7 +20,7 @@
         <label for="descripcionServicio" class="form-label">{{ 'add-services-form.serviceDescription' | translate
           }}:</label>
         <div class="input-control">
-          <textarea id="descripcionServicio" [(ngModel)]="descripcion" name="descripcionServicio"
+          <textarea id="descripcionServicio" [(ngModel)]="descripcion" name="descripcionServicio" 
             placeholder="{{ 'add-services-form.serviceDescription_placeholder' | translate }}" required rows="5"
             pattern="^[A-Za-zÀ-ÿ0-9 .,!?()'\n\r-]{2,200}$" #descripcionModel="ngModel"></textarea>
         </div>
@@ -65,8 +65,6 @@
         <div class="error">{{ 'add-services-form.workingDays_error' | translate }}</div>
         }
       </div>
-
-
       <div class="input-group">
         <label for="horarioInicio" class="form-label">{{ 'add-services-form.serviceStartTime' | translate }}</label>
         <div class="input-control">
@@ -91,12 +89,9 @@
         <div class="error">{{ 'add-services-form.serviceAvailability_error' | translate }}</div>
         }
       </div>
-
-      <!-- Mostrar mensaje de error si hay un problema con las horas -->
       <div *ngIf="formErrorHorarioInicio" class="error">
         {{ formErrorHorarioInicio }}
       </div>
-
       <div class="input-group">
         <label for="limiteReserva" class="form-label">{{ 'add-services-form.serviceReservations' | translate }}:</label>
         <div class="input-control">
@@ -122,7 +117,7 @@
       <div class="data-field">
         <label>{{ 'add-services-form.serviceName' | translate }}:</label>
         @if (!editingField('nombre')) {
-        <span>{{ nombre }}</span>
+        <span class="evita-desbordamiento">{{ nombre }}</span>
         <button class="icon-btn" (click)="startEditing('nombre', nombre)">
           <i class="fas fa-edit"></i>
         </button>
@@ -139,11 +134,10 @@
         }
         }
       </div>
-      <!-- Descripción -->
       <div class="data-field">
         <label>{{ 'add-services-form.serviceDescription' | translate }}:</label>
         @if (!editingField('descripcion')) {
-        <span>{{ descripcion }}</span>
+        <span class="evita-desbordamiento">{{ descripcion }}</span>
         <button class="icon-btn" (click)="startEditing('descripcion', descripcion)">
           <i class="fas fa-edit"></i>
         </button>
@@ -280,11 +274,9 @@
         }
         }
       </div>
-
       <div *ngIf="formErrorHorarioInicio" class="error">
         {{ formErrorHorarioInicio }}
       </div>
-
       <div class="data-field">
         <label>{{ 'add-services-form.serviceReservations' | translate }}:</label>
         <span>{{ limiteReservas }}</span>

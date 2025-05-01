@@ -20,7 +20,10 @@ export class EspaiClientComponent {
     { id: 'edit_reservation', label: 'espai_client.edit_reservation', route: '/gestor-reserves-cli' }
   ]);
 
-  goTo(route: string): void {
+  goTo(route?: string): void {
+    if (!route) {
+      return;
+    }
     this.router.navigate([route]);
   }
 }

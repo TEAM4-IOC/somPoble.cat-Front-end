@@ -1,8 +1,9 @@
 export interface Routing {
   id: string;
   label: string;
-  route: string;
+  route?: string;
   queryParams?: { [key: string]: any };
   subMenu?: Routing[];
   isSubMenuOpen?: boolean;
+  isTitle?: boolean;
 }

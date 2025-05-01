@@ -60,6 +60,7 @@
                     required
                     minlength="2"
                     #nombreModel="ngModel"
+                    class="evita-desbordamiento"
                   />
                 </div>
                 @if (nombreModel.invalid && (nombreModel.touched || nombreModel.dirty)) {
@@ -79,6 +80,7 @@
                     required
                     minlength="2"
                     #actividadModel="ngModel"
+                    class="evita-desbordamiento"
                   />
                 </div>
                 @if (actividadModel.invalid && (actividadModel.touched || actividadModel.dirty)) {
@@ -98,6 +100,7 @@
                   required
                   minlength="2"
                   #direccionModel="ngModel"
+                  class="evita-desbordamiento"
                 />
               </div>
               @if (direccionModel.invalid && (direccionModel.touched || direccionModel.dirty)) {
@@ -116,6 +119,7 @@
                   required
                   email
                   #emailModel="ngModel"
+                  class="evita-desbordamiento"
                 />
               </div>
               @if (emailModel.invalid && (emailModel.touched || emailModel.dirty)) {
@@ -134,6 +138,7 @@
                   required
                   pattern="[0-9]{9}"
                   #telefonoModel="ngModel"
+                  class="evita-desbordamiento"
                 />
               </div>
               @if (telefonoModel.invalid && (telefonoModel.touched || telefonoModel.dirty)) {
@@ -168,7 +173,7 @@
             <div class="data-field">
               <label>{{ 'empresa.nombre_label' | translate }}</label>
               @if (!editingField('nombre')) {
-                <span>{{ emp[0].nombre }}</span>
+                <span class="evita-desbordamiento">{{ emp[0].nombre }}</span>
                 <button class="icon-btn" (click)="startEditing('nombre', emp[0].nombre || '')">
                   <i class="fas fa-edit"></i>
                 </button>
@@ -189,7 +194,7 @@
             <div class="data-field">
               <label>{{ 'empresa.actividad_label' | translate }}</label>
               @if (!editingField('actividad')) {
-                <span>{{ emp[0].actividad }}</span>
+                <span class="evita-desbordamiento">{{ emp[0].actividad }}</span>
                 <button class="icon-btn" (click)="startEditing('actividad', emp[0].actividad || '')">
                   <i class="fas fa-edit"></i>
                 </button>
@@ -210,7 +215,7 @@
           <div class="data-field">
             <label>{{ 'empresa.direccion_label' | translate }}</label>
             @if (!editingField('direccion')) {
-              <span>{{ emp[0].direccion }}</span>
+              <span class="evita-desbordamiento">{{ emp[0].direccion }}</span>
               <button class="icon-btn" (click)="startEditing('direccion', emp[0].direccion)">
                 <i class="fas fa-edit"></i>
               </button>
@@ -230,7 +235,7 @@
           <div class="data-field">
             <label>{{ 'empresa.email_label' | translate }}</label>
             @if (!editingField('email')) {
-              <span>{{ emp[0].email }}</span>
+              <span class="evita-desbordamiento">{{ emp[0].email }}</span>
               <button class="icon-btn" (click)="startEditing('email', emp[0].email)">
                 <i class="fas fa-edit"></i>
               </button>
@@ -250,7 +255,7 @@
           <div class="data-field">
             <label>{{ 'empresa.telefono_label' | translate }}</label>
             @if (!editingField('telefono')) {
-              <span>{{ emp[0].telefono }}</span>
+              <span class="evita-desbordamiento">{{ emp[0].telefono }}</span>
               <button class="icon-btn" (click)="startEditing('telefono', emp[0].telefono)">
                 <i class="fas fa-edit"></i>
               </button>

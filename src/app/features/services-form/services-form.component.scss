@@ -254,3 +254,11 @@ input::placeholder {
   width: 100%;
   text-align: center;
 }
+
+.evita-desbordamiento {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  max-width: 200px;
+}
