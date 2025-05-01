@@ -3,7 +3,11 @@
 
 .main-content {
 background: $bg-gradient;
-height: 100vw;
+min-height: 100vw;
+}
+
+.view4 {
+  height: auto;
 }
 
 .monthly-view, .table-view {
@@ -44,7 +48,7 @@ height: 100vw;
   flex: 1; 
 }
 
-button.auth-btn {
+button.auth-btn, .delete-btn {
   display: block;
   margin: 20px auto;
   width: auto;
@@ -375,3 +379,121 @@ table .fa-trash:hover {
   color: red!important;
 }
 
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+.client-card {
+  width: min(90%, 20rem);
+  background: var(--container-bg);
+  border: 2px solid #ffffff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.client-card:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+  margin: 0 0 0.5rem;
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.card-description {
+  margin: 0.5rem 0;
+  color: #000000;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.card-details {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.card-details li {
+  margin: 0.5rem 0;
+  color: #000000;
+  font-size: 0.9rem;
+}
+
+.card-edit-btn {
+  display: block;
+  margin: 1rem auto 0;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.card-edit-btn:hover {
+  background: #0056b3;
+}
+
+.card-edit-btn:active {
+  background: #003f7f;
+}
+
+.redirect-btn {
+  width: 200px;
+  padding: 0.625rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: 0.0625rem solid $btn-border;
+  color: $white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3125rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.redirect-btn i {
+  position: absolute;
+  left: 1rem;
+}
+
+.redirect-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.button-container {
+  margin-top: 1.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dc143c!important;
+  border: 2px solid #dc143c!important;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  gap: 8px;
+}

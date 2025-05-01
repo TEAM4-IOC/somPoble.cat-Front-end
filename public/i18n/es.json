@@ -143,7 +143,7 @@
     "price": "Precio",
     "availability": "Días de disponibilidad",
     "schedule": "Horario del servicio",
-    "minutes": "minuts",
+    "minutes": "minutos",
     "actionButton": "Hacer una reserva AHORA"
   },
   "reservesCli": {

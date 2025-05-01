@@ -18,6 +18,7 @@ export class EspaiEmpresaComponent {
     { id: 'edit_profile', label: 'menu.edit_profile', route: '/edit' },
     { id: 'edit_business_profile', label: 'menu.edit_bussiness_profile', route: '/empresa-form' },
     { id: 'create_service', label: 'menu.create_service', route: '/services-form' },
+    { id: 'show_my_services', label: 'menu.show_my_services', route: '/horaris-empresa', queryParams: { view: 'cards' } },
     { id: 'show_my_services', label: 'menu.show_my_services', route: '/horaris-empresa', queryParams: { view: 'monthly' } },
     { id: 'show_reservations', label: 'menu.show_reservations', route: '/horaris-empresa', queryParams: { view: 'table' } }
   ]);

@@ -27,7 +27,7 @@ export class ServiceStateService {
     this.service$ = this.serviceSubject.asObservable();
   }
 
-  private saveAndEmit(services: ServicioData[]): void {
+  public saveAndEmit(services: ServicioData[]): void {
     this.serviceSubject.next(services);
   }
 
@@ -57,14 +57,15 @@ export class ServiceStateService {
   }
 
   loadServiciosByIdentificadorFiscal(identificadorFiscal: string): void {
+    this.saveAndEmit([]);
     this.apiService.getServiciosByIdentificadorFiscal(identificadorFiscal).subscribe({
       next: (servicios: ServicioData[]) => {
         if (servicios.length > 0) {
           console.log('[ServiceStateService] Servicios encontrados:', servicios);
-          this.saveAndEmit(servicios); // Actualizamos el estado local
+          this.saveAndEmit(servicios);
         } else {
           console.warn('[ServiceStateService] No se encontraron servicios para el identificador fiscal:', identificadorFiscal);
-          this.saveAndEmit([]); // Emitimos un array vacío si no hay servicios
+          this.saveAndEmit([]);
         }
       },
       error: (err: any) => {
@@ -86,7 +87,9 @@ export class ServiceStateService {
     return this.apiService.deleteServicio(idServicio, identificadorFiscal).pipe(
       map(() => {
         console.log(`Servicio con ID ${idServicio} eliminado correctamente.`);
-        this.loadServicios();
+        const serviciosActuales = this.getServicesValue();
+        const serviciosActualizados = serviciosActuales.filter(s => s.idServicio !== idServicio);
+        this.saveAndEmit(serviciosActualizados);
       }),
       catchError((err) => {
         console.error(`Error al eliminar el servicio con ID ${idServicio}:`, err);

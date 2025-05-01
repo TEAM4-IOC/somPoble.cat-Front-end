@@ -55,4 +55,17 @@ export class ReservaStateService {
   getReservaById(idReserva: number): Observable<any> {
     return this.apiService.getReservaById(idReserva);
   }
+
+  loadReservasByEmpresa(identificadorFiscal: string): void {
+    this.getReservasByEmpresa(identificadorFiscal).subscribe({
+      next: (reservas) => {
+        console.log('[DEBUG] Reservas cargadas para la empresa:', reservas);
+        this.reservasSubject.next(reservas); // Actualiza el estado local
+      },
+      error: (err) => {
+        console.error('[DEBUG] Error al cargar reservas para la empresa:', err);
+        this.reservasSubject.next([]); // Limpia el estado en caso de error
+      },
+    });
+  }
 }

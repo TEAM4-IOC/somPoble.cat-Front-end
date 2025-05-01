@@ -1,21 +1,24 @@
 <div class="main-content">
-  <div class="d-flex justify-content-center mb-3">
+  <div class="d-flex justify-content-center mb-3 d-none">
     <button class="auth-btn me-2" [ngClass]="{ 'btn-primary': isMonthlyView }" (click)="setView('monthly')"
       [disabled]="isMonthlyView">
       {{ 'horaris-empresa.vista-mensual' | translate }}
     </button>
-    <button style="display: none;" class="auth-btn me-2" [ngClass]="{ 'btn-primary': !isMonthlyView && !isTableView }"
-      (click)="setView('daily')" [disabled]="!isMonthlyView && !isTableView">
+    <button class="auth-btn me-2" [ngClass]="{ 'btn-primary': isDailyView }" (click)="setView('daily')"
+      [disabled]="isDailyView">
       {{ 'horaris-empresa.daily' | translate }}
     </button>
     <button class="auth-btn" [ngClass]="{ 'btn-primary': isTableView }" (click)="setView('table')"
       [disabled]="isTableView">
       {{ 'horaris-empresa.reservations' | translate }}
     </button>
+    <button class="auth-btn" [ngClass]="{ 'btn-primary': isCardsView }" (click)="setView('cards')"
+      [disabled]="isCardsView">
+      {{ 'horaris-empresa.cardsView' | translate }}
+    </button>
   </div>
 
-  @if (isMonthlyView) {
-  <div class="monthly-view">
+  <div class="monthly-view" *ngIf="isMonthlyView">
     <div class="calendar-container" *ngIf="servicios.length > 0; else noServices">
       <div class="calendar-header">
         <button class="nav-button" (click)="prevMonth()">&#8592;</button>
@@ -27,35 +30,29 @@
       </div>
       <div class="calendar-content">
         <div class="month-grid">
-          @for (day of weekDays; track day; let i = $index) {
-          <div class="day-header">
+          <div class="day-header" *ngFor="let day of weekDays; let i = index">
             {{ 'serviceDetail.days.' + (i + 1) | translate }}
           </div>
-          }
-          @for (day of daysInMonth; track day.date) {
-          <div class="day-cell" [class.disabled]="!day.isCurrentMonth"
+          <div class="day-cell" *ngFor="let day of daysInMonth" [class.disabled]="!day.isCurrentMonth"
             [class.past-day]="isPastDay(day.date, day.isCurrentMonth)" (click)="goToDailyView(day)">
             <div class="day-number">{{ day.date }}</div>
             <div class="service-bars">
-              @for (servicio of getServicesForDay(day.date); track servicio.idServicio) {
-              <div class="service-bar" [style.backgroundColor]="getServiceColor(servicio)"></div>
-              }
+              <div class="service-bar" *ngFor="let servicio of getServicesForDay(day.date)"
+                [style.backgroundColor]="getServiceColor(servicio)">
+              </div>
             </div>
           </div>
-          }
         </div>
         <div class="legend">
           <h3>{{ 'horaris-empresa.services' | translate }}</h3>
           <ul>
-            @for (servicio of servicios; track servicio.idServicio) {
-            <li>
+            <li *ngFor="let servicio of servicios">
               <span class="legend-color" [style.backgroundColor]="getServiceColor(servicio)"></span>
               {{ servicio.nombre }}
               <button class="btn btn-icon" (click)="onEditServiceClick(servicio)">
                 <i class="fa-solid fa-pencil legend-icon"></i>
               </button>
             </li>
-            }
           </ul>
         </div>
       </div>
@@ -66,8 +63,8 @@
       </p>
     </ng-template>
   </div>
-  } @else if (!isMonthlyView && !isTableView) {
-  <div class="calendar-container">
+
+  <div class="calendar-container daily-view" *ngIf="isDailyView">
     <div class="calendar-header">
       <button class="nav-button" (click)="prevDay()">&#8592;</button>
       <h2 class="calendar-title">
@@ -79,57 +76,42 @@
       <button class="nav-button" (click)="nextDay()">&#8594;</button>
     </div>
     <div class="agenda-grid">
-      @for (hour of getHours(); track hour) {
-      <div class="hour-row">
+      <div class="hour-row" *ngFor="let hour of getHours()">
         <div class="hour-label">
           <span>{{ hour.split(' ')[0] }}</span><br />
           <span>{{ hour.split(' ')[1] }}</span>
         </div>
         <div class="hour-cell">
-          @for (servicio of servicios; track servicio.idServicio) {
-          @if (isServiceAvailable(servicio, hour)) {
-          <div class="service-block" [style.backgroundColor]="getServiceColor(servicio)">
-            <div class="service-header">
-              <strong>{{ servicio.nombre }}</strong>
-              <button class="btn btn-icon" (click)="onEditServiceClick(servicio)">
-                <i class="fa-solid fa-pencil edit-daily"></i>
-              </button>
+          <div *ngFor="let servicio of servicios">
+            <div *ngIf="isServiceAvailable(servicio, hour)" class="service-block"
+              [style.backgroundColor]="getServiceColor(servicio)">
+              <div class="service-header">
+                <strong>{{ servicio.nombre }}</strong>
+                <button class="btn btn-icon" (click)="onEditServiceClick(servicio)">
+                  <i class="fa-solid fa-pencil edit-daily"></i>
+                </button>
+              </div>
+              <div class="reserva-item"
+                *ngFor="let reserva of getReservasForServiceAndHour(servicio.idServicio, hour)">
+                <span class="reserva-info">
+                  ID: {{ reserva.id }} - DNI: {{ reserva.dniCliente }}
+                </span>
+                <button class="btn btn-icon" (click)="onDeleteReserva(reserva.id)">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
             </div>
-            @for (
-            reserva of getReservasForServiceAndHour(servicio.idServicio, hour);
-            track reserva.id
-            ) {
-            <div class="reserva-item">
-              <span class="reserva-info">
-                ID: {{ reserva.id }} - DNI: {{ reserva.dniCliente }}
-              </span>
-              <button class="btn btn-icon" (click)="onDeleteReserva(reserva.id)">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            </div>
-            } @empty {
-            <span class="no-reservas">
-              {{ 'horaris-empresa.withoutReservations' | translate }}
-            </span>
-            }
           </div>
-          }
-          }
         </div>
       </div>
-      }
     </div>
   </div>
-  } @else {
-  <div class="table-view">
+
+  <div class="table-view" *ngIf="isTableView">
     <h3 class="reservation-title text-center">
       {{ 'horaris-empresa.listByService' | translate }}
     </h3>
-    @for (
-    agrupacion of getReservasAgrupadasPorServicio();
-    track agrupacion.servicio.idServicio
-    ) {
-    <div class="service-group">
+    <div class="service-group" *ngFor="let agrupacion of getReservasAgrupadasPorServicio()">
       <h4 class="d-flex justify-content-between align-items-center">
         <span class="serviceName">
           {{ 'horaris-empresa.serviceName' | translate }}:
@@ -152,11 +134,7 @@
           </tr>
         </thead>
         <tbody>
-          @for (
-          reserva of agrupacion.reservas;
-          track reserva.idReserva
-          ) {
-          <tr>
+          <tr *ngFor="let reserva of agrupacion.reservas">
             <td>{{ reserva.idReserva }}</td>
             <td>{{ formatDateToDDMMYYYY(reserva.fechaReserva) }}</td>
             <td>{{ reserva.hora.slice(0, 5) }}</td>
@@ -167,21 +145,49 @@
               </button>
             </td>
           </tr>
-          } @empty {
-          <tr>
-            <td colspan="6" class="text-center">
-              {{ 'horaris-empresa.noReservations' | translate }}
-            </td>
-          </tr>
-          }
         </tbody>
       </table>
     </div>
-    } @empty {
-    <p class="text-center">
-      {{ 'horaris-empresa.noReservations' | translate }}
-    </p>
-    }
   </div>
-  }
+
+  <div class="wiew4">
+  <div class="cards-container" *ngIf="isCardsView">
+    <div *ngFor="let card of cards(); trackBy: trackByCard" class="service-detail-container client-card">
+      <h1 class="card-title">{{ card.label | translate }}</h1>
+      <p class="card-description">{{ card.descripcion }}</p>
+      <ul class="card-details">
+        <li>
+          <strong>{{ 'serviceDetail.duration' | translate }}: </strong>
+          {{ card.duracion }} {{ 'serviceDetail.minutes' | translate }}
+        </li>
+        <li>
+          <strong>{{ 'serviceDetail.price' | translate }}: </strong>
+          {{ card.precio }}€
+        </li>
+        <li>
+          <strong>{{ 'serviceDetail.availability' | translate }}: </strong>
+          {{ card.availability }}
+        </li>
+        <li>
+          <strong>{{ 'serviceDetail.schedule' | translate }}: </strong>
+          {{ card.schedule }}
+        </li>
+      </ul>
+      <div class="button-container w-100 d-flex">
+        <button type="button" class="auth-btn card-edit-btn" (click)="goTo(card.route)">
+          {{ 'EDITAR' }}
+        </button>
+        <button class="delete-btn" (click)="deleteServicio(+card.route.split('/')[1])">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    </div>
+    <div class="button-container w-100">
+    </div>
+    <button class="redirect-btn" (click)="goToEspaiClient()">
+      <i class="fa-solid fa-arrow-left"></i>
+      {{ 'menu.return-btn' | translate }}
+    </button>
+  </div>
+</div>
 </div>
