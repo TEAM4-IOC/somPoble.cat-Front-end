@@ -14,10 +14,44 @@ import { EventData } from '../models/EventData.interface';
 export class ApiService {
   private empresaUrl = `${environment.authUrl}/empresas`;
   private servicioUrl = `${environment.authUrl}/servicios`;
+  private landingUrl = `${environment.authUrl}/landing`;
 
   constructor(private http: HttpClient) { }
-
-  getEmpresaByIdentificador(fiscalId: string): Observable<EmpresaData> {
+  getLandingData(): Observable<EmpresaData[]> {
+    return this.http
+      .get<
+        Array<{
+          nombre: string;
+          direccion: string;
+          telefono: string;
+          email: string;
+          imagen: string | null;
+          identificadorFiscal: string;
+          servicios: ServicioData[];
+        }>
+      >(this.landingUrl)
+      .pipe(
+        map(items =>
+          items.map(item => ({
+            idEmpresa: 0,
+            identificadorFiscal: item.identificadorFiscal,
+            nombre: item.nombre,
+            actividad: null,
+            direccion: item.direccion,
+            email: item.email,
+            telefono: item.telefono,
+            tipo: 0,
+            fechaAlta: '',
+            fechaModificacion: '',
+            reservas: [],
+            servicios: item.servicios,
+            horarios: [],
+            imagenUrl: item.imagen,
+            imagenPublicId: null
+          }))
+        )
+      );
+  }  getEmpresaByIdentificador(fiscalId: string): Observable<EmpresaData> {
     return this.http
       .get<{ empresa: EmpresaData; dni: string }>(`${this.empresaUrl}/${fiscalId}`)
       .pipe(map(response => response.empresa));
