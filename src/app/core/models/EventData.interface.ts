@@ -6,4 +6,6 @@ export interface EventData {
   fechaEvento: string;
   fechaAlta: string;
   fechaModificacion: string;
+  imagenUrl: string | null;
+  imagenPublicId: string | null;
 }

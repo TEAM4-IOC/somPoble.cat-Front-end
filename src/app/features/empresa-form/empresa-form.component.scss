@@ -169,10 +169,29 @@ input::placeholder {
   background: $btn-hover-bg;
 }
 
-.evita-desbordamiento {
-  white-space: nowrap;
+.image-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.preview-img {
+  max-width: 100%;
+  max-height: 8rem;
+  border-radius: 0.3125rem;
+}
+
+.input-control input,
+.data-field span {
   overflow: hidden;
   text-overflow: ellipsis;
-  display: inline-block;
-  max-width: 200px;
+  white-space: nowrap;
+}
+.input-control input[type="file"] {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

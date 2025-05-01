@@ -1,76 +1,74 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingService } from '../../core/services/loading.service';
 import { ApiService } from '../../core/services/api.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { EmpresaData } from '../../core/models/EmpresaData.interface';
-import { ServicioData } from '../../core/models/ServicioData.interface';
 import { EventData } from '../../core/models/EventData.interface';
 import { EventStateService } from '../../core/services/event-state.service';
 import { SearchComponent } from '../../shared/component/search/search.component';
-import { EventComponent } from "../event/event.component";
+import { EventComponent } from '../event/event.component';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [NgxSpinnerModule, TranslateModule, RouterModule, CommonModule, SearchComponent, EventComponent],
+  imports: [
+    NgxSpinnerModule,
+    TranslateModule,
+    RouterModule,
+    CommonModule,
+    SearchComponent,
+    EventComponent
+  ],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandingPageComponent implements OnInit {
   empresas: EmpresaData[] = [];
-  originalEmpresas: EmpresaData[] = [];
+  private originalEmpresas: EmpresaData[] = [];
+
   eventos: EventData[] = [];
+  private originalEventos: EventData[] = [];
+
+  isFiltering = false;
 
   constructor(
-    private cdr: ChangeDetectorRef,
-    public loadingService: LoadingService,
-    private apiService: ApiService,
-    private router: Router,
-    private eventStateService: EventStateService
+    private readonly cdr: ChangeDetectorRef,
+    public readonly loadingService: LoadingService,
+    private readonly apiService: ApiService,
+    private readonly router: Router,
+    private readonly eventStateService: EventStateService
   ) {}
 
   ngOnInit(): void {
     this.loadingService.loading();
-    this.fetchData();
+    this.fetchEmpresas();
     this.eventStateService.loadEvents();
     this.eventStateService.events$.subscribe(events => {
-      this.eventos = events;
+      this.originalEventos = events;
+      this.eventos = [...this.originalEventos];
       this.cdr.detectChanges();
     });
   }
 
-  private fetchData(): void {
-    this.apiService.getEmpresas().subscribe({
-      next: (data: any[]) => {
-        this.originalEmpresas = data.map(item => item.empresa).slice(0, 6);
+  private fetchEmpresas(): void {
+    this.apiService.getLandingData().subscribe({
+      next: empresas => {
+        this.originalEmpresas = empresas.slice(0, 6);
         this.empresas = [...this.originalEmpresas];
-        this.empresas.forEach(empresa => this.fetchServicios(empresa));
         this.cdr.detectChanges();
       },
-      error: (error: HttpErrorResponse) => {
-        console.error('Error fetching companies:', error.message);
-      },
-      complete: () => {
-        setTimeout(() => this.loadingService.idle(), 0);
-      }
-    });
-  }
-
-  private fetchServicios(empresa: EmpresaData): void {
-    this.apiService.getServicios().subscribe({
-      next: (servicios: ServicioData[]) => {
-        empresa.servicios = servicios.filter(s => s.identificadorFiscal === empresa.identificadorFiscal);
-        this.cdr.detectChanges();
-      },
-      error: (error: HttpErrorResponse) => {
-        console.error(`Error fetching services for company ${empresa.nombre}:`, error.message);
-      }
+      error: err => console.error('Error fetching landing data:', err),
+      complete: () => setTimeout(() => this.loadingService.idle(), 0)
     });
   }
 
@@ -78,22 +76,30 @@ export class LandingPageComponent implements OnInit {
     this.router.navigate(['/show-services', empresa.identificadorFiscal]);
   }
 
-  trackByEmpresa(index: number, empresa: EmpresaData): number {
-    return empresa.idEmpresa;
+  trackByEmpresa(_: number, e: EmpresaData): number {
+    return e.idEmpresa;
   }
 
-  trackByServicio(index: number, servicio: ServicioData): number {
-    return servicio.idServicio;
+  trackByEvento(_: number, e: EventData): number {
+    return e.idEvento;
   }
 
   public filterEmpresas(searchTerm: string): void {
-    if (!searchTerm) {
-      this.empresas = [...this.originalEmpresas];
-    } else {
-      this.empresas = this.originalEmpresas.filter(empresa =>
-        empresa.nombre!.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
+    const term = searchTerm.trim().toLowerCase();
+    this.isFiltering = term.length > 0;
+
+    this.empresas = !term
+      ? [...this.originalEmpresas]
+      : this.originalEmpresas.filter(e =>
+          (e.nombre ?? e.actividad ?? '').toLowerCase().includes(term)
+        );
+
+    this.eventos = !term
+      ? [...this.originalEventos]
+      : this.originalEventos.filter(ev =>
+          ev.nombre.toLowerCase().includes(term)
+        );
+
     this.cdr.detectChanges();
   }
 }

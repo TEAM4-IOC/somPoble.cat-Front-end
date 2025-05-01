@@ -113,7 +113,8 @@
     "submit_button": "Enviar",
     "delete_button": "Eliminar empresa",
     "cif_error": "El camp és obligatori i ha de seguir el format correcte.",
-    "dni_error": "El camp és obligatori i ha de seguir el format correcte."
+    "dni_error": "El camp és obligatori i ha de seguir el format correcte.",
+    "imagen_label": "Imatge"
   },
   "showServices": {
     "title": "Serveis",
@@ -206,7 +207,8 @@
     "register": "Registra't",
     "no_services": "No hi ha serveis disponibles",
     "default_name": "Servei sense nom",
-    "not_available": "No disponible"
+    "not_available": "No disponible",
+    "no_companies" : "No hi ha resultats que coincideixin amb la teva cerca"
   },
   "add-services-form": {
     "nameForm": "Formulari d'alta de nou servei",

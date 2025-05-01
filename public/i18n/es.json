@@ -113,7 +113,8 @@
     "submit_button": "Enviar",
     "delete_button": "Eliminar empresa",
     "cif_error": "El campo es obligatorio y debe tener el formato correcto.",
-    "dni_error": "El campo es obligatorio y debe tener el formato correcto."
+    "dni_error": "El campo es obligatorio y debe tener el formato correcto.",
+    "imagen_label": "Imagen"
   },
   "showServices": {
     "title": "Servicios",
@@ -205,7 +206,8 @@
     "register": "Regístrate",
     "no_services": "No hay servicios disponibles",
     "default_name": "Servicio sin nombre",
-    "not_available": "No disponible"
+    "not_available": "No disponible",
+    "no_companies" : "No hay resultados que coincidan con tu búsqueda"
   },
   "add-services-form": {
     "nameForm": "Formulario alta de nuevo servicio",

@@ -5,6 +5,14 @@
   (click)="navigate()"
   (keyup.enter)="navigate()"
 >
+  <div class="event-image" *ngIf="event.imagenUrl">
+    <img
+      [src]="event.imagenUrl"
+      [alt]="event.nombre"
+      class="event-img"
+    />
+  </div>
+
   <div class="event-header">
     <h3 class="event-title">
       {{ event.nombre || ('event.default_name' | translate) }}

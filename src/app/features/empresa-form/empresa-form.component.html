@@ -7,7 +7,9 @@
           <h2>{{ 'empresa.select_role_title' | translate }}</h2>
           <div class="role-selection">
             <select #roleSelect (change)="selectRole(+roleSelect.value)">
-              <option value="" disabled selected>{{ 'empresa.select_role_placeholder' | translate }}</option>
+              <option value="" disabled selected>
+                {{ 'empresa.select_role_placeholder' | translate }}
+              </option>
               <option value="1">{{ 'empresa.option_empresari' | translate }}</option>
               <option value="2">{{ 'empresa.option_autonom' | translate }}</option>
             </select>
@@ -16,136 +18,164 @@
         @if (selectedRole) {
           @if (selectedRole === 1) {
             <h2>{{ 'empresa.register_title_empresari' | translate }}</h2>
-          } @else if (selectedRole === 2) {
+          } @else {
             <h2>{{ 'empresa.register_title_autonom' | translate }}</h2>
           }
           <form (ngSubmit)="onSubmit()" #empresaForm="ngForm">
             <div class="input-group">
               <label for="identificadorFiscal" class="form-label">
                 {{ selectedRole === 1
-                    ? ('empresa.identificadorFiscal_label_empresari' | translate)
-                    : ('empresa.identificadorFiscal_label_autonom' | translate)
-                }}
+                  ? ('empresa.identificadorFiscal_label_empresari' | translate)
+                  : ('empresa.identificadorFiscal_label_autonom' | translate) }}
               </label>
               <div class="input-control">
                 <input
-                  type="text"
                   id="identificadorFiscal"
-                  [(ngModel)]="identificadorFiscal"
                   name="identificadorFiscal"
-                  [placeholder]="selectedRole === 1
-                    ? ('empresa.identificadorFiscal_placeholder_empresari' | translate)
-                    : ('empresa.identificadorFiscal_placeholder_autonom' | translate)"
+                  type="text"
+                  [(ngModel)]="identificadorFiscal"
+                  [placeholder]="
+                    selectedRole === 1
+                      ? ('empresa.identificadorFiscal_placeholder_empresari' | translate)
+                      : ('empresa.identificadorFiscal_placeholder_autonom' | translate)
+                  "
                   required
-                  [pattern]="selectedRole === 1 ? '^[A-HJNP-SUVW]{1}[0-9]{7}[0-9A-J]$' : '^[0-9]{8}[A-Za-z]$'"
-                  #identificadorFiscalModel="ngModel"
+                  [pattern]="
+                    selectedRole === 1
+                      ? '^[A-HJNP-SUVW]{1}[0-9]{7}[0-9A-J]$'
+                      : '^[0-9]{8}[A-Za-z]$'
+                  "
+                  #identModelo="ngModel"
                 />
               </div>
-              @if (identificadorFiscalModel.invalid && (identificadorFiscalModel.touched || identificadorFiscalModel.dirty)) {
+              @if (identModelo.invalid && (identModelo.touched || identModelo.dirty)) {
                 <div class="error">
-                  {{ selectedRole === 1 ? ('empresa.cif_error' | translate) : ('empresa.dni_error' | translate) }}
+                  {{ selectedRole === 1
+                    ? ('empresa.cif_error' | translate)
+                    : ('empresa.dni_error' | translate) }}
                 </div>
               }
             </div>
+
             @if (selectedRole === 1) {
               <div class="input-group">
-                <label for="nombre" class="form-label">{{ 'empresa.nombre_label' | translate }}</label>
+                <label for="nombre" class="form-label">
+                  {{ 'empresa.nombre_label' | translate }}
+                </label>
                 <div class="input-control">
                   <input
-                    type="text"
                     id="nombre"
-                    [(ngModel)]="nombre"
                     name="nombre"
+                    type="text"
+                    [(ngModel)]="nombre"
                     placeholder="{{ 'empresa.nombre_placeholder' | translate }}"
                     required
                     minlength="2"
-                    #nombreModel="ngModel"
-                    class="evita-desbordamiento"
+                    #nomModelo="ngModel"
                   />
                 </div>
-                @if (nombreModel.invalid && (nombreModel.touched || nombreModel.dirty)) {
+                @if (nomModelo.invalid && (nomModelo.touched || nomModelo.dirty)) {
                   <div class="error">{{ 'empresa.nombre_error' | translate }}</div>
                 }
               </div>
             } @else {
               <div class="input-group">
-                <label for="actividad" class="form-label">{{ 'empresa.actividad_label' | translate }}</label>
+                <label for="actividad" class="form-label">
+                  {{ 'empresa.actividad_label' | translate }}
+                </label>
                 <div class="input-control">
                   <input
-                    type="text"
                     id="actividad"
-                    [(ngModel)]="actividad"
                     name="actividad"
+                    type="text"
+                    [(ngModel)]="actividad"
                     placeholder="{{ 'empresa.actividad_placeholder' | translate }}"
                     required
                     minlength="2"
-                    #actividadModel="ngModel"
-                    class="evita-desbordamiento"
+                    #actModelo="ngModel"
                   />
                 </div>
-                @if (actividadModel.invalid && (actividadModel.touched || actividadModel.dirty)) {
+                @if (actModelo.invalid && (actModelo.touched || actModelo.dirty)) {
                   <div class="error">{{ 'empresa.actividad_error' | translate }}</div>
                 }
               </div>
             }
+
             <div class="input-group">
-              <label for="direccion" class="form-label">{{ 'empresa.direccion_label' | translate }}</label>
+              <label for="direccion" class="form-label">
+                {{ 'empresa.direccion_label' | translate }}
+              </label>
               <div class="input-control">
                 <input
-                  type="text"
                   id="direccion"
-                  [(ngModel)]="direccion"
                   name="direccion"
+                  type="text"
+                  [(ngModel)]="direccion"
                   placeholder="{{ 'empresa.direccion_placeholder' | translate }}"
                   required
                   minlength="2"
-                  #direccionModel="ngModel"
-                  class="evita-desbordamiento"
+                  #dirModelo="ngModel"
                 />
               </div>
-              @if (direccionModel.invalid && (direccionModel.touched || direccionModel.dirty)) {
+              @if (dirModelo.invalid && (dirModelo.touched || dirModelo.dirty)) {
                 <div class="error">{{ 'empresa.direccion_error' | translate }}</div>
               }
             </div>
+
             <div class="input-group">
               <label for="email" class="form-label">{{ 'empresa.email_label' | translate }}</label>
               <div class="input-control">
                 <input
-                  type="email"
                   id="email"
-                  [(ngModel)]="email"
                   name="email"
+                  type="email"
+                  [(ngModel)]="email"
                   placeholder="{{ 'empresa.email_placeholder' | translate }}"
                   required
                   email
-                  #emailModel="ngModel"
-                  class="evita-desbordamiento"
+                  #emailModelo="ngModel"
                 />
               </div>
-              @if (emailModel.invalid && (emailModel.touched || emailModel.dirty)) {
+              @if (emailModelo.invalid && (emailModelo.touched || emailModelo.dirty)) {
                 <div class="error">{{ 'empresa.email_error' | translate }}</div>
               }
             </div>
+
             <div class="input-group">
               <label for="telefono" class="form-label">{{ 'empresa.telefono_label' | translate }}</label>
               <div class="input-control">
                 <input
-                  type="text"
                   id="telefono"
-                  [(ngModel)]="telefono"
                   name="telefono"
+                  type="text"
+                  [(ngModel)]="telefono"
                   placeholder="{{ 'empresa.telefono_placeholder' | translate }}"
                   required
                   pattern="[0-9]{9}"
-                  #telefonoModel="ngModel"
-                  class="evita-desbordamiento"
+                  #telModelo="ngModel"
                 />
               </div>
-              @if (telefonoModel.invalid && (telefonoModel.touched || telefonoModel.dirty)) {
+              @if (telModelo.invalid && (telModelo.touched || telModelo.dirty)) {
                 <div class="error">{{ 'empresa.telefono_error' | translate }}</div>
               }
             </div>
-            <button type="submit" class="auth-btn" [disabled]="empresaForm.invalid">
+
+            <div class="input-group">
+              <label for="imagen" class="form-label">{{ 'empresa.imagen_label' | translate }}</label>
+              <div class="input-control">
+                <input
+                  id="imagen"
+                  type="file"
+                  (change)="onFileSelected($event)"
+                  accept="image/jpeg, image/png"
+                />
+              </div>
+              @if (imageError) {
+                <div class="error">{{ imageError }}</div>
+              }
+            </div>
+
+            <button type="submit" class="auth-btn" [disabled]="empresaForm.invalid || imageError">
               {{ 'empresa.submit_button' | translate }}
             </button>
             @if (formError) {
@@ -154,21 +184,21 @@
           </form>
         }
       } @else {
-        @if (emp[0].tipo === 1) {
-          <h2>{{ 'empresa.register_title_empresari' | translate }}</h2>
-        } @else {
-          <h2>{{ 'empresa.register_title_autonom' | translate }}</h2>
-        }
+        <h2>
+          {{ emp[0].tipo === 1
+            ? ('empresa.register_title_empresari' | translate)
+            : ('empresa.register_title_autonom' | translate) }}
+        </h2>
         <div class="read-only-data">
           <div class="data-field">
             <label>
               {{ emp[0].tipo === 1
-                  ? ('empresa.identificadorFiscal_label_empresari' | translate)
-                  : ('empresa.identificadorFiscal_label_autonom' | translate)
-              }}
+                ? ('empresa.identificadorFiscal_label_empresari' | translate)
+                : ('empresa.identificadorFiscal_label_autonom' | translate) }}
             </label>
             <span>{{ emp[0].identificadorFiscal }}</span>
           </div>
+
           @if (emp[0].tipo === 1) {
             <div class="data-field">
               <label>{{ 'empresa.nombre_label' | translate }}</label>
@@ -178,16 +208,9 @@
                   <i class="fas fa-edit"></i>
                 </button>
               } @else {
-                <input type="text" [(ngModel)]="tempValue" required minlength="2" #nombreEdit="ngModel" />
-                <button class="icon-btn" (click)="confirmEditing('nombre')">
-                  <i class="fas fa-check"></i>
-                </button>
-                <button class="icon-btn" (click)="cancelEditing()">
-                  <i class="fas fa-times"></i>
-                </button>
-                @if (nombreEdit.invalid && (nombreEdit.touched || nombreEdit.dirty)) {
-                  <div class="error">{{ 'empresa.nombre_error' | translate }}</div>
-                }
+                <input type="text" [(ngModel)]="tempValue" required minlength="2" #edNombre="ngModel" />
+                <button class="icon-btn" (click)="confirmEditing('nombre')"><i class="fas fa-check"></i></button>
+                <button class="icon-btn" (click)="cancelEditing()"><i class="fas fa-times"></i></button>
               }
             </div>
           } @else {
@@ -199,19 +222,13 @@
                   <i class="fas fa-edit"></i>
                 </button>
               } @else {
-                <input type="text" [(ngModel)]="tempValue" required minlength="2" #actividadEdit="ngModel" />
-                <button class="icon-btn" (click)="confirmEditing('actividad')">
-                  <i class="fas fa-check"></i>
-                </button>
-                <button class="icon-btn" (click)="cancelEditing()">
-                  <i class="fas fa-times"></i>
-                </button>
-                @if (actividadEdit.invalid && (actividadEdit.touched || actividadEdit.dirty)) {
-                  <div class="error">{{ 'empresa.actividad_error' | translate }}</div>
-                }
+                <input type="text" [(ngModel)]="tempValue" required minlength="2" #edActividad="ngModel" />
+                <button class="icon-btn" (click)="confirmEditing('actividad')"><i class="fas fa-check"></i></button>
+                <button class="icon-btn" (click)="cancelEditing()"><i class="fas fa-times"></i></button>
               }
             </div>
           }
+
           <div class="data-field">
             <label>{{ 'empresa.direccion_label' | translate }}</label>
             @if (!editingField('direccion')) {
@@ -220,60 +237,63 @@
                 <i class="fas fa-edit"></i>
               </button>
             } @else {
-              <input type="text" [(ngModel)]="tempValue" required minlength="2" #direccionEdit="ngModel" />
-              <button class="icon-btn" (click)="confirmEditing('direccion')">
-                <i class="fas fa-check"></i>
-              </button>
-              <button class="icon-btn" (click)="cancelEditing()">
-                <i class="fas fa-times"></i>
-              </button>
-              @if (direccionEdit.invalid && (direccionEdit.touched || direccionEdit.dirty)) {
-                <div class="error">{{ 'empresa.direccion_error' | translate }}</div>
-              }
+              <input type="text" [(ngModel)]="tempValue" required minlength="2" #edDireccion="ngModel" />
+              <button class="icon-btn" (click)="confirmEditing('direccion')"><i class="fas fa-check"></i></button>
+              <button class="icon-btn" (click)="cancelEditing()"><i class="fas fa-times"></i></button>
             }
           </div>
+
           <div class="data-field">
             <label>{{ 'empresa.email_label' | translate }}</label>
             @if (!editingField('email')) {
-              <span class="evita-desbordamiento">{{ emp[0].email }}</span>
-              <button class="icon-btn" (click)="startEditing('email', emp[0].email)">
-                <i class="fas fa-edit"></i>
-              </button>
+              <span>{{ emp[0].email }}</span>
+              <button class="icon-btn" (click)="startEditing('email', emp[0].email)"><i class="fas fa-edit"></i></button>
             } @else {
-              <input type="email" [(ngModel)]="tempValue" required email #emailEdit="ngModel" />
-              <button class="icon-btn" (click)="confirmEditing('email')">
-                <i class="fas fa-check"></i>
-              </button>
-              <button class="icon-btn" (click)="cancelEditing()">
-                <i class="fas fa-times"></i>
-              </button>
-              @if (emailEdit.invalid && (emailEdit.touched || emailEdit.dirty)) {
-                <div class="error">{{ 'empresa.email_error' | translate }}</div>
-              }
+              <input type="email" [(ngModel)]="tempValue" required email #edEmail="ngModel" />
+              <button class="icon-btn" (click)="confirmEditing('email')"><i class="fas fa-check"></i></button>
+              <button class="icon-btn" (click)="cancelEditing()"><i class="fas fa-times"></i></button>
             }
           </div>
+
           <div class="data-field">
             <label>{{ 'empresa.telefono_label' | translate }}</label>
             @if (!editingField('telefono')) {
-              <span class="evita-desbordamiento">{{ emp[0].telefono }}</span>
-              <button class="icon-btn" (click)="startEditing('telefono', emp[0].telefono)">
+              <span>{{ emp[0].telefono }}</span>
+              <button class="icon-btn" (click)="startEditing('telefono', emp[0].telefono)"><i class="fas fa-edit"></i></button>
+            } @else {
+              <input type="text" [(ngModel)]="tempValue" required pattern="[0-9]{9}" #edTelefono="ngModel" />
+              <button class="icon-btn" (click)="confirmEditing('telefono')"><i class="fas fa-check"></i></button>
+              <button class="icon-btn" (click)="cancelEditing()"><i class="fas fa-times"></i></button>
+            }
+          </div>
+
+          <div class="data-field image-field">
+            <label>{{ 'empresa.imagen_label' | translate }}</label>
+            @if (!editingField('imagen')) {
+              <div class="image-box">
+                <img *ngIf="emp[0].imagenUrl" [src]="emp[0].imagenUrl" class="preview-img" />
+              </div>
+              <button class="icon-btn" (click)="startEditing('imagen', emp[0].imagenUrl || '')">
                 <i class="fas fa-edit"></i>
               </button>
             } @else {
-              <input type="text" [(ngModel)]="tempValue" required pattern="[0-9]{9}" #telefonoEdit="ngModel" />
-              <button class="icon-btn" (click)="confirmEditing('telefono')">
-                <i class="fas fa-check"></i>
-              </button>
-              <button class="icon-btn" (click)="cancelEditing()">
-                <i class="fas fa-times"></i>
-              </button>
-              @if (telefonoEdit.invalid && (telefonoEdit.touched || telefonoEdit.dirty)) {
-                <div class="error">{{ 'empresa.telefono_error' | translate }}</div>
+              <input type="file" (change)="onFileSelected($event)" accept="image/jpeg, image/png" />
+              @if (imageError) {
+                <div class="error">{{ imageError }}</div>
               }
+              <div class="image-box">
+                <img *ngIf="imagePreviewUrl; else originalImg" [src]="imagePreviewUrl" class="preview-img" />
+                <ng-template #originalImg>
+                  <img *ngIf="emp[0].imagenUrl" [src]="emp[0].imagenUrl" class="preview-img" />
+                </ng-template>
+              </div>
+              <button class="icon-btn" (click)="confirmEditing('imagen')"><i class="fas fa-check"></i></button>
+              <button class="icon-btn" (click)="cancelEditing()"><i class="fas fa-times"></i></button>
             }
           </div>
+
           <button class="delete-btn" (click)="deleteEnterprise()">
-            <i class="fas fa-trash"></i> {{ 'empresa.delete_button' | translate }}
+            <i class="fas fa-trash"></i>{{ 'empresa.delete_button' | translate }}
           </button>
         </div>
       }
