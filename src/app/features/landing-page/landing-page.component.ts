@@ -35,7 +35,10 @@ import { EventComponent } from '../event/event.component';
 export class LandingPageComponent implements OnInit {
   empresas: EmpresaData[] = [];
   private originalEmpresas: EmpresaData[] = [];
+
   eventos: EventData[] = [];
+  private originalEventos: EventData[] = [];
+
   isFiltering = false;
 
   constructor(
@@ -48,27 +51,24 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadingService.loading();
-    this.fetchData();
+    this.fetchEmpresas();
     this.eventStateService.loadEvents();
     this.eventStateService.events$.subscribe(events => {
-      this.eventos = events;
+      this.originalEventos = events;
+      this.eventos = [...this.originalEventos];
       this.cdr.detectChanges();
     });
   }
 
-  private fetchData(): void {
+  private fetchEmpresas(): void {
     this.apiService.getLandingData().subscribe({
       next: empresas => {
         this.originalEmpresas = empresas.slice(0, 6);
         this.empresas = [...this.originalEmpresas];
         this.cdr.detectChanges();
       },
-      error: err => {
-        console.error('Error fetching landing data:', err);
-      },
-      complete: () => {
-        setTimeout(() => this.loadingService.idle(), 0);
-      }
+      error: err => console.error('Error fetching landing data:', err),
+      complete: () => setTimeout(() => this.loadingService.idle(), 0)
     });
   }
 
@@ -80,20 +80,26 @@ export class LandingPageComponent implements OnInit {
     return e.idEmpresa;
   }
 
-  trackByServicio(_: number, s: any): number {
-    return s.idServicio;
+  trackByEvento(_: number, e: EventData): number {
+    return e.idEvento;
   }
 
   public filterEmpresas(searchTerm: string): void {
-    this.isFiltering = !!searchTerm;
-    if (!searchTerm) {
-      this.empresas = [...this.originalEmpresas];
-    } else {
-      const term = searchTerm.toLowerCase();
-      this.empresas = this.originalEmpresas.filter(e =>
-        (e.nombre ?? e.actividad ?? '').toLowerCase().includes(term)
-      );
-    }
+    const term = searchTerm.trim().toLowerCase();
+    this.isFiltering = term.length > 0;
+
+    this.empresas = !term
+      ? [...this.originalEmpresas]
+      : this.originalEmpresas.filter(e =>
+          (e.nombre ?? e.actividad ?? '').toLowerCase().includes(term)
+        );
+
+    this.eventos = !term
+      ? [...this.originalEventos]
+      : this.originalEventos.filter(ev =>
+          ev.nombre.toLowerCase().includes(term)
+        );
+
     this.cdr.detectChanges();
   }
 }

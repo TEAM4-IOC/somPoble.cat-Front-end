@@ -3,75 +3,88 @@
   <div class="search-wrapper">
     <app-search (searchChanged)="filterEmpresas($event)"></app-search>
   </div>
+
   <div class="slider-wrapper" [class.paused]="isFiltering">
     <div class="slider" [class.paused]="isFiltering">
       @if (empresas; as companies) {
-        @for (empresa of companies; track empresa.idEmpresa) {
-          <div class="slider-item" (click)="goToCompanyServices(empresa)">
-            <h3 class="text-center mb-3">
-              {{ empresa.nombre || empresa.actividad || 'Empresa sin nombre' }}
-            </h3>
-            <span class="separator"></span>
-            <div class="d-flex">
-              <div class="img-container">
-                <img
-                  *ngIf="empresa.imagenUrl; else defaultImg"
-                  [src]="empresa.imagenUrl"
-                  class="shop-img rounded-4"
-                  alt="Imagen de la empresa"
-                />
-                <ng-template #defaultImg>
-                  <img
-                    src="../images/tienda1.png"
-                    class="shop-img rounded-4"
-                    alt="Imagen por defecto"
-                  />
-                </ng-template>
-              </div>
-              <div class="w-100 services-section">
-                <h5>{{ 'landing.services' | translate }}</h5>
-                <ul>
-                  @if (empresa.servicios; as servicios) {
-                    @if (servicios.length > 0) {
-                      @for (servicio of servicios; track servicio.idServicio) {
-                        <li>{{ servicio.nombre || ('landing.default_name' | translate) }}</li>
-                      }
-                    } @else {
-                      <li>{{ 'landing.no_services' | translate }}</li>
-                    }
+        @if (companies.length > 0) {
+          @for (empresa of companies; track empresa.idEmpresa) {
+            <div class="slider-item" (click)="goToCompanyServices(empresa)">
+              <h3 class="text-center mb-3">
+                {{ empresa.nombre || empresa.actividad || 'Empresa sin nombre' }}
+              </h3>
+              <span class="separator"></span>
+              <div class="d-flex">
+                <div class="img-container">
+                  @if (empresa.imagenUrl) {
+                    <img
+                      [src]="empresa.imagenUrl"
+                      class="shop-img rounded-4"
+                      alt="Imagen de la empresa"
+                      loading="lazy"
+                    />
+                  } @else {
+                    <img
+                      src="../images/tienda1.png"
+                      class="shop-img rounded-4"
+                      alt="Imagen por defecto"
+                      loading="lazy"
+                    />
                   }
-                </ul>
+                </div>
+                <div class="w-100 services-section">
+                  <h5>{{ 'landing.services' | translate }}</h5>
+                  <ul>
+                    @if (empresa.servicios; as servicios) {
+                      @if (servicios.length > 0) {
+                        @for (servicio of servicios; track servicio.idServicio) {
+                          <li>{{ servicio.nombre }}</li>
+                        }
+                      } @else {
+                        <li>{{ 'landing.no_services' | translate }}</li>
+                      }
+                    }
+                  </ul>
+                </div>
+              </div>
+              <div class="contact">
+                <p>
+                  <strong>{{ 'landing.adress' | translate }}:</strong>
+                  {{ empresa.direccion }}
+                </p>
+                <p>
+                  <strong>{{ 'landing.phone' | translate }}:</strong>
+                  {{ empresa.telefono }}
+                </p>
+                <p>
+                  <strong>{{ 'landing.mail' | translate }}:</strong>
+                  {{ empresa.email }}
+                </p>
               </div>
             </div>
-            <div class="contact">
-              <p>
-                <strong>{{ 'landing.adress' | translate }}:</strong>
-                {{ empresa.direccion || 'No disponible' }}
-              </p>
-              <p>
-                <strong>{{ 'landing.phone' | translate }}:</strong>
-                {{ empresa.telefono || 'No disponible' }}
-              </p>
-              <p>
-                <strong>{{ 'landing.mail' | translate }}:</strong>
-                {{ empresa.email || 'No disponible' }}
-              </p>
-            </div>
-          </div>
+          }
+        } @else {
+          <p>{{ 'landing.no_companies' | translate }}</p>
         }
       }
     </div>
   </div>
+
   <div class="d-flex col-12 justify-content-center register-container">
-    <button type="submit" class="register-btn" [routerLink]="'/register'">
+    <button class="register-btn" [routerLink]="'/register'">
       {{ 'landing.register' | translate }}
     </button>
   </div>
-  <div class="slider-wrapper events-slider">
-    <div class="slider">
+
+  <div class="slider-wrapper events-slider" [class.paused]="isFiltering">
+    <div class="slider" [class.paused]="isFiltering">
       @if (eventos; as events) {
-        @for (evento of events; track evento.idEvento) {
-          <app-event [event]="evento"></app-event>
+        @if (events.length > 0) {
+          @for (evento of events; track evento.idEvento) {
+            <app-event [event]="evento"></app-event>
+          }
+        } @else {
+          <p>{{ 'landing.no_companies' | translate }}</p>
         }
       }
     </div>

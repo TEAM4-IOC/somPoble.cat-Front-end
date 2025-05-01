@@ -206,7 +206,8 @@
     "register": "Registra't",
     "no_services": "No hi ha serveis disponibles",
     "default_name": "Servei sense nom",
-    "not_available": "No disponible"
+    "not_available": "No disponible",
+    "no_companies" : "No hi ha resultats que coincideixin amb la teva cerca"
   },
   "add-services-form": {
     "nameForm": "Formulari d'alta de nou servei",
