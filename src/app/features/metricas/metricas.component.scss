@@ -61,3 +61,69 @@ canvas {
   width:100% !important; height:100% !important;
   background:transparent !important;
 }
+
+/* Tablets i phablets */
+@media only screen and (min-width: 576px) and (max-width: 767px){
+  .metrics-form {
+    display: flex;
+    flex-direction: column; 
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .date-input {
+    max-width: 200px;
+    padding: 0.5rem; 
+    font-size: 1rem;
+  }
+
+  .search-button {
+    max-width: 200px;
+    padding: 0.7rem; 
+    font-size: 1rem; 
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer; 
+  }
+}
+
+/* Telèfons */
+@media only screen and (max-width: 575px) {
+  .metrics-form {
+    display: flex;
+    flex-direction: column; 
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .date-input {
+    max-width: 200px;
+    padding: 0.5rem; 
+    font-size: 1rem;
+  }
+
+  .search-button {
+    max-width: 200px;
+    padding: 0.7rem; 
+    font-size: 1rem; 
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer; 
+  }
+  
+  .metrics-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    align-items: center;
+  }
+
+  .metrics-cards .card {
+    width: 100%; 
+    padding: 1rem; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    border-radius: 5px; 
+    text-align: center; 
+  }
+}

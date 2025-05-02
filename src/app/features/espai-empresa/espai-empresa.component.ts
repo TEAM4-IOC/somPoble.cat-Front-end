@@ -20,7 +20,8 @@ export class EspaiEmpresaComponent {
     { id: 'create_service', label: 'menu.create_service', route: '/services-form' },
     { id: 'show_my_services', label: 'menu.show_my_services', route: '/horaris-empresa', queryParams: { view: 'cards' } },
     { id: 'show_my_services', label: 'horaris-empresa.services-calendar', route: '/horaris-empresa', queryParams: { view: 'monthly' } },
-    { id: 'show_reservations', label: 'menu.show_reservations', route: '/horaris-empresa', queryParams: { view: 'table' } }
+    { id: 'show_reservations', label: 'menu.show_reservations', route: '/horaris-empresa', queryParams: { view: 'table' } },
+    { id: 'metricas', label: 'menu.metrics', route: '/metricas' },
   ]);
 
   goTo(route?: string, queryParams?: { [key: string]: any }): void {

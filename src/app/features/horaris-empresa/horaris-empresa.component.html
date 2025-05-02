@@ -1,18 +1,18 @@
 <div class="main-content">
-  <div class="d-flex justify-content-center mb-3 d-none">
-    <button class="auth-btn me-2" [ngClass]="{ 'btn-primary': isMonthlyView }" (click)="setView('monthly')"
+  <div class="d-flex justify-content-center mb-3" [ngClass]="{ 'd-none': !isDailyView }">
+    <button class="auth-btn me-2 daily-btn" [ngClass]="{ 'btn-primary': isMonthlyView }" (click)="setView('monthly')"
       [disabled]="isMonthlyView">
       {{ 'horaris-empresa.vista-mensual' | translate }}
     </button>
-    <button class="auth-btn me-2" [ngClass]="{ 'btn-primary': isDailyView }" (click)="setView('daily')"
+    <button class="auth-btn me-2 d-none " [ngClass]="{ 'btn-primary': isDailyView }" (click)="setView('daily')"
       [disabled]="isDailyView">
       {{ 'horaris-empresa.daily' | translate }}
     </button>
-    <button class="auth-btn" [ngClass]="{ 'btn-primary': isTableView }" (click)="setView('table')"
+    <button class="auth-btn d-none" [ngClass]="{ 'btn-primary': isTableView }" (click)="setView('table')"
       [disabled]="isTableView">
       {{ 'horaris-empresa.reservations' | translate }}
     </button>
-    <button class="auth-btn" [ngClass]="{ 'btn-primary': isCardsView }" (click)="setView('cards')"
+    <button class="auth-btn d-none" [ngClass]="{ 'btn-primary': isCardsView }" (click)="setView('cards')"
       [disabled]="isCardsView">
       {{ 'horaris-empresa.cardsView' | translate }}
     </button>

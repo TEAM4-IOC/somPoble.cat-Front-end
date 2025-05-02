@@ -97,8 +97,10 @@ export class HeaderComponent {
         { id: 'edit_title', label: 'showServices.title', isTitle: true },
         { id: 'create_service', label: 'menu.create_service', route: '/services-form' },
         { id: 'show_my_services', label: 'menu.show_my_services', route: '/horaris-empresa', queryParams: { view: 'cards' } },
+        { id: 'show_my_services', label: 'horaris-empresa.services-calendar', route: '/horaris-empresa', queryParams: { view: 'monthly' } },
         { id: 'edit_title', label: 'menu.bookings', isTitle: true },
         { id: 'bookings_table', label: 'menu.bookings', route: '/horaris-empresa', queryParams: { view: 'table' } },
+        { id: 'show_metricas', label: 'menu.metrics', isTitle: true },
         { id: 'metrics', label: 'menu.metrics', route: '/metricas' }
       ];
     }
