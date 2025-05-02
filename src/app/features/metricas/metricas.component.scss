@@ -1,0 +1,63 @@
+@import '../../../colors.scss';
+
+:host { display: block; }
+
+.metrics-fullscreen {
+  display:flex; align-items:center; justify-content:center;
+  min-height:calc(100vh - 60px); background:$bg-gradient;
+}
+
+.metrics-inner {
+  text-align:center; width:100%; max-width:1000px; padding:1rem;
+}
+
+.metrics-form {
+  display:inline-flex; gap:0.5rem; margin-bottom:1rem;
+}
+
+.date-input {
+  padding:0.4rem; background:$input-bg; color:#000; font-weight:bold;
+  border:1px solid $btn-border; border-radius:0.25rem; font-size:0.875rem;
+  &::-webkit-calendar-picker-indicator,
+  &::-moz-calendar-picker-indicator { display:none; }
+}
+
+.search-button {
+  padding:0.4rem 0.8rem; background:transparent; border:1px solid $btn-border;
+  color:#000; font-weight:bold; font-size:0.875rem; border-radius:0.25rem;
+  cursor:pointer; transition:background .2s;
+  &:hover:not(:disabled){ background:$btn-hover-bg; }
+  &:disabled{ opacity:.5; cursor:not-allowed; }
+}
+
+.company-name {
+  font-size:2rem; margin:.5rem 0 1rem; color:#000; font-weight:bold;
+}
+
+.metrics-cards {
+  display:flex; gap:1rem; justify-content:center; margin-bottom:2rem;
+}
+
+.card {
+  flex:1; max-width:240px; background:$container-bg; padding:1rem;
+  border-radius:0.75rem; box-shadow:0 4px 8px rgba(0,0,0,.25);
+  h4{ font-size:1rem; margin-bottom:.5rem; color:#000; font-weight:bold; }
+  p{ font-size:1.75rem; margin:0; color:#000; font-weight:bold; }
+}
+
+.section-title {
+  font-size:1.5rem; margin:2rem 0 1rem; color:#000; font-weight:bold;
+}
+
+.charts {
+  display:flex; gap:2rem; justify-content:center;
+}
+
+.chart {
+  flex:1; max-width:480px; height:600px; position:relative;
+}
+
+canvas {
+  width:100% !important; height:100% !important;
+  background:transparent !important;
+}

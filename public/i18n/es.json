@@ -58,7 +58,9 @@
     "edit_profile": "Editar perfil de usuario",
     "edit_bussiness_profile": "Editar perfil profesional",
     "return-btn": "Volver a inicio",
-    "autonomo": "Autónomo"
+    "autonomo": "Autónomo",
+    "metrics": "Métricas"
+
   },
   "espai_client": {
     "edit": "Editar perfil",
@@ -173,6 +175,18 @@
     "date": "Fecha",
     "hour": "Hora",
     "service": "Servicio"
+  },
+  "metricas": {
+    "fechaInicio": "Fecha inicio",
+    "fechaFin": "Fecha fin",
+    "buscar": "Buscar",
+    "nombreEmpresa": "Empresa",
+    "reservas": "RESERVAS TOTALES",
+    "ingresos": "INGRESOS TOTALES",
+    "clientesUnicos": "CLIENTES ÚNICOS",
+    "resumenMensual": "RESUMEN MENSUAL",
+    "serieReservas": "Reservas",
+    "serieIngresos": "Ingresos"
   },
   "editar-reserva": {
     "title": "Modificación de reserva",

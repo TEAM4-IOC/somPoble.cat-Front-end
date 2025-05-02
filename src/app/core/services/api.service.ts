@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, switchMap, map } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { EmpresaData } from '../models/EmpresaData.interface';
@@ -7,6 +7,7 @@ import { CreateEmpresaPayload } from '../models/create-empresa-payload.interface
 import { ServicioData } from '../models/ServicioData.interface';
 import { CreateServicePayload } from '../models/create-service-payload.interface';
 import { EventData } from '../models/EventData.interface';
+import { Metrics } from '../models/metrics.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class ApiService {
   private empresaUrl = `${environment.authUrl}/empresas`;
   private servicioUrl = `${environment.authUrl}/servicios`;
   private landingUrl = `${environment.authUrl}/landing`;
+  private metricsUrl = `${environment.authUrl}/metricas`;
 
   constructor(private http: HttpClient) { }
   getLandingData(): Observable<EmpresaData[]> {
@@ -190,5 +192,17 @@ export class ApiService {
 
   getReservaById(idReserva: number): Observable<any> {
     return this.http.get<any>(`${environment.authUrl}/reservas/${idReserva}`);
+  }
+  public getMetrics(
+    empresaIdFiscal: string,
+    fechaInicio: string,
+    fechaFin: string
+  ): Observable<Metrics> {
+    const params = new HttpParams()
+      .set('empresaIdFiscal', empresaIdFiscal)
+      .set('fechaInicio', fechaInicio)
+      .set('fechaFin', fechaFin);
+
+    return this.http.get<Metrics>(this.metricsUrl, { params });
   }
 }

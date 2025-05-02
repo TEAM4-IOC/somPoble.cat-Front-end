@@ -121,6 +121,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'metricas',
+    canActivate: [authGuard, empresaGuard],
+    loadComponent: () =>
+      import('./features/metricas/metricas.component').then(
+        (m) => m.MetricasComponent,
+      ),
+  },
+  {
     path: 'login',
     loadComponent: () =>
       import('./features/auth/login/login.component').then(
