@@ -58,7 +58,8 @@
     "edit_profile": "Editar perfil d'usuari",
     "edit_bussiness_profile": "Editar perfil professional",
     "return-btn": "Tornar a l'inici",
-    "autonomo": "Autònom"
+    "autonomo": "Autònom",
+    "metrics": "Mètriques"
   },
   "espai_client": {
     "edit": "Editar perfil",
@@ -185,6 +186,18 @@
     "hourSelect": "Selecciona una hora disponible",
     "save": "Modificar reserva"
   },
+  "metricas": {
+    "fechaInicio": "Data inici",
+    "fechaFin": "Data fi",
+    "buscar": "Buscar",
+    "nombreEmpresa": "Empresa",
+    "reservas": "RESERVES TOTALS",
+    "ingresos": "INGRESSOS TOTALS",
+    "clientesUnicos": "CLIENTS ÚNICS",
+    "resumenMensual": "RESUM MENSUAL",
+    "serieReservas": "Reserves",
+    "serieIngresos": "Ingressos"
+  },
   "horaris-empresa": {
     "vista-mensual": "Serveis - Vista mensual",
     "daily": "Detall diari",
@@ -197,11 +210,10 @@
     "dniClient": "DNI Client",
     "cancel": "Cancel·lar",
     "serviceName": "Servei",
-    "noReservations" : "No hi ha reserves",
+    "noReservations": "No hi ha reserves",
     "listByService": "Llistat de reserves per servei",
     "noServices": "Sense serveis disponibles",
     "services-calendar": "Calendari de serveis"
-
   },
   "landing": {
     "services": "Serveis",
@@ -212,7 +224,7 @@
     "no_services": "No hi ha serveis disponibles",
     "default_name": "Servei sense nom",
     "not_available": "No disponible",
-    "no_companies" : "No hi ha resultats que coincideixin amb la teva cerca"
+    "no_companies": "No hi ha resultats que coincideixin amb la teva cerca"
   },
   "add-services-form": {
     "nameForm": "Formulari d'alta de nou servei",

@@ -1,0 +1,64 @@
+<div class="metrics-fullscreen">
+  <div class="metrics-inner">
+    <form [formGroup]="form" (ngSubmit)="onBuscar()" class="metrics-form">
+      <input
+        type="date"
+        formControlName="fechaInicio"
+        class="date-input"
+        title="{{ 'metricas.fechaInicio' | translate }}"
+      />
+      <input
+        type="date"
+        formControlName="fechaFin"
+        class="date-input"
+        title="{{ 'metricas.fechaFin' | translate }}"
+      />
+      <button
+        type="submit"
+        [disabled]="!form.valid"
+        class="search-button"
+      >
+        {{ 'metricas.buscar' | translate }}
+      </button>
+    </form>
+
+    @if (metrics$ | async; as metrics) {
+      <h2 class="company-name">{{ metrics.nombreEmpresa }}</h2>
+
+      <div class="metrics-cards">
+        <div class="card">
+          <h4>{{ 'metricas.reservas' | translate }}</h4>
+          <p>{{ metrics.totalReservas }}</p>
+        </div>
+        <div class="card">
+          <h4>{{ 'metricas.ingresos' | translate }}</h4>
+          <p>{{ metrics.totalIngresos | currency:'EUR':'symbol' }}</p>
+        </div>
+        <div class="card">
+          <h4>{{ 'metricas.clientesUnicos' | translate }}</h4>
+          <p>{{ metrics.clientesUnicos }}</p>
+        </div>
+      </div>
+
+      <h3 class="section-title">{{ 'metricas.resumenMensual' | translate }}</h3>
+      <div class="charts">
+        <div class="chart">
+          <canvas
+            baseChart
+            [data]="(reservationsChartData$ | async)!"
+            [options]="chartOptions"
+            chartType="bar"
+          ></canvas>
+        </div>
+        <div class="chart">
+          <canvas
+            baseChart
+            [data]="(ingresosChartData$ | async)!"
+            [options]="chartOptions"
+            chartType="bar"
+          ></canvas>
+        </div>
+      </div>
+    }
+  </div>
+</div>

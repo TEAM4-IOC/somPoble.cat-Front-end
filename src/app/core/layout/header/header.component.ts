@@ -70,9 +70,11 @@ export class HeaderComponent {
             { id: 'show_my_services', label: 'horaris-empresa.services-calendar', route: '/horaris-empresa', queryParams: { view: 'monthly' } }
           ]
         },
-        { id: 'bookings_table', label: 'menu.bookings', route: '/horaris-empresa', queryParams: { view: 'table' } }
+        { id: 'bookings_table', label: 'menu.bookings', route: '/horaris-empresa', queryParams: { view: 'table' } },
+        { id: 'metrics', label: 'menu.metrics', route: '/metricas' }
       ];
     }
+
     return [];
   });
 
@@ -96,9 +98,11 @@ export class HeaderComponent {
         { id: 'create_service', label: 'menu.create_service', route: '/services-form' },
         { id: 'show_my_services', label: 'menu.show_my_services', route: '/horaris-empresa', queryParams: { view: 'cards' } },
         { id: 'edit_title', label: 'menu.bookings', isTitle: true },
-        { id: 'bookings_table', label: 'menu.bookings', route: '/horaris-empresa', queryParams: { view: 'table' } }
+        { id: 'bookings_table', label: 'menu.bookings', route: '/horaris-empresa', queryParams: { view: 'table' } },
+        { id: 'metrics', label: 'menu.metrics', route: '/metricas' }
       ];
     }
+
     return [];
   });
 

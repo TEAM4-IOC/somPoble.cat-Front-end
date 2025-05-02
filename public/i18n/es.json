@@ -58,7 +58,9 @@
     "edit_profile": "Editar perfil de usuario",
     "edit_bussiness_profile": "Editar perfil profesional",
     "return-btn": "Volver a inicio",
-    "autonomo": "Autónomo"
+    "autonomo": "Autónomo",
+    "metrics": "Métricas"
+
   },
   "espai_client": {
     "edit": "Editar perfil",
@@ -178,6 +180,18 @@
     "loadError": "No se han podido cargar las reservas.",
     "noReservations": "No tienes reservas disponibles."
 
+  },
+  "metricas": {
+    "fechaInicio": "Fecha inicio",
+    "fechaFin": "Fecha fin",
+    "buscar": "Buscar",
+    "nombreEmpresa": "Empresa",
+    "reservas": "RESERVAS TOTALES",
+    "ingresos": "INGRESOS TOTALES",
+    "clientesUnicos": "CLIENTES ÚNICOS",
+    "resumenMensual": "RESUMEN MENSUAL",
+    "serieReservas": "Reservas",
+    "serieIngresos": "Ingresos"
   },
   "editar-reserva": {
     "title": "Modificación de reserva",
