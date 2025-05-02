@@ -7,6 +7,7 @@
     }
 
     @if (reservas.length > 0) {
+      <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
@@ -43,8 +44,9 @@
           }
         </tbody>
       </table>
+    </div>
     } @else if (!errorMessage && !loading) {
-      <p class="text-center">No tens reserves disponibles.</p>
+      <p class="text-center">{{ 'gestor-reserves.noReservations' | translate }}</p>
     }
   </div>
 </div>

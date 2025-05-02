@@ -39,10 +39,8 @@ export class EnterpriseStateService {
   }
 
   loadEnterpriseFromEmpresariosByUserDni(userDni: string): void {
-    console.log('[EnterpriseStateService] loadEnterpriseFromEmpresariosByUserDni =>', userDni);
     this.apiService.getEmpresarios().pipe(
       switchMap((empresarios: any[]) => {
-        console.log('[EnterpriseStateService] GET empresarios success:', empresarios);
         const empresario = empresarios.find(e => e.dni === userDni);
         if (empresario?.empresas?.length) {
           const validEmpresa = (empresario.empresas as EmpresaData[])
@@ -57,19 +55,16 @@ export class EnterpriseStateService {
       })
     ).subscribe({
       next: (detalle: EmpresaData) => {
-        console.log('[EnterpriseStateService] Empresa detalle cargada:', detalle);
         this.saveAndEmit([detalle]);
       },
       error: (err) => {
         if (err.message !== 'No valid enterprise') {
-          console.error('[EnterpriseStateService] Error cargando detalle de empresa:', err);
         }
       }
     });
   }
 
   createEnterprise(payload: CreateEmpresaPayload, userDni: string): void {
-    console.log('[EnterpriseStateService] createEnterprise => payload:', payload);
     this.apiService.createEmpresa(payload).subscribe({
       next: () => this.loadEnterpriseFromEmpresariosByUserDni(userDni),
       error: () => this.loadEnterpriseFromEmpresariosByUserDni(userDni)
@@ -83,10 +78,8 @@ export class EnterpriseStateService {
       return;
     }
     const fiscalId = current[0].identificadorFiscal;
-    console.log('[EnterpriseStateService] updateEnterpriseField =>', partial);
     this.apiService.updateEmpresa(fiscalId, partial).subscribe({
       next: (updated: EmpresaData) => {
-        console.log('[EnterpriseStateService] PUT success => updated:', updated);
         if (isEmptyEnterprise(updated)) {
           this.saveAndEmit([]);
         } else {
@@ -104,7 +97,6 @@ export class EnterpriseStateService {
       return;
     }
     const fiscalId = current[0].identificadorFiscal;
-    console.log('[EnterpriseStateService] deleteEnterprise =>', fiscalId);
     this.apiService.deleteEmpresa(fiscalId).subscribe({
       next: () => {
         this.saveAndEmit([]);

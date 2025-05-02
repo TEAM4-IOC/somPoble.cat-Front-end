@@ -172,7 +172,11 @@
     "id": "Reserva",
     "date": "Data",
     "hour": "Hora",
-    "service": "Servei"
+    "service": "Servei",
+    "deleteError": "Hi ha hagut un problema al eliminar la reserva.",
+    "deleteSuccess": "Reserva eliminada correctament.",
+    "loadError": "No s'han pogut carregar les reserves.",
+    "noReservations": "No tens reserves disponibles."
   },
   "editar-reserva": {
     "title": "Modificació de reserva",

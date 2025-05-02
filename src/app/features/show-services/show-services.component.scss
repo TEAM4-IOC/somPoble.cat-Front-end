@@ -66,3 +66,18 @@
     }
   }
 }
+
+/* Tablets i phablets */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+
+  .show-services-container .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Telèfons */
+@media only screen and (max-width: 575px) {
+  .show-services-container .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

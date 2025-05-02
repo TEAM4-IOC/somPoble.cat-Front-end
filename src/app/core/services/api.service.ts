@@ -13,7 +13,7 @@ import { EventData } from '../models/EventData.interface';
 })
 export class ApiService {
   private empresaUrl = `${environment.authUrl}/empresas`;
-  private servicioUrl = `${environment.authUrl}/servicios`;
+  private servicioUrl = `${environment.authUrl}/servicio`;
   private landingUrl = `${environment.authUrl}/landing`;
 
   constructor(private http: HttpClient) { }
@@ -118,7 +118,7 @@ export class ApiService {
   createServicio(payload: CreateServicePayload): Observable<ServicioData> {
     return this.http
       .post<{ servicio: ServicioData; empresa: string }>(
-        `${this.servicioUrl}/horario/crear`,
+        `${this.servicioUrl}-horario/crear`,
         payload
       )
       .pipe(map(response => response.servicio));
@@ -130,14 +130,14 @@ export class ApiService {
     payload: any
   ): Observable<any> {
     return this.http.put(
-      `${this.servicioUrl}/horario/actualizar/${idServicio}?identificadorFiscal=${identificadorFiscal}`,
+      `${this.servicioUrl}-horario/actualizar/${idServicio}?identificadorFiscal=${identificadorFiscal}`,
       payload
     );
   }
 
   deleteServicio(idServicio: number, identificadorFiscal: string): Observable<void> {
     return this.http.delete<void>(
-      `${this.servicioUrl}/horario/anular/${idServicio}?identificadorFiscal=${identificadorFiscal}`
+      `${this.servicioUrl}-horario/anular/${idServicio}?identificadorFiscal=${identificadorFiscal}`
     );
   }
 

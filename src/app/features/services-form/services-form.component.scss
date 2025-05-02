@@ -99,7 +99,8 @@ input::placeholder {
   box-shadow: 0 0 0.25rem $white;
 }
 
-.auth-btn, .delete-btn {
+.auth-btn,
+.delete-btn {
   width: 100%;
   padding: 0.625rem;
   background: transparent;
@@ -115,12 +116,13 @@ input::placeholder {
 .auth-btn:hover {
   background: $btn-hover-bg;
 }
+
 .delete-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #dc143c!important;
-  border: 2px solid #dc143c!important;
+  color: #dc143c !important;
+  border: 2px solid #dc143c !important;
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
@@ -209,8 +211,9 @@ input::placeholder {
   flex-wrap: wrap;
   gap: 0.5rem;
 }
+
 .input-control.two-columns input {
-  justify-content: flex-start!important;
+  justify-content: flex-start !important;
 }
 
 .day-checkbox {
@@ -261,4 +264,79 @@ input::placeholder {
   text-overflow: ellipsis;
   display: inline-block;
   max-width: 200px;
+}
+
+.serveis-form-container {
+  height: 100%;
+}
+
+.serveis-form-container {
+  height: calc(160vh - 100px);
+  padding: 0;
+}
+
+/* Tablets i phablets */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .serveis-form-container {
+    height: calc(160vh - 100px);
+    padding: 0;
+  }
+}
+
+/* Telèfons */
+@media only screen and (max-width: 575px) {
+  .serveis-form-container {
+    padding: 1rem;
+  }
+
+  .add-service-container {
+    width: 90%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+  }
+
+  h1,
+  h2 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .input-group {
+    margin-bottom: 0.5rem;
+  }
+
+  .form-label {
+    font-size: 0.75rem;
+  }
+
+  .input-control {
+    padding: 0.5rem;
+  }
+
+  textarea,
+  input {
+    font-size: 0.75rem;
+  }
+
+  .auth-btn,
+  .delete-btn {
+    font-size: 0.875rem;
+    padding: 0.5rem;
+  }
+
+  .redirect-btn {
+    font-size: 0.875rem;
+    padding: 0.5rem;
+  }
+
+  .day-checkbox {
+    flex: 0 0 100%;
+    text-align: left;
+  }
+
+  .serveis-form-container {
+    height: calc(160vh - 100px);
+    padding: 0;
+  }
 }

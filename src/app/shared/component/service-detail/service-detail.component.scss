@@ -1,4 +1,5 @@
 @import '../../../../colors.scss';
+
 :host {
   display: flex;
   flex-direction: column;
@@ -24,6 +25,7 @@
   width: 100%;
   padding: 2rem;
   margin-bottom: 1.5rem;
+  white-space: normal;
 
   h1 {
     font-size: 2rem;
@@ -44,7 +46,6 @@
     li {
       margin: 0.5rem 0;
       font-size: 1rem;
-      white-space: nowrap;
     }
   }
 }
@@ -71,4 +72,58 @@
 .auth-btn:hover {
   background: $btn-hover-bg;
   color: $white;
+}
+
+/* Tablets i phablets */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .main-content {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+/* Telèfons */
+@media only screen and (max-width: 575px) {
+  .service-detail-container {
+    max-width: 100vw;
+    width: 100%;
+    padding: 1rem;
+    margin: 1rem auto;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+
+  .main-content {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem!important;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1.2rem!important;
+    margin-bottom: 0.5rem;
+  }
+
+  ul li {
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .button-container {
+    margin-top: 1rem;
+  }
+
+  .auth-btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
 }

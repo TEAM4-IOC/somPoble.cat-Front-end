@@ -40,7 +40,7 @@ export class HeaderComponent {
 
   readonly menu = computed<Routing[]>(() => {
     if (!this.isLoggedIn()) return [];
-  
+
     if (this.userType() === 1) {
       return [
         { id: 'personal_space', label: 'menu.personal_space', route: '/espai-client' },
@@ -48,7 +48,7 @@ export class HeaderComponent {
         { id: 'show_services', label: 'menu.show_services', route: '/show-services' }
       ];
     }
-  
+
     if (this.userType() === 2) {
       return [
         {
@@ -73,13 +73,12 @@ export class HeaderComponent {
         { id: 'bookings_table', label: 'menu.bookings', route: '/horaris-empresa', queryParams: { view: 'table' } }
       ];
     }
-  
     return [];
   });
 
   readonly mobileMenu = computed<Routing[]>(() => {
     if (!this.isLoggedIn()) return [];
-  
+
     if (this.userType() === 1) {
       return [
         { id: 'personal_space', label: 'menu.personal_space', route: '/espai-client' },
@@ -87,7 +86,7 @@ export class HeaderComponent {
         { id: 'show_services', label: 'menu.show_services', route: '/show-services' }
       ];
     }
-  
+
     if (this.userType() === 2) {
       return [
         { id: 'edit_title', label: 'Editar', isTitle: true },
@@ -100,10 +99,8 @@ export class HeaderComponent {
         { id: 'bookings_table', label: 'menu.bookings', route: '/horaris-empresa', queryParams: { view: 'table' } }
       ];
     }
-  
     return [];
   });
-
 
   constructor() {
     this.authService.session$.subscribe((logged) => {
@@ -118,9 +115,9 @@ export class HeaderComponent {
     if (data) {
       try {
         const session = JSON.parse(data);
-  
+
         this.userType.set(session.tipoUsuario ?? null);
-  
+
         if (session.tipoUsuario === 2 && session.usuario?.empresas?.length) {
           this.companyType.set(session.usuario.empresas[0].tipo ?? null);
         } else {
@@ -135,7 +132,6 @@ export class HeaderComponent {
       this.companyType.set(null);
     }
   }
-
   changeLanguage(lang: string): void {
     this.language.set(lang);
     localStorage.setItem('language', lang);
@@ -201,5 +197,9 @@ export class HeaderComponent {
 
   navigateToEspaiEmpresa(): void {
     this.router.navigate(['/espai-empresa']);
+  }
+
+  navigateToEspaiClient(): void {
+    this.router.navigate(['/espai-client']);
   }
 }

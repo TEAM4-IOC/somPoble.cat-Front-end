@@ -89,10 +89,11 @@
   font-weight: 500;
   cursor: pointer;
   text-decoration: none;
+
   &:hover,
   &:focus,
   &:active {
-    text-decoration: none; 
+    text-decoration: none;
   }
 }
 
@@ -132,6 +133,7 @@
   display: block;
   z-index: 1000;
   width: 100%;
+  background-color: rgba(255, 255, 255, 1) !important;
 }
 
 .lang-selector div {
@@ -188,7 +190,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   min-width: 180px;
-  width: auto!important;
+  width: auto !important;
   white-space: nowrap;
 }
 
@@ -244,10 +246,11 @@
 .no-underline {
   text-decoration: none;
   cursor: pointer;
+
   &:hover,
   &:focus,
   &:active {
-    text-decoration: none; 
+    text-decoration: none;
     outline: none;
   }
 }
@@ -256,69 +259,81 @@
   .main-menu {
     display: none !important;
   }
+
   .header-container {
     flex-direction: column;
     align-items: stretch;
     position: relative;
   }
+
   .logo {
     position: absolute;
     left: 10px;
     top: 10px;
   }
+
   .lang-btn-container {
     position: absolute;
     right: 10px;
     top: 17px;
   }
+
   .right-content {
     width: 100%;
     margin-top: 65px;
     padding: 0 10px;
     justify-content: space-between;
   }
+
   .menu-wrapper {
     display: flex !important;
     align-items: center;
     justify-content: flex-end;
   }
+
   .hamburguer-menu {
     left: 10px;
   }
 }
 
-  /* Tablets i phablets */
-  @media only screen and (min-width: 576px) and (max-width: 1075px){
-    .main-menu {
-      display: none !important;
-    }
-    .header-container {
-      flex-direction: column;
-      align-items: stretch;
-      position: relative;
-    }
-    .logo {
-      position: absolute;
-      left: 10px;
-      top: 10px;
-    }
-    .lang-btn-container {
-      position: absolute;
-      right: 10px;
-      top: 17px;
-    }
-    .right-content {
-      width: 100%;
-      margin-top: 65px;
-      padding: 0 10px;
-      justify-content: space-between;
-    }
-    .menu-wrapper {
-      display: flex !important;
-      align-items: center;
-      justify-content: flex-end;
-    }
-    .hamburguer-menu {
-      left: 10px;
-    }
+/* Tablets i phablets */
+@media only screen and (min-width: 576px) and (max-width: 1075px) {
+  .main-menu {
+    display: none !important;
   }
+
+  .header-container {
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+  }
+
+  .logo {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+
+  .lang-btn-container {
+    position: absolute;
+    right: 10px;
+    top: 17px;
+  }
+
+  .right-content {
+    width: 100%;
+    margin-top: 65px;
+    padding: 0 10px;
+    justify-content: space-between;
+  }
+
+  .menu-wrapper {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .hamburguer-menu {
+    left: 10px;
+  }
+}
