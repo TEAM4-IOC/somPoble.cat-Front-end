@@ -147,13 +147,19 @@
     "availability": "Días de disponibilidad",
     "schedule": "Horario del servicio",
     "minutes": "minutos",
-    "actionButton": "Hacer una reserva AHORA"
+    "actionButton": "Hacer una reserva AHORA",
+    "sinServicios": "No hay servicios disponibles"
   },
   "reservesCli": {
     "title": "Gestión de reserva para el servicio",
     "create": "Crear reserva",
     "daySelect": "Selecciona el día",
     "hourSelect": "Horas disponibles",
+    "invalidDate": "Error: Selecciona una fecha válida.",
+    "noAvailableHours": "No hay horas disponibles para la fecha seleccionada.",
+    "formIncomplete": "Por favor, completa todos los campos del formulario.",
+    "reservationCreated": "¡Reserva creada con éxito!",
+    "reservationError": "Error al crear la reserva. Por favor, revisa los datos.",
     "months": {
       "january": "Enero",
       "february": "Febrero",
@@ -178,8 +184,16 @@
     "deleteError": "Ha habido un problema al eliminar la reserva.",
     "deleteSuccess": "Reserva eliminada correctamente.",
     "loadError": "No se han podido cargar las reservas.",
-    "noReservations": "No tienes reservas disponibles."
-
+    "noReservations": "No tienes reservas disponibles.",
+    "invalidDate": "Selecciona una fecha válida.",
+    "noAvailableHours": "No hay horas disponibles para la fecha seleccionada.",
+    "formIncomplete": "Por favor, completa todos los campos del formulario.",
+    "reservationUpdated": "¡Reserva actualizada correctamente!",
+    "reservationUpdateError": "Error al actualizar la reserva. Por favor, vuelve a intentarlo.",
+    "registration_success": "Registro completado con éxito.",
+    "error": "Error en el registro.",
+    "missing_data": "Faltan datos.",
+    "select_role_error": "Tienes que seleccionar un rol."
   },
   "metricas": {
     "fechaInicio": "Fecha inicio",

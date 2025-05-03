@@ -43,7 +43,11 @@
     "select_role_title": "Escull rol",
     "select_role_placeholder": "Escull rol",
     "client_option": "Client",
-    "business_option": "Empresari"
+    "business_option": "Empresari",
+    "registration_success": "Registre completat amb èxit.",
+    "error": "Error en el registre.",
+    "missing_data": "Falten dades.",
+    "select_role_error": "Has de seleccionar un rol."
   },
   "menu": {
     "personal_space": "Espai personal",
@@ -146,13 +150,19 @@
     "availability": "Dies disponibilitat",
     "schedule": "Horari del servei",
     "minutes": "minuts",
-    "actionButton": "Fer una reserva ARA"
+    "actionButton": "Fer una reserva ARA",
+    "sinServicios": "No hi ha serveis disponibles"
   },
   "reservesCli": {
     "title": "Gestió de reserva per al servei",
     "create": "Crear reserva",
     "daySelect": "Selecciona el dia",
     "hourSelect": "Hores disponibles",
+    "invalidDate": "Error: Selecciona una data vàlida.",
+    "noAvailableHours": "No hi ha hores disponibles per a la data seleccionada.",
+    "formIncomplete": "Si us plau, completa tots els camps del formulari.",
+    "reservationCreated": "Reserva creada amb èxit!",
+    "reservationError": "Error al crear la reserva. Si us plau, revisa les dades.",
     "months": {
       "january": "Gener",
       "february": "Febrer",
@@ -177,7 +187,12 @@
     "deleteError": "Hi ha hagut un problema al eliminar la reserva.",
     "deleteSuccess": "Reserva eliminada correctament.",
     "loadError": "No s'han pogut carregar les reserves.",
-    "noReservations": "No tens reserves disponibles."
+    "noReservations": "No tens reserves disponibles.",
+    "invalidDate": "Selecciona una data vàlida.",
+    "noAvailableHours": "No hi ha hores disponibles per a la data seleccionada.",
+    "formIncomplete": "Si us plau, completa tots els camps del formulari.",
+    "reservationUpdated": "Reserva actualitzada correctament!",
+    "reservationUpdateError": "Error al actualitzar la reserva. Si us plau, torna-ho a intentar."
   },
   "editar-reserva": {
     "title": "Modificació de reserva",

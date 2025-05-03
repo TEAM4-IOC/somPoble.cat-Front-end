@@ -21,13 +21,12 @@ export class EditarReservaComponent implements OnInit {
   maxDate: string = '';
   isHourSelectionEnabled: boolean = false;
 
-  idReserva: number | null = null; // ID de la reserva en cas d'edició
-  isEditMode: boolean = true; // Sempre estem en mode edició
+  idReserva: number | null = null;
+  isEditMode: boolean = true;
   isLaborableDay: boolean = true;
-  diasLaborables: number[] = []; // Array per guardar els dies laborables
-  dniCliente: string | null = null; // Guardar el DNI del client
+  diasLaborables: number[] = [];
+  dniCliente: string | null = null;
 
-  // Variables per al calendari
   currentYear: number = new Date().getFullYear();
   currentMonth: number = new Date().getMonth();
   daysInMonth: { date: Date | null; isAvailable: boolean; isPast?: boolean }[] = [];
@@ -38,37 +37,31 @@ export class EditarReservaComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private serviceStateService: ServiceStateService,
-    private reservaStateService: ReservaStateService
+    private reservaStateService: ReservaStateService,
+    private translate: TranslateService
   ) {
     this.reservaForm = this.fb.group({
       fechaReserva: ['', Validators.required],
-      hora: [{ value: '', disabled: true }, Validators.required] // Inicialment deshabilitat
+      hora: [{ value: '', disabled: true }, Validators.required]
     });
   }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      console.log('Paràmetres rebuts:', params); // Log per depurar els paràmetres
-  
       this.idReserva = params['idReserva'] ? +params['idReserva'] : null;
       const identificadorFiscal = params['identificadorFiscal'];
       const idServicio = +params['idServicio'];
-  
+
       if (!this.idReserva || !identificadorFiscal || !idServicio) {
-        console.error('Falten paràmetres necessaris: idReserva, identificadorFiscal o idServicio');
-        alert('Falten paràmetres necessaris per carregar el servei.');
         this.router.navigate(['/gestor-reserves-cli']);
         return;
       }
-  
-      // Carregar la reserva existent
+
       this.carregarReserva(this.idReserva);
-  
-      // Carregar les dades del servei
       this.carregarDadesDelServei(identificadorFiscal, idServicio);
     });
   }
-  
+
   carregarReserva(idReserva: number): void {
     this.reservaStateService.getReservaById(idReserva).subscribe(
       (reserva) => {
@@ -76,42 +69,31 @@ export class EditarReservaComponent implements OnInit {
           fechaReserva: reserva.fechaReserva,
           hora: reserva.hora
         });
-  
-        // Guardar el DNI del client des de les dades de la reserva
         this.dniCliente = reserva.dniCliente;
-  
-        this.onDateChange(reserva.fechaReserva); // Carregar hores disponibles
+        this.onDateChange(reserva.fechaReserva);
       },
-      (error) => {
-        console.error('Error al carregar la reserva:', error);
-        alert('Error al carregar la reserva. Si us plau, torna-ho a intentar.');
+      () => {
         this.router.navigate(['/gestor-reserves-cli']);
       }
     );
   }
-  
+
   carregarDadesDelServei(identificadorFiscal: string, idServicio: number): void {
     this.serviceStateService.getServicioHorarioById(identificadorFiscal, idServicio).subscribe(
       data => {
         this.serviceData = data;
-        console.log('Dades del servei carregades:', this.serviceData);
-  
-        // Processar `diasLaborables` des de `serviceData`
         if (this.serviceData.diasLaborables) {
           this.diasLaborables = this.serviceData.diasLaborables
             .split(',')
             .map((dia: string) => parseInt(dia.trim(), 10));
         } else {
-          console.error('Error: `diasLaborables` no està disponible.');
-          this.diasLaborables = []; // Inicialitzar com a buit si no està disponible
+          this.diasLaborables = [];
         }
-  
         this.setupAvailableDatesAndHours();
         this.generateCalendar();
       },
-      error => {
-        console.error('Error al carregar les dades del servei:', error);
-        alert('Error al carregar les dades del servei. Si us plau, torna-ho a intentar.');
+      () => {
+        console.error('Error al carregar les dades del servei. Si us plau, torna-ho a intentar.');
       }
     );
   }
@@ -125,38 +107,46 @@ export class EditarReservaComponent implements OnInit {
 
     const startHour = parseInt(this.serviceData.horarioInicio.split(':')[0], 10);
     const endHour = parseInt(this.serviceData.horarioFin.split(':')[0], 10);
-    this.availableHours = Array.from({ length: endHour - startHour + 1 }, (_, i) => `${startHour + i}:00`);
+
+    this.availableHours = [];
+    for (let hour = startHour; hour <= endHour; hour++) {
+      const formattedHour = hour < 10 ? `0${hour}:00` : `${hour}:00`;
+      this.availableHours.push(formattedHour);
+    }
+
+    if (this.availableHours.length > 0) {
+      this.reservaForm.patchValue({ hora: this.availableHours[0] });
+    }
   }
 
   generateCalendar(): void {
     if (!this.serviceData || !this.serviceData.diasLaborables) {
-      console.error('Error: serviceData o diasLaborables no està inicialitzat.');
       return;
     }
-  
+
     const year = this.currentYear;
     const month = this.currentMonth;
     const firstDayOfMonth = new Date(year, month, 1).getDay();
     const adjustedFirstDay = (firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1);
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-  
+
     const laborableDays = this.serviceData.diasLaborables.split(',').map((dia: string) => parseInt(dia.trim(), 10));
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-  
+
     this.daysInMonth = [];
-  
+
     for (let i = 0; i < adjustedFirstDay; i++) {
       this.daysInMonth.push({ date: null, isAvailable: false });
     }
-  
+
     for (let i = 1; i <= daysInMonth; i++) {
       const date = new Date(year, month, i);
       const dayOfWeek = date.getDay();
-  
+
       const isLaborable = laborableDays.includes(dayOfWeek);
       const isPast = date < today;
-  
+
       this.daysInMonth.push({
         date,
         isAvailable: isLaborable && !isPast,
@@ -167,10 +157,9 @@ export class EditarReservaComponent implements OnInit {
 
   prevMonth(): void {
     if (!this.serviceData) {
-      console.error('Error: serviceData no està inicialitzat.');
       return;
     }
-  
+
     if (this.currentMonth === 0) {
       this.currentMonth = 11;
       this.currentYear--;
@@ -179,13 +168,12 @@ export class EditarReservaComponent implements OnInit {
     }
     this.generateCalendar();
   }
-  
+
   nextMonth(): void {
     if (!this.serviceData) {
-      console.error('Error: serviceData no està inicialitzat.');
       return;
     }
-  
+
     if (this.currentMonth === 11) {
       this.currentMonth = 0;
       this.currentYear++;
@@ -210,91 +198,89 @@ export class EditarReservaComponent implements OnInit {
 
   onDateChange(selectedDate: string): void {
     if (!selectedDate) {
-      alert('Selecciona una data vàlida.');
+      alert(this.translate.instant('gestor-reserves.invalidDate'));
       return;
     }
 
-    
-  
-    // Carregar hores disponibles segons la data seleccionada
-    this.reservaStateService.getReservasByEmpresa(this.route.snapshot.queryParams['identificadorFiscal']).subscribe(
+    if (!this.serviceData || !this.serviceData.identificadorFiscal) {
+      return;
+    }
+
+    this.reservaStateService.getReservasByEmpresa(this.serviceData.identificadorFiscal).subscribe(
       (reservas) => {
         const reservedHours = reservas
           .filter((reserva: any) => reserva.fechaReserva === selectedDate)
           .map((reserva: any) => reserva.hora.slice(0, 5));
-  
+
         const startHour = parseInt(this.serviceData.horarioInicio.split(':')[0], 10);
-        const endHour = parseInt(this.serviceData.horarioFin.split(':')[0], 10) -1;
-  
-        const allHours = Array.from({ length: endHour - startHour + 1 }, (_, i) => `${startHour + i}:00`);
+        const endHour = parseInt(this.serviceData.horarioFin.split(':')[0], 10) - 1;
+
+        const allHours = [];
+        for (let hour = startHour; hour <= endHour; hour++) {
+          const formattedHour = hour < 10 ? `0${hour}:00` : `${hour}:00`;
+          allHours.push(formattedHour);
+        }
+
         this.availableHours = allHours.filter((hour) => !reservedHours.includes(hour));
-  
+
         if (this.availableHours.length > 0) {
           this.reservaForm.get('hora')?.enable();
         } else {
           this.reservaForm.get('hora')?.disable();
-          alert('No hi ha hores disponibles per a la data seleccionada.');
+          alert(this.translate.instant('gestor-reserves.noAvailableHours'));
         }
       },
-      (error) => {
-        console.error('Error al carregar les reserves:', error);
-        alert('Error al carregar les reserves. Si us plau, torna-ho a intentar.');
+      () => {
+        this.reservaForm.get('hora')?.disable();
+        alert(this.translate.instant('gestor-reserves.loadError'));
       }
     );
   }
 
   onSubmit(): void {
-  if (this.reservaForm.invalid) {
-    alert('Si us plau, completa tots els camps del formulari.');
-    return;
-  }
-
-  console.log('Contingut del formulari:', this.reservaForm.value); // Depuració
-
-  if (!this.dniCliente) {
-    console.error('Error: `dniCliente` no està disponible.');
-    alert('Error: No es pot identificar el client.');
-    return;
-  }
-
-  const payload = {
-    fechaReserva: this.reservaForm.value.fechaReserva,
-    hora: this.reservaForm.value.hora,
-    cliente: {
-      dni: this.dniCliente // Utilitzar el DNI del client obtingut de la reserva
-    },
-    empresa: {
-      identificadorFiscal: this.route.snapshot.queryParams['identificadorFiscal'] // Obtenir l'identificador fiscal des dels paràmetres
-    },
-    servicio: {
-      idServicio: +this.route.snapshot.queryParams['idServicio'] // Obtenir l'ID del servei des dels paràmetres
+    if (this.reservaForm.invalid) {
+      alert(this.translate.instant('gestor-reserves.formIncomplete'));
+      return;
     }
-  };
-
-  console.log('Payload enviat al backend:', payload); // Depuració
-
-  this.reservaStateService.updateReserva(this.idReserva!, payload).subscribe(
-    (response) => {
-      console.log('Resposta del backend:', response); // Depuració
-      alert('Reserva actualitzada correctament!');
-      this.router.navigate(['/gestor-reserves-cli']);
-    },
-    (error) => {
-      console.error('Error al actualitzar la reserva:', error);
-      alert('Error al actualitzar la reserva. Si us plau, torna-ho a intentar.');
+  
+    if (!this.dniCliente) {
+      return;
     }
-  );
-}
+  
+    let horaSeleccionada = this.reservaForm.value.hora ?? '';
+  
+    const payload = {
+      fechaReserva: this.reservaForm.value.fechaReserva,
+      hora: horaSeleccionada,
+      cliente: {
+        dni: this.dniCliente
+      },
+      empresa: {
+        identificadorFiscal: this.route.snapshot.queryParams['identificadorFiscal']
+      },
+      servicio: {
+        idServicio: +this.route.snapshot.queryParams['idServicio']
+      }
+    };
+  
+    this.reservaStateService.updateReserva(this.idReserva!, payload).subscribe(
+      () => {
+        alert(this.translate.instant('gestor-reserves.reservationUpdated'));
+        this.router.navigate(['/gestor-reserves-cli']);
+      },
+      () => {
+        alert(this.translate.instant('gestor-reserves.reservationUpdateError'));
+      }
+    );
+  }
 
   isSelected(date: Date | null): boolean {
     if (!date || !this.selectedDate) {
       return false;
     }
-  
-    // Convertir la data seleccionada a un objecte Date
+
     const selected = new Date(this.selectedDate);
-  
-    // Comparar any, mes i dia
+
     return (
       date.getFullYear() === selected.getFullYear() &&
       date.getMonth() === selected.getMonth() &&
@@ -320,4 +306,14 @@ export class EditarReservaComponent implements OnInit {
     return `reservesCli.months.${monthNames[this.currentMonth]}`;
   }
 
+  onHourChange(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    const selectedHour = target?.value;
+  
+    if (!selectedHour) {
+      console.error('Error: Hora seleccionada és null o buida.');
+      return;
+    }
+    this.reservaForm.patchValue({ hora: selectedHour });
+  }
 }

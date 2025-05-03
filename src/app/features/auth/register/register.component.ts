@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { RegisterRequest } from '../../../core/models/register.interface';
 import { AuthService } from '../../../core/services/auth.service';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -28,11 +30,10 @@ export class RegisterComponent {
   showPassword: boolean = false;
   registerError: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router, private translate: TranslateService) {}
 
   selectRole(role: number): void {
     this.registerRole = role;
-    console.log('Selected role ID:', this.registerRole);
     this.showForm = true;
   }
 
@@ -42,7 +43,7 @@ export class RegisterComponent {
 
   onRegister(): void {
     if (this.password !== this.repeatPassword) {
-      this.registerError = 'Las contraseñas no coinciden.';
+      this.registerError = this.translate.instant('register.repeat_password_mismatch');
       return;
     }
     if (
@@ -55,7 +56,7 @@ export class RegisterComponent {
       this.repeatPassword
     ) {
       if (this.registerRole === null) {
-        this.registerError = 'Debes seleccionar un rol.';
+        this.registerError = this.translate.instant('register.select_role_error');
         return;
       }
       this.registerError = '';
@@ -71,16 +72,16 @@ export class RegisterComponent {
 
       this.authService.register(registrationData, this.registerRole).subscribe({
         next: (response) => {
-          console.log('Registro exitoso', response);
-
+          alert(this.translate.instant('register.registration_success'));
+          this.router.navigate(['/login']);
         },
         error: (err) => {
           console.error('Error en el registro', err);
-          this.registerError = 'Error en el registro';
+          this.registerError = this.translate.instant('register.error');
         }
       });
     } else {
-      this.registerError = 'Faltan datos';
+      this.registerError = this.translate.instant('register.missing_data');
     }
   }
 }

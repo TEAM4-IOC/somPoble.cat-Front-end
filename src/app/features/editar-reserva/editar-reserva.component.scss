@@ -151,3 +151,109 @@ button.auth-btn:hover {
   background: $btn-hover-bg;
   color: $white;
 }
+
+/* Tablets i phablets */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+
+  .calendar-container,
+  .hora-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 0.5rem;
+    box-sizing: border-box;
+  }
+
+  .hora-container {
+    width: 150px !important;
+  }
+
+  .calendar-container .info-label {
+    display: block;
+    margin: 0 auto 1rem auto;
+    text-align: center;
+    padding: 0;
+  }
+
+  .content-container {
+    padding: 0;
+  }
+
+  .main-content {
+    padding: 0.5;
+  }
+}
+
+/* Telèfons */
+@media only screen and (max-width: 575px) {
+  .info-label { 
+    text-wrap: nowrap;
+  }
+  .d-flex {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .calendar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100% !important;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .hora-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+
+  .calendar-container .info-label {
+    display: block;
+    margin: 0 auto 1rem auto;
+    text-align: center;
+  }
+
+  .main-content {
+    height: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding-bottom: 4rem;
+    background: $bg-gradient;
+  }
+
+  .content-container {
+    backdrop-filter: blur(0.625rem);
+    background: $container-bg;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    padding: 2rem;
+    margin: 1.5rem auto;
+    height: auto;
+    overflow: visible;
+  }
+}

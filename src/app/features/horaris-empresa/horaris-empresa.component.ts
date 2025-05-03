@@ -38,10 +38,11 @@ export class HorarisEmpresaComponent implements OnInit {
     private translate: TranslateService
   ) { }
 
+  showNoServicesMessage: boolean = false;
+  
   ngOnInit(): void {
 
     this.route.queryParams.subscribe((params) => {
-      console.log('Parámetros de consulta:', params);
       const view = params['view'];
       if (view === 'table') {
         this.setView('table');
@@ -68,17 +69,16 @@ export class HorarisEmpresaComponent implements OnInit {
       this.serviceState.service$.subscribe((servicios) => {
         this.servicios = servicios;
         this.generateCalendar();
+        this.showNoServicesMessage = this.servicios.length === 0 || this.cards().length === 0;
+
       });
 
       this.reservaStateService.loadReservasByEmpresa(this.identificadorFiscal);
     this.reservaStateService.reservas$.subscribe((reservas) => {
-      console.log('[DEBUG] Reservas cargadas desde reservas$:', reservas);
       this.reservas = reservas;
     });
 
-    } else {
-      console.warn('No se encontró un identificador fiscal en la sesión.');
-    }
+    } else {}
   }
 
 
@@ -194,7 +194,6 @@ export class HorarisEmpresaComponent implements OnInit {
     this.isDailyView = view === 'daily';
     this.isTableView = view === 'table';
     this.isCardsView = view === 'cards';
-    console.log('Vista actual:', { isMonthlyView: this.isMonthlyView, isDailyView: this.isDailyView, isTableView: this.isTableView, isCardsView: this.isCardsView });
   }
 
   cards(): {
@@ -343,7 +342,6 @@ export class HorarisEmpresaComponent implements OnInit {
           this.reservas = this.reservas.filter((reserva) => reserva.idReserva !== idReserva);
         },
         error: (err) => {
-          console.error('Error eliminant la reserva:', err);
           alert('No s\'ha pogut eliminar la reserva.');
         },
       });

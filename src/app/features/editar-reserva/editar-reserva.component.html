@@ -1,10 +1,11 @@
 <div class="main-content" [class.loading-active]="!serviceData">
-  @if (serviceData) {
+  
+  <ng-container *ngIf="serviceData; else loading">
     <div class="content-container">
       <div class="service-details">
         <h2 class="text-center">{{ 'editar-reserva.title' | translate }}</h2>
         <p class="text-center text-uppercase">
-          <strong>{{ serviceData.nombre }}</strong>
+          <strong>{{ serviceData?.nombre }}</strong>
         </p>
       </div>
 
@@ -21,35 +22,37 @@
                 <button type="button" (click)="nextMonth()">&#8594;</button>
               </div>
               <div class="calendar-grid">
-                @for (day of daysInMonth; track day.date) {
+                
+                <ng-container *ngFor="let day of daysInMonth">
                   <div
-                    [class.available]="day.isAvailable"
-                    [class.unavailable]="!day.isAvailable && day.date && !day.isPast"
-                    [class.past]="day.isPast"
-                    [class.selected]="isSelected(day.date)"
-                    [class.empty]="!day.date"
-                    (click)="selectDate(day)"
+                    [class.available]="day?.isAvailable" 
+                    [class.unavailable]="!day?.isAvailable && day?.date && !day?.isPast"
+                    [class.past]="day?.isPast"
+                    [class.selected]="day?.date ? isSelected(day.date) : false"
+                    [class.empty]="!day?.date"
+                    (click)="day?.date ? selectDate(day) : null" 
                   >
-                    {{ day.date?.getDate() }}
+                    {{ day?.date?.getDate() }} 
                   </div>
-                }
+                </ng-container>
               </div>
             </div>
-            @if (!isLaborableDay) {
-              <p class="error-message">
-                {{ 'editar-reserva.nonLaborableDay' | translate }}
-              </p>
-            }
+            
+            <p *ngIf="!isLaborableDay" class="error-message">
+              {{ 'editar-reserva.nonLaborableDay' | translate }}
+            </p>
           </div>
 
           <div class="hora-container w-50 ms-3">
             <label class="info-label">
               {{ 'editar-reserva.hourSelect' | translate }}:
             </label>
-            <select id="hora" formControlName="hora" class="form-select">
-              @for (hour of availableHours; track hour) {
-                <option [value]="hour">{{ hour }}</option>
-              }
+            <select
+              formControlName="hora"
+              (change)="onHourChange($event)" 
+              [disabled]="availableHours.length === 0"
+            >
+              <option *ngFor="let hour of availableHours" [value]="hour"> {{ hour }}</option>
             </select>
           </div>
         </div>
@@ -57,14 +60,18 @@
         <button
           type="submit"
           class="btn btn-primary mt-3 auth-btn"
+          [disabled]="reservaForm.invalid" 
         >
           {{ 'editar-reserva.save' | translate }}
         </button>
       </form>
     </div>
-  } @else {
+  </ng-container>
+
+
+  <ng-template #loading>
     <div class="loading-container">
       <p>{{ 'Loading...' }}</p>
     </div>
-  }
+  </ng-template>
 </div>

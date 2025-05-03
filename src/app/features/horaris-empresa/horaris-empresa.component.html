@@ -145,7 +145,7 @@
             </tbody>
           </table>
         </div>
-        <div class="card-group">
+        <div class="card-group d-none">
           <div class="card" *ngIf="agrupacion.reservas.length === 0">
             <div class="card-body">
               <p class="card-text text-center text-muted">
@@ -176,7 +176,9 @@
 
   <div class="wiew4">
   <div class="cards-container" *ngIf="isCardsView">
-    <div *ngFor="let card of cards(); trackBy: trackByCard" class="service-detail-container client-card">
+    <p [class.d-none]="cards().length > 0" class="sinServicios">
+      {{ 'serviceDetail.sinServicios' | translate }}
+    </p>    <div *ngFor="let card of cards(); trackBy: trackByCard" class="service-detail-container client-card">
       <h1 class="card-title">{{ card.label | translate }}</h1>
       <p class="card-description">{{ card.descripcion }}</p>
       <ul class="card-details">

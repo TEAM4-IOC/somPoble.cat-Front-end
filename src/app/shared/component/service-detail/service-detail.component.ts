@@ -26,7 +26,6 @@ export class ServiceDetailComponent implements OnInit {
   formattedDays$!: Observable<string | undefined>;
   formattedHours$!: Observable<string | undefined>;
 
-  // Array de referència per ordenar els dies
   private dayOrder = ['1', '2', '3', '4', '5', '6', '7'];
 
   constructor(
@@ -41,15 +40,13 @@ export class ServiceDetailComponent implements OnInit {
     const identificadorFiscal = this.route.snapshot.paramMap.get('identificadorFiscal')!;
     this.service$ = this.serviceStateService.getServicioHorarioById(identificadorFiscal, id);
 
-    // Format dels dies disponibles
     this.formattedDays$ = combineLatest([
       this.service$,
-      this.translate.stream('serviceDetail.days') // Escoltar canvis d'idioma
+      this.translate.stream('serviceDetail.days') 
     ]).pipe(
       switchMap(([service]) => {
         if (!service) return [undefined];
 
-        // Ordenar i traduir els dies laborables
         const diasOrdenados = service.diasLaborables
           .split(',')
           .sort((a, b) => this.dayOrder.indexOf(a.trim()) - this.dayOrder.indexOf(b.trim()));
@@ -62,13 +59,11 @@ export class ServiceDetailComponent implements OnInit {
       })
     );
 
-    // Format de l'horari
     this.formattedHours$ = this.service$.pipe(
       map(service => {
         if (!service) return undefined;
 
-        // Format horari
-        const horarioInicio = service.horarioInicio.slice(0, 5); // Eliminar els segons
+        const horarioInicio = service.horarioInicio.slice(0, 5);
         const horarioFin = service.horarioFin.slice(0, 5);
 
         return `${horarioInicio} a ${horarioFin}`;
@@ -76,17 +71,13 @@ export class ServiceDetailComponent implements OnInit {
     );
   }
 
-  // Mètode per navegar al component reserves-cli
   goToReservation(service: ServicioData | undefined): void {
     if (!service) return;
-
-    console.log('Dades del servei:', service);
-    console.log('Identificador Fiscal:', service.identificadorFiscal);
 
     this.router.navigate(['/reserves-cli'], {
       queryParams: {
         id: service.idServicio,
-        identificadorFiscal: service.identificadorFiscal, // Assegura't que aquesta propietat existeix
+        identificadorFiscal: service.identificadorFiscal,
       }
     });
   }

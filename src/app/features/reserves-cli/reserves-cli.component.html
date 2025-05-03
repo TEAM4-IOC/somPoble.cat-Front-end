@@ -21,7 +21,7 @@
                 <button type="button" class="calendar-btn" (click)="nextMonth()">&#8594;</button>
               </div>
               <div class="calendar-grid">
-                @for (day of daysInMonth; track day.date) {
+                @for (day of daysInMonth; track (day.date ? day.date.toISOString() : $index)) {
                   <div
                     [class.available]="day.isAvailable"
                     [class.unavailable]="!day.isAvailable && day.date && !day.isPast"

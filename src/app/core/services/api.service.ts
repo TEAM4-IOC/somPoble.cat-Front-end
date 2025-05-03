@@ -165,7 +165,7 @@ export class ApiService {
   }
 
   createReserva(payload: any): Observable<any> {
-    return this.http.post<any>(`${environment.authUrl}/reservas`, payload);
+    return this.http.post(`${environment.authUrl}/reservas`, payload, { responseType: 'text' });
   }
 
   getReservasByCliente(dni: string): Observable<any[]> {
