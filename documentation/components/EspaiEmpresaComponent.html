@@ -89,7 +89,7 @@
   <li class="breadcrumb-item">Components</li>
   <li class="breadcrumb-item"
   >
-  CookiesComponent</li>
+  EspaiEmpresaComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -106,6 +106,10 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -116,18 +120,12 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/shared/policy/cookies/cookies.component.ts</code>
+    <code>src/app/features/espai-empresa/espai-empresa.component.ts</code>
 </p>
 
 
 
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                <code>OnInit</code>
-    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -135,6 +133,10 @@
     <table class="table table-sm table-hover metadata">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
 
 
 
@@ -148,7 +150,7 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-cookies</code></td>
+                <td class="col-md-9"><code>app-espai-empresa</code></td>
             </tr>
 
             <tr>
@@ -159,26 +161,24 @@
             <tr>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
-                            <code>NgxSpinnerModule</code>
                             <code>TranslateModule</code>
-                            <code>RouterModule</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./espai-empresa.component.scss</code></td>
+            </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./cookies.component.html</code></td>
+                <td class="col-md-9"><code>./espai-empresa.component.html</code></td>
             </tr>
 
 
 
-            <tr>
-                <td class="col-md-3">styleUrl</td>
-                <td class="col-md-9"><code>./cookies.component.scss</code></td>
-            </tr>
 
 
 
@@ -201,8 +201,11 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#loadingService" >loadingService</a>
+                                <a href="#cards" >cards</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#router" >router</a>
                             </li>
                         </ul>
                     </td>
@@ -217,7 +220,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
+                                <a href="#goTo" >goTo</a>
                             </li>
                         </ul>
                     </td>
@@ -231,54 +234,6 @@
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(loadingService: <a href="../injectables/LoadingService.html" target="_self">LoadingService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/shared/policy/cookies/cookies.component.ts:14</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>loadingService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/LoadingService.html" target="_self" >LoadingService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
 
@@ -293,24 +248,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ngOnInit"></a>
+                    <a name="goTo"></a>
                     <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>goTo</b></span>
+                        <a href="#goTo"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnInit()</code>
+<code>goTo(route?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, queryParams?: literal type)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/app/shared/policy/cookies/cookies.component.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/app/features/espai-empresa/espai-empresa.component.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -318,10 +273,52 @@
             <tr>
                 <td class="col-md-4">
 
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>route</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>queryParams</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -336,23 +333,55 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="loadingService"></a>
+                    <a name="cards"></a>
                     <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>loadingService</b></span>
-                        <a href="#loadingService"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>cards</b></span>
+                        <a href="#cards"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../injectables/LoadingService.html" target="_self" >LoadingService</a></code>
-
+                        <i>Default value : </i><code>signal&lt;Routing[]&gt;([
+    { id: &#x27;edit_profile&#x27;, label: &#x27;menu.edit_profile&#x27;, route: &#x27;/edit&#x27; },
+    { id: &#x27;edit_business_profile&#x27;, label: &#x27;menu.edit_bussiness_profile&#x27;, route: &#x27;/empresa-form&#x27; },
+    { id: &#x27;create_service&#x27;, label: &#x27;menu.create_service&#x27;, route: &#x27;/services-form&#x27; },
+    { id: &#x27;show_my_services&#x27;, label: &#x27;menu.show_my_services&#x27;, route: &#x27;/horaris-empresa&#x27;, queryParams: { view: &#x27;cards&#x27; } },
+    { id: &#x27;show_my_services&#x27;, label: &#x27;horaris-empresa.services-calendar&#x27;, route: &#x27;/horaris-empresa&#x27;, queryParams: { view: &#x27;monthly&#x27; } },
+    { id: &#x27;show_reservations&#x27;, label: &#x27;menu.show_reservations&#x27;, route: &#x27;/horaris-empresa&#x27;, queryParams: { view: &#x27;table&#x27; } },
+    { id: &#x27;metricas&#x27;, label: &#x27;menu.metrics&#x27;, route: &#x27;/metricas&#x27; },
+  ])</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/shared/policy/cookies/cookies.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/features/espai-empresa/espai-empresa.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/features/espai-empresa/espai-empresa.component.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -365,60 +394,106 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { LoadingService } from &#x27;../../../core/services/loading.service&#x27;;
-import { NgxSpinnerModule } from &#x27;ngx-spinner&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, inject, signal } from &#x27;@angular/core&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
 import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
-import { RouterModule } from &#x27;@angular/router&#x27;;
+import { Routing } from &#x27;../../core/models/routing.interface&#x27;;
 
 @Component({
-  selector: &#x27;app-cookies&#x27;,
+  selector: &#x27;app-espai-empresa&#x27;,
   standalone: true,
-  imports: [NgxSpinnerModule, TranslateModule, RouterModule],
-  templateUrl: &#x27;./cookies.component.html&#x27;,
-  styleUrl: &#x27;./cookies.component.scss&#x27;
+  imports: [TranslateModule],
+  templateUrl: &#x27;./espai-empresa.component.html&#x27;,
+  styleUrls: [&#x27;./espai-empresa.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CookiesComponent implements OnInit {
-  constructor(public loadingService: LoadingService) {}
+export class EspaiEmpresaComponent {
+  private router &#x3D; inject(Router);
 
-  ngOnInit() {
-    this.loadingService.loading();
+  cards &#x3D; signal&lt;Routing[]&gt;([
+    { id: &#x27;edit_profile&#x27;, label: &#x27;menu.edit_profile&#x27;, route: &#x27;/edit&#x27; },
+    { id: &#x27;edit_business_profile&#x27;, label: &#x27;menu.edit_bussiness_profile&#x27;, route: &#x27;/empresa-form&#x27; },
+    { id: &#x27;create_service&#x27;, label: &#x27;menu.create_service&#x27;, route: &#x27;/services-form&#x27; },
+    { id: &#x27;show_my_services&#x27;, label: &#x27;menu.show_my_services&#x27;, route: &#x27;/horaris-empresa&#x27;, queryParams: { view: &#x27;cards&#x27; } },
+    { id: &#x27;show_my_services&#x27;, label: &#x27;horaris-empresa.services-calendar&#x27;, route: &#x27;/horaris-empresa&#x27;, queryParams: { view: &#x27;monthly&#x27; } },
+    { id: &#x27;show_reservations&#x27;, label: &#x27;menu.show_reservations&#x27;, route: &#x27;/horaris-empresa&#x27;, queryParams: { view: &#x27;table&#x27; } },
+    { id: &#x27;metricas&#x27;, label: &#x27;menu.metrics&#x27;, route: &#x27;/metricas&#x27; },
+  ]);
 
-    setTimeout(() &#x3D;&gt; {
-      this.loadingService.idle();
-    },0);
+  goTo(route?: string, queryParams?: { [key: string]: any }): void {
+    if (!route) {
+      return;
+    }
+    this.router.navigate([route], { queryParams });
   }
-}
-</code></pre>
+}</code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;ngx-spinner type &#x3D; &quot;pacman&quot; size &#x3D; &quot;large&quot;&gt;&lt;/ngx-spinner&gt;
-
-&lt;section id&#x3D;&quot;cookies-main&quot;&gt;
-    &lt;h1 class&#x3D;&quot;text-center&quot;&gt;{{ &#x27;cookies.main_title&#x27; | translate }}&lt;/h1&gt;
-    &lt;h2&gt;{{ &#x27;cookies.main_subtitle&#x27; | translate }}&lt;/h2&gt;
-    
-    &lt;div class&#x3D;&quot;text-section&quot;&gt;
-        &lt;p&gt;{{ &#x27;cookies.p1&#x27; | translate }}&lt;/p&gt;
-        &lt;p&gt;{{ &#x27;cookies.p2&#x27; | translate }}&lt;/p&gt;
-        &lt;p&gt;{{ &#x27;cookies.p3&#x27; | translate }}&lt;/p&gt;
-        &lt;p&gt;{{ &#x27;cookies.p4&#x27; | translate }}&lt;/p&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;cards-container&quot;&gt;
+  @for (card of cards(); track card.id) {
+    &lt;div class&#x3D;&quot;client-card&quot; (click)&#x3D;&quot;goTo(card.route, card.queryParams)&quot; tabindex&#x3D;&quot;0&quot;&gt;
+      &lt;h3&gt;{{ card.label | translate }}&lt;/h3&gt;
     &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;text-section&quot;&gt;
-        &lt;h3&gt;{{ &#x27;cookies.subtitle_1&#x27; | translate }}&lt;/h3&gt;
-        &lt;p&gt;{{ &#x27;cookies.p5&#x27; | translate }}&lt;/p&gt;
-    &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;text-section&quot;&gt;
-        &lt;h3&gt;{{ &#x27;cookies.subtitle_2&#x27; | translate }}&lt;/h3&gt;
-        &lt;p&gt;{{ &#x27;cookies.p6&#x27; | translate }}&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/section&gt;
-</code></pre>
+  }
+&lt;/div&gt;</code></pre>
     </div>
 
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./espai-empresa.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;../../../colors.scss&#x27;;
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: $bg-gradient;
+  font-family: &#x27;Roboto&#x27;, sans-serif;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+.client-card {
+  width: min(90%, 20rem);
+  background: $container-bg;
+  border: 0.125rem solid $btn-border;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  transform-style: preserve-3d;
+  cursor: pointer;
+
+  h3 {
+    margin: 0;
+    color: $fa-eye-color;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+  }
+}
+
+.client-card:hover {
+  transform: translateY(-0.5rem) rotateX(5deg);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+  background: $btn-hover-bg;
+}
+
+.client-card:active {
+  transform: scale(0.95);
+  background: $input-bg;
+}</code></pre>
+    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -445,10 +520,10 @@ export class CookiesComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ngx-spinner type = "pacman" size = "large"></ngx-spinner><section id="cookies-main">    <h1 class="text-center">{{ \'cookies.main_title\' | translate }}</h1>    <h2>{{ \'cookies.main_subtitle\' | translate }}</h2>        <div class="text-section">        <p>{{ \'cookies.p1\' | translate }}</p>        <p>{{ \'cookies.p2\' | translate }}</p>        <p>{{ \'cookies.p3\' | translate }}</p>        <p>{{ \'cookies.p4\' | translate }}</p>    </div>    <div class="text-section">        <h3>{{ \'cookies.subtitle_1\' | translate }}</h3>        <p>{{ \'cookies.p5\' | translate }}</p>    </div>    <div class="text-section">        <h3>{{ \'cookies.subtitle_2\' | translate }}</h3>        <p>{{ \'cookies.p6\' | translate }}</p>    </div></section></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="cards-container">  @for (card of cards(); track card.id) {    <div class="client-card" (click)="goTo(card.route, card.queryParams)" tabindex="0">      <h3>{{ card.label | translate }}</h3>    </div>  }</div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CookiesComponent', 'selector': 'app-cookies'},{'name': 'EditarReservaComponent', 'selector': 'app-editar-reserva'},{'name': 'EditComponent', 'selector': 'app-edit'},{'name': 'EmpresaFormComponent', 'selector': 'app-empresa-form'},{'name': 'EspaiClientComponent', 'selector': 'app-espai-client'},{'name': 'EspaiEmpresaComponent', 'selector': 'app-espai-empresa'},{'name': 'EventComponent', 'selector': 'app-event'},{'name': 'EventDetailComponent', 'selector': 'app-event-detail'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GestorReservesCliComponent', 'selector': 'app-gestor-reserves-cli'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarisEmpresaComponent', 'selector': 'app-horaris-empresa'},{'name': 'LandingPageComponent', 'selector': 'app-landing-page'},{'name': 'LegalNoticeComponent', 'selector': 'app-legal-notice'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MetricasComponent', 'selector': 'app-metricas'},{'name': 'NotfoundpageComponent', 'selector': 'app-notfoundpage'},{'name': 'PrivacyComponent', 'selector': 'app-privacy'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReservesCliComponent', 'selector': 'app-reserves-cli'},{'name': 'SearchComponent', 'selector': 'app-search'},{'name': 'ServiceDetailComponent', 'selector': 'app-service-detail'},{'name': 'ServicesFormComponent', 'selector': 'app-services-form'},{'name': 'ShowServicesComponent', 'selector': 'app-show-services'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'CookiesComponent'};
+    var ACTUAL_COMPONENT = {'name': 'EspaiEmpresaComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -494,7 +569,7 @@ export class CookiesComponent implements OnInit {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'CookiesComponent.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'EspaiEmpresaComponent.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

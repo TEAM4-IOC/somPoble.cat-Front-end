@@ -118,6 +118,9 @@
                             <a href="#authGuard" title="src/app/core/guards/auth.guard.ts" ><b>authGuard</b>&nbsp;&nbsp;&nbsp;(src/.../auth.guard.ts)</a>
                         </li>
                         <li>
+                            <a href="#empresaGuard" title="src/app/core/guards/auth.guard.ts" ><b>empresaGuard</b>&nbsp;&nbsp;&nbsp;(src/.../auth.guard.ts)</a>
+                        </li>
+                        <li>
                             <a href="#environment" title="src/environments/environment.ts" ><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
                         </li>
                         <li>
@@ -159,17 +162,18 @@
     provideRouter(routes),
     provideHttpClient(withInterceptors([loadingInterceptor, interceptorError])),
     importProvidersFrom([BrowserAnimationsModule]),
+    provideCharts(),
     importProvidersFrom(
       TranslateModule.forRoot({
         loader: {
           provide: TranslateLoader,
           useFactory: HttpLoaderFactory,
-          deps: [HttpClient],
-        },
+          deps: [HttpClient]
+        }
       })
     ),
-    provideAnimationsAsync(),
-  ],
+    provideAnimationsAsync()
+  ]
 }</code>
                     </td>
                 </tr>
@@ -197,6 +201,35 @@
   const authService &#x3D; inject(AuthService);
   const router &#x3D; inject(Router);
   if (authService.isLoggedIn()) {
+    return true;
+  } else {
+    return router.navigate([&#x27;/landing&#x27;]);
+  }
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="empresaGuard"></a>
+                    <span class="name">
+                        <span ><b>empresaGuard</b></span>
+                        <a href="#empresaGuard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {
+  const authService &#x3D; inject(AuthService);
+  const router &#x3D; inject(Router);
+
+  if (authService.isLoggedIn() &amp;&amp; authService.isEmpresa()) {
     return true;
   } else {
     return router.navigate([&#x27;/landing&#x27;]);
@@ -264,19 +297,33 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>(req, next) &#x3D;&gt; {
   const router &#x3D; inject(Router);
+  const translate &#x3D; inject(TranslateService);
+
   return next(req).pipe(
-    catchError((error) &#x3D;&gt; {
-      console.error(&#x27;Error Interceptor: An error occurred&#x27;, error);
+    catchError((error: unknown) &#x3D;&gt; {
+      if (error instanceof HttpErrorResponse) {
+        console.error(&#x27;Error Interceptor: An error occurred&#x27;, error);
 
-      if (error.status &#x3D;&#x3D;&#x3D; 400) {
-        console.error(&#x27;Bad Request (400):&#x27;, error.error?.message);
-      } else if (error.status &#x3D;&#x3D;&#x3D; 404) {
-        console.error(&#x27;Not Found (404):&#x27;, error.error?.message);
-        router.navigate([&#x27;/not-found&#x27;]);
+        switch (error.status) {
+          case 400:
+            console.error(&#x27;Bad Request (400):&#x27;, error.error?.message);
+            break;
+          case 404:
+            console.error(&#x27;Not Found (404):&#x27;, error.error?.message);
+            router.navigate([&#x27;/not-found&#x27;]);
+            break;
+          case 500:
+            console.error(&#x27;Internal Server Error (500):&#x27;, error.error?.message);
+            window.alert(translate.instant(&#x27;interceptor.error_500&#x27;));
+            router.navigate([&#x27;/not-found&#x27;]);
+            break;
+          default:
+            console.error(&#x27;Unhandled error status:&#x27;, error.status);
+            break;
+        }
       } else {
-        console.error(&#x27;Unhandled error status:&#x27;, error.status);
+        console.error(&#x27;Unexpected error:&#x27;, error);
       }
-
       return throwError(() &#x3D;&gt; error);
     })
   );

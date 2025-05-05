@@ -89,7 +89,7 @@
   <li class="breadcrumb-item">Components</li>
   <li class="breadcrumb-item"
   >
-  CookiesComponent</li>
+  EventDetailComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -106,6 +106,10 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
@@ -116,18 +120,12 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/shared/policy/cookies/cookies.component.ts</code>
+    <code>src/app/shared/component/event-detail/event-detail.component.ts</code>
 </p>
 
 
 
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                <code>OnInit</code>
-    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -135,6 +133,10 @@
     <table class="table table-sm table-hover metadata">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
 
 
 
@@ -148,7 +150,7 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-cookies</code></td>
+                <td class="col-md-9"><code>app-event-detail</code></td>
             </tr>
 
             <tr>
@@ -159,26 +161,26 @@
             <tr>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
-                            <code>NgxSpinnerModule</code>
-                            <code>TranslateModule</code>
+                            <code>CommonModule</code>
                             <code>RouterModule</code>
+                            <code>TranslateModule</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./event-detail.component.scss</code></td>
+            </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./cookies.component.html</code></td>
+                <td class="col-md-9"><code>./event-detail.component.html</code></td>
             </tr>
 
 
 
-            <tr>
-                <td class="col-md-3">styleUrl</td>
-                <td class="col-md-9"><code>./cookies.component.scss</code></td>
-            </tr>
 
 
 
@@ -201,27 +203,17 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#loadingService" >loadingService</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#details$" >details$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#event$" >event$</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
 
@@ -237,12 +229,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(loadingService: <a href="../injectables/LoadingService.html" target="_self">LoadingService</a>)</code>
+<code>constructor(route: ActivatedRoute, apiService: <a href="../injectables/ApiService.html" target="_self">ApiService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/shared/policy/cookies/cookies.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/shared/component/event-detail/event-detail.component.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -260,10 +252,22 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>loadingService</td>
+                                                        <td>route</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/LoadingService.html" target="_self" >LoadingService</a></code>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>apiService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -284,49 +288,7 @@
 
 
 
-    <section data-compodoc="block-methods">
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
 
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/app/shared/policy/cookies/cookies.component.ts:17</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
     <section data-compodoc="block-properties">
     
     <h3 id="inputs">
@@ -336,23 +298,50 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="loadingService"></a>
+                    <a name="details$"></a>
                     <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>loadingService</b></span>
-                        <a href="#loadingService"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>details$</b></span>
+                        <a href="#details$"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../injectables/LoadingService.html" target="_self" >LoadingService</a></code>
+                        <i>Type : </i>        <code><a href="../interfaces/DetailItem.html" target="_self" >Observable&lt;DetailItem[]&gt;</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/shared/policy/cookies/cookies.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/shared/component/event-detail/event-detail.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="event$"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>event$</b></span>
+                        <a href="#event$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/EventData.html" target="_self" >Observable&lt;EventData | null&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/shared/component/event-detail/event-detail.component.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -365,60 +354,186 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { LoadingService } from &#x27;../../../core/services/loading.service&#x27;;
-import { NgxSpinnerModule } from &#x27;ngx-spinner&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { ActivatedRoute, RouterModule } from &#x27;@angular/router&#x27;;
 import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
-import { RouterModule } from &#x27;@angular/router&#x27;;
+import { Observable, of } from &#x27;rxjs&#x27;;
+import { map, switchMap, catchError, shareReplay } from &#x27;rxjs/operators&#x27;;
+import { EventData } from &#x27;../../../core/models/EventData.interface&#x27;;
+import { ApiService } from &#x27;../../../core/services/api.service&#x27;;
+
+interface DetailItem {
+  readonly label: string;
+  readonly value: string;
+}
 
 @Component({
-  selector: &#x27;app-cookies&#x27;,
+  selector: &#x27;app-event-detail&#x27;,
   standalone: true,
-  imports: [NgxSpinnerModule, TranslateModule, RouterModule],
-  templateUrl: &#x27;./cookies.component.html&#x27;,
-  styleUrl: &#x27;./cookies.component.scss&#x27;
+  imports: [CommonModule, RouterModule, TranslateModule],
+  templateUrl: &#x27;./event-detail.component.html&#x27;,
+  styleUrls: [&#x27;./event-detail.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CookiesComponent implements OnInit {
-  constructor(public loadingService: LoadingService) {}
+export class EventDetailComponent {
+  readonly event$: Observable&lt;EventData | null&gt;;
+  readonly details$: Observable&lt;readonly DetailItem[]&gt;;
 
-  ngOnInit() {
-    this.loadingService.loading();
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly apiService: ApiService,
+  ) {
+    this.event$ &#x3D; this.route.paramMap.pipe(
+      map((params) &#x3D;&gt; Number(params.get(&#x27;id&#x27;))),
+      switchMap((id) &#x3D;&gt; this.apiService.getEvento(id)),
+      catchError(() &#x3D;&gt; of(null)),
+      shareReplay({ bufferSize: 1, refCount: true }),
+    );
 
-    setTimeout(() &#x3D;&gt; {
-      this.loadingService.idle();
-    },0);
+    this.details$ &#x3D; this.event$.pipe(
+      map((event) &#x3D;&gt; {
+        if (!event) return [];
+        return [
+          { label: &#x27;event.location_label&#x27;, value: event.ubicacion },
+          {
+            label: &#x27;event.date_label&#x27;,
+            value: new Date(event.fechaEvento).toLocaleString(),
+          },
+        ] as const;
+      }),
+    );
   }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;ngx-spinner type &#x3D; &quot;pacman&quot; size &#x3D; &quot;large&quot;&gt;&lt;/ngx-spinner&gt;
-
-&lt;section id&#x3D;&quot;cookies-main&quot;&gt;
-    &lt;h1 class&#x3D;&quot;text-center&quot;&gt;{{ &#x27;cookies.main_title&#x27; | translate }}&lt;/h1&gt;
-    &lt;h2&gt;{{ &#x27;cookies.main_subtitle&#x27; | translate }}&lt;/h2&gt;
-    
-    &lt;div class&#x3D;&quot;text-section&quot;&gt;
-        &lt;p&gt;{{ &#x27;cookies.p1&#x27; | translate }}&lt;/p&gt;
-        &lt;p&gt;{{ &#x27;cookies.p2&#x27; | translate }}&lt;/p&gt;
-        &lt;p&gt;{{ &#x27;cookies.p3&#x27; | translate }}&lt;/p&gt;
-        &lt;p&gt;{{ &#x27;cookies.p4&#x27; | translate }}&lt;/p&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;event-detail-container&quot;&gt;
+  @if ((event$ | async); as event) {
+    &lt;div class&#x3D;&quot;event-image&quot; *ngIf&#x3D;&quot;event.imagenUrl&quot;&gt;
+      &lt;img
+        [src]&#x3D;&quot;event.imagenUrl&quot;
+        [alt]&#x3D;&quot;event.nombre&quot;
+        class&#x3D;&quot;detail-img&quot;
+      /&gt;
     &lt;/div&gt;
 
-    &lt;div class&#x3D;&quot;text-section&quot;&gt;
-        &lt;h3&gt;{{ &#x27;cookies.subtitle_1&#x27; | translate }}&lt;/h3&gt;
-        &lt;p&gt;{{ &#x27;cookies.p5&#x27; | translate }}&lt;/p&gt;
-    &lt;/div&gt;
+    &lt;section class&#x3D;&quot;hero&quot;&gt;
+      &lt;h1 class&#x3D;&quot;hero-title&quot;&gt;
+        {{ event.nombre || (&#x27;event.default_name&#x27; | translate) }}
+      &lt;/h1&gt;
+    &lt;/section&gt;
 
-    &lt;div class&#x3D;&quot;text-section&quot;&gt;
-        &lt;h3&gt;{{ &#x27;cookies.subtitle_2&#x27; | translate }}&lt;/h3&gt;
-        &lt;p&gt;{{ &#x27;cookies.p6&#x27; | translate }}&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/section&gt;
+    &lt;section class&#x3D;&quot;content-wrapper&quot;&gt;
+      &lt;div class&#x3D;&quot;event-meta&quot;&gt;
+        &lt;ul&gt;
+          @for (detail of details$ | async; track detail.label) {
+            &lt;li&gt;
+              &lt;strong&gt;{{ detail.label | translate }}&lt;/strong&gt;
+              {{ detail.value }}
+            &lt;/li&gt;
+          }
+        &lt;/ul&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;event-description&quot;&gt;
+        &lt;p&gt;
+          {{ event.descripcion || (&#x27;event.default_description&#x27; | translate) }}
+        &lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  } @else {
+    &lt;p class&#x3D;&quot;loading&quot;&gt;{{ &#x27;loading&#x27; | translate }}&lt;/p&gt;
+  }
+&lt;/div&gt;
 </code></pre>
     </div>
 
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./event-detail.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;../../../../colors.scss&#x27;;
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: $bg-gradient;
+  color: $white;
+}
+
+.event-detail-container {
+  background-color: $container-bg;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.event-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+
+  .detail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.hero {
+  padding: 1.5rem;
+
+  .hero-title {
+    font-size: 2rem;
+    margin: 0;
+    color: $white;
+  }
+}
+
+.content-wrapper {
+  padding: 1.5rem;
+}
+
+.event-meta {
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+
+    li {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.event-description {
+  padding: 0 1.5rem 1.5rem;
+  p {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+}
+
+.loading {
+  font-size: 1rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+</code></pre>
+    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -445,10 +560,10 @@ export class CookiesComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ngx-spinner type = "pacman" size = "large"></ngx-spinner><section id="cookies-main">    <h1 class="text-center">{{ \'cookies.main_title\' | translate }}</h1>    <h2>{{ \'cookies.main_subtitle\' | translate }}</h2>        <div class="text-section">        <p>{{ \'cookies.p1\' | translate }}</p>        <p>{{ \'cookies.p2\' | translate }}</p>        <p>{{ \'cookies.p3\' | translate }}</p>        <p>{{ \'cookies.p4\' | translate }}</p>    </div>    <div class="text-section">        <h3>{{ \'cookies.subtitle_1\' | translate }}</h3>        <p>{{ \'cookies.p5\' | translate }}</p>    </div>    <div class="text-section">        <h3>{{ \'cookies.subtitle_2\' | translate }}</h3>        <p>{{ \'cookies.p6\' | translate }}</p>    </div></section></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="event-detail-container">  @if ((event$ | async); as event) {    <div class="event-image" *ngIf="event.imagenUrl">      <img        [src]="event.imagenUrl"        [alt]="event.nombre"        class="detail-img"      />    </div>    <section class="hero">      <h1 class="hero-title">        {{ event.nombre || (\'event.default_name\' | translate) }}      </h1>    </section>    <section class="content-wrapper">      <div class="event-meta">        <ul>          @for (detail of details$ | async; track detail.label) {            <li>              <strong>{{ detail.label | translate }}</strong>              {{ detail.value }}            </li>          }        </ul>      </div>      <div class="event-description">        <p>          {{ event.descripcion || (\'event.default_description\' | translate) }}        </p>      </div>    </section>  } @else {    <p class="loading">{{ \'loading\' | translate }}</p>  }</div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CookiesComponent', 'selector': 'app-cookies'},{'name': 'EditarReservaComponent', 'selector': 'app-editar-reserva'},{'name': 'EditComponent', 'selector': 'app-edit'},{'name': 'EmpresaFormComponent', 'selector': 'app-empresa-form'},{'name': 'EspaiClientComponent', 'selector': 'app-espai-client'},{'name': 'EspaiEmpresaComponent', 'selector': 'app-espai-empresa'},{'name': 'EventComponent', 'selector': 'app-event'},{'name': 'EventDetailComponent', 'selector': 'app-event-detail'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GestorReservesCliComponent', 'selector': 'app-gestor-reserves-cli'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarisEmpresaComponent', 'selector': 'app-horaris-empresa'},{'name': 'LandingPageComponent', 'selector': 'app-landing-page'},{'name': 'LegalNoticeComponent', 'selector': 'app-legal-notice'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MetricasComponent', 'selector': 'app-metricas'},{'name': 'NotfoundpageComponent', 'selector': 'app-notfoundpage'},{'name': 'PrivacyComponent', 'selector': 'app-privacy'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReservesCliComponent', 'selector': 'app-reserves-cli'},{'name': 'SearchComponent', 'selector': 'app-search'},{'name': 'ServiceDetailComponent', 'selector': 'app-service-detail'},{'name': 'ServicesFormComponent', 'selector': 'app-services-form'},{'name': 'ShowServicesComponent', 'selector': 'app-show-services'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'CookiesComponent'};
+    var ACTUAL_COMPONENT = {'name': 'EventDetailComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -494,7 +609,7 @@ export class CookiesComponent implements OnInit {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'CookiesComponent.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'EventDetailComponent.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

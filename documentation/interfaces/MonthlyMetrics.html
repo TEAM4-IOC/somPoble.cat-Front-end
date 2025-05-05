@@ -98,7 +98,7 @@
   <li class="breadcrumb-item">Interfaces</li>
   <li class="breadcrumb-item"
   >
-  CreateEmpresaPayload</li>
+  MonthlyMetrics</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -122,7 +122,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/core/models/create-empresa-payload.interface.ts</code>
+            <code>src/app/core/models/metrics.interface.ts</code>
         </p>
 
 
@@ -141,15 +141,21 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#dni" 
+                                        <a href="#ingresos" 
 >
-                                            dni
+                                            ingresos
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#empresa" 
+                                        <a href="#mes" 
 >
-                                            empresa
+                                            mes
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#reservas" 
+>
+                                            reservas
                                         </a>
                                 </li>
                             </ul>
@@ -167,9 +173,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="dni"></a>
-                                        <span class="name "><b>dni</b>
-                                            <a href="#dni">
+                                        <a name="ingresos"></a>
+                                        <span class="name "><b>ingresos</b>
+                                            <a href="#ingresos">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -177,7 +183,40 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>dni:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>ingresos:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="mes"></a>
+                                        <span class="name "><b>mes</b>
+                                            <a href="#mes">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>mes:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -200,9 +239,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="empresa"></a>
-                                        <span class="name "><b>empresa</b>
-                                            <a href="#empresa">
+                                        <a name="reservas"></a>
+                                        <span class="name "><b>reservas</b>
+                                            <a href="#reservas">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -210,7 +249,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>empresa:     <code>literal type</code>
+                                        <code>reservas:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -218,7 +257,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code>literal type</code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                                         </td>
                                     </tr>
@@ -234,17 +273,18 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface CreateEmpresaPayload {
-  empresa: {
-    identificadorFiscal: string;
-    nombre?: string;
-    actividad?: string;
-    direccion: string;
-    email: string;
-    telefono: string;
-    imagen?: File;
-  };
-  dni: string;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface MonthlyMetrics {
+  mes: string;
+  reservas: number;
+  ingresos: number;
+}
+
+export interface Metrics {
+  nombreEmpresa: string;
+  totalReservas: number;
+  totalIngresos: number;
+  clientesUnicos: number;
+  mensual: MonthlyMetrics[];
 }
 </code></pre>
     </div>
@@ -283,7 +323,7 @@
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'CreateEmpresaPayload.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'MonthlyMetrics.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

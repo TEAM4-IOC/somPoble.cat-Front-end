@@ -1,0 +1,4130 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>som-poble documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">som-poble documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  HorarisEmpresaComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/horaris-empresa/horaris-empresa.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-horaris-empresa</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>TranslateModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./horaris-empresa.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./horaris-empresa.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#currentDay" >currentDay</a>
+                            </li>
+                            <li>
+                                <a href="#currentMonth" >currentMonth</a>
+                            </li>
+                            <li>
+                                <a href="#currentYear" >currentYear</a>
+                            </li>
+                            <li>
+                                <a href="#daysInMonth" >daysInMonth</a>
+                            </li>
+                            <li>
+                                <a href="#identificadorFiscal" >identificadorFiscal</a>
+                            </li>
+                            <li>
+                                <a href="#isCardsView" >isCardsView</a>
+                            </li>
+                            <li>
+                                <a href="#isDailyView" >isDailyView</a>
+                            </li>
+                            <li>
+                                <a href="#isMonthlyView" >isMonthlyView</a>
+                            </li>
+                            <li>
+                                <a href="#isTableView" >isTableView</a>
+                            </li>
+                            <li>
+                                <a href="#reservas" >reservas</a>
+                            </li>
+                            <li>
+                                <a href="#servicios" >servicios</a>
+                            </li>
+                            <li>
+                                <a href="#showNoServicesMessage" >showNoServicesMessage</a>
+                            </li>
+                            <li>
+                                <a href="#weekDays" >weekDays</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cards" >cards</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#deleteServicio" >deleteServicio</a>
+                            </li>
+                            <li>
+                                <a href="#formatDateToDDMMYYYY" >formatDateToDDMMYYYY</a>
+                            </li>
+                            <li>
+                                <a href="#formatDays" >formatDays</a>
+                            </li>
+                            <li>
+                                <a href="#formatHours" >formatHours</a>
+                            </li>
+                            <li>
+                                <a href="#generateCalendar" >generateCalendar</a>
+                            </li>
+                            <li>
+                                <a href="#getHours" >getHours</a>
+                            </li>
+                            <li>
+                                <a href="#getReservasAgrupadasPorServicio" >getReservasAgrupadasPorServicio</a>
+                            </li>
+                            <li>
+                                <a href="#getReservasForServiceAndHour" >getReservasForServiceAndHour</a>
+                            </li>
+                            <li>
+                                <a href="#getServiceColor" >getServiceColor</a>
+                            </li>
+                            <li>
+                                <a href="#getServicesForDay" >getServicesForDay</a>
+                            </li>
+                            <li>
+                                <a href="#goTo" >goTo</a>
+                            </li>
+                            <li>
+                                <a href="#goToDailyView" >goToDailyView</a>
+                            </li>
+                            <li>
+                                <a href="#goToEspaiClient" >goToEspaiClient</a>
+                            </li>
+                            <li>
+                                <a href="#hasReservas" >hasReservas</a>
+                            </li>
+                            <li>
+                                <a href="#hasService" >hasService</a>
+                            </li>
+                            <li>
+                                <a href="#isPastDay" >isPastDay</a>
+                            </li>
+                            <li>
+                                <a href="#isServiceAvailable" >isServiceAvailable</a>
+                            </li>
+                            <li>
+                                <a href="#nextDay" >nextDay</a>
+                            </li>
+                            <li>
+                                <a href="#nextMonth" >nextMonth</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onDeleteReserva" >onDeleteReserva</a>
+                            </li>
+                            <li>
+                                <a href="#onEditServiceClick" >onEditServiceClick</a>
+                            </li>
+                            <li>
+                                <a href="#prevDay" >prevDay</a>
+                            </li>
+                            <li>
+                                <a href="#prevMonth" >prevMonth</a>
+                            </li>
+                            <li>
+                                <a href="#setView" >setView</a>
+                            </li>
+                            <li>
+                                <a href="#toggleView" >toggleView</a>
+                            </li>
+                            <li>
+                                <a href="#trackByCard" >trackByCard</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#currentDayName" >currentDayName</a>
+                                </li>
+                                <li>
+                                    <a href="#currentMonthName" >currentMonthName</a>
+                                </li>
+                                <li>
+                                    <a href="#currentDayOfWeek" >currentDayOfWeek</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(serviceState: <a href="../injectables/ServiceStateService.html" target="_self">ServiceStateService</a>, reservaStateService: <a href="../injectables/ReservaStateService.html" target="_self">ReservaStateService</a>, router: Router, route: ActivatedRoute, translate: TranslateService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>serviceState</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ServiceStateService.html" target="_self" >ServiceStateService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>reservaStateService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ReservaStateService.html" target="_self" >ReservaStateService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>translate</td>
+                                                  
+                                                        <td>
+                                                                    <code>TranslateService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cards"></a>
+                    <span class="name">
+                        <span ><b>cards</b></span>
+                        <a href="#cards"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cards()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="199"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:199</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>literal type[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteServicio"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>deleteServicio</b></span>
+                        <a href="#deleteServicio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteServicio(idServicio: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="387"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:387</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idServicio</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatDateToDDMMYYYY"></a>
+                    <span class="name">
+                        <span ><b>formatDateToDDMMYYYY</b></span>
+                        <a href="#formatDateToDDMMYYYY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>formatDateToDDMMYYYY(dateString: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="351"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:351</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>dateString</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatDays"></a>
+                    <span class="name">
+                        <span ><b>formatDays</b></span>
+                        <a href="#formatDays"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>formatDays(diasLaborables: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="366"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:366</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>diasLaborables</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatHours"></a>
+                    <span class="name">
+                        <span ><b>formatHours</b></span>
+                        <a href="#formatHours"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>formatHours(horarioInicio: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, horarioFin: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="377"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:377</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>horarioInicio</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>horarioFin</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateCalendar"></a>
+                    <span class="name">
+                        <span ><b>generateCalendar</b></span>
+                        <a href="#generateCalendar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>generateCalendar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="108"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:108</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getHours"></a>
+                    <span class="name">
+                        <span ><b>getHours</b></span>
+                        <a href="#getHours"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getHours()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="224"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:224</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getReservasAgrupadasPorServicio"></a>
+                    <span class="name">
+                        <span ><b>getReservasAgrupadasPorServicio</b></span>
+                        <a href="#getReservasAgrupadasPorServicio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getReservasAgrupadasPorServicio()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="319"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:319</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>literal type[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getReservasForServiceAndHour"></a>
+                    <span class="name">
+                        <span ><b>getReservasForServiceAndHour</b></span>
+                        <a href="#getReservasForServiceAndHour"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getReservasForServiceAndHour(idServicio: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, hour: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="287"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:287</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idServicio</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>hour</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>literal type[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getServiceColor"></a>
+                    <span class="name">
+                        <span ><b>getServiceColor</b></span>
+                        <a href="#getServiceColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getServiceColor(servicio: <a href="../interfaces/ServicioData.html" target="_self">ServicioData</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="262"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:262</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>servicio</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ServicioData.html" target="_self" >ServicioData</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getServicesForDay"></a>
+                    <span class="name">
+                        <span ><b>getServicesForDay</b></span>
+                        <a href="#getServicesForDay"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getServicesForDay(day: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="234"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:234</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>day</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ServicioData.html" target="_self" >ServicioData[]</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goTo"></a>
+                    <span class="name">
+                        <span ><b>goTo</b></span>
+                        <a href="#goTo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goTo(route: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="220"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:220</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>route</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goToDailyView"></a>
+                    <span class="name">
+                        <span ><b>goToDailyView</b></span>
+                        <a href="#goToDailyView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goToDailyView(day: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="267"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:267</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>day</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goToEspaiClient"></a>
+                    <span class="name">
+                        <span ><b>goToEspaiClient</b></span>
+                        <a href="#goToEspaiClient"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goToEspaiClient()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="383"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:383</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasReservas"></a>
+                    <span class="name">
+                        <span ><b>hasReservas</b></span>
+                        <a href="#hasReservas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>hasReservas()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="307"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:307</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasService"></a>
+                    <span class="name">
+                        <span ><b>hasService</b></span>
+                        <a href="#hasService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>hasService(day: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="142"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:142</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>day</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isPastDay"></a>
+                    <span class="name">
+                        <span ><b>isPastDay</b></span>
+                        <a href="#isPastDay"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isPastDay(date: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, isCurrentMonth: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="311"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:311</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>date</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>isCurrentMonth</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isServiceAvailable"></a>
+                    <span class="name">
+                        <span ><b>isServiceAvailable</b></span>
+                        <a href="#isServiceAvailable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isServiceAvailable(servicio: <a href="../interfaces/ServicioData.html" target="_self">ServicioData</a>, hour: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="249"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:249</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>servicio</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ServicioData.html" target="_self" >ServicioData</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>hour</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nextDay"></a>
+                    <span class="name">
+                        <span ><b>nextDay</b></span>
+                        <a href="#nextDay"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>nextDay()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="159"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:159</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nextMonth"></a>
+                    <span class="name">
+                        <span ><b>nextMonth</b></span>
+                        <a href="#nextMonth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>nextMonth()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="176"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:176</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDeleteReserva"></a>
+                    <span class="name">
+                        <span ><b>onDeleteReserva</b></span>
+                        <a href="#onDeleteReserva"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDeleteReserva(idReserva: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="336"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:336</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idReserva</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onEditServiceClick"></a>
+                    <span class="name">
+                        <span ><b>onEditServiceClick</b></span>
+                        <a href="#onEditServiceClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onEditServiceClick(servicio: <a href="../interfaces/ServicioData.html" target="_self">ServicioData</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="331"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:331</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>servicio</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ServicioData.html" target="_self" >ServicioData</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prevDay"></a>
+                    <span class="name">
+                        <span ><b>prevDay</b></span>
+                        <a href="#prevDay"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>prevDay()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="152"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:152</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prevMonth"></a>
+                    <span class="name">
+                        <span ><b>prevMonth</b></span>
+                        <a href="#prevMonth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>prevMonth()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="166"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:166</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setView"></a>
+                    <span class="name">
+                        <span ><b>setView</b></span>
+                        <a href="#setView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setView(view: "monthly" | "daily" | "table" | "cards")</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="192"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:192</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>view</td>
+                                            <td>
+                                                        <code>&quot;monthly&quot; | &quot;daily&quot; | &quot;table&quot; | &quot;cards&quot;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleView"></a>
+                    <span class="name">
+                        <span ><b>toggleView</b></span>
+                        <a href="#toggleView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleView()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="186"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:186</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trackByCard"></a>
+                    <span class="name">
+                        <span ><b>trackByCard</b></span>
+                        <a href="#trackByCard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>trackByCard(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, card: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="362"
+                                    class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:362</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>card</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentDay"></a>
+                    <span class="name">
+                        <span ><b>currentDay</b></span>
+                        <a href="#currentDay"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Date().getDate()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentMonth"></a>
+                    <span class="name">
+                        <span ><b>currentMonth</b></span>
+                        <a href="#currentMonth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Date().getMonth()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentYear"></a>
+                    <span class="name">
+                        <span ><b>currentYear</b></span>
+                        <a href="#currentYear"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Date().getFullYear()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="daysInMonth"></a>
+                    <span class="name">
+                        <span ><b>daysInMonth</b></span>
+                        <a href="#daysInMonth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="identificadorFiscal"></a>
+                    <span class="name">
+                        <span ><b>identificadorFiscal</b></span>
+                        <a href="#identificadorFiscal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isCardsView"></a>
+                    <span class="name">
+                        <span ><b>isCardsView</b></span>
+                        <a href="#isCardsView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDailyView"></a>
+                    <span class="name">
+                        <span ><b>isDailyView</b></span>
+                        <a href="#isDailyView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isMonthlyView"></a>
+                    <span class="name">
+                        <span ><b>isMonthlyView</b></span>
+                        <a href="#isMonthlyView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isTableView"></a>
+                    <span class="name">
+                        <span ><b>isTableView</b></span>
+                        <a href="#isTableView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reservas"></a>
+                    <span class="name">
+                        <span ><b>reservas</b></span>
+                        <a href="#reservas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="servicios"></a>
+                    <span class="name">
+                        <span ><b>servicios</b></span>
+                        <a href="#servicios"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ServicioData.html" target="_self" >ServicioData[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showNoServicesMessage"></a>
+                    <span class="name">
+                        <span ><b>showNoServicesMessage</b></span>
+                        <a href="#showNoServicesMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="weekDays"></a>
+                    <span class="name">
+                        <span ><b>weekDays</b></span>
+                        <a href="#weekDays"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[1, 2, 3, 4, 5, 6, 7]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:21</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentDayName"></a>
+                        <span class="name"><b>currentDayName</b><a href="#currentDayName"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>currentDayName()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:85</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentMonthName"></a>
+                        <span class="name"><b>currentMonthName</b><a href="#currentMonthName"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>currentMonthName()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:90</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentDayOfWeek"></a>
+                        <span class="name"><b>currentDayOfWeek</b><a href="#currentDayOfWeek"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>currentDayOfWeek()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="356" class="link-to-prism">src/app/features/horaris-empresa/horaris-empresa.component.ts:356</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { ServiceStateService } from &#x27;../../core/services/service-state.service&#x27;;
+import { ServicioData } from &#x27;../../core/models/ServicioData.interface&#x27;;
+import { ReservaStateService } from &#x27;../../core/services/reserva-state.service&#x27;;
+import { Router, ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { TranslateModule, TranslateService } from &#x27;@ngx-translate/core&#x27;;
+
+@Component({
+  selector: &#x27;app-horaris-empresa&#x27;,
+  standalone: true,
+  imports: [CommonModule, TranslateModule],
+  templateUrl: &#x27;./horaris-empresa.component.html&#x27;,
+  styleUrls: [&#x27;./horaris-empresa.component.scss&#x27;]
+})
+export class HorarisEmpresaComponent implements OnInit {
+  currentYear: number &#x3D; new Date().getFullYear();
+  currentMonth: number &#x3D; new Date().getMonth();
+  currentDay: number &#x3D; new Date().getDate();
+  daysInMonth: { date: number; isCurrentMonth: boolean }[] &#x3D; [];
+  weekDays: number[] &#x3D; [1, 2, 3, 4, 5, 6, 7];
+  isMonthlyView: boolean &#x3D; true;
+  isTableView: boolean &#x3D; false;
+  isCardsView &#x3D; false;
+  isDailyView: boolean &#x3D; false;
+
+  servicios: ServicioData[] &#x3D; [];
+  identificadorFiscal: string &#x3D; &#x27;&#x27;;
+  reservas: any[] &#x3D; [];
+
+
+
+  constructor(
+    private serviceState: ServiceStateService,
+    private reservaStateService: ReservaStateService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private translate: TranslateService
+  ) { }
+
+  showNoServicesMessage: boolean &#x3D; false;
+  
+  ngOnInit(): void {
+
+    this.route.queryParams.subscribe((params) &#x3D;&gt; {
+      const view &#x3D; params[&#x27;view&#x27;];
+      if (view &#x3D;&#x3D;&#x3D; &#x27;table&#x27;) {
+        this.setView(&#x27;table&#x27;);
+      } else if (view &#x3D;&#x3D;&#x3D; &#x27;cards&#x27;) {
+        this.setView(&#x27;cards&#x27;);
+      } else if (view &#x3D;&#x3D;&#x3D; &#x27;daily&#x27;) {
+        this.setView(&#x27;daily&#x27;);
+      } else {
+        this.setView(&#x27;monthly&#x27;);
+      }
+    });
+
+    const sessionStr &#x3D; localStorage.getItem(&#x27;session&#x27;);
+    if (sessionStr) {
+      const session &#x3D; JSON.parse(sessionStr);
+      const empresa &#x3D; session.usuario?.empresas?.[0];
+      this.identificadorFiscal &#x3D; empresa?.identificadorFiscal || &#x27;&#x27;;
+    }
+
+
+    if (this.identificadorFiscal) {
+      this.serviceState.saveAndEmit([]);
+      this.serviceState.loadServiciosByIdentificadorFiscal(this.identificadorFiscal);
+      this.serviceState.service$.subscribe((servicios) &#x3D;&gt; {
+        this.servicios &#x3D; servicios;
+        this.generateCalendar();
+        this.showNoServicesMessage &#x3D; this.servicios.length &#x3D;&#x3D;&#x3D; 0 || this.cards().length &#x3D;&#x3D;&#x3D; 0;
+
+      });
+
+      this.reservaStateService.loadReservasByEmpresa(this.identificadorFiscal);
+    this.reservaStateService.reservas$.subscribe((reservas) &#x3D;&gt; {
+      this.reservas &#x3D; reservas;
+    });
+
+    } else {}
+  }
+
+
+  get currentDayName(): string {
+    const today &#x3D; new Date(this.currentYear, this.currentMonth, this.currentDay);
+    return today.toLocaleString(&#x27;default&#x27;, { weekday: &#x27;long&#x27; });
+  }
+
+  get currentMonthName(): string {
+    const monthNames &#x3D; [
+      &#x27;january&#x27;,
+      &#x27;february&#x27;,
+      &#x27;march&#x27;,
+      &#x27;april&#x27;,
+      &#x27;may&#x27;,
+      &#x27;june&#x27;,
+      &#x27;july&#x27;,
+      &#x27;august&#x27;,
+      &#x27;september&#x27;,
+      &#x27;october&#x27;,
+      &#x27;november&#x27;,
+      &#x27;december&#x27;
+    ];
+    return monthNames[this.currentMonth];
+  }
+
+  generateCalendar(): void {
+    const firstDayOfMonth &#x3D; new Date(this.currentYear, this.currentMonth, 1);
+    const lastDayOfMonth &#x3D; new Date(this.currentYear, this.currentMonth + 1, 0);
+    const firstDayOfWeek &#x3D; firstDayOfMonth.getDay() &#x3D;&#x3D;&#x3D; 0 ? 7 : firstDayOfMonth.getDay();
+    const lastDateOfMonth &#x3D; lastDayOfMonth.getDate();
+
+    this.daysInMonth &#x3D; [];
+
+
+    const daysFromPrevMonth &#x3D; firstDayOfWeek - 1;
+    if (daysFromPrevMonth &gt; 0) {
+      const prevMonth &#x3D; this.currentMonth &#x3D;&#x3D;&#x3D; 0 ? 11 : this.currentMonth - 1;
+      const prevYear &#x3D; this.currentMonth &#x3D;&#x3D;&#x3D; 0 ? this.currentYear - 1 : this.currentYear;
+      const lastDayOfPrevMonth &#x3D; new Date(prevYear, prevMonth + 1, 0).getDate();
+
+      for (let i &#x3D; daysFromPrevMonth; i &gt; 0; i--) {
+        this.daysInMonth.push({ date: lastDayOfPrevMonth - i + 1, isCurrentMonth: false });
+      }
+    }
+
+
+    for (let i &#x3D; 1; i &lt;&#x3D; lastDateOfMonth; i++) {
+      this.daysInMonth.push({ date: i, isCurrentMonth: true });
+    }
+
+
+    const remainingCells &#x3D; 7 - (this.daysInMonth.length % 7);
+    if (remainingCells &lt; 7) {
+      for (let i &#x3D; 1; i &lt;&#x3D; remainingCells; i++) {
+        this.daysInMonth.push({ date: i, isCurrentMonth: false });
+      }
+    }
+  }
+
+  hasService(day: number): boolean {
+    const today &#x3D; new Date(this.currentYear, this.currentMonth, day).getDay();
+    const adjustedDay &#x3D; today &#x3D;&#x3D;&#x3D; 0 ? 7 : today;
+
+    return this.servicios.some(servicio &#x3D;&gt; {
+      const diasLaborables &#x3D; servicio.diasLaborables.split(&#x27;,&#x27;).map(Number);
+      return diasLaborables.includes(adjustedDay);
+    });
+  }
+
+  prevDay(): void {
+    const currentDate &#x3D; new Date(this.currentYear, this.currentMonth, this.currentDay - 1);
+    this.currentYear &#x3D; currentDate.getFullYear();
+    this.currentMonth &#x3D; currentDate.getMonth();
+    this.currentDay &#x3D; currentDate.getDate();
+  }
+
+  nextDay(): void {
+    const currentDate &#x3D; new Date(this.currentYear, this.currentMonth, this.currentDay + 1);
+    this.currentYear &#x3D; currentDate.getFullYear();
+    this.currentMonth &#x3D; currentDate.getMonth();
+    this.currentDay &#x3D; currentDate.getDate();
+  }
+
+  prevMonth(): void {
+    if (this.currentMonth &#x3D;&#x3D;&#x3D; 0) {
+      this.currentMonth &#x3D; 11;
+      this.currentYear--;
+    } else {
+      this.currentMonth--;
+    }
+    this.generateCalendar();
+  }
+
+  nextMonth(): void {
+    if (this.currentMonth &#x3D;&#x3D;&#x3D; 11) {
+      this.currentMonth &#x3D; 0;
+      this.currentYear++;
+    } else {
+      this.currentMonth++;
+    }
+    this.generateCalendar();
+  }
+
+  toggleView(): void {
+    this.isMonthlyView &#x3D; !this.isMonthlyView;
+  }
+
+
+
+  setView(view: &#x27;monthly&#x27; | &#x27;daily&#x27; | &#x27;table&#x27; | &#x27;cards&#x27;): void {
+    this.isMonthlyView &#x3D; view &#x3D;&#x3D;&#x3D; &#x27;monthly&#x27;;
+    this.isDailyView &#x3D; view &#x3D;&#x3D;&#x3D; &#x27;daily&#x27;;
+    this.isTableView &#x3D; view &#x3D;&#x3D;&#x3D; &#x27;table&#x27;;
+    this.isCardsView &#x3D; view &#x3D;&#x3D;&#x3D; &#x27;cards&#x27;;
+  }
+
+  cards(): {
+    label: string;
+    descripcion: string;
+    duracion: number;
+    precio: number;
+    availability: string;
+    schedule: string;
+    route: string;
+    queryParams?: any;
+  }[] {
+    return this.servicios.map(servicio &#x3D;&gt; ({
+      label: servicio.nombre,
+      descripcion: servicio.descripcion,
+      duracion: servicio.duracion,
+      precio: servicio.precio,
+      availability: this.formatDays(servicio.diasLaborables),
+      schedule: this.formatHours(servicio.horarioInicio, servicio.horarioFin),
+      route: &#x60;services-form/${servicio.idServicio}&#x60;
+    }));
+  }
+
+  goTo(route: string): void {
+    this.router.navigateByUrl(route);
+  }
+
+  getHours(): string[] {
+    const hours: string[] &#x3D; [];
+    for (let i &#x3D; 0; i &lt; 24; i++) {
+      const start &#x3D; &#x60;${i.toString().padStart(2, &#x27;0&#x27;)}:00&#x60;;
+      const end &#x3D; &#x60;${(i + 1).toString().padStart(2, &#x27;0&#x27;)}:00&#x60;;
+      hours.push(&#x60;${start} ${end}&#x60;);
+    }
+    return hours;
+  }
+
+  getServicesForDay(day: number): ServicioData[] {
+    const dayData &#x3D; this.daysInMonth.find(d &#x3D;&gt; d.date &#x3D;&#x3D;&#x3D; day &amp;&amp; d.isCurrentMonth);
+    if (!dayData || !dayData.isCurrentMonth) {
+      return [];
+    }
+
+    const date &#x3D; new Date(this.currentYear, this.currentMonth, day);
+    const dayOfWeek &#x3D; date.getDay() &#x3D;&#x3D;&#x3D; 0 ? 7 : date.getDay();
+
+    return this.servicios.filter(servicio &#x3D;&gt; {
+      const diasLaborables &#x3D; servicio.diasLaborables.split(&#x27;,&#x27;).map(Number);
+      return diasLaborables.includes(dayOfWeek);
+    });
+  }
+
+  isServiceAvailable(servicio: ServicioData, hour: string): boolean {
+    const [hourStart] &#x3D; servicio.horarioInicio.split(&#x27;:&#x27;).map(Number);
+    const [hourEnd] &#x3D; servicio.horarioFin.split(&#x27;:&#x27;).map(Number);
+    const currentHour &#x3D; parseInt(hour.split(&#x27;:&#x27;)[0], 10);
+
+    const today &#x3D; new Date(this.currentYear, this.currentMonth, this.currentDay).getDay();
+    return (
+      servicio.diasLaborables.split(&#x27;,&#x27;).map(Number).includes(today) &amp;&amp;
+      currentHour &gt;&#x3D; hourStart &amp;&amp;
+      currentHour &lt; hourEnd
+    );
+  }
+
+  getServiceColor(servicio: ServicioData): string {
+    const hue &#x3D; (servicio.idServicio * 137) % 360;
+    return &#x60;hsl(${hue}, 70%, 50%)&#x60;;
+  }
+
+  goToDailyView(day: { date: number; isCurrentMonth: boolean }): void {
+    if (!day.isCurrentMonth) {
+      return;
+    }
+
+    this.currentDay &#x3D; day.date;
+    this.isMonthlyView &#x3D; false;
+    this.isDailyView &#x3D; true;
+
+    const calendarContainer &#x3D; document.querySelector(&#x27;.calendar-container&#x27;);
+    if (calendarContainer) {
+      calendarContainer.classList.add(&#x27;hidden&#x27;);
+      setTimeout(() &#x3D;&gt; {
+        this.currentDay &#x3D; day.date;
+        this.isMonthlyView &#x3D; false;
+        calendarContainer.classList.remove(&#x27;hidden&#x27;);
+      }, 300);
+    }
+  }
+
+  getReservasForServiceAndHour(idServicio: number, hour: string): { id: number; estado: string; dniCliente: string }[] {
+    const [hourStart] &#x3D; hour.split(&#x27; &#x27;);
+    const currentDate &#x3D; &#x60;${this.currentYear}-${(this.currentMonth + 1).toString().padStart(2, &#x27;0&#x27;)}-${this.currentDay.toString().padStart(2, &#x27;0&#x27;)}&#x60;;
+
+    return this.reservas
+      .filter((reserva) &#x3D;&gt; {
+        const reservaHora &#x3D; reserva.hora.slice(0, 5);
+        return (
+          reserva.idServicio &#x3D;&#x3D;&#x3D; idServicio &amp;&amp;
+          reservaHora &#x3D;&#x3D;&#x3D; hourStart &amp;&amp;
+          reserva.fechaReserva &#x3D;&#x3D;&#x3D; currentDate
+        );
+      })
+      .map((reserva) &#x3D;&gt; ({
+        id: reserva.idReserva,
+        estado: reserva.estado,
+        dniCliente: reserva.dniCliente,
+      }));
+  }
+
+  hasReservas(): boolean {
+    return this.reservas &amp;&amp; this.reservas.length &gt; 0;
+  }
+
+  isPastDay(date: number, isCurrentMonth: boolean): boolean {
+    if (!isCurrentMonth) return false;
+    const today &#x3D; new Date();
+    const currentDate &#x3D; new Date(this.currentYear, this.currentMonth, date);
+
+    return currentDate &lt; new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  }
+
+  getReservasAgrupadasPorServicio(): { servicio: ServicioData; reservas: any[] }[] {
+    return this.servicios.map((servicio) &#x3D;&gt; {
+      const reservasDelServicio &#x3D; this.reservas.filter(
+        (reserva) &#x3D;&gt; reserva.idServicio &#x3D;&#x3D;&#x3D; servicio.idServicio
+      );
+      return {
+        servicio,
+        reservas: reservasDelServicio.length &gt; 0 ? reservasDelServicio : [],
+      };
+    });
+  }
+
+  onEditServiceClick(servicio: ServicioData): void {
+    const serviceId &#x3D; servicio.idServicio;
+    this.router.navigate([&#x60;services-form/${serviceId}&#x60;]);
+  }
+
+  onDeleteReserva(idReserva: number): void {
+    if (confirm(&#x27;Estàs segur que vols eliminar aquesta reserva?&#x27;)) {
+      this.reservaStateService.deleteReserva(idReserva).subscribe({
+        next: () &#x3D;&gt; {
+          alert(&#x27;Reserva eliminada correctament.&#x27;);
+
+          this.reservas &#x3D; this.reservas.filter((reserva) &#x3D;&gt; reserva.idReserva !&#x3D;&#x3D; idReserva);
+        },
+        error: (err) &#x3D;&gt; {
+          alert(&#x27;No s\&#x27;ha pogut eliminar la reserva.&#x27;);
+        },
+      });
+    }
+  }
+
+  formatDateToDDMMYYYY(dateString: string): string {
+    const [year, month, day] &#x3D; dateString.split(&#x27;-&#x27;);
+    return &#x60;${day}-${month}-${year}&#x60;;
+  }
+
+  get currentDayOfWeek(): number {
+    const today &#x3D; new Date(this.currentYear, this.currentMonth, this.currentDay);
+    const dayOfWeek &#x3D; today.getDay();
+    return dayOfWeek &#x3D;&#x3D;&#x3D; 0 ? 7 : dayOfWeek;
+  }
+
+  trackByCard(index: number, card: { label: string; route: string; queryParams?: any }): string {
+    return card.route;
+  }
+
+  formatDays(diasLaborables: string): string {
+    const dayOrder &#x3D; [&#x27;1&#x27;, &#x27;2&#x27;, &#x27;3&#x27;, &#x27;4&#x27;, &#x27;5&#x27;, &#x27;6&#x27;, &#x27;7&#x27;];
+    const diasOrdenados &#x3D; diasLaborables
+      .split(&#x27;,&#x27;)
+      .sort((a, b) &#x3D;&gt; dayOrder.indexOf(a.trim()) - dayOrder.indexOf(b.trim()));
+
+    return diasOrdenados
+      .map(dia &#x3D;&gt; this.translate.instant(&#x60;serviceDetail.days.${dia.trim()}&#x60;))
+      .join(&#x27;, &#x27;);
+  }
+
+  formatHours(horarioInicio: string, horarioFin: string): string {
+    const start &#x3D; horarioInicio.replace(&#x27;:00&#x27;, &#x27;&#x27;);
+    const end &#x3D; horarioFin.replace(&#x27;:00&#x27;, &#x27;&#x27;);
+    return &#x60;${start} a ${end}&#x60;;
+  }
+
+  goToEspaiClient(): void {
+    this.router.navigate([&#x27;/espai-empresa&#x27;]);
+  }
+
+  public deleteServicio(idServicio: number): void {
+    if (!this.identificadorFiscal) {
+      return;
+    }
+
+    this.serviceState.deleteServicio(idServicio, this.identificadorFiscal).subscribe(
+      () &#x3D;&gt; {
+        alert(this.translate.instant(&#x27;add-services-form.deleteOK&#x27;));
+        this.servicios &#x3D; this.servicios.filter(servicio &#x3D;&gt; servicio.idServicio !&#x3D;&#x3D; idServicio);
+        this.router.navigate([&#x27;/espai-empresa&#x27;]);
+      },
+      (error) &#x3D;&gt; {
+        alert(this.translate.instant(&#x27;add-services-form.deleteKO&#x27;));
+      }
+    );
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;main-content&quot;&gt;
+  &lt;div class&#x3D;&quot;d-flex justify-content-center mb-3&quot; [ngClass]&#x3D;&quot;{ &#x27;d-none&#x27;: !isDailyView }&quot;&gt;
+    &lt;button class&#x3D;&quot;auth-btn me-2 daily-btn&quot; [ngClass]&#x3D;&quot;{ &#x27;btn-primary&#x27;: isMonthlyView }&quot; (click)&#x3D;&quot;setView(&#x27;monthly&#x27;)&quot;
+      [disabled]&#x3D;&quot;isMonthlyView&quot;&gt;
+      {{ &#x27;horaris-empresa.vista-mensual&#x27; | translate }}
+    &lt;/button&gt;
+    &lt;button class&#x3D;&quot;auth-btn me-2 d-none &quot; [ngClass]&#x3D;&quot;{ &#x27;btn-primary&#x27;: isDailyView }&quot; (click)&#x3D;&quot;setView(&#x27;daily&#x27;)&quot;
+      [disabled]&#x3D;&quot;isDailyView&quot;&gt;
+      {{ &#x27;horaris-empresa.daily&#x27; | translate }}
+    &lt;/button&gt;
+    &lt;button class&#x3D;&quot;auth-btn d-none&quot; [ngClass]&#x3D;&quot;{ &#x27;btn-primary&#x27;: isTableView }&quot; (click)&#x3D;&quot;setView(&#x27;table&#x27;)&quot;
+      [disabled]&#x3D;&quot;isTableView&quot;&gt;
+      {{ &#x27;horaris-empresa.reservations&#x27; | translate }}
+    &lt;/button&gt;
+    &lt;button class&#x3D;&quot;auth-btn d-none&quot; [ngClass]&#x3D;&quot;{ &#x27;btn-primary&#x27;: isCardsView }&quot; (click)&#x3D;&quot;setView(&#x27;cards&#x27;)&quot;
+      [disabled]&#x3D;&quot;isCardsView&quot;&gt;
+      {{ &#x27;horaris-empresa.cardsView&#x27; | translate }}
+    &lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;monthly-view&quot; *ngIf&#x3D;&quot;isMonthlyView&quot;&gt;
+    &lt;div class&#x3D;&quot;calendar-container&quot; *ngIf&#x3D;&quot;servicios.length &gt; 0; else noServices&quot;&gt;
+      &lt;div class&#x3D;&quot;calendar-header&quot;&gt;
+        &lt;button class&#x3D;&quot;nav-button&quot; (click)&#x3D;&quot;prevMonth()&quot;&gt;&amp;#8592;&lt;/button&gt;
+        &lt;h2 class&#x3D;&quot;calendar-title&quot;&gt;
+          {{ &#x27;reservesCli.months.&#x27; + currentMonthName | translate }}
+          {{ currentYear }}
+        &lt;/h2&gt;
+        &lt;button class&#x3D;&quot;nav-button&quot; (click)&#x3D;&quot;nextMonth()&quot;&gt;&amp;#8594;&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;calendar-content&quot;&gt;
+        &lt;div class&#x3D;&quot;month-grid&quot;&gt;
+          &lt;div class&#x3D;&quot;day-header&quot; *ngFor&#x3D;&quot;let day of weekDays; let i &#x3D; index&quot;&gt;
+            {{ &#x27;serviceDetail.days.&#x27; + (i + 1) | translate }}
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;day-cell&quot; *ngFor&#x3D;&quot;let day of daysInMonth&quot; [class.disabled]&#x3D;&quot;!day.isCurrentMonth&quot;
+            [class.past-day]&#x3D;&quot;isPastDay(day.date, day.isCurrentMonth)&quot; (click)&#x3D;&quot;goToDailyView(day)&quot;&gt;
+            &lt;div class&#x3D;&quot;day-number&quot;&gt;{{ day.date }}&lt;/div&gt;
+            &lt;div class&#x3D;&quot;service-bars&quot;&gt;
+              &lt;div class&#x3D;&quot;service-bar&quot; *ngFor&#x3D;&quot;let servicio of getServicesForDay(day.date)&quot;
+                [style.backgroundColor]&#x3D;&quot;getServiceColor(servicio)&quot;&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;legend&quot;&gt;
+          &lt;h3&gt;{{ &#x27;horaris-empresa.services&#x27; | translate }}&lt;/h3&gt;
+          &lt;ul&gt;
+            &lt;li *ngFor&#x3D;&quot;let servicio of servicios&quot;&gt;
+              &lt;span class&#x3D;&quot;legend-color&quot; [style.backgroundColor]&#x3D;&quot;getServiceColor(servicio)&quot;&gt;&lt;/span&gt;
+              {{ servicio.nombre }}
+              &lt;button class&#x3D;&quot;btn btn-icon&quot; (click)&#x3D;&quot;onEditServiceClick(servicio)&quot;&gt;
+                &lt;i class&#x3D;&quot;fa-solid fa-pencil legend-icon&quot;&gt;&lt;/i&gt;
+              &lt;/button&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;ng-template #noServices&gt;
+      &lt;p class&#x3D;&quot;text-center text-muted&quot;&gt;
+        {{ &#x27;horaris-empresa.noServices&#x27; | translate }}
+      &lt;/p&gt;
+    &lt;/ng-template&gt;
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;calendar-container daily-view&quot; *ngIf&#x3D;&quot;isDailyView&quot;&gt;
+    &lt;div class&#x3D;&quot;calendar-header&quot;&gt;
+      &lt;button class&#x3D;&quot;nav-button&quot; (click)&#x3D;&quot;prevDay()&quot;&gt;&amp;#8592;&lt;/button&gt;
+      &lt;h2 class&#x3D;&quot;calendar-title&quot;&gt;
+        {{ &#x27;serviceDetail.days.&#x27; + currentDayOfWeek | translate }},
+        {{ currentDay }}
+        {{ &#x27;reservesCli.months.&#x27; + currentMonthName | translate }}
+        {{ currentYear }}
+      &lt;/h2&gt;
+      &lt;button class&#x3D;&quot;nav-button&quot; (click)&#x3D;&quot;nextDay()&quot;&gt;&amp;#8594;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;agenda-grid&quot;&gt;
+      &lt;div class&#x3D;&quot;hour-row&quot; *ngFor&#x3D;&quot;let hour of getHours()&quot;&gt;
+        &lt;div class&#x3D;&quot;hour-label&quot;&gt;
+          &lt;span&gt;{{ hour.split(&#x27; &#x27;)[0] }}&lt;/span&gt;&lt;br /&gt;
+          &lt;span&gt;{{ hour.split(&#x27; &#x27;)[1] }}&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;hour-cell&quot;&gt;
+          &lt;div *ngFor&#x3D;&quot;let servicio of servicios&quot;&gt;
+            &lt;div *ngIf&#x3D;&quot;isServiceAvailable(servicio, hour)&quot; class&#x3D;&quot;service-block&quot;
+              [style.backgroundColor]&#x3D;&quot;getServiceColor(servicio)&quot;&gt;
+              &lt;div class&#x3D;&quot;service-header&quot;&gt;
+                &lt;strong&gt;{{ servicio.nombre }}&lt;/strong&gt;
+                &lt;button class&#x3D;&quot;btn btn-icon&quot; (click)&#x3D;&quot;onEditServiceClick(servicio)&quot;&gt;
+                  &lt;i class&#x3D;&quot;fa-solid fa-pencil edit-daily&quot;&gt;&lt;/i&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;reserva-item&quot;
+                *ngFor&#x3D;&quot;let reserva of getReservasForServiceAndHour(servicio.idServicio, hour)&quot;&gt;
+                &lt;span class&#x3D;&quot;reserva-info&quot;&gt;
+                  ID: {{ reserva.id }} - DNI: {{ reserva.dniCliente }}
+                &lt;/span&gt;
+                &lt;button class&#x3D;&quot;btn btn-icon&quot; (click)&#x3D;&quot;onDeleteReserva(reserva.id)&quot;&gt;
+                  &lt;i class&#x3D;&quot;fa-solid fa-trash&quot;&gt;&lt;/i&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div *ngIf&#x3D;&quot;isTableView&quot; class&#x3D;&quot;table-view&quot;&gt;
+    &lt;h3 class&#x3D;&quot;reservation-title text-center&quot;&gt;
+      {{ &#x27;horaris-empresa.listByService&#x27; | translate }}
+    &lt;/h3&gt;
+    &lt;div *ngIf&#x3D;&quot;getReservasAgrupadasPorServicio().length &gt; 0; else noReservations&quot;&gt;
+      &lt;div class&#x3D;&quot;service-group&quot; *ngFor&#x3D;&quot;let agrupacion of getReservasAgrupadasPorServicio()&quot;&gt;
+        &lt;h4&gt;{{ agrupacion.servicio.nombre }}&lt;/h4&gt;
+        &lt;div class&#x3D;&quot;table-responsive&quot;&gt;
+          &lt;table class&#x3D;&quot;table&quot;&gt;
+            &lt;thead&gt;
+              &lt;tr&gt;
+                &lt;th&gt;{{ &#x27;horaris-empresa.reservaId&#x27; | translate }}&lt;/th&gt;
+                &lt;th&gt;{{ &#x27;horaris-empresa.date&#x27; | translate }}&lt;/th&gt;
+                &lt;th&gt;{{ &#x27;horaris-empresa.hour&#x27; | translate }}&lt;/th&gt;
+                &lt;th&gt;{{ &#x27;horaris-empresa.dniClient&#x27; | translate }}&lt;/th&gt;
+                &lt;th class&#x3D;&quot;action-column&quot;&gt;{{ &#x27;horaris-empresa.cancel&#x27; | translate }}&lt;/th&gt;
+              &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody&gt;
+              &lt;tr *ngIf&#x3D;&quot;agrupacion.reservas.length &#x3D;&#x3D;&#x3D; 0&quot;&gt;
+                &lt;td colspan&#x3D;&quot;5&quot; class&#x3D;&quot;text-center text-muted&quot;&gt;
+                  {{ &#x27;horaris-empresa.withoutReservations&#x27; | translate }}
+                &lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr *ngFor&#x3D;&quot;let reserva of agrupacion.reservas&quot;&gt;
+                &lt;td&gt;{{ reserva.idReserva }}&lt;/td&gt;
+                &lt;td&gt;{{ formatDateToDDMMYYYY(reserva.fechaReserva) }}&lt;/td&gt;
+                &lt;td&gt;{{ reserva.hora.slice(0, 5) }}&lt;/td&gt;
+                &lt;td&gt;{{ reserva.dniCliente }}&lt;/td&gt;
+                &lt;td class&#x3D;&quot;actions-column&quot;&gt;
+                  &lt;button class&#x3D;&quot;btn btn-icon&quot; (click)&#x3D;&quot;onDeleteReserva(reserva.idReserva)&quot;&gt;
+                    &lt;i class&#x3D;&quot;fa-solid fa-trash&quot;&gt;&lt;/i&gt;
+                  &lt;/button&gt;
+                &lt;/td&gt;
+              &lt;/tr&gt;
+            &lt;/tbody&gt;
+          &lt;/table&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;card-group d-none&quot;&gt;
+          &lt;div class&#x3D;&quot;card&quot; *ngIf&#x3D;&quot;agrupacion.reservas.length &#x3D;&#x3D;&#x3D; 0&quot;&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;p class&#x3D;&quot;card-text text-center text-muted&quot;&gt;
+                {{ &#x27;horaris-empresa.withoutReservations&#x27; | translate }}
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;card&quot; *ngFor&#x3D;&quot;let reserva of agrupacion.reservas&quot;&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;h5 class&#x3D;&quot;card-title&quot;&gt;{{ &#x27;horaris-empresa.reservaId&#x27; | translate }}: {{ reserva.idReserva }}&lt;/h5&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;{{ &#x27;horaris-empresa.date&#x27; | translate }}: {{ formatDateToDDMMYYYY(reserva.fechaReserva) }}&lt;/p&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;{{ &#x27;horaris-empresa.hour&#x27; | translate }}: {{ reserva.hora.slice(0, 5) }}&lt;/p&gt;
+              &lt;p class&#x3D;&quot;card-text&quot;&gt;{{ &#x27;horaris-empresa.dniClient&#x27; | translate }}: {{ reserva.dniCliente }}&lt;/p&gt;
+              &lt;button class&#x3D;&quot;btn btn-danger btn-sm&quot; (click)&#x3D;&quot;onDeleteReserva(reserva.idReserva)&quot;&gt;
+                {{ &#x27;horaris-empresa.cancel&#x27; | translate }}
+              &lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;ng-template #noReservations&gt;
+      &lt;p class&#x3D;&quot;text-center text-muted&quot;&gt;
+        {{ &#x27;horaris-empresa.withoutReservations&#x27; | translate }}
+      &lt;/p&gt;
+    &lt;/ng-template&gt;
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;wiew4&quot;&gt;
+  &lt;div class&#x3D;&quot;cards-container&quot; *ngIf&#x3D;&quot;isCardsView&quot;&gt;
+    &lt;p [class.d-none]&#x3D;&quot;cards().length &gt; 0&quot; class&#x3D;&quot;sinServicios&quot;&gt;
+      {{ &#x27;serviceDetail.sinServicios&#x27; | translate }}
+    &lt;/p&gt;    &lt;div *ngFor&#x3D;&quot;let card of cards(); trackBy: trackByCard&quot; class&#x3D;&quot;service-detail-container client-card&quot;&gt;
+      &lt;h1 class&#x3D;&quot;card-title&quot;&gt;{{ card.label | translate }}&lt;/h1&gt;
+      &lt;p class&#x3D;&quot;card-description&quot;&gt;{{ card.descripcion }}&lt;/p&gt;
+      &lt;ul class&#x3D;&quot;card-details&quot;&gt;
+        &lt;li&gt;
+          &lt;strong&gt;{{ &#x27;serviceDetail.duration&#x27; | translate }}: &lt;/strong&gt;
+          {{ card.duracion }} {{ &#x27;serviceDetail.minutes&#x27; | translate }}
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;strong&gt;{{ &#x27;serviceDetail.price&#x27; | translate }}: &lt;/strong&gt;
+          {{ card.precio }}€
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;strong&gt;{{ &#x27;serviceDetail.availability&#x27; | translate }}: &lt;/strong&gt;
+          {{ card.availability }}
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;strong&gt;{{ &#x27;serviceDetail.schedule&#x27; | translate }}: &lt;/strong&gt;
+          {{ card.schedule }}
+        &lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;div class&#x3D;&quot;button-container w-100 d-flex&quot;&gt;
+        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;auth-btn card-edit-btn&quot; (click)&#x3D;&quot;goTo(card.route)&quot;&gt;
+          {{ &#x27;EDITAR&#x27; }}
+        &lt;/button&gt;
+        &lt;button class&#x3D;&quot;delete-btn&quot; (click)&#x3D;&quot;deleteServicio(+card.route.split(&#x27;/&#x27;)[1])&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-trash&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;button-container w-100&quot;&gt;
+    &lt;/div&gt;
+    &lt;button class&#x3D;&quot;redirect-btn&quot; (click)&#x3D;&quot;goToEspaiClient()&quot;&gt;
+      &lt;i class&#x3D;&quot;fa-solid fa-arrow-left&quot;&gt;&lt;/i&gt;
+      {{ &#x27;menu.return-btn&#x27; | translate }}
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./horaris-empresa.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">
+@import &#x27;../../../colors.scss&#x27;;
+
+.main-content {
+background: $bg-gradient;
+min-height: 100vw;
+}
+
+.view4 {
+  height: auto;
+}
+
+.monthly-view, .table-view {
+  height: 100%;
+  padding-bottom: 50px;
+}
+
+.calendar-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.calendar-container.hidden {
+  opacity: 0;
+  pointer-events: none; 
+}
+
+.calendar-content {
+  display: flex;
+  gap: 20px; 
+  align-items: flex-start;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 10px; 
+}
+
+.calendar-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  flex: 1; 
+}
+
+button.auth-btn, .delete-btn {
+  display: block;
+  margin: 20px auto;
+  width: auto;
+  padding: 0.625rem 1.25rem;
+  background: transparent;
+  border: 0.0625rem solid $btn-border;
+  color: $white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3125rem;
+  transition: all 0.3s ease;
+}
+
+button.auth-btn:hover {
+  background: $btn-hover-bg;
+  color: $white;
+}
+
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  flex: 3;
+}
+
+.day-header {
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.day-cell {
+  position: relative;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  text-align: center;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.day-cell:hover {
+  transform: scale(1.05);
+  background-color: #f0f8ff; 
+  cursor: pointer;
+}
+
+.day-cell:active {
+  transform: scale(0.95); 
+  transition: transform 0.1s ease;
+}
+
+
+.day-cell.disabled {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.day-number {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.service-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.service-bar {
+  height: 10px;
+  border-radius: 3px;
+}
+
+.legend, .nav-button {
+  flex: 1;
+  max-width: 250px; 
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  background: $container-bg;
+}
+
+.nav-button {
+  max-width: 50px!important;
+  border: none!important;
+}
+
+.nav-button:hover {
+  background: $btn-hover-bg;
+  color: $white;
+}
+
+.legend h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.legend ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.legend-icon, .reservation-service {
+  color: #e0036691!important;
+}
+
+.legend-icon:hover, .reservation-service:hover {
+  color: #4141fa!important;
+}
+
+.agenda-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hour-row {
+  display: flex;
+  align-items: center;
+}
+
+.hour-label {
+  width: 100px;
+  text-align: right;
+  padding-right: 10px;
+  font-weight: bold;
+}
+
+.hour-cell {
+  flex: 1;
+  border: 1px solid #ccc;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  background: $container-bg;
+}
+
+.service-block {
+  color: #fff;
+  padding: 5px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+
+.reservas {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #000;
+  background-color: #ffffffaf;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.reservas span {
+  display: block;
+  margin-bottom: 3px;
+  font-weight: bold;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &amp;.btn-primary {
+    background-color: #007bff;
+    color: white;
+  }
+
+  &amp;.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+  }
+
+  &amp;:disabled {
+    background-color: #e0e0e0;
+    color: #a0a0a0;
+    cursor: not-allowed;
+  }
+
+  
+}
+
+.past-day {
+  background-color:  #d6d6d6;
+  
+}
+
+.past-day:hover {
+  background-color: #e0e0e0;
+}
+
+.table-view {
+  padding: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  background-color: $container-bg;
+}
+
+.table th {
+  font-weight: bold;
+  background-color: $btn-hover-bg;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+}
+
+.legend li .btn-icon {
+  margin-left: auto;
+}
+
+.service-block {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.service-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.no-reservas {
+  display: block;
+  font-size: 14px;
+  color: #e0e0e0;
+}
+.reserva-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  background-color: #f9f9f9;
+}
+
+.reserva-info {
+  flex: 1;
+  margin-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color:#000;
+}
+
+.btn-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon i {
+  font-size: 16px;
+  color: #333;
+}
+
+.edit-daily {
+  color:#FFF!important;
+}
+
+.reservation-title, .serviceName, table th, table td {
+  color: #ffffff
+}
+
+.action-column {
+  width: 100px;
+}
+
+table .fa-trash {
+  color: #4141fa!important;
+}
+
+table .fa-trash:hover {
+  color: red!important;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+.client-card {
+  width: min(90%, 20rem);
+  background: var(--container-bg);
+  border: 2px solid #ffffff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.client-card:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+  margin: 0 0 0.5rem;
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.card-description {
+  margin: 0.5rem 0;
+  color: #000000;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.card-details {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.card-details li {
+  margin: 0.5rem 0;
+  color: #000000;
+  font-size: 0.9rem;
+}
+
+.card-edit-btn {
+  display: block;
+  margin: 1rem auto 0;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.card-edit-btn:hover {
+  background: #0056b3;
+}
+
+.card-edit-btn:active {
+  background: #003f7f;
+}
+
+.redirect-btn {
+  width: 200px;
+  padding: 0.625rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: 0.0625rem solid $btn-border;
+  color: $white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3125rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.redirect-btn i {
+  position: absolute;
+  left: 1rem;
+}
+
+.redirect-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.button-container {
+  margin-top: 1.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dc143c!important;
+  border: 2px solid #dc143c!important;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  gap: 8px;
+}
+
+
+/* Tablets i phablets */
+@media only screen and (min-width: 576px) and (max-width: 1015px){
+  .table-responsive {
+    display: block !important;
+  }
+
+  .card-group {
+    display: none !important;
+  }
+
+  .main-content {
+    min-height: 100%;
+  }
+  .monthly-view {
+    padding: 1rem;
+  }
+
+  .calendar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+  }
+
+  .day-cell {
+    aspect-ratio: 1 / 1;
+    font-size: 0.7rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-sizing: border-box;
+    height: 75px;
+    max-height: 75px;
+  }
+
+  .day-number {
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
+  .service-bars {
+    gap: 2px;
+    width: 100%;
+  }
+
+  .service-bar {
+    height: 7px;
+    border-radius: 2px;
+  }
+
+  .day-header {
+    display: flex;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
+  .legend {
+    order: -1;
+    background: none;
+    padding: 10px;
+    margin: 0 auto;
+    border: none;
+    text-align: center;
+    width: 100%;
+  }
+
+  .legend ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  .legend li {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.3rem 0;
+  }
+
+  .legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .calendar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .agenda-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .hour-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .hour-label {
+    flex: 0 0 auto;
+    width: auto;
+    text-align: left;
+    padding-right: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+
+  .hour-cell {
+    flex: 1;
+    padding: 0.7rem;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .daily-view .d-flex {
+    display: flex !important;
+  }
+
+  .daily-btn {
+    display: block !important;
+    padding: 0.7rem 1.5rem;
+    font-size: 1.1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin: 0!important;
+  }
+
+
+}
+
+/* Telèfons */
+@media only screen and (max-width: 575px) {
+  .monthly-view {
+    padding: 0.5rem;
+  }
+
+  .calendar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+  }
+
+  .day-cell {
+    aspect-ratio: 1 / 1;
+    font-size: 0.5rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-sizing: border-box;
+    height: 51px;
+    max-height: 51px;
+  }
+
+  .day-number {
+    font-size: 0.6rem;
+    font-weight: bold;
+  }
+
+  .service-bars {
+    gap: 1px;
+    width: 100%;
+  }
+
+  .service-bar {
+    height: 5px;
+    border-radius: 1px;
+  }
+
+  .day-header {
+    display: none;
+  }
+
+  .legend {
+    order: -1;
+    background: none;
+    padding: 5px;
+    margin: 0 auto;
+    border: none;
+    text-align: center;
+    width: 100%;
+  }
+
+  .legend ul {
+    display: block;
+    padding: 0;
+    margin: 0;
+  }
+
+  .legend li {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.2rem 0;
+    padding: 0;
+  }
+
+  .legend-color {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .calendar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .agenda-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 5px;
+    width: 100%;
+  }
+  
+  .hour-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .hour-label {
+    flex: 0 0 auto;
+    width: auto;
+    text-align: left;
+    padding-right: 0; 
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
+  .hour-cell {
+    flex: 1;
+    padding: 0.5rem;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .daily-view .d-flex {
+    display: flex !important;
+  }
+
+  .daily-btn {
+    display: block !important;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin: 0!important;
+  }
+
+  .main-content, .view4 {
+    min-height: 100%;
+
+  }
+
+  .table-view .card {
+  background: var(--container-bg);
+  border: 1px solid #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  transform-style: preserve-3d;
+  }
+
+  .table-view .card:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  } 
+
+  .table-responsive {
+    display: none !important;
+  }
+
+  .card-group {
+    display: block !important;
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="main-content">  <div class="d-flex justify-content-center mb-3" [ngClass]="{ \'d-none\': !isDailyView }">    <button class="auth-btn me-2 daily-btn" [ngClass]="{ \'btn-primary\': isMonthlyView }" (click)="setView(\'monthly\')"      [disabled]="isMonthlyView">      {{ \'horaris-empresa.vista-mensual\' | translate }}    </button>    <button class="auth-btn me-2 d-none " [ngClass]="{ \'btn-primary\': isDailyView }" (click)="setView(\'daily\')"      [disabled]="isDailyView">      {{ \'horaris-empresa.daily\' | translate }}    </button>    <button class="auth-btn d-none" [ngClass]="{ \'btn-primary\': isTableView }" (click)="setView(\'table\')"      [disabled]="isTableView">      {{ \'horaris-empresa.reservations\' | translate }}    </button>    <button class="auth-btn d-none" [ngClass]="{ \'btn-primary\': isCardsView }" (click)="setView(\'cards\')"      [disabled]="isCardsView">      {{ \'horaris-empresa.cardsView\' | translate }}    </button>  </div>  <div class="monthly-view" *ngIf="isMonthlyView">    <div class="calendar-container" *ngIf="servicios.length > 0; else noServices">      <div class="calendar-header">        <button class="nav-button" (click)="prevMonth()">&#8592;</button>        <h2 class="calendar-title">          {{ \'reservesCli.months.\' + currentMonthName | translate }}          {{ currentYear }}        </h2>        <button class="nav-button" (click)="nextMonth()">&#8594;</button>      </div>      <div class="calendar-content">        <div class="month-grid">          <div class="day-header" *ngFor="let day of weekDays; let i = index">            {{ \'serviceDetail.days.\' + (i + 1) | translate }}          </div>          <div class="day-cell" *ngFor="let day of daysInMonth" [class.disabled]="!day.isCurrentMonth"            [class.past-day]="isPastDay(day.date, day.isCurrentMonth)" (click)="goToDailyView(day)">            <div class="day-number">{{ day.date }}</div>            <div class="service-bars">              <div class="service-bar" *ngFor="let servicio of getServicesForDay(day.date)"                [style.backgroundColor]="getServiceColor(servicio)">              </div>            </div>          </div>        </div>        <div class="legend">          <h3>{{ \'horaris-empresa.services\' | translate }}</h3>          <ul>            <li *ngFor="let servicio of servicios">              <span class="legend-color" [style.backgroundColor]="getServiceColor(servicio)"></span>              {{ servicio.nombre }}              <button class="btn btn-icon" (click)="onEditServiceClick(servicio)">                <i class="fa-solid fa-pencil legend-icon"></i>              </button>            </li>          </ul>        </div>      </div>    </div>    <ng-template #noServices>      <p class="text-center text-muted">        {{ \'horaris-empresa.noServices\' | translate }}      </p>    </ng-template>  </div>  <div class="calendar-container daily-view" *ngIf="isDailyView">    <div class="calendar-header">      <button class="nav-button" (click)="prevDay()">&#8592;</button>      <h2 class="calendar-title">        {{ \'serviceDetail.days.\' + currentDayOfWeek | translate }},        {{ currentDay }}        {{ \'reservesCli.months.\' + currentMonthName | translate }}        {{ currentYear }}      </h2>      <button class="nav-button" (click)="nextDay()">&#8594;</button>    </div>    <div class="agenda-grid">      <div class="hour-row" *ngFor="let hour of getHours()">        <div class="hour-label">          <span>{{ hour.split(\' \')[0] }}</span><br />          <span>{{ hour.split(\' \')[1] }}</span>        </div>        <div class="hour-cell">          <div *ngFor="let servicio of servicios">            <div *ngIf="isServiceAvailable(servicio, hour)" class="service-block"              [style.backgroundColor]="getServiceColor(servicio)">              <div class="service-header">                <strong>{{ servicio.nombre }}</strong>                <button class="btn btn-icon" (click)="onEditServiceClick(servicio)">                  <i class="fa-solid fa-pencil edit-daily"></i>                </button>              </div>              <div class="reserva-item"                *ngFor="let reserva of getReservasForServiceAndHour(servicio.idServicio, hour)">                <span class="reserva-info">                  ID: {{ reserva.id }} - DNI: {{ reserva.dniCliente }}                </span>                <button class="btn btn-icon" (click)="onDeleteReserva(reserva.id)">                  <i class="fa-solid fa-trash"></i>                </button>              </div>            </div>          </div>        </div>      </div>    </div>  </div>  <div *ngIf="isTableView" class="table-view">    <h3 class="reservation-title text-center">      {{ \'horaris-empresa.listByService\' | translate }}    </h3>    <div *ngIf="getReservasAgrupadasPorServicio().length > 0; else noReservations">      <div class="service-group" *ngFor="let agrupacion of getReservasAgrupadasPorServicio()">        <h4>{{ agrupacion.servicio.nombre }}</h4>        <div class="table-responsive">          <table class="table">            <thead>              <tr>                <th>{{ \'horaris-empresa.reservaId\' | translate }}</th>                <th>{{ \'horaris-empresa.date\' | translate }}</th>                <th>{{ \'horaris-empresa.hour\' | translate }}</th>                <th>{{ \'horaris-empresa.dniClient\' | translate }}</th>                <th class="action-column">{{ \'horaris-empresa.cancel\' | translate }}</th>              </tr>            </thead>            <tbody>              <tr *ngIf="agrupacion.reservas.length === 0">                <td colspan="5" class="text-center text-muted">                  {{ \'horaris-empresa.withoutReservations\' | translate }}                </td>              </tr>              <tr *ngFor="let reserva of agrupacion.reservas">                <td>{{ reserva.idReserva }}</td>                <td>{{ formatDateToDDMMYYYY(reserva.fechaReserva) }}</td>                <td>{{ reserva.hora.slice(0, 5) }}</td>                <td>{{ reserva.dniCliente }}</td>                <td class="actions-column">                  <button class="btn btn-icon" (click)="onDeleteReserva(reserva.idReserva)">                    <i class="fa-solid fa-trash"></i>                  </button>                </td>              </tr>            </tbody>          </table>        </div>        <div class="card-group d-none">          <div class="card" *ngIf="agrupacion.reservas.length === 0">            <div class="card-body">              <p class="card-text text-center text-muted">                {{ \'horaris-empresa.withoutReservations\' | translate }}              </p>            </div>          </div>          <div class="card" *ngFor="let reserva of agrupacion.reservas">            <div class="card-body">              <h5 class="card-title">{{ \'horaris-empresa.reservaId\' | translate }}: {{ reserva.idReserva }}</h5>              <p class="card-text">{{ \'horaris-empresa.date\' | translate }}: {{ formatDateToDDMMYYYY(reserva.fechaReserva) }}</p>              <p class="card-text">{{ \'horaris-empresa.hour\' | translate }}: {{ reserva.hora.slice(0, 5) }}</p>              <p class="card-text">{{ \'horaris-empresa.dniClient\' | translate }}: {{ reserva.dniCliente }}</p>              <button class="btn btn-danger btn-sm" (click)="onDeleteReserva(reserva.idReserva)">                {{ \'horaris-empresa.cancel\' | translate }}              </button>            </div>          </div>        </div>      </div>    </div>    <ng-template #noReservations>      <p class="text-center text-muted">        {{ \'horaris-empresa.withoutReservations\' | translate }}      </p>    </ng-template>  </div>  <div class="wiew4">  <div class="cards-container" *ngIf="isCardsView">    <p [class.d-none]="cards().length > 0" class="sinServicios">      {{ \'serviceDetail.sinServicios\' | translate }}    </p>    <div *ngFor="let card of cards(); trackBy: trackByCard" class="service-detail-container client-card">      <h1 class="card-title">{{ card.label | translate }}</h1>      <p class="card-description">{{ card.descripcion }}</p>      <ul class="card-details">        <li>          <strong>{{ \'serviceDetail.duration\' | translate }}: </strong>          {{ card.duracion }} {{ \'serviceDetail.minutes\' | translate }}        </li>        <li>          <strong>{{ \'serviceDetail.price\' | translate }}: </strong>          {{ card.precio }}€        </li>        <li>          <strong>{{ \'serviceDetail.availability\' | translate }}: </strong>          {{ card.availability }}        </li>        <li>          <strong>{{ \'serviceDetail.schedule\' | translate }}: </strong>          {{ card.schedule }}        </li>      </ul>      <div class="button-container w-100 d-flex">        <button type="button" class="auth-btn card-edit-btn" (click)="goTo(card.route)">          {{ \'EDITAR\' }}        </button>        <button class="delete-btn" (click)="deleteServicio(+card.route.split(\'/\')[1])">          <i class="fas fa-trash"></i>        </button>      </div>    </div>    <div class="button-container w-100">    </div>    <button class="redirect-btn" (click)="goToEspaiClient()">      <i class="fa-solid fa-arrow-left"></i>      {{ \'menu.return-btn\' | translate }}    </button>  </div></div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CookiesComponent', 'selector': 'app-cookies'},{'name': 'EditarReservaComponent', 'selector': 'app-editar-reserva'},{'name': 'EditComponent', 'selector': 'app-edit'},{'name': 'EmpresaFormComponent', 'selector': 'app-empresa-form'},{'name': 'EspaiClientComponent', 'selector': 'app-espai-client'},{'name': 'EspaiEmpresaComponent', 'selector': 'app-espai-empresa'},{'name': 'EventComponent', 'selector': 'app-event'},{'name': 'EventDetailComponent', 'selector': 'app-event-detail'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GestorReservesCliComponent', 'selector': 'app-gestor-reserves-cli'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarisEmpresaComponent', 'selector': 'app-horaris-empresa'},{'name': 'LandingPageComponent', 'selector': 'app-landing-page'},{'name': 'LegalNoticeComponent', 'selector': 'app-legal-notice'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MetricasComponent', 'selector': 'app-metricas'},{'name': 'NotfoundpageComponent', 'selector': 'app-notfoundpage'},{'name': 'PrivacyComponent', 'selector': 'app-privacy'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReservesCliComponent', 'selector': 'app-reserves-cli'},{'name': 'SearchComponent', 'selector': 'app-search'},{'name': 'ServiceDetailComponent', 'selector': 'app-service-detail'},{'name': 'ServicesFormComponent', 'selector': 'app-services-form'},{'name': 'ShowServicesComponent', 'selector': 'app-show-services'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'HorarisEmpresaComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'HorarisEmpresaComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

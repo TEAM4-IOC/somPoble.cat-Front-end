@@ -79,116 +79,50 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content component">
+               <div class="content injectable">
                    <div class="content-data">
 
 
 
 
+
+
+
+
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Components</li>
-  <li class="breadcrumb-item"
-  >
-  CookiesComponent</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >MetricsStateService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-            <a href="#info" class="nav-link active"
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
         <li class="nav-item">
-            <a href="#source" class="nav-link"
+            <a href="#source" 
+                class="nav-link"
+                
                 role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
-        </li>
-        <li class="nav-item">
-            <a href="#templateData" class="nav-link"
-                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
-        </li>
-        <li class="nav-item">
-            <a href="#tree" class="nav-link"
-                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info"><p class="comment">
-    <h3>File</h3>
-</p>
-<p class="comment">
-    <code>src/app/shared/policy/cookies/cookies.component.ts</code>
-</p>
-
-
-
-
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                <code>OnInit</code>
-    </p>
-
-
-<section data-compodoc="block-metadata">
-    <h3>Metadata</h3>
-    <table class="table table-sm table-hover metadata">
-        <tbody>
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/core/services/metrics-state.service.ts</code>
+        </p>
 
 
 
 
 
-
-
-
-
-
-
-
-            <tr>
-                <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-cookies</code></td>
-            </tr>
-
-            <tr>
-                <td class="col-md-3">standalone</td>
-                <td class="col-md-9"><code>true</code></td>
-            </tr>
-
-            <tr>
-                <td class="col-md-3">imports</td>
-                <td class="col-md-9">
-                            <code>NgxSpinnerModule</code>
-                            <code>TranslateModule</code>
-                            <code>RouterModule</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./cookies.component.html</code></td>
-            </tr>
-
-
-
-            <tr>
-                <td class="col-md-3">styleUrl</td>
-                <td class="col-md-9"><code>./cookies.component.scss</code></td>
-            </tr>
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
-
-    <section data-compodoc="block-index">
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -202,7 +136,12 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#loadingService" >loadingService</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#metrics$" >metrics$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#metricsSubject" >metricsSubject</a>
                             </li>
                         </ul>
                     </td>
@@ -217,7 +156,8 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
+                                    <span class="modifier">Public</span>
+                                <a href="#loadMetrics" >loadMetrics</a>
                             </li>
                         </ul>
                     </td>
@@ -231,18 +171,18 @@
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(loadingService: <a href="../injectables/LoadingService.html" target="_self">LoadingService</a>)</code>
+<code>constructor(apiService: <a href="../injectables/ApiService.html" target="_self">ApiService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/shared/policy/cookies/cookies.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/core/services/metrics-state.service.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -260,10 +200,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>loadingService</td>
+                                                        <td>apiService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/LoadingService.html" target="_self" >LoadingService</a></code>
+                                                                        <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -280,11 +220,7 @@
         </table>
 </section>
 
-
-
-
-
-    <section data-compodoc="block-methods">
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -293,24 +229,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ngOnInit"></a>
+                    <a name="loadMetrics"></a>
                     <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Public</span>
+                        <span ><b>loadMetrics</b></span>
+                        <a href="#loadMetrics"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnInit()</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadMetrics(start: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, end: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/app/shared/policy/cookies/cookies.component.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="15"
+                                    class="link-to-prism">src/app/core/services/metrics-state.service.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -318,16 +256,58 @@
             <tr>
                 <td class="col-md-4">
 
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>start</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>end</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
-    <section data-compodoc="block-properties">
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -336,23 +316,55 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="loadingService"></a>
+                    <a name="metrics$"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
-                        <span ><b>loadingService</b></span>
-                        <a href="#loadingService"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>metrics$</b></span>
+                        <a href="#metrics$"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../injectables/LoadingService.html" target="_self" >LoadingService</a></code>
+                        <i>Type : </i>        <code><a href="../interfaces/Metrics.html" target="_self" >Observable&lt;Metrics&gt;</a></code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.metricsSubject.asObservable()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/shared/policy/cookies/cookies.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/core/services/metrics-state.service.ts:11</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="metricsSubject"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>metricsSubject</b></span>
+                        <a href="#metricsSubject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new ReplaySubject&lt;Metrics&gt;(1)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/core/services/metrics-state.service.ts:10</a></div>
                         </td>
                     </tr>
 
@@ -361,100 +373,59 @@
     </table>
 </section>
 
-</div>
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { LoadingService } from &#x27;../../../core/services/loading.service&#x27;;
-import { NgxSpinnerModule } from &#x27;ngx-spinner&#x27;;
-import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
-import { RouterModule } from &#x27;@angular/router&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { ReplaySubject, Observable } from &#x27;rxjs&#x27;;
+import { ApiService } from &#x27;./api.service&#x27;;
+import { Metrics } from &#x27;../models/metrics.interface&#x27;;
 
-@Component({
-  selector: &#x27;app-cookies&#x27;,
-  standalone: true,
-  imports: [NgxSpinnerModule, TranslateModule, RouterModule],
-  templateUrl: &#x27;./cookies.component.html&#x27;,
-  styleUrl: &#x27;./cookies.component.scss&#x27;
+@Injectable({
+  providedIn: &#x27;root&#x27;
 })
-export class CookiesComponent implements OnInit {
-  constructor(public loadingService: LoadingService) {}
+export class MetricsStateService {
+  private metricsSubject &#x3D; new ReplaySubject&lt;Metrics&gt;(1);
+  public readonly metrics$: Observable&lt;Metrics&gt; &#x3D; this.metricsSubject.asObservable();
 
-  ngOnInit() {
-    this.loadingService.loading();
+  constructor(private apiService: ApiService) {}
 
-    setTimeout(() &#x3D;&gt; {
-      this.loadingService.idle();
-    },0);
+  public loadMetrics(start: string, end: string): void {
+    const raw &#x3D; localStorage.getItem(&#x27;session&#x27;);
+    if (!raw) {
+      console.error(&#x27;[MetricsState] no session in localStorage&#x27;);
+      return;
+    }
+
+    let session: any;
+    try {
+      session &#x3D; JSON.parse(raw);
+    } catch {
+      console.error(&#x27;[MetricsState] invalid session JSON&#x27;);
+      return;
+    }
+
+    const fiscalId &#x3D; session.usuario?.empresas?.[0]?.identificadorFiscal;
+    if (!fiscalId) {
+      console.error(&#x27;[MetricsState] no fiscalId in session&#x27;);
+      return;
+    }
+
+    this.apiService.getMetrics(fiscalId, start, end).subscribe({
+      next: metrics &#x3D;&gt; {
+        this.metricsSubject.next(metrics);
+      },
+      error: err &#x3D;&gt; {
+        console.error(&#x27;[MetricsState] metrics load error&#x27;, err);
+      }
+    });
   }
 }
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;ngx-spinner type &#x3D; &quot;pacman&quot; size &#x3D; &quot;large&quot;&gt;&lt;/ngx-spinner&gt;
-
-&lt;section id&#x3D;&quot;cookies-main&quot;&gt;
-    &lt;h1 class&#x3D;&quot;text-center&quot;&gt;{{ &#x27;cookies.main_title&#x27; | translate }}&lt;/h1&gt;
-    &lt;h2&gt;{{ &#x27;cookies.main_subtitle&#x27; | translate }}&lt;/h2&gt;
-    
-    &lt;div class&#x3D;&quot;text-section&quot;&gt;
-        &lt;p&gt;{{ &#x27;cookies.p1&#x27; | translate }}&lt;/p&gt;
-        &lt;p&gt;{{ &#x27;cookies.p2&#x27; | translate }}&lt;/p&gt;
-        &lt;p&gt;{{ &#x27;cookies.p3&#x27; | translate }}&lt;/p&gt;
-        &lt;p&gt;{{ &#x27;cookies.p4&#x27; | translate }}&lt;/p&gt;
-    &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;text-section&quot;&gt;
-        &lt;h3&gt;{{ &#x27;cookies.subtitle_1&#x27; | translate }}&lt;/h3&gt;
-        &lt;p&gt;{{ &#x27;cookies.p5&#x27; | translate }}&lt;/p&gt;
-    &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;text-section&quot;&gt;
-        &lt;h3&gt;{{ &#x27;cookies.subtitle_2&#x27; | translate }}&lt;/h3&gt;
-        &lt;p&gt;{{ &#x27;cookies.p6&#x27; | translate }}&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/section&gt;
-</code></pre>
-    </div>
-
-
-    <div class="tab-pane fade " id="tree">
-        <div id="tree-container"></div>
-        <div class="tree-legend">
-            <div class="title">
-                <b>Legend</b>
-            </div>
-            <div>
-                <div class="color htmlelement"></div><span>Html element</span>
-            </div>
-            <div>
-                <div class="color component"></div><span>Component</span>
-            </div>
-            <div>
-                <div class="color directive"></div><span>Html element with directive</span>
-            </div>
-        </div>
-    </div>
-
-    
 </div>
-
-<script src="../js/libs/vis.min.js"></script>
-<script src="../js/libs/htmlparser.js"></script>
-<script src="../js/libs/deep-iterator.js"></script>
-<script>
-        var COMPONENT_TEMPLATE = '<div><ngx-spinner type = "pacman" size = "large"></ngx-spinner><section id="cookies-main">    <h1 class="text-center">{{ \'cookies.main_title\' | translate }}</h1>    <h2>{{ \'cookies.main_subtitle\' | translate }}</h2>        <div class="text-section">        <p>{{ \'cookies.p1\' | translate }}</p>        <p>{{ \'cookies.p2\' | translate }}</p>        <p>{{ \'cookies.p3\' | translate }}</p>        <p>{{ \'cookies.p4\' | translate }}</p>    </div>    <div class="text-section">        <h3>{{ \'cookies.subtitle_1\' | translate }}</h3>        <p>{{ \'cookies.p5\' | translate }}</p>    </div>    <div class="text-section">        <h3>{{ \'cookies.subtitle_2\' | translate }}</h3>        <p>{{ \'cookies.p6\' | translate }}</p>    </div></section></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CookiesComponent', 'selector': 'app-cookies'},{'name': 'EditarReservaComponent', 'selector': 'app-editar-reserva'},{'name': 'EditComponent', 'selector': 'app-edit'},{'name': 'EmpresaFormComponent', 'selector': 'app-empresa-form'},{'name': 'EspaiClientComponent', 'selector': 'app-espai-client'},{'name': 'EspaiEmpresaComponent', 'selector': 'app-espai-empresa'},{'name': 'EventComponent', 'selector': 'app-event'},{'name': 'EventDetailComponent', 'selector': 'app-event-detail'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GestorReservesCliComponent', 'selector': 'app-gestor-reserves-cli'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarisEmpresaComponent', 'selector': 'app-horaris-empresa'},{'name': 'LandingPageComponent', 'selector': 'app-landing-page'},{'name': 'LegalNoticeComponent', 'selector': 'app-legal-notice'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MetricasComponent', 'selector': 'app-metricas'},{'name': 'NotfoundpageComponent', 'selector': 'app-notfoundpage'},{'name': 'PrivacyComponent', 'selector': 'app-privacy'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReservesCliComponent', 'selector': 'app-reserves-cli'},{'name': 'SearchComponent', 'selector': 'app-search'},{'name': 'ServiceDetailComponent', 'selector': 'app-service-detail'},{'name': 'ServicesFormComponent', 'selector': 'app-services-form'},{'name': 'ShowServicesComponent', 'selector': 'app-show-services'}];
-    var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'CookiesComponent'};
-</script>
-<script src="../js/tree.js"></script>
-
-
-
-
 
 
 
@@ -493,8 +464,8 @@ export class CookiesComponent implements OnInit {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'CookiesComponent.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'MetricsStateService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

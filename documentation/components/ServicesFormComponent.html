@@ -1,0 +1,3347 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>som-poble documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">som-poble documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ServicesFormComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/services-form/services-form.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-services-form</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>FormsModule</code>
+                            <code>TranslateModule</code>
+                            <code>RouterModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./services-form.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./services-form.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#descripcion" >descripcion</a>
+                            </li>
+                            <li>
+                                <a href="#diasLaborables" >diasLaborables</a>
+                            </li>
+                            <li>
+                                <a href="#duracion" >duracion</a>
+                            </li>
+                            <li>
+                                <a href="#editingKey" >editingKey</a>
+                            </li>
+                            <li>
+                                <a href="#empresaNombre" >empresaNombre</a>
+                            </li>
+                            <li>
+                                <a href="#formError" >formError</a>
+                            </li>
+                            <li>
+                                <a href="#formErrorHorarioInicio" >formErrorHorarioInicio</a>
+                            </li>
+                            <li>
+                                <a href="#horarioFin" >horarioFin</a>
+                            </li>
+                            <li>
+                                <a href="#horarioInicio" >horarioInicio</a>
+                            </li>
+                            <li>
+                                <a href="#idEmpresa" >idEmpresa</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#identificadorFiscal" >identificadorFiscal</a>
+                            </li>
+                            <li>
+                                <a href="#idServicio" >idServicio</a>
+                            </li>
+                            <li>
+                                <a href="#isEditMode" >isEditMode</a>
+                            </li>
+                            <li>
+                                <a href="#limiteReservas" >limiteReservas</a>
+                            </li>
+                            <li>
+                                <a href="#nombre" >nombre</a>
+                            </li>
+                            <li>
+                                <a href="#precio" >precio</a>
+                            </li>
+                            <li>
+                                <a href="#servicio$" >servicio$</a>
+                            </li>
+                            <li>
+                                <a href="#tempValue" >tempValue</a>
+                            </li>
+                            <li>
+                                <a href="#weekDays" >weekDays</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#calculateMaxReservations" >calculateMaxReservations</a>
+                            </li>
+                            <li>
+                                <a href="#cancelEditing" >cancelEditing</a>
+                            </li>
+                            <li>
+                                <a href="#confirmEditing" >confirmEditing</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#deleteServicio" >deleteServicio</a>
+                            </li>
+                            <li>
+                                <a href="#editingField" >editingField</a>
+                            </li>
+                            <li>
+                                <a href="#goToEspaiClient" >goToEspaiClient</a>
+                            </li>
+                            <li>
+                                <a href="#loadServicio" >loadServicio</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onDaySelected" >onDaySelected</a>
+                            </li>
+                            <li>
+                                <a href="#onInputChange" >onInputChange</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                            <li>
+                                <a href="#parseTime" >parseTime</a>
+                            </li>
+                            <li>
+                                <a href="#restrictToTimeFormat" >restrictToTimeFormat</a>
+                            </li>
+                            <li>
+                                <a href="#startEditing" >startEditing</a>
+                            </li>
+                            <li>
+                                <a href="#validateDuracion" >validateDuracion</a>
+                            </li>
+                            <li>
+                                <a href="#validateDuracionEdit" >validateDuracionEdit</a>
+                            </li>
+                            <li>
+                                <a href="#validateHorario" >validateHorario</a>
+                            </li>
+                            <li>
+                                <a href="#validatePrecio" >validatePrecio</a>
+                            </li>
+                            <li>
+                                <a href="#validateTimeRange" >validateTimeRange</a>
+                            </li>
+                            <li>
+                                <a href="#validateTimeRangeEdit" >validateTimeRangeEdit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(servicioState: <a href="../injectables/ServiceStateService.html" target="_self">ServiceStateService</a>, route: ActivatedRoute, router: Router, translate: TranslateService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/features/services-form/services-form.component.ts:42</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>servicioState</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ServiceStateService.html" target="_self" >ServiceStateService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>translate</td>
+                                                  
+                                                        <td>
+                                                                    <code>TranslateService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="calculateMaxReservations"></a>
+                    <span class="name">
+                        <span ><b>calculateMaxReservations</b></span>
+                        <a href="#calculateMaxReservations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>calculateMaxReservations()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="184"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:184</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelEditing"></a>
+                    <span class="name">
+                        <span ><b>cancelEditing</b></span>
+                        <a href="#cancelEditing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelEditing()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="289"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:289</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmEditing"></a>
+                    <span class="name">
+                        <span ><b>confirmEditing</b></span>
+                        <a href="#confirmEditing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>confirmEditing(field: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="273"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:273</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>field</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteServicio"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>deleteServicio</b></span>
+                        <a href="#deleteServicio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteServicio(idServicio: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="298"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:298</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idServicio</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editingField"></a>
+                    <span class="name">
+                        <span ><b>editingField</b></span>
+                        <a href="#editingField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>editingField(field: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="294"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:294</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>field</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goToEspaiClient"></a>
+                    <span class="name">
+                        <span ><b>goToEspaiClient</b></span>
+                        <a href="#goToEspaiClient"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goToEspaiClient()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="390"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:390</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadServicio"></a>
+                    <span class="name">
+                        <span ><b>loadServicio</b></span>
+                        <a href="#loadServicio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadServicio(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:105</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDaySelected"></a>
+                    <span class="name">
+                        <span ><b>onDaySelected</b></span>
+                        <a href="#onDaySelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDaySelected(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onInputChange"></a>
+                    <span class="name">
+                        <span ><b>onInputChange</b></span>
+                        <a href="#onInputChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onInputChange(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="380"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:380</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="196"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:196</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="parseTime"></a>
+                    <span class="name">
+                        <span ><b>parseTime</b></span>
+                        <a href="#parseTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>parseTime(time: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="375"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:375</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>time</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="restrictToTimeFormat"></a>
+                    <span class="name">
+                        <span ><b>restrictToTimeFormat</b></span>
+                        <a href="#restrictToTimeFormat"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>restrictToTimeFormat(event: KeyboardEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="341"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:341</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>KeyboardEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="startEditing"></a>
+                    <span class="name">
+                        <span ><b>startEditing</b></span>
+                        <a href="#startEditing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>startEditing(field: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, currentValue: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="268"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:268</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>field</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>currentValue</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateDuracion"></a>
+                    <span class="name">
+                        <span ><b>validateDuracion</b></span>
+                        <a href="#validateDuracion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validateDuracion()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:125</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateDuracionEdit"></a>
+                    <span class="name">
+                        <span ><b>validateDuracionEdit</b></span>
+                        <a href="#validateDuracionEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validateDuracionEdit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="141"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:141</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateHorario"></a>
+                    <span class="name">
+                        <span ><b>validateHorario</b></span>
+                        <a href="#validateHorario"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validateHorario(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="364"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:364</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validatePrecio"></a>
+                    <span class="name">
+                        <span ><b>validatePrecio</b></span>
+                        <a href="#validatePrecio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validatePrecio(event: KeyboardEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="314"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:314</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>KeyboardEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateTimeRange"></a>
+                    <span class="name">
+                        <span ><b>validateTimeRange</b></span>
+                        <a href="#validateTimeRange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validateTimeRange()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="156"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:156</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateTimeRangeEdit"></a>
+                    <span class="name">
+                        <span ><b>validateTimeRangeEdit</b></span>
+                        <a href="#validateTimeRangeEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validateTimeRangeEdit(startTime: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, endTime: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, field: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="169"
+                                    class="link-to-prism">src/app/features/services-form/services-form.component.ts:169</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>startTime</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>endTime</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>field</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="descripcion"></a>
+                    <span class="name">
+                        <span ><b>descripcion</b></span>
+                        <a href="#descripcion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/features/services-form/services-form.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="diasLaborables"></a>
+                    <span class="name">
+                        <span ><b>diasLaborables</b></span>
+                        <a href="#diasLaborables"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/features/services-form/services-form.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="duracion"></a>
+                    <span class="name">
+                        <span ><b>duracion</b></span>
+                        <a href="#duracion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/features/services-form/services-form.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editingKey"></a>
+                    <span class="name">
+                        <span ><b>editingKey</b></span>
+                        <a href="#editingKey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/features/services-form/services-form.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="empresaNombre"></a>
+                    <span class="name">
+                        <span ><b>empresaNombre</b></span>
+                        <a href="#empresaNombre"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Nombre Empresa&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/features/services-form/services-form.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formError"></a>
+                    <span class="name">
+                        <span ><b>formError</b></span>
+                        <a href="#formError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/features/services-form/services-form.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formErrorHorarioInicio"></a>
+                    <span class="name">
+                        <span ><b>formErrorHorarioInicio</b></span>
+                        <a href="#formErrorHorarioInicio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="362" class="link-to-prism">src/app/features/services-form/services-form.component.ts:362</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="horarioFin"></a>
+                    <span class="name">
+                        <span ><b>horarioFin</b></span>
+                        <a href="#horarioFin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/features/services-form/services-form.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="horarioInicio"></a>
+                    <span class="name">
+                        <span ><b>horarioInicio</b></span>
+                        <a href="#horarioInicio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/features/services-form/services-form.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="idEmpresa"></a>
+                    <span class="name">
+                        <span ><b>idEmpresa</b></span>
+                        <a href="#idEmpresa"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/features/services-form/services-form.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="identificadorFiscal"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>identificadorFiscal</b></span>
+                        <a href="#identificadorFiscal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/features/services-form/services-form.component.ts:104</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="idServicio"></a>
+                    <span class="name">
+                        <span ><b>idServicio</b></span>
+                        <a href="#idServicio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/features/services-form/services-form.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isEditMode"></a>
+                    <span class="name">
+                        <span ><b>isEditMode</b></span>
+                        <a href="#isEditMode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/features/services-form/services-form.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="limiteReservas"></a>
+                    <span class="name">
+                        <span ><b>limiteReservas</b></span>
+                        <a href="#limiteReservas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/features/services-form/services-form.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nombre"></a>
+                    <span class="name">
+                        <span ><b>nombre</b></span>
+                        <a href="#nombre"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/features/services-form/services-form.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="precio"></a>
+                    <span class="name">
+                        <span ><b>precio</b></span>
+                        <a href="#precio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/features/services-form/services-form.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="servicio$"></a>
+                    <span class="name">
+                        <span ><b>servicio$</b></span>
+                        <a href="#servicio$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ServicioData.html" target="_self" >Observable&lt;ServicioData[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/features/services-form/services-form.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tempValue"></a>
+                    <span class="name">
+                        <span ><b>tempValue</b></span>
+                        <a href="#tempValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/features/services-form/services-form.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="weekDays"></a>
+                    <span class="name">
+                        <span ><b>weekDays</b></span>
+                        <a href="#weekDays"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/features/services-form/services-form.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { ServiceStateService } from &#x27;../../core/services/service-state.service&#x27;;
+import { ServicioData } from &#x27;../../core/models/ServicioData.interface&#x27;;
+import { CreateServicePayload } from &#x27;../../core/models/create-service-payload.interface&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { RouterModule, Router, ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
+import { I18nService } from &#x27;../../core/services/i18n.service&#x27;;
+import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
+
+
+@Component({
+  selector: &#x27;app-services-form&#x27;,
+  standalone: true,
+  imports: [CommonModule, FormsModule, TranslateModule, RouterModule],
+  templateUrl: &#x27;./services-form.component.html&#x27;,
+  styleUrls: [&#x27;./services-form.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class ServicesFormComponent implements OnInit {
+  idServicio: number | null &#x3D; null;
+  editingKey: string | null &#x3D; null;
+  tempValue: string &#x3D; &#x27;&#x27;;
+  isEditMode: boolean &#x3D; false;
+
+  empresaNombre: string &#x3D; &#x27;Nombre Empresa&#x27;;
+  servicio$!: Observable&lt;ServicioData[]&gt;;
+
+  formError &#x3D; &#x27;&#x27;;
+  nombre &#x3D; &#x27;&#x27;;
+  descripcion &#x3D; &#x27;&#x27;;
+  duracion &#x3D; &#x27;&#x27;;
+  precio &#x3D; &#x27;&#x27;;
+  diasLaborables: number[] &#x3D; [];
+  horarioInicio &#x3D; &#x27;&#x27;;
+  horarioFin &#x3D; &#x27;&#x27;;
+  limiteReservas: number | null &#x3D; null;
+  idEmpresa!: number;
+
+  weekDays: { value: number; key: string }[] &#x3D; [];
+
+  constructor(
+    private servicioState: ServiceStateService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private translate: TranslateService
+  ) { }
+
+  ngOnInit(): void {
+
+    this.weekDays &#x3D; [
+      { value: 1, key: &#x27;add-services-form.monday&#x27; },
+      { value: 2, key: &#x27;add-services-form.tuesday&#x27; },
+      { value: 3, key: &#x27;add-services-form.wednesday&#x27; },
+      { value: 4, key: &#x27;add-services-form.thursday&#x27; },
+      { value: 5, key: &#x27;add-services-form.friday&#x27; },
+      { value: 6, key: &#x27;add-services-form.saturday&#x27; },
+      { value: 7, key: &#x27;add-services-form.sunday&#x27; }
+    ];
+
+    const sessionStr &#x3D; localStorage.getItem(&#x27;session&#x27;);
+    if (sessionStr) {
+      try {
+        const session &#x3D; JSON.parse(sessionStr);
+
+        const empresa &#x3D; session.usuario?.empresas?.[0];
+        this.identificadorFiscal &#x3D; empresa?.identificadorFiscal || &#x27;&#x27;;
+
+        this.idEmpresa &#x3D; empresa?.idEmpresa || 0;
+        this.empresaNombre &#x3D; empresa?.actividad ?? empresa?.nombre ?? &#x27;Nombre Empresa&#x27;;
+      } catch (err) {
+        console.error(&#x27;[ServicioFormComponent] Error parseando session:&#x27;, err);
+      }
+    }
+
+    this.servicioState.loadServicios();
+
+    this.route.params.subscribe(params &#x3D;&gt; {
+      if (params[&#x27;id&#x27;]) {
+        this.idServicio &#x3D; +params[&#x27;id&#x27;];
+        this.isEditMode &#x3D; true;
+        this.loadServicio(this.idServicio);
+      } else {
+        this.isEditMode &#x3D; false;
+      }
+    });
+
+    this.servicio$ &#x3D; this.servicioState.service$;
+  }
+
+  onDaySelected(event: Event): void {
+    const checkbox &#x3D; event.target as HTMLInputElement;
+    const dayValue &#x3D; +checkbox.value;
+
+    if (checkbox.checked) {
+      this.diasLaborables.push(dayValue);
+    } else {
+      this.diasLaborables &#x3D; this.diasLaborables.filter(d &#x3D;&gt; d !&#x3D;&#x3D; dayValue);
+    }
+  }
+
+  public identificadorFiscal: string &#x3D; &#x27;&#x27;;
+  loadServicio(id: number): void {
+    this.servicioState.getServicioById(id).subscribe(servicio &#x3D;&gt; {
+      if (servicio) {
+        this.nombre &#x3D; servicio.nombre;
+        this.descripcion &#x3D; servicio.descripcion;
+        this.duracion &#x3D; servicio.duracion.toString();
+        this.precio &#x3D; servicio.precio.toString();
+        this.limiteReservas &#x3D; servicio.limiteReservas;
+        this.horarioInicio &#x3D; servicio.horarioInicio.substring(0, 5);
+        this.horarioFin &#x3D; servicio.horarioFin.substring(0, 5);
+
+        this.diasLaborables &#x3D; servicio.diasLaborables
+          ? servicio.diasLaborables.split(&#x27;,&#x27;).map(Number)
+          : [];
+
+        this.identificadorFiscal &#x3D; servicio.identificadorFiscal;
+      } 
+    });
+  }
+
+  validateDuracion(): void {
+    const duracionNumerica &#x3D; parseInt(this.duracion, 10);
+
+    if (isNaN(duracionNumerica) || duracionNumerica &lt;&#x3D; 0) {
+      this.formError &#x3D; this.translate.instant(&#x27;add-services-form.durationGreaterThanZeroError&#x27;);      return;
+      return;
+    }
+
+    if (duracionNumerica &gt; 60) {
+      this.formError &#x3D; this.translate.instant(&#x27;add-services-form.durationError&#x27;);      
+      this.duracion &#x3D; &#x27;60&#x27;;
+    } else {
+      this.formError &#x3D; &#x27;&#x27;;
+    }
+  }
+
+  validateDuracionEdit(): void {
+    const duracionNumerica &#x3D; parseInt(this.tempValue, 10);
+
+    if (isNaN(duracionNumerica) || duracionNumerica &lt;&#x3D; 0) {
+      this.formError &#x3D; this.translate.instant(&#x27;add-services-form.durationGreaterThanZeroError&#x27;);      return;
+    }
+
+    if (duracionNumerica &gt; 60) {
+      this.formError &#x3D; this.translate.instant(&#x27;add-services-form.durationError&#x27;);      
+      this.tempValue &#x3D; &#x27;60&#x27;;
+    } else {
+      this.formError &#x3D; &#x27;&#x27;;
+    }
+  }
+
+  validateTimeRange(): boolean {
+    const startTime &#x3D; this.parseTime(this.horarioInicio);
+    const endTime &#x3D; this.parseTime(this.horarioFin);
+
+    if (endTime &lt;&#x3D; startTime) {
+      this.formErrorHorarioInicio &#x3D; this.translate.instant(&#x27;add-services-form.endTimeError&#x27;);      return false;
+    }
+
+    this.formErrorHorarioInicio &#x3D; &#x27;&#x27;;
+    this.calculateMaxReservations();
+    return true;
+  }
+
+  validateTimeRangeEdit(startTime: string, endTime: string, field: string): void {
+    const startMinutes &#x3D; this.parseTime(startTime);
+    const endMinutes &#x3D; this.parseTime(endTime);
+
+    if (endMinutes &lt;&#x3D; startMinutes) {
+      this.formErrorHorarioInicio &#x3D; this.translate.instant(&#x27;add-services-form.endTimeError&#x27;);      if (field &#x3D;&#x3D;&#x3D; &#x27;horarioInicio&#x27;) {
+        this.tempValue &#x3D; startTime;
+      } else if (field &#x3D;&#x3D;&#x3D; &#x27;horarioFin&#x27;) {
+        this.tempValue &#x3D; endTime;
+      }
+    } else {
+      this.formErrorHorarioInicio &#x3D; &#x27;&#x27;;
+    }
+  }
+
+  calculateMaxReservations(): void {
+    const startMinutes &#x3D; this.parseTime(this.horarioInicio);
+    const endMinutes &#x3D; this.parseTime(this.horarioFin);
+
+    if (endMinutes &gt; startMinutes) {
+      const totalHours &#x3D; (endMinutes - startMinutes) / 60;
+      this.limiteReservas &#x3D; Math.floor(totalHours);
+    } else {
+      this.limiteReservas &#x3D; null;
+    }
+  }
+
+  onSubmit(): void {
+
+    const regex &#x3D; /^([01]\d|2[0-3]):00$/;
+
+    if (!regex.test(this.horarioInicio)) {
+      this.formErrorHorarioInicio &#x3D; this.translate.instant(&#x27;add-services-form.timeFormatError&#x27;);      return;
+    }
+
+    if (!regex.test(this.horarioFin)) {
+      this.formErrorHorarioInicio &#x3D; this.translate.instant(&#x27;add-services-form.timeFormatError&#x27;);      return;
+    }
+
+    if (!this.validateTimeRange()) {
+      return;
+    }
+
+    this.formErrorHorarioInicio &#x3D; &#x27;&#x27;;
+
+    if (
+      !this.nombre?.trim() ||
+      !this.descripcion?.trim() ||
+      !this.duracion?.trim() ||
+      !this.horarioInicio?.trim() ||
+      !this.horarioFin?.trim() ||
+      this.precio &#x3D;&#x3D;&#x3D; null ||
+      this.precio &#x3D;&#x3D;&#x3D; undefined ||
+      this.limiteReservas &#x3D;&#x3D;&#x3D; null ||
+      this.limiteReservas &#x3D;&#x3D;&#x3D; undefined ||
+      this.limiteReservas &lt;&#x3D; 0 ||
+      this.precio &#x3D;&#x3D;&#x3D; &#x27;&#x27;
+    ) {
+      this.formError &#x3D; this.translate.instant(&#x27;add-services-form.formError&#x27;);      return;
+    }
+    this.formError &#x3D; &#x27;&#x27;;
+
+    const payload &#x3D; {
+      nombre: this.nombre,
+      descripcion: this.descripcion,
+      duracion: +this.duracion,
+      precio: parseFloat(this.precio),
+      limiteReservas: this.limiteReservas,
+      diasLaborables: this.diasLaborables.join(&#x27;,&#x27;),
+      horarioInicio: this.horarioInicio,
+      horarioFin: this.horarioFin,
+      identificadorFiscal: this.identificadorFiscal
+    };
+
+
+    if (this.isEditMode &amp;&amp; this.idServicio !&#x3D;&#x3D; null) {
+
+      this.servicioState.updateService(this.idServicio, payload, this.identificadorFiscal).subscribe(
+        () &#x3D;&gt; {
+          alert(this.translate.instant(&#x27;add-services-form.updateOK&#x27;));
+          this.router.navigate([&#x27;/espai-empresa&#x27;]);
+        },
+        (error) &#x3D;&gt; {
+          alert(this.translate.instant(&#x27;add-services-form.updateKO&#x27;));
+        }
+      );
+    } else {
+      this.servicioState.createService(payload).subscribe(
+        () &#x3D;&gt; {
+          alert(this.translate.instant(&#x27;add-services-form.createOK&#x27;));
+          this.router.navigate([&#x27;/espai-empresa&#x27;]);
+        },
+        (error) &#x3D;&gt; {
+          alert(this.translate.instant(&#x27;add-services-form.createKO&#x27;));
+        }
+      );
+    }
+  }
+
+  startEditing(field: string, currentValue: string): void {
+    this.editingKey &#x3D; field;
+    this.tempValue &#x3D; currentValue;
+  }
+
+  confirmEditing(field: string): void {
+    if (this.tempValue !&#x3D;&#x3D; null &amp;&amp; this.tempValue.trim() !&#x3D;&#x3D; &#x27;&#x27;) {
+      if (field &#x3D;&#x3D;&#x3D; &#x27;diasLaborables&#x27;) {
+      } else {
+        (this as any)[field] &#x3D; this.tempValue;
+      }
+
+      if (field &#x3D;&#x3D;&#x3D; &#x27;horarioInicio&#x27; || field &#x3D;&#x3D;&#x3D; &#x27;horarioFin&#x27;) {
+        this.calculateMaxReservations();
+      }
+    }
+
+    this.editingKey &#x3D; null;
+    this.tempValue &#x3D; &#x27;&#x27;;
+  }
+
+  cancelEditing(): void {
+    this.editingKey &#x3D; null;
+    this.tempValue &#x3D; &#x27;&#x27;;
+  }
+
+  editingField(field: string): boolean {
+    return this.editingKey &#x3D;&#x3D;&#x3D; field;
+  }
+
+  public deleteServicio(idServicio: number): void {
+    if (!this.identificadorFiscal) {
+      return;
+    }
+  
+    this.servicioState.deleteServicio(idServicio, this.identificadorFiscal).subscribe(
+      () &#x3D;&gt; {
+        alert(this.translate.instant(&#x27;add-services-form.deleteOK&#x27;));
+        this.router.navigate([&#x27;/espai-empresa&#x27;]);
+      },
+      (error) &#x3D;&gt; {
+        alert(this.translate.instant(&#x27;add-services-form.deleteKO&#x27;));
+      }
+    );
+  }
+
+  validatePrecio(event: KeyboardEvent): void {
+    const inputChar &#x3D; event.key;
+    const currentValue &#x3D; this.precio ?? &#x27;&#x27;;
+
+    if (
+      !/^\d$/.test(inputChar) &amp;&amp;
+      inputChar !&#x3D;&#x3D; &#x27;.&#x27; &amp;&amp;
+      inputChar !&#x3D;&#x3D; &#x27;,&#x27; &amp;&amp;
+      inputChar !&#x3D;&#x3D; &#x27;Backspace&#x27; &amp;&amp;
+      inputChar !&#x3D;&#x3D; &#x27;ArrowLeft&#x27; &amp;&amp;
+      inputChar !&#x3D;&#x3D; &#x27;ArrowRight&#x27;
+    ) {
+      event.preventDefault();
+      return;
+    }
+    if (inputChar &#x3D;&#x3D;&#x3D; &#x27;Backspace&#x27;) {
+      return;
+    }
+    if (inputChar &#x3D;&#x3D;&#x3D; &#x27;.&#x27; &amp;&amp; currentValue.includes(&#x27;.&#x27;)) {
+      event.preventDefault();
+      return;
+    }
+    if (currentValue.includes(&#x27;.&#x27;) &amp;&amp; currentValue.split(&#x27;.&#x27;)[1].length &gt;&#x3D; 2) {
+      event.preventDefault();
+    }
+  }
+
+  restrictToTimeFormat(event: KeyboardEvent): void {
+    const inputChar &#x3D; event.key;
+    const allowedKeys &#x3D; [&#x27;Backspace&#x27;, &#x27;Tab&#x27;, &#x27;ArrowLeft&#x27;, &#x27;ArrowRight&#x27;, &#x27;:&#x27;];
+
+    if (!/^\d$/.test(inputChar) &amp;&amp; !allowedKeys.includes(inputChar)) {
+      event.preventDefault();
+      return;
+    }
+
+    const currentValue &#x3D; (event.target as HTMLInputElement).value;
+
+    if (inputChar &#x3D;&#x3D;&#x3D; &#x27;:&#x27; &amp;&amp; currentValue.includes(&#x27;:&#x27;)) {
+      event.preventDefault();
+      return;
+    }
+
+    if (currentValue.includes(&#x27;:&#x27;) &amp;&amp; inputChar !&#x3D;&#x3D; &#x27;0&#x27; &amp;&amp; inputChar !&#x3D;&#x3D; &#x27;Backspace&#x27;) {
+      event.preventDefault();
+    }
+  }
+
+  formErrorHorarioInicio: string &#x3D; &#x27;&#x27;;
+
+  validateHorario(event: Event): void {
+    const input &#x3D; (event.target as HTMLInputElement).value;
+    const regex &#x3D; /^([01]\d|2[0-3]):00$/;
+
+    if (!regex.test(input) &amp;&amp; input.length &#x3D;&#x3D;&#x3D; 5) {
+      this.formErrorHorarioInicio &#x3D; this.translate.instant(&#x27;add-services-form.timeFormatError&#x27;);    } else {
+      this.formErrorHorarioInicio &#x3D; &#x27;&#x27;;
+      this.calculateMaxReservations();
+    }
+  }
+
+  parseTime(time: string): number {
+    const [hours, minutes] &#x3D; time.split(&#x27;:&#x27;).map(Number);
+    return hours * 60 + minutes;
+  }
+
+  onInputChange(event: any): void {
+    let inputValue &#x3D; event.target.value.replace(&#x27;,&#x27;, &#x27;.&#x27;);
+    const [integer, decimal] &#x3D; inputValue.split(&#x27;.&#x27;);
+
+    if (decimal &amp;&amp; decimal.length &gt; 2) {
+      inputValue &#x3D; &#x60;${integer}.${decimal.substring(0, 2)}&#x60;;
+    }
+    this.precio &#x3D; inputValue;
+  }
+
+  goToEspaiClient(): void {
+    this.router.navigate([&#x27;/espai-empresa&#x27;]);
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;serveis-form-container&quot;&gt;
+  &lt;div class&#x3D;&quot;add-service-container&quot;&gt;
+    @if (servicio$ | async; as servicios) {
+    @if (!isEditMode) {
+    &lt;h1&gt;{{ empresaNombre }}&lt;/h1&gt;
+    &lt;h2&gt;{{ &#x27;add-services-form.nameForm&#x27; | translate }}&lt;/h2&gt;
+    &lt;form (ngSubmit)&#x3D;&quot;onSubmit()&quot; #serviceForm&#x3D;&quot;ngForm&quot;&gt;
+      &lt;div class&#x3D;&quot;input-group&quot;&gt;
+        &lt;label for&#x3D;&quot;nombreServicio&quot; class&#x3D;&quot;form-label evita-desbordamiento&quot;&gt;{{ &#x27;add-services-form.serviceName&#x27; | translate }}:&lt;/label&gt;
+        &lt;div class&#x3D;&quot;input-control&quot;&gt;
+          &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;nombreServicio&quot; [(ngModel)]&#x3D;&quot;nombre&quot; name&#x3D;&quot;nombreServicio&quot;
+            placeholder&#x3D;&quot;{{ &#x27;add-services-form.serviceName_placeholder&#x27; | translate }}&quot; required
+            pattern&#x3D;&quot;^(?&#x3D;(.*[A-Za-z]){2,}).*$&quot; #nombreModel&#x3D;&quot;ngModel&quot; /&gt;
+        &lt;/div&gt;
+        @if (nombreModel.invalid &amp;&amp; (nombreModel.touched || nombreModel.dirty)) {
+        &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;add-services-form.serviceName_error&#x27; | translate }}&lt;/div&gt;
+        }
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;input-group&quot;&gt;
+        &lt;label for&#x3D;&quot;descripcionServicio&quot; class&#x3D;&quot;form-label&quot;&gt;{{ &#x27;add-services-form.serviceDescription&#x27; | translate
+          }}:&lt;/label&gt;
+        &lt;div class&#x3D;&quot;input-control&quot;&gt;
+          &lt;textarea id&#x3D;&quot;descripcionServicio&quot; [(ngModel)]&#x3D;&quot;descripcion&quot; name&#x3D;&quot;descripcionServicio&quot; 
+            placeholder&#x3D;&quot;{{ &#x27;add-services-form.serviceDescription_placeholder&#x27; | translate }}&quot; required rows&#x3D;&quot;5&quot;
+            pattern&#x3D;&quot;^[A-Za-zÀ-ÿ0-9 .,!?()&#x27;\n\r-]{2,200}$&quot; #descripcionModel&#x3D;&quot;ngModel&quot;&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+        @if (descripcionModel.invalid &amp;&amp; (descripcionModel.touched || descripcionModel.dirty)) {
+        &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;add-services-form.serviceDescription_eror&#x27; | translate }}&lt;/div&gt;
+        }
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;input-group&quot;&gt;
+        &lt;label for&#x3D;&quot;duracionServicio&quot; class&#x3D;&quot;form-label&quot;&gt;{{ &#x27;add-services-form.serviceDuration&#x27; | translate }}:&lt;/label&gt;
+        &lt;div class&#x3D;&quot;input-control&quot;&gt;
+          &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;duracionServicio&quot; [(ngModel)]&#x3D;&quot;duracion&quot; name&#x3D;&quot;duracionServicio&quot;
+            placeholder&#x3D;&quot;{{ &#x27;add-services-form.serviceDuration_placeholder&#x27; | translate }}&quot; required pattern&#x3D;&quot;^[0-9]+$&quot;
+            #duracionModel&#x3D;&quot;ngModel&quot; (input)&#x3D;&quot;validateDuracion()&quot; /&gt;
+        &lt;/div&gt;
+        @if (duracionModel.invalid &amp;&amp; (duracionModel.touched || duracionModel.dirty)) {
+        &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;add-services-form.serviceDuration_error&#x27; | translate }}&lt;/div&gt;
+        }
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;input-group&quot;&gt;
+        &lt;label for&#x3D;&quot;precioServicio&quot; class&#x3D;&quot;form-label&quot;&gt;{{ &#x27;add-services-form.servicePrice&#x27; | translate }}:&lt;/label&gt;
+        &lt;div class&#x3D;&quot;input-control&quot;&gt;
+          &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;precioServicio&quot; [(ngModel)]&#x3D;&quot;precio&quot; name&#x3D;&quot;precioServicio&quot;
+            placeholder&#x3D;&quot;{{ &#x27;add-services-form.servicePrice_placeholder&#x27; | translate }}&quot; required
+            (input)&#x3D;&quot;onInputChange($event)&quot; (keydown)&#x3D;&quot;validatePrecio($event)&quot; #precioModel&#x3D;&quot;ngModel&quot; /&gt;
+        &lt;/div&gt;
+        @if (precioModel.invalid &amp;&amp; (precioModel.touched || precioModel.dirty)) {
+        &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;add-services-form.servicePrice_error&#x27; | translate }}&lt;/div&gt;
+        }
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;input-group&quot;&gt;
+        &lt;label for&#x3D;&quot;diasLaborables&quot; class&#x3D;&quot;form-label&quot;&gt;{{ &#x27;add-services-form.workingDays&#x27; | translate }}:&lt;/label&gt;
+        &lt;div class&#x3D;&quot;input-control two-columns&quot;&gt;
+          &lt;div *ngFor&#x3D;&quot;let day of weekDays&quot;&gt;
+            &lt;label class&#x3D;&quot;day-checkbox&quot;&gt;
+              &lt;input type&#x3D;&quot;checkbox&quot; [value]&#x3D;&quot;day.value&quot; (change)&#x3D;&quot;onDaySelected($event)&quot; name&#x3D;&quot;diasLaborables&quot; /&gt;
+              {{ day.key | translate }}
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        @if (diasLaborables.length &#x3D;&#x3D;&#x3D; 0) {
+        &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;add-services-form.workingDays_error&#x27; | translate }}&lt;/div&gt;
+        }
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;input-group&quot;&gt;
+        &lt;label for&#x3D;&quot;horarioInicio&quot; class&#x3D;&quot;form-label&quot;&gt;{{ &#x27;add-services-form.serviceStartTime&#x27; | translate }}&lt;/label&gt;
+        &lt;div class&#x3D;&quot;input-control&quot;&gt;
+          &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;horarioInicio&quot; [(ngModel)]&#x3D;&quot;horarioInicio&quot; name&#x3D;&quot;horarioInicio&quot;
+            placeholder&#x3D;&quot;{{ &#x27;add-services-form.serviceStartTime_placeholder&#x27; | translate }}&quot; required
+            pattern&#x3D;&quot;^([01]\d|2[0-3]):00$&quot; #horarioInicioModel&#x3D;&quot;ngModel&quot; (keydown)&#x3D;&quot;restrictToTimeFormat($event)&quot;
+            (input)&#x3D;&quot;validateHorario($event)&quot; /&gt;
+        &lt;/div&gt;
+        @if (horarioInicioModel.invalid &amp;&amp; (horarioInicioModel.touched || horarioInicioModel.dirty)) {
+        &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;add-services-form.serviceAvailability_error&#x27; | translate }}&lt;/div&gt;
+        }
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;input-group&quot;&gt;
+        &lt;label for&#x3D;&quot;horarioFin&quot; class&#x3D;&quot;form-label&quot;&gt;{{ &#x27;add-services-form.serviceEndTime&#x27; | translate }}:&lt;/label&gt;
+        &lt;div class&#x3D;&quot;input-control&quot;&gt;
+          &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;horarioFin&quot; [(ngModel)]&#x3D;&quot;horarioFin&quot; name&#x3D;&quot;horarioFin&quot;
+            placeholder&#x3D;&quot;{{ &#x27;add-services-form.serviceEndTime_placeholder&#x27; | translate }}&quot; required
+            pattern&#x3D;&quot;^([01]\d|2[0-3]):00$&quot; #horarioFinModel&#x3D;&quot;ngModel&quot; (keydown)&#x3D;&quot;restrictToTimeFormat($event)&quot;
+            (input)&#x3D;&quot;validateHorario($event)&quot; /&gt;
+        &lt;/div&gt;
+        @if (horarioFinModel.invalid &amp;&amp; (horarioFinModel.touched || horarioFinModel.dirty)) {
+        &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;add-services-form.serviceAvailability_error&#x27; | translate }}&lt;/div&gt;
+        }
+      &lt;/div&gt;
+      &lt;div *ngIf&#x3D;&quot;formErrorHorarioInicio&quot; class&#x3D;&quot;error&quot;&gt;
+        {{ formErrorHorarioInicio }}
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;input-group&quot;&gt;
+        &lt;label for&#x3D;&quot;limiteReserva&quot; class&#x3D;&quot;form-label&quot;&gt;{{ &#x27;add-services-form.serviceReservations&#x27; | translate }}:&lt;/label&gt;
+        &lt;div class&#x3D;&quot;input-control&quot;&gt;
+          &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;limite&quot; [(ngModel)]&#x3D;&quot;limiteReservas&quot; name&#x3D;&quot;limiteReserva&quot;
+            placeholder&#x3D;&quot;{{ &#x27;add-services-form.serviceReservations_placeholder&#x27; | translate }}&quot; required
+            #limiteReservasModel&#x3D;&quot;ngModel&quot; readonly /&gt;
+        &lt;/div&gt;
+        @if (limiteReservasModel.invalid &amp;&amp; (limiteReservasModel.touched || limiteReservasModel.dirty)) {
+        &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;add-services-form.serviceReservations_error&#x27; | translate }}&lt;/div&gt;
+        }
+      &lt;/div&gt;
+      &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;auth-btn&quot;&gt;
+        {{ &#x27;add-services-form.serviceSubmit&#x27; | translate }}
+      &lt;/button&gt;
+      @if (formError) {
+      &lt;div class&#x3D;&quot;error&quot;&gt;{{ formError | translate }}&lt;/div&gt;
+      }
+    &lt;/form&gt;
+    } @else {
+    &lt;h1&gt;{{ empresaNombre }}&lt;/h1&gt;
+    &lt;h2&gt;{{ &#x27;add-services-form.nameForm_edit&#x27; | translate }}&lt;/h2&gt;
+    &lt;div class&#x3D;&quot;read-only-data&quot;&gt;
+      &lt;div class&#x3D;&quot;data-field&quot;&gt;
+        &lt;label&gt;{{ &#x27;add-services-form.serviceName&#x27; | translate }}:&lt;/label&gt;
+        @if (!editingField(&#x27;nombre&#x27;)) {
+        &lt;span class&#x3D;&quot;evita-desbordamiento&quot;&gt;{{ nombre }}&lt;/span&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;startEditing(&#x27;nombre&#x27;, nombre)&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-edit&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        } @else {
+        &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;tempValue&quot; required pattern&#x3D;&quot;^(?&#x3D;(.*[A-Za-z]){2,}).*$&quot; #nombreEdit&#x3D;&quot;ngModel&quot; /&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;confirmEditing(&#x27;nombre&#x27;)&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;cancelEditing()&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        @if (nombreEdit.invalid &amp;&amp; (nombreEdit.touched || nombreEdit.dirty)) {
+        &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;add-services-form.serviceName_error&#x27; | translate }}&lt;/div&gt;
+        }
+        }
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;data-field&quot;&gt;
+        &lt;label&gt;{{ &#x27;add-services-form.serviceDescription&#x27; | translate }}:&lt;/label&gt;
+        @if (!editingField(&#x27;descripcion&#x27;)) {
+        &lt;span class&#x3D;&quot;evita-desbordamiento&quot;&gt;{{ descripcion }}&lt;/span&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;startEditing(&#x27;descripcion&#x27;, descripcion)&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-edit&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        } @else {
+        &lt;textarea [(ngModel)]&#x3D;&quot;tempValue&quot; required rows&#x3D;&quot;5&quot; pattern&#x3D;&quot;^[A-Za-z0-9 ]{2,200}$&quot;
+          #descripcionEdit&#x3D;&quot;ngModel&quot;&gt;&lt;/textarea&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;confirmEditing(&#x27;descripcion&#x27;)&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;cancelEditing()&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        @if (descripcionEdit.invalid &amp;&amp; (descripcionEdit.touched || descripcionEdit.dirty)) {
+        &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;add-services-form.serviceDescription_eror&#x27; | translate }}&lt;/div&gt;
+        }
+        }
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;data-field&quot;&gt;
+        &lt;label&gt;{{ &#x27;add-services-form.serviceDuration&#x27; | translate }}:&lt;/label&gt;
+        @if (!editingField(&#x27;duracion&#x27;)) {
+        &lt;span&gt;{{ duracion }}&lt;/span&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;startEditing(&#x27;duracion&#x27;, duracion)&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-edit&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        } @else {
+        &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;tempValue&quot; required pattern&#x3D;&quot;^[0-9]+$&quot; #duracionEdit&#x3D;&quot;ngModel&quot;
+          (input)&#x3D;&quot;validateDuracionEdit()&quot; /&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;confirmEditing(&#x27;duracion&#x27;)&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;cancelEditing()&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        @if (duracionEdit.invalid &amp;&amp; (duracionEdit.touched || duracionEdit.dirty)) {
+        &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;add-services-form.serviceDuration_error&#x27; | translate }}&lt;/div&gt;
+        }
+        }
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;data-field&quot;&gt;
+        &lt;label&gt;{{ &#x27;add-services-form.servicePrice&#x27; | translate }}:&lt;/label&gt;
+        @if (!editingField(&#x27;precio&#x27;)) {
+        &lt;span&gt;{{ precio }}&lt;/span&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;startEditing(&#x27;precio&#x27;, precio)&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-edit&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        } @else {
+        &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;tempValue&quot; required (input)&#x3D;&quot;onInputChange($event)&quot;
+          (keydown)&#x3D;&quot;validatePrecio($event)&quot; #precioEdit&#x3D;&quot;ngModel&quot; /&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;confirmEditing(&#x27;precio&#x27;)&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;cancelEditing()&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        @if (precioEdit.invalid &amp;&amp; (precioEdit.touched || precioEdit.dirty)) {
+        &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;add-services-form.servicePrice_error&#x27; | translate }}&lt;/div&gt;
+        }
+        }
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;data-field&quot;&gt;
+        &lt;label style&#x3D;&quot;width:100%&quot;&gt;{{ &#x27;add-services-form.workingDays&#x27; | translate }}:&lt;/label&gt;
+        @if (!editingField(&#x27;diasLaborables&#x27;)) {
+        &lt;div class&#x3D;&quot;input-control two-columns&quot;&gt;
+          &lt;div *ngFor&#x3D;&quot;let day of weekDays&quot;&gt;
+            &lt;label class&#x3D;&quot;day-checkbox&quot;&gt;
+              &lt;input type&#x3D;&quot;checkbox&quot; [value]&#x3D;&quot;day.value&quot; [checked]&#x3D;&quot;diasLaborables.includes(day.value)&quot; disabled /&gt;
+              {{ day.key | translate }}
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;startEditing(&#x27;diasLaborables&#x27;, diasLaborables.join(&#x27;,&#x27;))&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-edit&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        } @else {
+        &lt;div class&#x3D;&quot;input-control two-columns&quot;&gt;
+          &lt;div *ngFor&#x3D;&quot;let day of weekDays&quot;&gt;
+            &lt;label class&#x3D;&quot;day-checkbox&quot;&gt;
+              &lt;input type&#x3D;&quot;checkbox&quot; [value]&#x3D;&quot;day.value&quot; [checked]&#x3D;&quot;diasLaborables.includes(day.value)&quot;
+                (change)&#x3D;&quot;onDaySelected($event)&quot; /&gt;
+              {{ day.key | translate }}
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;confirmEditing(&#x27;diasLaborables&#x27;)&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;cancelEditing()&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        }
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;data-field&quot;&gt;
+        &lt;label&gt;{{ &#x27;add-services-form.serviceStartTime&#x27; | translate }}:&lt;/label&gt;
+        @if (!editingField(&#x27;horarioInicio&#x27;)) {
+        &lt;span&gt;{{ horarioInicio }}&lt;/span&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;startEditing(&#x27;horarioInicio&#x27;, horarioInicio)&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-edit&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        } @else {
+        &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;tempValue&quot; required pattern&#x3D;&quot;^([01]\d|2[0-3]):00$&quot; #horarioInicioEdit&#x3D;&quot;ngModel&quot;
+          (keydown)&#x3D;&quot;restrictToTimeFormat($event)&quot;
+          (blur)&#x3D;&quot;validateTimeRangeEdit(tempValue, horarioFin, &#x27;horarioInicio&#x27;); calculateMaxReservations()&quot; /&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;confirmEditing(&#x27;horarioInicio&#x27;)&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;cancelEditing()&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        @if (horarioInicioEdit.invalid &amp;&amp; (horarioInicioEdit.touched || horarioInicioEdit.dirty)) {
+        &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;add-services-form.serviceStartTime_error&#x27; | translate }}&lt;/div&gt;
+        }
+        }
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;data-field&quot;&gt;
+        &lt;label&gt;{{ &#x27;add-services-form.serviceEndTime&#x27; | translate }}:&lt;/label&gt;
+        @if (!editingField(&#x27;horarioFin&#x27;)) {
+        &lt;span&gt;{{ horarioFin }}&lt;/span&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;startEditing(&#x27;horarioFin&#x27;, horarioFin)&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-edit&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        } @else {
+        &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;tempValue&quot; required pattern&#x3D;&quot;^([01]\d|2[0-3]):00$&quot; #horarioFinEdit&#x3D;&quot;ngModel&quot;
+          (keydown)&#x3D;&quot;restrictToTimeFormat($event)&quot;
+          (blur)&#x3D;&quot;validateTimeRangeEdit(horarioInicio, tempValue, &#x27;horarioFin&#x27;); calculateMaxReservations()&quot; /&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;confirmEditing(&#x27;horarioFin&#x27;)&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        &lt;button class&#x3D;&quot;icon-btn&quot; (click)&#x3D;&quot;cancelEditing()&quot;&gt;
+          &lt;i class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        @if (horarioFinEdit.invalid &amp;&amp; (horarioFinEdit.touched || horarioFinEdit.dirty)) {
+        &lt;div class&#x3D;&quot;error&quot;&gt;{{ &#x27;add-services-form.serviceEndTime_error&#x27; | translate }}&lt;/div&gt;
+        }
+        }
+      &lt;/div&gt;
+      &lt;div *ngIf&#x3D;&quot;formErrorHorarioInicio&quot; class&#x3D;&quot;error&quot;&gt;
+        {{ formErrorHorarioInicio }}
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;data-field&quot;&gt;
+        &lt;label&gt;{{ &#x27;add-services-form.serviceReservations&#x27; | translate }}:&lt;/label&gt;
+        &lt;span&gt;{{ limiteReservas }}&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;button class&#x3D;&quot;auth-btn&quot; (click)&#x3D;&quot;onSubmit()&quot;&gt;
+        {{ &#x27;add-services-form.serviceSubmit_edit&#x27; | translate }}
+      &lt;/button&gt;
+      &lt;button *ngIf&#x3D;&quot;idServicio !&#x3D;&#x3D; null&quot; class&#x3D;&quot;delete-btn&quot; (click)&#x3D;&quot;deleteServicio(idServicio!)&quot;&gt;
+        &lt;i class&#x3D;&quot;fas fa-trash&quot;&gt;&lt;/i&gt; {{ &#x27;add-services-form.serviceDelete&#x27; | translate }}
+      &lt;/button&gt;
+      &lt;div class&#x3D;&quot;button-container w-100&quot;&gt;
+        &lt;button class&#x3D;&quot;redirect-btn&quot; (click)&#x3D;&quot;goToEspaiClient()&quot;&gt;
+          &lt;i class&#x3D;&quot;fa-solid fa-arrow-left&quot;&gt;&lt;/i&gt;
+          {{ &#x27;menu.return-btn&#x27; | translate }}
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    }
+    } @else {
+    &lt;p&gt;{{ &#x27;add-services-form.loadingServices&#x27; | translate }}&lt;/p&gt;
+    }
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./services-form.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;../../../colors.scss&#x27;;
+
+.serveis-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vw;
+  width: 100%;
+  background: $bg-gradient;
+  font-family: &#x27;Roboto&#x27;, sans-serif;
+  color: #FFFFFF;
+}
+
+.add-service-container {
+  background: $container-bg;
+  padding: 2.5rem;
+  border-radius: 0.625rem;
+  text-align: center;
+  width: 30rem;
+  backdrop-filter: blur(0.625rem);
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: 0.125rem;
+  color: $white;
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 0.9375rem;
+}
+
+.form-label {
+  margin-bottom: 0.3rem;
+  margin-top: 0.5rem;
+  color: $label-color;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.input-control {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  background: $input-bg;
+  border-radius: 0.3125rem;
+  padding: 0.625rem;
+  clip-path: inset(0 round 0.3125rem);
+}
+
+textarea {
+  width: 100%;
+  height: auto;
+  min-height: 40px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  resize: none;
+  outline: none;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  color: #FFFFFF;
+}
+
+textarea::placeholder {
+  color: #ffffff92;
+}
+
+input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: $white;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  outline: none;
+}
+
+input::placeholder {
+  color: $placeholder-color;
+}
+
+.input-control input:focus {
+  box-shadow: 0 0 0.25rem $white;
+}
+
+.auth-btn,
+.delete-btn {
+  width: 100%;
+  padding: 0.625rem;
+  background: transparent;
+  border: 0.0625rem solid $btn-border;
+  color: $white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3125rem;
+  transition: all 0.3s ease;
+}
+
+.auth-btn:hover {
+  background: $btn-hover-bg;
+}
+
+.delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dc143c !important;
+  border: 2px solid #dc143c !important;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  gap: 8px;
+}
+
+.role-selection select {
+  width: 100%;
+  padding: 0.625rem;
+  border: 0.0625rem solid $btn-border;
+  border-radius: 0.3125rem;
+  background: $input-bg;
+  color: #000;
+  font-size: 1rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.error {
+  color: $error-color;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  text-align: left;
+  width: 100%;
+}
+
+.read-only-data {
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.data-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  background: $input-bg;
+  padding: 0.625rem;
+  border-radius: 0.3125rem;
+}
+
+.data-field label {
+  color: $white;
+  font-weight: 400;
+  font-size: 0.875rem;
+  margin-right: 1rem;
+}
+
+.data-field span {
+  flex: 1;
+  color: $white;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: $white;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+.delete-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.625rem;
+  background: transparent;
+  border: 0.0625rem solid $btn-border;
+  color: $white;
+  font-size: 0.875rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3125rem;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  background: $btn-hover-bg;
+}
+
+.input-control.two-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.input-control.two-columns input {
+  justify-content: flex-start !important;
+}
+
+.day-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 0 50%;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.redirect-btn {
+  width: 100%;
+  padding: 0.625rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: 0.0625rem solid $btn-border;
+  color: $white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0.3125rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.redirect-btn i {
+  position: absolute;
+  left: 1rem;
+}
+
+.redirect-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.button-container {
+  margin-top: 1.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.evita-desbordamiento {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  max-width: 200px;
+}
+
+.serveis-form-container {
+  height: 100%;
+}
+
+.serveis-form-container {
+  height: calc(160vh - 100px);
+  padding: 0;
+}
+
+/* Tablets i phablets */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .serveis-form-container {
+    height: calc(160vh - 100px);
+    padding: 0;
+  }
+}
+
+/* Telèfons */
+@media only screen and (max-width: 575px) {
+  .serveis-form-container {
+    padding: 1rem;
+  }
+
+  .add-service-container {
+    width: 90%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+  }
+
+  h1,
+  h2 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .input-group {
+    margin-bottom: 0.5rem;
+  }
+
+  .form-label {
+    font-size: 0.75rem;
+  }
+
+  .input-control {
+    padding: 0.5rem;
+  }
+
+  textarea,
+  input {
+    font-size: 0.75rem;
+  }
+
+  .auth-btn,
+  .delete-btn {
+    font-size: 0.875rem;
+    padding: 0.5rem;
+  }
+
+  .redirect-btn {
+    font-size: 0.875rem;
+    padding: 0.5rem;
+  }
+
+  .day-checkbox {
+    flex: 0 0 100%;
+    text-align: left;
+  }
+
+  .serveis-form-container {
+    height: calc(160vh - 100px);
+    padding: 0;
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="serveis-form-container">  <div class="add-service-container">    @if (servicio$ | async; as servicios) {    @if (!isEditMode) {    <h1>{{ empresaNombre }}</h1>    <h2>{{ \'add-services-form.nameForm\' | translate }}</h2>    <form (ngSubmit)="onSubmit()" #serviceForm="ngForm">      <div class="input-group">        <label for="nombreServicio" class="form-label evita-desbordamiento">{{ \'add-services-form.serviceName\' | translate }}:</label>        <div class="input-control">          <input type="text" id="nombreServicio" [(ngModel)]="nombre" name="nombreServicio"            placeholder="{{ \'add-services-form.serviceName_placeholder\' | translate }}" required            pattern="^(?=(.*[A-Za-z]){2,}).*$" #nombreModel="ngModel" />        </div>        @if (nombreModel.invalid && (nombreModel.touched || nombreModel.dirty)) {        <div class="error">{{ \'add-services-form.serviceName_error\' | translate }}</div>        }      </div>      <div class="input-group">        <label for="descripcionServicio" class="form-label">{{ \'add-services-form.serviceDescription\' | translate          }}:</label>        <div class="input-control">          <textarea id="descripcionServicio" [(ngModel)]="descripcion" name="descripcionServicio"             placeholder="{{ \'add-services-form.serviceDescription_placeholder\' | translate }}" required rows="5"            pattern="^[A-Za-zÀ-ÿ0-9 .,!?()\'\n\r-]{2,200}$" #descripcionModel="ngModel"></textarea>        </div>        @if (descripcionModel.invalid && (descripcionModel.touched || descripcionModel.dirty)) {        <div class="error">{{ \'add-services-form.serviceDescription_eror\' | translate }}</div>        }      </div>      <div class="input-group">        <label for="duracionServicio" class="form-label">{{ \'add-services-form.serviceDuration\' | translate }}:</label>        <div class="input-control">          <input type="text" id="duracionServicio" [(ngModel)]="duracion" name="duracionServicio"            placeholder="{{ \'add-services-form.serviceDuration_placeholder\' | translate }}" required pattern="^[0-9]+$"            #duracionModel="ngModel" (input)="validateDuracion()" />        </div>        @if (duracionModel.invalid && (duracionModel.touched || duracionModel.dirty)) {        <div class="error">{{ \'add-services-form.serviceDuration_error\' | translate }}</div>        }      </div>      <div class="input-group">        <label for="precioServicio" class="form-label">{{ \'add-services-form.servicePrice\' | translate }}:</label>        <div class="input-control">          <input type="text" id="precioServicio" [(ngModel)]="precio" name="precioServicio"            placeholder="{{ \'add-services-form.servicePrice_placeholder\' | translate }}" required            (input)="onInputChange($event)" (keydown)="validatePrecio($event)" #precioModel="ngModel" />        </div>        @if (precioModel.invalid && (precioModel.touched || precioModel.dirty)) {        <div class="error">{{ \'add-services-form.servicePrice_error\' | translate }}</div>        }      </div>      <div class="input-group">        <label for="diasLaborables" class="form-label">{{ \'add-services-form.workingDays\' | translate }}:</label>        <div class="input-control two-columns">          <div *ngFor="let day of weekDays">            <label class="day-checkbox">              <input type="checkbox" [value]="day.value" (change)="onDaySelected($event)" name="diasLaborables" />              {{ day.key | translate }}            </label>          </div>        </div>        @if (diasLaborables.length === 0) {        <div class="error">{{ \'add-services-form.workingDays_error\' | translate }}</div>        }      </div>      <div class="input-group">        <label for="horarioInicio" class="form-label">{{ \'add-services-form.serviceStartTime\' | translate }}</label>        <div class="input-control">          <input type="text" id="horarioInicio" [(ngModel)]="horarioInicio" name="horarioInicio"            placeholder="{{ \'add-services-form.serviceStartTime_placeholder\' | translate }}" required            pattern="^([01]\d|2[0-3]):00$" #horarioInicioModel="ngModel" (keydown)="restrictToTimeFormat($event)"            (input)="validateHorario($event)" />        </div>        @if (horarioInicioModel.invalid && (horarioInicioModel.touched || horarioInicioModel.dirty)) {        <div class="error">{{ \'add-services-form.serviceAvailability_error\' | translate }}</div>        }      </div>      <div class="input-group">        <label for="horarioFin" class="form-label">{{ \'add-services-form.serviceEndTime\' | translate }}:</label>        <div class="input-control">          <input type="text" id="horarioFin" [(ngModel)]="horarioFin" name="horarioFin"            placeholder="{{ \'add-services-form.serviceEndTime_placeholder\' | translate }}" required            pattern="^([01]\d|2[0-3]):00$" #horarioFinModel="ngModel" (keydown)="restrictToTimeFormat($event)"            (input)="validateHorario($event)" />        </div>        @if (horarioFinModel.invalid && (horarioFinModel.touched || horarioFinModel.dirty)) {        <div class="error">{{ \'add-services-form.serviceAvailability_error\' | translate }}</div>        }      </div>      <div *ngIf="formErrorHorarioInicio" class="error">        {{ formErrorHorarioInicio }}      </div>      <div class="input-group">        <label for="limiteReserva" class="form-label">{{ \'add-services-form.serviceReservations\' | translate }}:</label>        <div class="input-control">          <input type="text" id="limite" [(ngModel)]="limiteReservas" name="limiteReserva"            placeholder="{{ \'add-services-form.serviceReservations_placeholder\' | translate }}" required            #limiteReservasModel="ngModel" readonly />        </div>        @if (limiteReservasModel.invalid && (limiteReservasModel.touched || limiteReservasModel.dirty)) {        <div class="error">{{ \'add-services-form.serviceReservations_error\' | translate }}</div>        }      </div>      <button type="submit" class="auth-btn">        {{ \'add-services-form.serviceSubmit\' | translate }}      </button>      @if (formError) {      <div class="error">{{ formError | translate }}</div>      }    </form>    } @else {    <h1>{{ empresaNombre }}</h1>    <h2>{{ \'add-services-form.nameForm_edit\' | translate }}</h2>    <div class="read-only-data">      <div class="data-field">        <label>{{ \'add-services-form.serviceName\' | translate }}:</label>        @if (!editingField(\'nombre\')) {        <span class="evita-desbordamiento">{{ nombre }}</span>        <button class="icon-btn" (click)="startEditing(\'nombre\', nombre)">          <i class="fas fa-edit"></i>        </button>        } @else {        <input type="text" [(ngModel)]="tempValue" required pattern="^(?=(.*[A-Za-z]){2,}).*$" #nombreEdit="ngModel" />        <button class="icon-btn" (click)="confirmEditing(\'nombre\')">          <i class="fas fa-check"></i>        </button>        <button class="icon-btn" (click)="cancelEditing()">          <i class="fas fa-times"></i>        </button>        @if (nombreEdit.invalid && (nombreEdit.touched || nombreEdit.dirty)) {        <div class="error">{{ \'add-services-form.serviceName_error\' | translate }}</div>        }        }      </div>      <div class="data-field">        <label>{{ \'add-services-form.serviceDescription\' | translate }}:</label>        @if (!editingField(\'descripcion\')) {        <span class="evita-desbordamiento">{{ descripcion }}</span>        <button class="icon-btn" (click)="startEditing(\'descripcion\', descripcion)">          <i class="fas fa-edit"></i>        </button>        } @else {        <textarea [(ngModel)]="tempValue" required rows="5" pattern="^[A-Za-z0-9 ]{2,200}$"          #descripcionEdit="ngModel"></textarea>        <button class="icon-btn" (click)="confirmEditing(\'descripcion\')">          <i class="fas fa-check"></i>        </button>        <button class="icon-btn" (click)="cancelEditing()">          <i class="fas fa-times"></i>        </button>        @if (descripcionEdit.invalid && (descripcionEdit.touched || descripcionEdit.dirty)) {        <div class="error">{{ \'add-services-form.serviceDescription_eror\' | translate }}</div>        }        }      </div>      <div class="data-field">        <label>{{ \'add-services-form.serviceDuration\' | translate }}:</label>        @if (!editingField(\'duracion\')) {        <span>{{ duracion }}</span>        <button class="icon-btn" (click)="startEditing(\'duracion\', duracion)">          <i class="fas fa-edit"></i>        </button>        } @else {        <input type="text" [(ngModel)]="tempValue" required pattern="^[0-9]+$" #duracionEdit="ngModel"          (input)="validateDuracionEdit()" />        <button class="icon-btn" (click)="confirmEditing(\'duracion\')">          <i class="fas fa-check"></i>        </button>        <button class="icon-btn" (click)="cancelEditing()">          <i class="fas fa-times"></i>        </button>        @if (duracionEdit.invalid && (duracionEdit.touched || duracionEdit.dirty)) {        <div class="error">{{ \'add-services-form.serviceDuration_error\' | translate }}</div>        }        }      </div>      <div class="data-field">        <label>{{ \'add-services-form.servicePrice\' | translate }}:</label>        @if (!editingField(\'precio\')) {        <span>{{ precio }}</span>        <button class="icon-btn" (click)="startEditing(\'precio\', precio)">          <i class="fas fa-edit"></i>        </button>        } @else {        <input type="text" [(ngModel)]="tempValue" required (input)="onInputChange($event)"          (keydown)="validatePrecio($event)" #precioEdit="ngModel" />        <button class="icon-btn" (click)="confirmEditing(\'precio\')">          <i class="fas fa-check"></i>        </button>        <button class="icon-btn" (click)="cancelEditing()">          <i class="fas fa-times"></i>        </button>        @if (precioEdit.invalid && (precioEdit.touched || precioEdit.dirty)) {        <div class="error">{{ \'add-services-form.servicePrice_error\' | translate }}</div>        }        }      </div>      <div class="data-field">        <label style="width:100%">{{ \'add-services-form.workingDays\' | translate }}:</label>        @if (!editingField(\'diasLaborables\')) {        <div class="input-control two-columns">          <div *ngFor="let day of weekDays">            <label class="day-checkbox">              <input type="checkbox" [value]="day.value" [checked]="diasLaborables.includes(day.value)" disabled />              {{ day.key | translate }}            </label>          </div>        </div>        <button class="icon-btn" (click)="startEditing(\'diasLaborables\', diasLaborables.join(\',\'))">          <i class="fas fa-edit"></i>        </button>        } @else {        <div class="input-control two-columns">          <div *ngFor="let day of weekDays">            <label class="day-checkbox">              <input type="checkbox" [value]="day.value" [checked]="diasLaborables.includes(day.value)"                (change)="onDaySelected($event)" />              {{ day.key | translate }}            </label>          </div>        </div>        <button class="icon-btn" (click)="confirmEditing(\'diasLaborables\')">          <i class="fas fa-check"></i>        </button>        <button class="icon-btn" (click)="cancelEditing()">          <i class="fas fa-times"></i>        </button>        }      </div>      <div class="data-field">        <label>{{ \'add-services-form.serviceStartTime\' | translate }}:</label>        @if (!editingField(\'horarioInicio\')) {        <span>{{ horarioInicio }}</span>        <button class="icon-btn" (click)="startEditing(\'horarioInicio\', horarioInicio)">          <i class="fas fa-edit"></i>        </button>        } @else {        <input type="text" [(ngModel)]="tempValue" required pattern="^([01]\d|2[0-3]):00$" #horarioInicioEdit="ngModel"          (keydown)="restrictToTimeFormat($event)"          (blur)="validateTimeRangeEdit(tempValue, horarioFin, \'horarioInicio\'); calculateMaxReservations()" />        <button class="icon-btn" (click)="confirmEditing(\'horarioInicio\')">          <i class="fas fa-check"></i>        </button>        <button class="icon-btn" (click)="cancelEditing()">          <i class="fas fa-times"></i>        </button>        @if (horarioInicioEdit.invalid && (horarioInicioEdit.touched || horarioInicioEdit.dirty)) {        <div class="error">{{ \'add-services-form.serviceStartTime_error\' | translate }}</div>        }        }      </div>      <div class="data-field">        <label>{{ \'add-services-form.serviceEndTime\' | translate }}:</label>        @if (!editingField(\'horarioFin\')) {        <span>{{ horarioFin }}</span>        <button class="icon-btn" (click)="startEditing(\'horarioFin\', horarioFin)">          <i class="fas fa-edit"></i>        </button>        } @else {        <input type="text" [(ngModel)]="tempValue" required pattern="^([01]\d|2[0-3]):00$" #horarioFinEdit="ngModel"          (keydown)="restrictToTimeFormat($event)"          (blur)="validateTimeRangeEdit(horarioInicio, tempValue, \'horarioFin\'); calculateMaxReservations()" />        <button class="icon-btn" (click)="confirmEditing(\'horarioFin\')">          <i class="fas fa-check"></i>        </button>        <button class="icon-btn" (click)="cancelEditing()">          <i class="fas fa-times"></i>        </button>        @if (horarioFinEdit.invalid && (horarioFinEdit.touched || horarioFinEdit.dirty)) {        <div class="error">{{ \'add-services-form.serviceEndTime_error\' | translate }}</div>        }        }      </div>      <div *ngIf="formErrorHorarioInicio" class="error">        {{ formErrorHorarioInicio }}      </div>      <div class="data-field">        <label>{{ \'add-services-form.serviceReservations\' | translate }}:</label>        <span>{{ limiteReservas }}</span>      </div>      <button class="auth-btn" (click)="onSubmit()">        {{ \'add-services-form.serviceSubmit_edit\' | translate }}      </button>      <button *ngIf="idServicio !== null" class="delete-btn" (click)="deleteServicio(idServicio!)">        <i class="fas fa-trash"></i> {{ \'add-services-form.serviceDelete\' | translate }}      </button>      <div class="button-container w-100">        <button class="redirect-btn" (click)="goToEspaiClient()">          <i class="fa-solid fa-arrow-left"></i>          {{ \'menu.return-btn\' | translate }}        </button>      </div>    </div>    }    } @else {    <p>{{ \'add-services-form.loadingServices\' | translate }}</p>    }  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CookiesComponent', 'selector': 'app-cookies'},{'name': 'EditarReservaComponent', 'selector': 'app-editar-reserva'},{'name': 'EditComponent', 'selector': 'app-edit'},{'name': 'EmpresaFormComponent', 'selector': 'app-empresa-form'},{'name': 'EspaiClientComponent', 'selector': 'app-espai-client'},{'name': 'EspaiEmpresaComponent', 'selector': 'app-espai-empresa'},{'name': 'EventComponent', 'selector': 'app-event'},{'name': 'EventDetailComponent', 'selector': 'app-event-detail'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GestorReservesCliComponent', 'selector': 'app-gestor-reserves-cli'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HorarisEmpresaComponent', 'selector': 'app-horaris-empresa'},{'name': 'LandingPageComponent', 'selector': 'app-landing-page'},{'name': 'LegalNoticeComponent', 'selector': 'app-legal-notice'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MetricasComponent', 'selector': 'app-metricas'},{'name': 'NotfoundpageComponent', 'selector': 'app-notfoundpage'},{'name': 'PrivacyComponent', 'selector': 'app-privacy'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ReservesCliComponent', 'selector': 'app-reserves-cli'},{'name': 'SearchComponent', 'selector': 'app-search'},{'name': 'ServiceDetailComponent', 'selector': 'app-service-detail'},{'name': 'ServicesFormComponent', 'selector': 'app-services-form'},{'name': 'ShowServicesComponent', 'selector': 'app-show-services'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ServicesFormComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ServicesFormComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -160,8 +160,14 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#getEmpresaId" >getEmpresaId</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#hasSession" >hasSession</a>
+                            </li>
+                            <li>
+                                <a href="#isEmpresa" >isEmpresa</a>
                             </li>
                             <li>
                                 <a href="#isLoggedIn" >isLoggedIn</a>
@@ -260,6 +266,43 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getEmpresaId"></a>
+                    <span class="name">
+                        <span ><b>getEmpresaId</b></span>
+                        <a href="#getEmpresaId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getEmpresaId()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="80"
+                                    class="link-to-prism">src/app/core/services/auth.service.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>number | null</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="hasSession"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -280,6 +323,43 @@
                         <td class="col-md-4">
                             <div class="io-line">Defined in <a href="" data-line="28"
                                     class="link-to-prism">src/app/core/services/auth.service.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isEmpresa"></a>
+                    <span class="name">
+                        <span ><b>isEmpresa</b></span>
+                        <a href="#isEmpresa"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isEmpresa()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/app/core/services/auth.service.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -754,6 +834,28 @@ export class AuthService {
   logout(): void {
     this.localStorageService.removeItem(&#x27;session&#x27;);
     this.sessionSubject.next(false);
+  }
+
+  isEmpresa(): boolean {
+    const session &#x3D; this.localStorageService.getItem(&#x27;session&#x27;);
+  
+    if (session &amp;&amp; typeof session &#x3D;&#x3D;&#x3D; &#x27;object&#x27; &amp;&amp; &#x27;tipoUsuario&#x27; in session) {
+      return session.tipoUsuario &#x3D;&#x3D;&#x3D; 2;
+    }
+  
+    return false;
+  }
+
+  getEmpresaId(): number | null {
+    const session &#x3D; this.localStorageService.getItem(&#x27;session&#x27;);
+  
+    if (session &amp;&amp; typeof session &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
+      const sessionData &#x3D; session as { usuario?: { empresas?: { idEmpresa?: number } } };
+      
+      return sessionData.usuario?.empresas?.idEmpresa ?? null;
+    }
+    
+    return null;
   }
 }
 </code></pre>

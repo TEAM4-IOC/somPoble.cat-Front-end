@@ -138,6 +138,18 @@
                                     <span class="modifier">Private</span>
                                 <a href="#empresaUrl" >empresaUrl</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#landingUrl" >landingUrl</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#metricsUrl" >metricsUrl</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#servicioUrl" >servicioUrl</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -154,7 +166,19 @@
                                 <a href="#createEmpresa" >createEmpresa</a>
                             </li>
                             <li>
+                                <a href="#createReserva" >createReserva</a>
+                            </li>
+                            <li>
+                                <a href="#createServicio" >createServicio</a>
+                            </li>
+                            <li>
                                 <a href="#deleteEmpresa" >deleteEmpresa</a>
+                            </li>
+                            <li>
+                                <a href="#deleteReserva" >deleteReserva</a>
+                            </li>
+                            <li>
+                                <a href="#deleteServicio" >deleteServicio</a>
                             </li>
                             <li>
                                 <a href="#getEmpresaByIdentificador" >getEmpresaByIdentificador</a>
@@ -166,7 +190,44 @@
                                 <a href="#getEmpresas" >getEmpresas</a>
                             </li>
                             <li>
+                                <a href="#getEvento" >getEvento</a>
+                            </li>
+                            <li>
+                                <a href="#getEventos" >getEventos</a>
+                            </li>
+                            <li>
+                                <a href="#getLandingData" >getLandingData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#getMetrics" >getMetrics</a>
+                            </li>
+                            <li>
+                                <a href="#getReservaById" >getReservaById</a>
+                            </li>
+                            <li>
+                                <a href="#getReservasByCliente" >getReservasByCliente</a>
+                            </li>
+                            <li>
+                                <a href="#getReservasByEmpresa" >getReservasByEmpresa</a>
+                            </li>
+                            <li>
+                                <a href="#getServicioById" >getServicioById</a>
+                            </li>
+                            <li>
+                                <a href="#getServicios" >getServicios</a>
+                            </li>
+                            <li>
+                                <a href="#getServiciosByIdentificadorFiscal" >getServiciosByIdentificadorFiscal</a>
+                            </li>
+                            <li>
                                 <a href="#updateEmpresa" >updateEmpresa</a>
+                            </li>
+                            <li>
+                                <a href="#updateReserva" >updateReserva</a>
+                            </li>
+                            <li>
+                                <a href="#updateServicio" >updateServicio</a>
                             </li>
                         </ul>
                     </td>
@@ -191,7 +252,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/core/services/api.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/core/services/api.service.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -254,8 +315,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/app/core/services/api.service.ts:23</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:62</a></div>
                         </td>
                     </tr>
 
@@ -305,6 +366,140 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="createReserva"></a>
+                    <span class="name">
+                        <span ><b>createReserva</b></span>
+                        <a href="#createReserva"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createReserva(payload: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="167"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:167</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>payload</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createServicio"></a>
+                    <span class="name">
+                        <span ><b>createServicio</b></span>
+                        <a href="#createServicio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createServicio(payload: <a href="../interfaces/CreateServicePayload.html" target="_self">CreateServicePayload</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="120"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:120</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>payload</td>
+                                            <td>
+                                                            <code><a href="../interfaces/CreateServicePayload.html" target="_self" >CreateServicePayload</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ServicioData.html" target="_self" >Observable&lt;ServicioData&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="deleteEmpresa"></a>
                     <span class="name">
                         <span ><b>deleteEmpresa</b></span>
@@ -321,8 +516,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="36"
-                                    class="link-to-prism">src/app/core/services/api.service.ts:36</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="102"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:102</a></div>
                         </td>
                     </tr>
 
@@ -372,6 +567,152 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="deleteReserva"></a>
+                    <span class="name">
+                        <span ><b>deleteReserva</b></span>
+                        <a href="#deleteReserva"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteReserva(idReserva: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="179"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:179</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idReserva</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteServicio"></a>
+                    <span class="name">
+                        <span ><b>deleteServicio</b></span>
+                        <a href="#deleteServicio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteServicio(idServicio: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, identificadorFiscal: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="140"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:140</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idServicio</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>identificadorFiscal</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getEmpresaByIdentificador"></a>
                     <span class="name">
                         <span ><b>getEmpresaByIdentificador</b></span>
@@ -388,8 +729,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/app/core/services/api.service.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -455,8 +796,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/app/core/services/api.service.ts:40</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="106"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:106</a></div>
                         </td>
                     </tr>
 
@@ -492,8 +833,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="44"
-                                    class="link-to-prism">src/app/core/services/api.service.ts:44</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="110"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:110</a></div>
                         </td>
                     </tr>
 
@@ -513,6 +854,624 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getEvento"></a>
+                    <span class="name">
+                        <span ><b>getEvento</b></span>
+                        <a href="#getEvento"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getEvento(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="163"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:163</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EventData.html" target="_self" >Observable&lt;EventData&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEventos"></a>
+                    <span class="name">
+                        <span ><b>getEventos</b></span>
+                        <a href="#getEventos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getEventos()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="159"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:159</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EventData.html" target="_self" >Observable&lt;EventData[]&gt;</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getLandingData"></a>
+                    <span class="name">
+                        <span ><b>getLandingData</b></span>
+                        <a href="#getLandingData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getLandingData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="22"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EmpresaData.html" target="_self" >Observable&lt;EmpresaData[]&gt;</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMetrics"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>getMetrics</b></span>
+                        <a href="#getMetrics"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getMetrics(empresaIdFiscal: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, fechaInicio: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, fechaFin: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="196"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:196</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>empresaIdFiscal</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>fechaInicio</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>fechaFin</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Metrics.html" target="_self" >Observable&lt;Metrics&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getReservaById"></a>
+                    <span class="name">
+                        <span ><b>getReservaById</b></span>
+                        <a href="#getReservaById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getReservaById(idReserva: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="193"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:193</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idReserva</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getReservasByCliente"></a>
+                    <span class="name">
+                        <span ><b>getReservasByCliente</b></span>
+                        <a href="#getReservasByCliente"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getReservasByCliente(dni: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="171"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:171</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>dni</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;any[]&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getReservasByEmpresa"></a>
+                    <span class="name">
+                        <span ><b>getReservasByEmpresa</b></span>
+                        <a href="#getReservasByEmpresa"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getReservasByEmpresa(identificadorFiscal: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:175</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>identificadorFiscal</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;any[]&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getServicioById"></a>
+                    <span class="name">
+                        <span ><b>getServicioById</b></span>
+                        <a href="#getServicioById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getServicioById(identificadorFiscal: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, idServicio: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="150"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:150</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>identificadorFiscal</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>idServicio</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ServicioData.html" target="_self" >Observable&lt;ServicioData&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getServicios"></a>
+                    <span class="name">
+                        <span ><b>getServicios</b></span>
+                        <a href="#getServicios"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getServicios()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="146"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:146</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ServicioData.html" target="_self" >Observable&lt;ServicioData[]&gt;</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getServiciosByIdentificadorFiscal"></a>
+                    <span class="name">
+                        <span ><b>getServiciosByIdentificadorFiscal</b></span>
+                        <a href="#getServiciosByIdentificadorFiscal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getServiciosByIdentificadorFiscal(identificadorFiscal: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="114"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:114</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>identificadorFiscal</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ServicioData.html" target="_self" >Observable&lt;ServicioData[]&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="updateEmpresa"></a>
                     <span class="name">
                         <span ><b>updateEmpresa</b></span>
@@ -522,15 +1481,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateEmpresa(fiscalId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, partial: <a href="../interfaces/EmpresaData.html" target="_self">Partial&lt;EmpresaData&gt;</a>)</code>
+<code>updateEmpresa(fiscalId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, partial: Partial<>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="29"
-                                    class="link-to-prism">src/app/core/services/api.service.ts:29</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:81</a></div>
                         </td>
                     </tr>
 
@@ -565,7 +1524,7 @@
                                         <tr>
                                                 <td>partial</td>
                                             <td>
-                                                            <code><a href="../interfaces/EmpresaData.html" target="_self" >Partial&lt;EmpresaData&gt;</a></code>
+                                                        <code>Partial&lt;&gt;</code>
                                             </td>
 
                                             <td>
@@ -579,6 +1538,176 @@
                             </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="../interfaces/EmpresaData.html" target="_self" >Observable&lt;EmpresaData&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateReserva"></a>
+                    <span class="name">
+                        <span ><b>updateReserva</b></span>
+                        <a href="#updateReserva"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateReserva(idReserva: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, payload: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="185"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:185</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idReserva</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>payload</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateServicio"></a>
+                    <span class="name">
+                        <span ><b>updateServicio</b></span>
+                        <a href="#updateServicio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateServicio(idServicio: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, identificadorFiscal: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, payload: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/app/core/services/api.service.ts:129</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>idServicio</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>identificadorFiscal</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>payload</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
 
                         </div>
                             <div class="io-description">
@@ -613,7 +1742,85 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/core/services/api.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/core/services/api.service.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="landingUrl"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>landingUrl</b></span>
+                        <a href="#landingUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;${environment.authUrl}/landing&#x60;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/core/services/api.service.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="metricsUrl"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>metricsUrl</b></span>
+                        <a href="#metricsUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;${environment.authUrl}/metricas&#x60;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/core/services/api.service.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="servicioUrl"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>servicioUrl</b></span>
+                        <a href="#servicioUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;${environment.authUrl}/servicio&#x60;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/core/services/api.service.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -627,38 +1834,104 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { HttpClient } from &#x27;@angular/common/http&#x27;;
-import { Observable } from &#x27;rxjs&#x27;;
-import { switchMap, map } from &#x27;rxjs/operators&#x27;;
+import { HttpClient, HttpParams } from &#x27;@angular/common/http&#x27;;
+import { Observable, switchMap, map } from &#x27;rxjs&#x27;;
 import { environment } from &#x27;../../../environments/environment&#x27;;
 import { EmpresaData } from &#x27;../models/EmpresaData.interface&#x27;;
 import { CreateEmpresaPayload } from &#x27;../models/create-empresa-payload.interface&#x27;;
+import { ServicioData } from &#x27;../models/ServicioData.interface&#x27;;
+import { CreateServicePayload } from &#x27;../models/create-service-payload.interface&#x27;;
+import { EventData } from &#x27;../models/EventData.interface&#x27;;
+import { Metrics } from &#x27;../models/metrics.interface&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class ApiService {
   private empresaUrl &#x3D; &#x60;${environment.authUrl}/empresas&#x60;;
+  private servicioUrl &#x3D; &#x60;${environment.authUrl}/servicio&#x60;;
+  private landingUrl &#x3D; &#x60;${environment.authUrl}/landing&#x60;;
+  private metricsUrl &#x3D; &#x60;${environment.authUrl}/metricas&#x60;;
 
-  constructor(private http: HttpClient) {}
-
-  getEmpresaByIdentificador(fiscalId: string): Observable&lt;EmpresaData&gt; {
+  constructor(private http: HttpClient) { }
+  getLandingData(): Observable&lt;EmpresaData[]&gt; {
+    return this.http
+      .get&lt;
+        Array&lt;{
+          nombre: string;
+          direccion: string;
+          telefono: string;
+          email: string;
+          imagen: string | null;
+          identificadorFiscal: string;
+          servicios: ServicioData[];
+        }&gt;
+      &gt;(this.landingUrl)
+      .pipe(
+        map(items &#x3D;&gt;
+          items.map(item &#x3D;&gt; ({
+            idEmpresa: 0,
+            identificadorFiscal: item.identificadorFiscal,
+            nombre: item.nombre,
+            actividad: null,
+            direccion: item.direccion,
+            email: item.email,
+            telefono: item.telefono,
+            tipo: 0,
+            fechaAlta: &#x27;&#x27;,
+            fechaModificacion: &#x27;&#x27;,
+            reservas: [],
+            servicios: item.servicios,
+            horarios: [],
+            imagenUrl: item.imagen,
+            imagenPublicId: null
+          }))
+        )
+      );
+  }  getEmpresaByIdentificador(fiscalId: string): Observable&lt;EmpresaData&gt; {
     return this.http
       .get&lt;{ empresa: EmpresaData; dni: string }&gt;(&#x60;${this.empresaUrl}/${fiscalId}&#x60;)
       .pipe(map(response &#x3D;&gt; response.empresa));
   }
 
   createEmpresa(payload: CreateEmpresaPayload): Observable&lt;EmpresaData&gt; {
+    const form &#x3D; new FormData();
+    form.append(&#x27;empresa&#x27;, JSON.stringify({
+      identificadorFiscal: payload.empresa.identificadorFiscal,
+      nombre: payload.empresa.nombre,
+      actividad: payload.empresa.actividad,
+      direccion: payload.empresa.direccion,
+      email: payload.empresa.email,
+      telefono: payload.empresa.telefono
+    }));
+    form.append(&#x27;dni&#x27;, JSON.stringify({ dni: payload.dni }));
+    if (payload.empresa.imagen) {
+      form.append(&#x27;imagen&#x27;, payload.empresa.imagen);
+    }
     return this.http
-      .post&lt;{ empresa: EmpresaData; dni: string }&gt;(this.empresaUrl, payload)
-      .pipe(map(response &#x3D;&gt; response.empresa));
+      .post(this.empresaUrl, form, { responseType: &#x27;text&#x27; })
+      .pipe(switchMap(() &#x3D;&gt; this.getEmpresaByIdentificador(payload.empresa.identificadorFiscal)));
   }
 
-  updateEmpresa(fiscalId: string, partial: Partial&lt;EmpresaData&gt;): Observable&lt;EmpresaData&gt; {
-    return this.http.put(&#x60;${this.empresaUrl}/${fiscalId}&#x60;, partial, { responseType: &#x27;text&#x27; })
-      .pipe(
-        switchMap(() &#x3D;&gt; this.getEmpresaByIdentificador(fiscalId))
-      );
+  updateEmpresa(
+    fiscalId: string,
+    partial: Partial&lt;CreateEmpresaPayload[&#x27;empresa&#x27;]&gt;
+  ): Observable&lt;EmpresaData&gt; {
+    const form &#x3D; new FormData();
+    form.append(&#x27;empresa&#x27;, JSON.stringify({
+      identificadorFiscal: partial.identificadorFiscal,
+      nombre: partial.nombre,
+      actividad: partial.actividad,
+      direccion: partial.direccion,
+      email: partial.email,
+      telefono: partial.telefono
+    }));
+    if (partial.imagen) {
+      form.append(&#x27;imagen&#x27;, partial.imagen);
+    }
+    return this.http
+      .put(&#x60;${this.empresaUrl}/${fiscalId}&#x60;, form, { responseType: &#x27;text&#x27; })
+      .pipe(switchMap(() &#x3D;&gt; this.getEmpresaByIdentificador(fiscalId)));
   }
 
   deleteEmpresa(fiscalId: string): Observable&lt;any&gt; {
@@ -671,6 +1944,101 @@ export class ApiService {
 
   getEmpresas(): Observable&lt;EmpresaData[]&gt; {
     return this.http.get&lt;EmpresaData[]&gt;(&#x60;${environment.authUrl}/empresas&#x60;);
+  }
+
+  getServiciosByIdentificadorFiscal(identificadorFiscal: string): Observable&lt;ServicioData[]&gt; {
+    return this.http.get&lt;ServicioData[]&gt;(
+      &#x60;${environment.authUrl}/servicio-horario/obtener?identificadorFiscal&#x3D;${identificadorFiscal}&#x60;
+    );
+  }
+
+  createServicio(payload: CreateServicePayload): Observable&lt;ServicioData&gt; {
+    return this.http
+      .post&lt;{ servicio: ServicioData; empresa: string }&gt;(
+        &#x60;${this.servicioUrl}-horario/crear&#x60;,
+        payload
+      )
+      .pipe(map(response &#x3D;&gt; response.servicio));
+  }
+
+  updateServicio(
+    idServicio: number,
+    identificadorFiscal: string,
+    payload: any
+  ): Observable&lt;any&gt; {
+    return this.http.put(
+      &#x60;${this.servicioUrl}-horario/actualizar/${idServicio}?identificadorFiscal&#x3D;${identificadorFiscal}&#x60;,
+      payload
+    );
+  }
+
+  deleteServicio(idServicio: number, identificadorFiscal: string): Observable&lt;void&gt; {
+    return this.http.delete&lt;void&gt;(
+      &#x60;${this.servicioUrl}-horario/anular/${idServicio}?identificadorFiscal&#x3D;${identificadorFiscal}&#x60;
+    );
+  }
+
+  getServicios(): Observable&lt;ServicioData[]&gt; {
+    return this.http.get&lt;ServicioData[]&gt;(&#x60;${environment.authUrl}/servicio-horario/obtener-todos&#x60;);
+  }
+
+  getServicioById(
+    identificadorFiscal: string,
+    idServicio: number
+  ): Observable&lt;ServicioData&gt; {
+    return this.http.get&lt;ServicioData&gt;(
+      &#x60;${environment.authUrl}/servicio-horario/obtener-empresa-idservicio?identificadorFiscal&#x3D;${identificadorFiscal}&amp;idServicio&#x3D;${idServicio}&#x60;
+    );
+  }
+
+  getEventos(): Observable&lt;EventData[]&gt; {
+    return this.http.get&lt;EventData[]&gt;(&#x60;${environment.authUrl}/eventos&#x60;);
+  }
+
+  getEvento(id: number): Observable&lt;EventData&gt; {
+    return this.http.get&lt;EventData&gt;(&#x60;${environment.authUrl}/eventos/${id}&#x60;);
+  }
+
+  createReserva(payload: any): Observable&lt;any&gt; {
+    return this.http.post(&#x60;${environment.authUrl}/reservas&#x60;, payload, { responseType: &#x27;text&#x27; });
+  }
+
+  getReservasByCliente(dni: string): Observable&lt;any[]&gt; {
+    return this.http.get&lt;any[]&gt;(&#x60;${environment.authUrl}/reservas/clientes/${dni}&#x60;);
+  }
+
+  getReservasByEmpresa(identificadorFiscal: string): Observable&lt;any[]&gt; {
+    return this.http.get&lt;any[]&gt;(&#x60;${environment.authUrl}/reservas/empresas/${identificadorFiscal}&#x60;);
+  }
+
+  deleteReserva(idReserva: number): Observable&lt;void&gt; {
+    return this.http.delete&lt;void&gt;(&#x60;${environment.authUrl}/reservas/${idReserva}&#x60;, {
+      responseType: &#x27;text&#x27; as &#x27;json&#x27;
+    });
+  }
+
+  updateReserva(idReserva: number, payload: any): Observable&lt;any&gt; {
+    return this.http.put(
+      &#x60;${environment.authUrl}/reservas/${idReserva}&#x60;,
+      payload,
+      { responseType: &#x27;text&#x27; }
+    );
+  }
+
+  getReservaById(idReserva: number): Observable&lt;any&gt; {
+    return this.http.get&lt;any&gt;(&#x60;${environment.authUrl}/reservas/${idReserva}&#x60;);
+  }
+  public getMetrics(
+    empresaIdFiscal: string,
+    fechaInicio: string,
+    fechaFin: string
+  ): Observable&lt;Metrics&gt; {
+    const params &#x3D; new HttpParams()
+      .set(&#x27;empresaIdFiscal&#x27;, empresaIdFiscal)
+      .set(&#x27;fechaInicio&#x27;, fechaInicio)
+      .set(&#x27;fechaFin&#x27;, fechaFin);
+
+    return this.http.get&lt;Metrics&gt;(this.metricsUrl, { params });
   }
 }
 </code></pre>
