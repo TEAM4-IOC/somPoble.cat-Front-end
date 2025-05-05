@@ -33,10 +33,8 @@ export class MetricsStateService {
       return;
     }
 
-    console.log('[MetricsState] loading metrics for', { fiscalId, start, end });
     this.apiService.getMetrics(fiscalId, start, end).subscribe({
       next: metrics => {
-        console.log('[MetricsState] metrics received', metrics);
         this.metricsSubject.next(metrics);
       },
       error: err => {

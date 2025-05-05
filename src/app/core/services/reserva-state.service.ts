@@ -12,7 +12,7 @@ export class ReservaStateService {
 
   constructor(private apiService: ApiService) {}
 
-  // Crear una nova reserva
+  
   createReserva(payload: any): Observable<any> {
     return this.apiService.createReserva(payload);
   }
@@ -31,7 +31,7 @@ export class ReservaStateService {
     );
   }
 
-  // Obtenir reserves per client (DNI)
+  
   getReservasByCliente(dni: string): Observable<any[]> {
     return this.apiService.getReservasByCliente(dni);
   }
@@ -39,8 +39,7 @@ export class ReservaStateService {
   deleteReserva(idReserva: number): Observable<void> {
     return this.apiService.deleteReserva(idReserva).pipe(
       tap(() => {
-        console.log(`Reserva amb ID ${idReserva} eliminada correctament.`);
-        // Opcional: Actualitzar l'estat local si cal
+        
         const reservasActuals = this.reservasSubject.getValue();
         const novesReservas = reservasActuals.filter((reserva) => reserva.idReserva !== idReserva);
         this.reservasSubject.next(novesReservas);
@@ -59,12 +58,10 @@ export class ReservaStateService {
   loadReservasByEmpresa(identificadorFiscal: string): void {
     this.getReservasByEmpresa(identificadorFiscal).subscribe({
       next: (reservas) => {
-        console.log('[DEBUG] Reservas cargadas para la empresa:', reservas);
-        this.reservasSubject.next(reservas); // Actualiza el estado local
+        this.reservasSubject.next(reservas);
       },
       error: (err) => {
-        console.error('[DEBUG] Error al cargar reservas para la empresa:', err);
-        this.reservasSubject.next([]); // Limpia el estado en caso de error
+        this.reservasSubject.next([]);
       },
     });
   }

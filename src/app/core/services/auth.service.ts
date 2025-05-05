@@ -71,7 +71,6 @@ export class AuthService {
     const session = this.localStorageService.getItem('session');
   
     if (session && typeof session === 'object' && 'tipoUsuario' in session) {
-      console.log('auth.service.ts --> tipoUsuario2 OK');
       return session.tipoUsuario === 2;
     }
   

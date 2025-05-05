@@ -855,7 +855,6 @@ export class RegisterComponent {
 
   selectRole(role: number): void {
     this.registerRole &#x3D; role;
-    console.log(&#x27;Selected role ID:&#x27;, this.registerRole);
     this.showForm &#x3D; true;
   }
 
@@ -894,7 +893,6 @@ export class RegisterComponent {
 
       this.authService.register(registrationData, this.registerRole).subscribe({
         next: (response) &#x3D;&gt; {
-          console.log(&#x27;Registro exitoso&#x27;, response);
 
         },
         error: (err) &#x3D;&gt; {
