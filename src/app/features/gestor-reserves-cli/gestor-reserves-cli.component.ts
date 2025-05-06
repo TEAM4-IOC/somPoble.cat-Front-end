@@ -61,6 +61,11 @@ export class GestorReservesCliComponent implements OnInit {
 
   deleteReserva(idReserva: number): void {
 
+    const confirmDelete = confirm(this.translate.instant('gestor-reserves.confirmDelete'));
+    if (!confirmDelete) {
+      return;
+    }
+
     this.reservas = this.reservas.filter((reserva) => reserva.idReserva !== idReserva);
     this.cdr.detectChanges();
 

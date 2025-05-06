@@ -193,7 +193,8 @@
     "registration_success": "Registro completado con éxito.",
     "error": "Error en el registro.",
     "missing_data": "Faltan datos.",
-    "select_role_error": "Tienes que seleccionar un rol."
+    "select_role_error": "Tienes que seleccionar un rol.",
+    "confirmDelete": "¿Estás seguro que quieres eliminar la reserva?"
   },
   "metricas": {
     "fechaInicio": "Fecha inicio",

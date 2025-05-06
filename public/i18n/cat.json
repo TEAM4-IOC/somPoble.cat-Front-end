@@ -192,7 +192,8 @@
     "noAvailableHours": "No hi ha hores disponibles per a la data seleccionada.",
     "formIncomplete": "Si us plau, completa tots els camps del formulari.",
     "reservationUpdated": "Reserva actualitzada correctament!",
-    "reservationUpdateError": "Error al actualitzar la reserva. Si us plau, torna-ho a intentar."
+    "reservationUpdateError": "Error al actualitzar la reserva. Si us plau, torna-ho a intentar.",
+    "confirmDelete": "Estàs segur que vols eliminar la reserva?"
   },
   "editar-reserva": {
     "title": "Modificació de reserva",
