@@ -230,7 +230,8 @@
     "noReservations" : "No hay reservas",
     "listByService": "Listado de reservas por servicio",
     "noServices": "No hay servicios disponibles",
-    "services-calendar": "Calendario de servicios"
+    "services-calendar": "Calendario de servicios",
+    "confirmDelete": "¿Seguro que quieres eliminar el servicio? Se cancelarán automaticamente todas las reservas en curso para este servicio."
   },
   "landing": {
     "services": "Servicios",

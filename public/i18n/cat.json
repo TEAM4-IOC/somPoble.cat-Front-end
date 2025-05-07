@@ -229,7 +229,8 @@
     "noReservations": "No hi ha reserves",
     "listByService": "Llistat de reserves per servei",
     "noServices": "Sense serveis disponibles",
-    "services-calendar": "Calendari de serveis"
+    "services-calendar": "Calendari de serveis",
+    "confirmDelete": "Segur que vols eliminar el servei? Es cancel·laran automàticament totes les reserves en curs per a aquest servei."
   },
   "landing": {
     "services": "Serveis",

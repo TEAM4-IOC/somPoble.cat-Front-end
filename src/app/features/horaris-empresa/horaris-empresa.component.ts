@@ -385,6 +385,16 @@ export class HorarisEmpresaComponent implements OnInit {
   }
 
   public deleteServicio(idServicio: number): void {
+
+    const confirmDelete = confirm(
+      this.translate.instant('horaris-empresa.confirmDelete')
+    );
+  
+    if (!confirmDelete) {
+      return;
+    }
+
+
     if (!this.identificadorFiscal) {
       return;
     }
