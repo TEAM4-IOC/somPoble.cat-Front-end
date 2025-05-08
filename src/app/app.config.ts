@@ -8,7 +8,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { loadingInterceptor } from './core/interceptors/loading.interceptor';
 import { interceptorError } from './core/interceptors/interceptor-error.service';
-import { provideCharts } from 'ng2-charts';
+
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './i18n/', '.json');
@@ -19,7 +19,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withInterceptors([loadingInterceptor, interceptorError])),
     importProvidersFrom([BrowserAnimationsModule]),
-    provideCharts(),
     importProvidersFrom(
       TranslateModule.forRoot({
         loader: {
