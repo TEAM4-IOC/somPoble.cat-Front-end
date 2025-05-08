@@ -52,15 +52,28 @@ export class AuthService {
     return this.http.post<AuthResponse>(endpoint, payload);
   }
 
-  updateProfile(payload: UpdateProfileRequest, role: number): Observable<any> {
-    let endpoint = '';
-    if (role === 1) {
-      endpoint = `${this.authUrl}/clientes/${payload.dni}`;
-    } else if (role === 2) {
-      endpoint = `${this.authUrl}/empresarios/${payload.dni}`;
-    }
-    return this.http.put(endpoint, payload, { responseType: 'text' });
+  updateProfile(payload: UpdateProfileRequest, role: number): Observable<string> {
+    const endpoint =
+      role === 1
+        ? `${this.authUrl}/clientes/${payload.dni}`
+        : `${this.authUrl}/empresarios/${payload.dni}`;
+
+    return this.http
+      .put(endpoint, payload, { responseType: 'text' })
+      .pipe(
+        tap(() => {
+          const session = this.localStorageService.getItem<any>('session');
+          if (session) {
+            session.usuario.nombre     = payload.nombre;
+            session.usuario.apellidos  = payload.apellidos;
+            session.usuario.email      = payload.email;
+            session.usuario.telefono   = payload.telefono;
+            this.localStorageService.setItem('session', session);
+          }
+        })
+      );
   }
+
 
   logout(): void {
     this.localStorageService.removeItem('session');
@@ -69,23 +82,23 @@ export class AuthService {
 
   isEmpresa(): boolean {
     const session = this.localStorageService.getItem('session');
-  
+
     if (session && typeof session === 'object' && 'tipoUsuario' in session) {
       return session.tipoUsuario === 2;
     }
-  
+
     return false;
   }
 
   getEmpresaId(): number | null {
     const session = this.localStorageService.getItem('session');
-  
+
     if (session && typeof session === 'object') {
       const sessionData = session as { usuario?: { empresas?: { idEmpresa?: number } } };
-      
+
       return sessionData.usuario?.empresas?.idEmpresa ?? null;
     }
-    
+
     return null;
   }
 }
