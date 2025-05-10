@@ -14,6 +14,8 @@
             <label for="fechaReserva" class="info-label">
               {{ 'reservesCli.daySelect' | translate }}:
             </label>
+            <input type="text" id="fechaReserva" formControlName="fechaReserva" class="form-control visually-hidden" />
+
             <div class="calendar">
               <div class="calendar-header">
                 <button type="button" class="calendar-btn" (click)="prevMonth()">&#8592;</button>

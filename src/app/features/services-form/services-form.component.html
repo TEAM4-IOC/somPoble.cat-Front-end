@@ -53,10 +53,12 @@
 
       <div class="input-group">
         <label for="diasLaborables" class="form-label">{{ 'add-services-form.workingDays' | translate }}:</label>
+        <input class="d-none" id="diasLaborables" [value]="diasLaborables.join(',')" name="diasLaborables" />
         <div class="input-control two-columns">
           <div *ngFor="let day of weekDays">
             <label class="day-checkbox">
-              <input type="checkbox" [value]="day.value" (change)="onDaySelected($event)" name="diasLaborables" />
+              <input type="checkbox"
+               [value]="day.value" (change)="onDaySelected($event)" name="diasLaborables" />
               {{ day.key | translate }}
             </label>
           </div>
@@ -95,7 +97,7 @@
       <div class="input-group">
         <label for="limiteReserva" class="form-label">{{ 'add-services-form.serviceReservations' | translate }}:</label>
         <div class="input-control">
-          <input type="text" id="limite" [(ngModel)]="limiteReservas" name="limiteReserva"
+          <input type="text" id="limiteReserva" [(ngModel)]="limiteReservas" name="limiteReserva"
             placeholder="{{ 'add-services-form.serviceReservations_placeholder' | translate }}" required
             #limiteReservasModel="ngModel" readonly />
         </div>
